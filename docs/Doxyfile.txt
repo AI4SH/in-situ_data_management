@@ -1,0 +1,39 @@
+# Project info
+PROJECT_NAME           = "Organise AI4SH in-situ data"
+
+PROJECT_BRIEF          = "Compile AI4SH in-situ soil observations from spreadsheet CSV data to a json formatted database"
+
+# magick /Users/thomasgumbricht/Desktop/ai4soilhealth_4f.png -resize x55 /Users/thomasgumbricht/Desktop/ai4soilhealth_x55.png
+PROJECT_LOGO           = "/Users/thomasgumbricht/projects/doxygen/logo/ai4soilhealth_x55.png"
+
+# Input
+INPUT                  = /Users/thomasgumbricht/GitHub_AI4SH/in-situ_data_management/src README.md
+FILE_PATTERNS          = *.py *.md
+RECURSIVE              = YES
+
+USE_MDFILE_AS_MAINPAGE = README.md
+
+CREATE_SUBDIRS         = YES
+
+# Extract docstrings and members
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+OPTIMIZE_OUTPUT_JAVA   = YES     # Helps with Python/Java-like languages
+
+# Recognize Python
+EXTENSION_MAPPING      = py=Python
+
+# Source code browsing
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = YES
+
+# HTML/PDF output
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO      # Set YES if you also want PDF
+
+# Use Graphviz for diagrams (optional, install graphviz)
+HAVE_DOT               = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+CLASS_DIAGRAMS         = YES
