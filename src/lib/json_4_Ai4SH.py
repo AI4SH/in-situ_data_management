@@ -9,7 +9,7 @@ Last updated on 25 aug 2025
 from os import path, makedirs
 
 # Package application imports
-from src.utils import  Read_csv, Delta_days, Dump_json
+from src.utils import  Read_csv, Delta_days, Dump_json, Full_path_locate
 
 # Default variables
 COMPULSARY_DATA_RECORDS = ['pilot_country','pilot','pilot_site','sample_id','min_depth','max_depth','sample_date',
@@ -608,7 +608,7 @@ def Loop_data_records(process, column_L, data_L_L, all_parameter_D, unit_D, meth
 
             return None
 
-def Parameters_fix(method_src_FPN):
+def Parameters_fix(project_FP,method_src_FPN):
     """
     @brief Extracts parameter, unit, method, and equipment dictionaries from a method definition CSV file.
 
@@ -632,7 +632,7 @@ def Parameters_fix(method_src_FPN):
     @exception Prints error messages if the file path does not exist or if dictionary creation fails.
     """
 
-    data_pack = Data_read(method_src_FPN)
+    data_pack = Data_read(project_FP,method_src_FPN)
     
     if not data_pack:
         
@@ -684,8 +684,12 @@ def Parameters_fix(method_src_FPN):
     
     return parameter_D, unit_D, method_D, equipment_D
 
-def Data_read(data_FPN):
+def Data_read(project_FP,data_FPN):
 
+    #SET_RELATIVE_PATH_TO_MAIN
+
+    data_FPN = Full_path_locate(project_FP, data_FPN)
+   
     if not path.exists(data_FPN):
 
         print ("❌ The data path does not exist: %s" % (data_FPN))

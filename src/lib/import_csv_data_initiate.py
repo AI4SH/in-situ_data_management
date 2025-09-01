@@ -10,6 +10,10 @@ from src.process_project import Notebook_initiate, Job_processes_loop
 
 from .import_csv_data_process import Manage_process
 
+from src.utils import Full_path_locate
+
+
+
 def Initiate_process(user_project_file, process_file):
     """
     Initiate the process by loading the user project file and the process file.
@@ -27,6 +31,8 @@ def Initiate_process(user_project_file, process_file):
     """
 
     print ('Initiating process with user project file:', user_project_file)
+
+    user_project_file = Full_path_locate('None',user_project_file)
 
     # Load user project and process file
     user_default_params_D, process_file_FPN_L = Notebook_initiate(user_project_file, process_file)

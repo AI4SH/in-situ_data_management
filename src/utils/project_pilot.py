@@ -325,7 +325,10 @@ def Split_up_dirpath(start_FP,path_string):
     
 def Full_path_locate(start_FP, path_string, dir_make = False):
 
+    if start_FP.startswith('~'):
 
+        start_FP = path.expanduser(start_FP)
+        
     if path_string.startswith('../'):
 
         start_FP, path_string = Split_up_dirpath(start_FP,path_string)
@@ -346,11 +349,11 @@ def Full_path_locate(start_FP, path_string, dir_make = False):
 
     elif path_string.startswith('~/'):
 
-        path_string = path_string[2:]
+        #path_string = path_string[2:]
 
-        start_FP = path.expanduser('~')
+        FPN = path.expanduser(path_string)
 
-        FPN = path.join(start_FP, path_string)
+        #FPN = path.join(start_FP, path_string)
 
     elif path_string.startswith('~'):
 
