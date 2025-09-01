@@ -52,7 +52,7 @@ class json_db:
     - Write sample event data to JSON files.
     """
 
-    def __init__(self, process):
+    def __init__(self, project_FP,process):
         """
         @brief Initializes the json_db class with process parameters.
 
@@ -64,6 +64,7 @@ class json_db:
 
         @return None
         """
+        self.project_FP = project_FP
         self.process_parameters = process.parameters
         self.process_parameters_D = dict(list(process.parameters.__dict__.items()))
 
@@ -81,7 +82,9 @@ class json_db:
 
         @return None
         """
-        self.dst_FP = self.process_parameters.dst_FP
+        self.dst_FP = Full_path_locate(self.project_FP, self.process_parameters.dst_FP, True)
+
+        #self.dst_FP = self.process_parameters.dst_FP
         if not path.exists(self.dst_FP):
             makedirs(self.dst_FP)
 
@@ -486,6 +489,8 @@ class json_db:
         @return None
         """
         dst_FN = '%s_x.json' %(self.sample_id)
+
+        
         dst_FPN = path.join(self.dst_FP, dst_FN)
 
         # Write the updated json file
@@ -494,7 +499,7 @@ class json_db:
         print('Json post created:',dst_FPN)
 
 
-def Loop_data_records(process, column_L, data_L_L, all_parameter_D, unit_D, method_D, equipment_D, std_row = None):
+def Loop_data_records(project_FP,process, column_L, data_L_L, all_parameter_D, unit_D, method_D, equipment_D, std_row = None):
     """
     @brief Processes CSV data records and exports them to hierarchical JSON format for AI4SH in-situ data management.
 
@@ -530,7 +535,7 @@ def Loop_data_records(process, column_L, data_L_L, all_parameter_D, unit_D, meth
     @return None if any error occurs during processing, otherwise creates JSON files for each sample event.
     """
     # Initiate the json_db class
-    json_db_C = json_db(process)
+    json_db_C = json_db(project_FP,process)
 
     # Create the destination folder if it doesn't exist
     json_db_C._Set_dst_FP()

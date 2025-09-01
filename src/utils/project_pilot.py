@@ -8,6 +8,8 @@ Created on 4 Jan 2024
 
 from os import path, makedirs
 
+from pathlib import Path
+
 def Get_project_path(notebook_FP, project_path):
 
     if project_path.startswith('../'):
@@ -36,7 +38,8 @@ def Get_project_path(notebook_FP, project_path):
 
         sub_path = project_path[2:len(project_path)]
 
-        home_dir = path.expanduser('~')
+        #home_dir = path.expanduser('~')
+        home_dir = Path.home()
 
         rootpath = home_dir
 
@@ -46,7 +49,8 @@ def Get_project_path(notebook_FP, project_path):
 
         sub_path = project_path[1:len(project_path)]
 
-        home_dir = path.expanduser('~')
+        #home_dir = path.expanduser('~')
+        home_dir = Path.home()
 
         top_path = home_dir
 
@@ -105,7 +109,8 @@ def Project_locate(notebook_FP, project_json_path, default_FPN):
 
         sub_path = project_json_path[2:len(project_json_path)]
 
-        home_dir = path.expanduser('~')
+        #home_dir = path.expanduser('~')
+        home_dir = Path.home()
 
         rootpath = home_dir
 
@@ -151,7 +156,8 @@ def Root_locate(start_FP, path_string):
 
         sub_path = path_string[2:len(path_string)]
 
-        home_dir = path.expanduser('~')
+        home_dir = Path.home()
+        #home_dir = path.expanduser('~')
 
         rootpath = home_dir
 
@@ -327,7 +333,8 @@ def Full_path_locate(start_FP, path_string, dir_make = False):
 
     if start_FP.startswith('~'):
 
-        start_FP = path.expanduser(start_FP)
+        #start_FP = path.expanduser(start_FP)
+        start_FP = str(Path(start_FP).expanduser())
         
     if path_string.startswith('../'):
 
@@ -349,19 +356,26 @@ def Full_path_locate(start_FP, path_string, dir_make = False):
 
     elif path_string.startswith('~/'):
 
-        #path_string = path_string[2:]
+        FPN = str(Path(path_string).expanduser())
 
-        FPN = path.expanduser(path_string)
+        
+        
+
+        #path_string = path_string[2:]
 
         #FPN = path.join(start_FP, path_string)
 
     elif path_string.startswith('~'):
 
-        path_string = path_string[1:]
+        #FPN = path.expanduser(path_string)
 
-        start_FP = path.expanduser('~')
+        FPN = Path.home(path_string)
+ 
+        #path_string = path_string[1:]
 
-        FPN = path.join(start_FP, path_string)
+        #start_FP = path.expanduser('~')
+
+        #FPN = path.join(start_FP, path_string)
 
     elif path_string.startswith('/'):
 
