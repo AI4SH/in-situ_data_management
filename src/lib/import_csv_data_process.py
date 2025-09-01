@@ -12,7 +12,7 @@ from os import path
 # Package application imports
 from src.lib import Parameters_fix, Data_read, Loop_data_records
 
-def Manage_process(json_job_D):
+def Manage_process(project_FP,json_job_D):
     """
     Manages the processing of JSON defined jobs by iterating through the job dictionary,
     extracting relevant information, and initiating the appropriate processing functions.
@@ -49,7 +49,7 @@ def Manage_process(json_job_D):
             # Redirect process parameters to the corresponding package
             if sub_process_id == 'import_csv_single-lines':
 
-                Import_csv_single_line(json_job_D[key][p_nr].process_S.process)
+                Import_csv_single_line(project_FP,json_job_D[key][p_nr].process_S.process)
 
             else:
                 
@@ -62,7 +62,7 @@ def Manage_process(json_job_D):
 
                 return
             
-def Import_csv_single_line(process):
+def Import_csv_single_line(project_FP,process):
     """
     @brief Imports and processes a CSV data file with one record per line for AI4SH.
 
@@ -74,7 +74,7 @@ def Import_csv_single_line(process):
     """
 
     # Check and read the method csv file
-    data_pack = Parameters_fix(process.parameters.method_src_FPN)
+    data_pack = Parameters_fix(project_FP,process.parameters.method_src_FPN)
  
     if not data_pack:
 
@@ -86,7 +86,7 @@ def Import_csv_single_line(process):
     parameter_D, unit_D, method_D, equipment_D = data_pack
 
     # Check and read the data csv file
-    data_pack = Data_read(process.parameters.data_src_FPN)
+    data_pack = Data_read(project_FP,process.parameters.data_src_FPN)
 
     if not data_pack:
 

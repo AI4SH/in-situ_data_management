@@ -35,7 +35,7 @@ def Initiate_process(user_project_file, process_file):
 
         json_job_D = Job_processes_loop(user_default_params_D, process_file_FPN_L)
 
-        Manage_process(json_job_D)
+        Manage_process(user_default_params_D['project_path'],json_job_D)
 
         print ('Done')
 
