@@ -6,7 +6,7 @@ Last edits: 26 August 2025
 
 ## SUMMARY
 
-This repository consists of a Jupyter notebook front calling a set of Python packages for converting Comma Separated Values (CSV) files to structured json files. This README.md file explains how to use the Jupyter notebook, the Python packages are documented [here](https://xspectrometrics.github.io/ai4sh_in-situ_data_management/import_csv_data/docs/html/).
+This repository consists of a Jupyter notebook front calling a set of Python packages for converting Comma Separated Values (CSV) files to structured json files. This README.md file explains how to use the Jupyter notebook, the Python packages are documented [here](https://ai4sh.github.io/in-situ_data_management/docs/html/).
 
 ## Objective
 
