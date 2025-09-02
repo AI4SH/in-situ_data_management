@@ -1,6 +1,7 @@
 '''
 Created on 14 jan 2025
-Last updated on 25 aug 2025
+Last updated on 25 aug 2025 (complete rewrite to object oriented class structure)
+Updated on 1 Sept 2025 (doxygen comments added)
 
 @author: thomasgumbricht
 '''
@@ -54,8 +55,8 @@ class json_db:
 
     def __init__(self, project_FP,process):
         """
-        @brief Initializes the json_db class with process parameters.
-
+        @brief Constructor for the json_db class, recursively initializes a Struct object from a dictionary.
+   
         @details
         - Extracts and stores the process parameters from the provided process object.
         - Converts the process parameters to a dictionary for easier access and manipulation.
@@ -690,8 +691,6 @@ def Parameters_fix(project_FP,method_src_FPN):
     return parameter_D, unit_D, method_D, equipment_D
 
 def Data_read(project_FP,data_FPN):
-
-    #SET_RELATIVE_PATH_TO_MAIN
 
     data_FPN = Full_path_locate(project_FP, data_FPN)
    

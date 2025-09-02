@@ -1,18 +1,17 @@
 '''
 Created on 21 Aug 2025
 Update on 26 Aug 2025
+Updated on 1 Sept 2025 (Structure_processes replaced older call, doxygen comments added)
 
 @author: thomasgumbricht
 '''
 
 # Package application imports
-from src.process_project import Notebook_initiate, Job_processes_loop
+from src.process_project import Notebook_initiate, Structure_processes
 
 from .import_csv_data_process import Manage_process
 
 from src.utils import Full_path_locate
-
-
 
 def Initiate_process(user_project_file, process_file):
     """
@@ -39,7 +38,7 @@ def Initiate_process(user_project_file, process_file):
 
     if process_file_FPN_L:
 
-        json_job_D = Job_processes_loop(user_default_params_D, process_file_FPN_L)
+        json_job_D = Structure_processes(user_default_params_D, process_file_FPN_L)
 
         Manage_process(user_default_params_D['project_path'],json_job_D)
 

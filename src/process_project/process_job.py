@@ -1,6 +1,9 @@
 '''
 Created on 5 jan 2025
 Updated 11 Mar 2025
+Updated on 21 Aug 2025 (added option for running without DB connection)
+Updated on 1 Sept 2025 (Large loop function replaced with several smaller functions,
+doxygen comments added)
 
 @author: thomasgumbricht
 
@@ -13,11 +16,12 @@ from os import path, makedirs
 # Third party imports
 
 from base64 import b64encode
+
 import re
 
 # Package application imports
 
-from src.utils import Read_json, Pprint_parameter, SetDiskPath #, Log
+from src.utils import Read_json, Pprint_parameter, SetDiskPath , Update_dict #Log
 
 #from postgres import Db_connect, PG_session, PG_user_status, PG_check_user_settings
 
@@ -29,19 +33,21 @@ from src.utils import Read_json, Pprint_parameter, SetDiskPath #, Log
 
 # from process_project.layer import Layer
 
-def Update_dict(user_D, default_D):
-    '''
-    '''
-
-    d = {key: default_D.get(key, user_D[key]) for key in user_D}
-
-    for key in default_D:
-
-        if key not in d:
-
-            user_D[key] = default_D[key]
-
 def Check_param_instance(p, typeD, process_D, json_file_FN, p_str):
+    """
+    @brief Checks the type and validity of a process parameter instance.
+
+    This function validates the value of a parameter in a process dictionary against its expected type,
+    as defined in the type dictionary. It prints warnings for invalid types and attempts to coerce certain
+    string representations to their correct types (e.g., booleans).
+
+    @param p Parameter name (str)
+    @param typeD Dictionary mapping parameter names to expected types (dict)
+    @param process_D Dictionary containing parameter values for the process (dict)
+    @param json_file_FN Filename of the JSON file containing the process definition (str)
+    @param p_str String identifier for the process (str)
+    @return 1 if the parameter instance is valid, None otherwise
+    """
 
     def _Print_error_msg(error_msg):
 
@@ -126,15 +132,34 @@ def Check_param_instance(p, typeD, process_D, json_file_FN, p_str):
     return 1
 
 class Struct(object):
-    ''' Recursive class for building project objects
+    ''' @brief Class for recuresively building project objects
     '''
     def __init__(self, data):
+        """
+        @brief Constructor for the Struct class, recursively initializes a Struct object from a dictionary.
+
+        This constructor takes a dictionary and sets each key-value pair as an attribute of the Struct instance.
+        If a value is itself a dictionary, it is recursively wrapped as a Struct object. Lists, tuples, sets, and frozensets
+        are also recursively wrapped.
+
+        @param data Dictionary containing the data to initialize the Struct object.
+        """
 
         for name, value in data.items():
 
             setattr(self, name, self._wrap(value))
 
     def _wrap(self, value):
+        """
+        @brief Recursively wraps values for Struct initialization.
+
+        This method takes a value and recursively wraps it as a Struct object if it is a dictionary.
+        For iterable types (tuple, list, set, frozenset), it applies itself to each element and returns
+        the same type containing the wrapped elements. For other types, it returns the value unchanged.
+
+        @param value The value to wrap. Can be a dict, tuple, list, set, frozenset, or any other type.
+        @return The wrapped value: Struct if dict, recursively wrapped iterable if tuple/list/set/frozenset, or the value itself otherwise.
+        """
 
         if isinstance(value, (tuple, list, set, frozenset)):
 
@@ -148,11 +173,18 @@ class Params():
     '''
     '''
     def __init__(self, default_parameter_D):
-        '''
-        '''
+        """
+        @brief Constructor for the Params class.
+
+        This method initializes the Params object by processing the default parameters dictionary.
+        It removes the "process" list and converts the first list item to a dictionary for easier access.
+        If the verbosity level in the process parameters is greater than 2, it prints the default parameters.
+
+        @param default_parameter_D Dictionary containing the default parameters for the process, including a "process" key with a list of process configurations.
+        """
 
         #  REMOVE THE "process" list and convert first list item to a dict
-        self.default_parameter_D = self._splitOutProcess(default_parameter_D, 0)
+        self.default_parameter_D = self._Split_out_process(default_parameter_D, 0)
 
         if self.default_parameter_D['process']['verbose'] > 2:
 
@@ -160,9 +192,18 @@ class Params():
 
             Pprint_parameter(self.default_parameter_D)
 
-    def _splitOutProcess(self, raw_D, process_nr):
-        '''
-        '''
+    def _Split_out_process(self, raw_D, process_nr):
+        """
+        @brief Extracts a single process configuration from a dictionary containing multiple processes.
+
+        This method takes a dictionary `raw_D` that contains a 'process' key with a list of process configurations.
+        It returns a new dictionary where the 'process' key is replaced by the process configuration at the specified index `process_nr`.
+        All other keys and values are copied as-is.
+
+        @param raw_D Dictionary containing process configurations, including a 'process' key with a list of processes.
+        @param process_nr Index of the process configuration to extract from the 'process' list.
+        @return Dictionary with the selected process configuration and all other keys from the input dictionary.
+        """
         process_D = {}
 
         for key, value in raw_D.items():
@@ -178,9 +219,15 @@ class Params():
         return process_D
 
     def _Set_user_params(self,user_parameter_D,json_file_FN):
-        '''
-        '''
+        """
+        @brief Set user parameters for the process.
 
+        This method updates the user parameter dictionary by filling in missing variables from the default parameter values.
+        It also sets the filename of the JSON file containing the user parameters.
+
+        @param user_parameter_D Dictionary containing user-defined parameters for the process.
+        @param json_file_FN Filename of the JSON file containing the user parameters.
+        """
         self.json_file_FN = json_file_FN
 
         # update user_parameter_D by filling in missing variables from the default parameter values
@@ -332,7 +379,6 @@ class Params():
                     else:
                         self.dstLayerD[locus][datum][comp]['layer'] = RasterLayer(self.dstCompD[comp], self.dstLocations.locusD[locus], self.srcPeriod.datumD[datum], self.dstpath)
                     '''
-
 
     def _Location(self, session):
         ''' Set the location for the source and destination of this process
@@ -743,8 +789,22 @@ class Params():
         return True
 
     def _Assemble_single_process(self, p_str, process_D, json_file_FN):
-        '''
-        '''
+        """
+        @brief Assemble and compile a single process configuration.
+
+        This method updates the process dictionary with default parameters, sets key identifiers,
+        and compiles the process configuration into a structured object for further use.
+
+        @param p_str String identifier for the process (str).
+        @param process_D Dictionary containing process-specific parameters (dict).
+        @param json_file_FN Filename of the JSON file containing the process definition (str).
+
+        The function performs the following steps:
+        - Updates the process dictionary with default parameters.
+        - Sets the main parameters and identifiers for the process.
+        - Compiles the process configuration into a Struct object for attribute-style access.
+        - Optionally prints the compiled process dictionary if verbosity is set high.
+        """
 
         self.p_str = p_str
 
@@ -768,8 +828,27 @@ class Params():
         self.process_S = Struct(compiled_process_D)
 
     def _Assemble_parameters(self, session, process_schema='process'):
-        ''' Update missing parameters from default setting
-        '''
+        """
+        @brief Assemble and validate process parameters from the database and user input.
+
+        This method retrieves parameter definitions for a process from the database, checks for required fields,
+        fills in missing parameters with system defaults, validates parameter types, and updates the process
+        parameters structure. It logs warnings for missing or invalid parameters and returns a status code
+        indicating success or failure.
+
+        @param session Database session object used to query parameter definitions.
+        @param process_schema Name of the process schema in the database (default: 'process').
+        @return int Status code: 1 if parameters are successfully assembled and validated, 0 otherwise.
+
+        The function performs the following steps:
+        - Checks for the existence of 'sub_process_id' and 'parameters' in the process object.
+        - Queries the database for parameter definitions.
+        - Fills in missing parameters with system defaults.
+        - Validates the presence and type of compulsory parameters.
+        - Removes parameters not defined in the database.
+        - Updates the process parameters structure.
+        - Logs warnings for any issues encountered.
+        """
 
         status_OK = 1
 
@@ -842,7 +921,7 @@ class Params():
                                              self.json_file_FN,
                                             self.p_str)
 
-                Log( error_msg)
+                print( error_msg)
 
                 status_OK = 0
 
@@ -862,7 +941,7 @@ class Params():
                                             self.json_file_FN,
                                             self.p_str)
 
-                Log( error_msg )
+                print( error_msg )
 
                 return 0
 
@@ -1134,83 +1213,49 @@ def Get_process_from_db(pg_session_C,process_schema,process_parameter_C,user_sta
     process_parameter_C.process_S.process.root_process_id = root_process_id
 
     return process_parameter_C.process_S
+ 
+def Job_processes_loop(default_parameter_D, process_file_FPN_L, process_parameter_C, process_schema='process'):
+    """
+    @brief Main loop to process job configurations from JSON files and assemble process objects.
 
-    #json_cmd_D[json_file_obj][p_nr] = process_parameter_C.process_S
+    This function iterates over a list of JSON process files, reads user-defined parameters, and assembles process configurations
+    either by retrieving details from a database or directly from the provided parameters. It supports both database-backed and
+    standalone operation modes. The assembled process objects are stored in a dictionary keyed by the JSON file name and process index.
 
-def Job_processes_loop(default_parameter_D, user_json_process_L, process_path='', process_schema='process'):
-    '''
-    Setup the processes to run the project
-    '''
+    @details
+    - For each JSON file in the input list, reads the process definitions and sets user parameters.
+    - For each process entry, checks for required fields and either retrieves process details from the database (if available)
+    or assembles them from user parameters.
+    - Handles missing fields, insufficient user privileges, and file read errors with warnings.
+    - Returns a dictionary of assembled process objects ready for execution.
 
-    if (default_parameter_D['postgresdb']['db']):
+    @param default_parameter_D Dictionary of default parameters for the job and database connection.
+    @param process_file_FPN_L List of file paths to JSON process configuration files.
+    @param process_parameter_C Params object for managing process parameters and assembly.
+    @param process_schema Name of the process schema in the database (default: 'process').
+    @return Dictionary of assembled process objects, keyed by JSON file and process index.
+    """
+    def Process_loop():
+        """
+        @brief Loop over all processes in the JSON file and assemble process configurations.
 
-        # Get user status
-        user_status_D = Project_login(default_parameter_D)
+        This function iterates through each process entry in the user parameter dictionary, checks for required fields,
+        and either retrieves process details from the database or assembles them from the provided parameters. The results
+        are stored in the json_cmd_D dictionary for further use.
 
-        if not user_status_D:
+        @details
+        - Checks for the presence of 'sub_process_id' in each process entry and prints a warning if missing.
+        - If a database connection is available, retrieves process details using Get_process_from_db and updates json_cmd_D.
+        - If no database connection, assembles process details directly from user parameters and updates json_cmd_D.
+        - Skips processes with missing required fields or insufficient user privileges.
 
-            return None
-        
-        # Set user status
-        default_parameter_D['user_status'] = user_status_D
+        @note
+        - Relies on global variables: user_parameter_D, default_parameter_D, pg_session_C, process_schema,
+            process_parameter_C, user_status_D, json_file_obj, json_cmd_D.
+        - Designed to be called within Job_processes_loop.
 
-        # Set verbosity for database responses
-        pg_session_C = PG_session(default_parameter_D['postgresdb']['db'], default_parameter_D['process'][0]['verbose'])
-
-    default_parameter_D['process_path'] = process_path
-
-    verbose = default_parameter_D['process'][0]['verbose']
-
-    #user_json_process_L = pilot_L
-
-    # Clean the list of json objects from comments and whithe space etc
-    # user_json_process_L = [path.join(process_path,x.strip())  for x in pilot_L if len(x) > 1 and x[0] != '#']
-
-    # Set the default parameters
-    process_parameter_C  = Params(default_parameter_D)
-
-    # Loop over all json files to check if they exists
-    for json_file_obj in user_json_process_L:
-
-        if not path.exists(json_file_obj):
-
-            error_msg = '          ❌ WARNING - json process file not found:\n    %s' %(json_file_obj)
-
-            print (error_msg)
-
-            if (default_parameter_D['postgresdb']['db']):
-
-                # Close the db connection
-                pg_session_C._Close()
-
-            return None
-
-    # Dict to hold all processes ready to run
-    json_cmd_D = {}
-
-    # Loop over all json files
-    for json_file_obj in user_json_process_L:
-
-        json_cmd_D[json_file_obj] = {}
-
-        if verbose > 0:
-
-            msg = '\n    reading jsonObj:\n    %s' %(json_file_obj)
-
-            print (msg)
-
-        user_parameter_D = Read_json(json_file_obj)
-
-        if not user_parameter_D:
-
-            msg = ('\n          ❌ WARNING: json file\n          %s\n          not read - skipping' %json_file_obj)
-
-            print (msg)
-
-            continue
-
-        # Set the user defined parameters
-        process_parameter_C._Set_user_params(user_parameter_D, path.split(json_file_obj)[1])
+        @return None. Results are stored in json_cmd_D.
+        """
 
         # Loop over all processes in the json file
         for p_nr, p in enumerate(user_parameter_D['process']):
@@ -1236,14 +1281,137 @@ def Job_processes_loop(default_parameter_D, user_json_process_L, process_path=''
             else: # No db connection, just read the parameters
 
                 process_D = {"process_S":{"process":{ "sub_process_id": user_parameter_D['process'][p_nr]['sub_process_id'],
-                                                                  "overwrite": user_parameter_D['process'][p_nr]['overwrite'],
+                                                                    "overwrite": user_parameter_D['process'][p_nr]['overwrite'],
                                                                     "parameters": user_parameter_D['process'][p_nr]['parameters']}}}
 
                 json_cmd_D[json_file_obj][p_nr] = Struct(process_D)
 
+    # Main loop function
+    verbose = default_parameter_D['process'][0]['verbose']
+
+    # Dict to hold all processes ready to run
+    json_cmd_D = {}
+
+    # Loop over all json files
+    for json_file_obj in process_file_FPN_L:
+
+        json_cmd_D[json_file_obj] = {}
+
+        if verbose > 0:
+
+            msg = '\n    reading jsonObj:\n    %s' %(json_file_obj)
+
+            print (msg)
+
+        user_parameter_D = Read_json(json_file_obj)
+
+        if not user_parameter_D:
+
+            msg = ('\n          ❌ WARNING: json file\n          %s\n          not read - skipping' %json_file_obj)
+
+            print (msg)
+
+            continue
+
+        # Set the user defined parameters
+        process_parameter_C._Set_user_params(user_parameter_D, path.split(json_file_obj)[1])
+
+        # Loop over all processes in the json file
+        Process_loop()
+
+    return json_cmd_D
+
+def Get_set_database_session(default_parameter_D):
+
+    """
+    @brief Initializes and returns the user status and PostgreSQL database session.
+
+    This function performs the following steps:
+    - Logs in the user and retrieves their status using the provided default parameters.
+    - Updates the default parameters dictionary with the user status.
+    - Initializes a PostgreSQL session object with the database name and verbosity level.
+    - Returns the user status dictionary and the PostgreSQL session object.
+
+    @param default_parameter_D Dictionary containing default parameters, including database and process information.
+    @return Tuple (user_status_D, pg_session_C):
+        - user_status_D: Dictionary with user status information, or None if login fails.
+        - pg_session_C: PostgreSQL session object, or None if login fails.
+    """
+    # Get user status
+    user_status_D = Project_login(default_parameter_D)
+
+    if not user_status_D:
+
+        return None, None
+    
+    # Set user status 
+    default_parameter_D['user_status'] = user_status_D
+
+    # Set verbosity for database responses
+    pg_session_C = PG_session(default_parameter_D['postgresdb']['db'], default_parameter_D['process'][0]['verbose'])
+
+    return user_status_D, pg_session_C
+
+def Check_json_files(process_file_FPN_L):
+
+    """
+    @brief Checks the existence of JSON process files in a given list.
+
+    This function iterates over a list of file paths and verifies that each file exists on disk.
+    If any file is missing, it prints a warning message and returns None. If all files exist, it returns True.
+
+    @param process_file_FPN_L List of file paths to JSON process configuration files.
+    @return True if all files exist, None if any file is missing.
+    """
+    for json_file_obj in process_file_FPN_L:
+
+        if not path.exists(json_file_obj):
+
+            error_msg = '          ❌ WARNING - json process file not found:\n    %s' %(json_file_obj)
+
+            print (error_msg)
+
+            return None
+
+    return True
+
+def Structure_processes(default_parameter_D, process_file_FPN_L, process_path=''):
+    """
+    @brief Assemble and structure process jobs from JSON files and database parameters.
+
+    This function checks the existence of provided JSON process files, optionally establishes a database session,
+    sets up default parameters, and loops over all process files to assemble job configurations. If a database is required,
+    it retrieves user status and closes the session after processing. Returns a dictionary of assembled job objects.
+
+    @param default_parameter_D Dictionary containing default parameters for the process and database connection.
+    @param process_file_FPN_L List of file paths to JSON process configuration files.
+    @param process_path Optional path for process execution context (default: '').
+    @return Dictionary of assembled job objects, or None if any file is missing or user/database status is invalid.
+    """
+    if not Check_json_files(process_file_FPN_L):
+
+        return None
+    
+    if (default_parameter_D['postgresdb']['db']):
+ 
+        # Get user status
+        user_status_D, pg_session_C = Get_set_database_session(default_parameter_D)
+
+        if not user_status_D:
+
+            return None
+        
+    default_parameter_D['process_path'] = process_path
+
+    # Set the default parameters
+    process_parameter_C  = Params(default_parameter_D)
+
+    # Loop over all process files
+    json_job_D = Job_processes_loop(default_parameter_D, process_file_FPN_L, process_parameter_C)
+    
     # Close the db connection if this is a database required process
     if (default_parameter_D['postgresdb']['db']):
 
         pg_session_C._Close()
 
-    return json_cmd_D
+    return json_job_D

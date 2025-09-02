@@ -13,8 +13,13 @@ from os import path
 import json
 
 def Read_json(FPN,verbose=0):
-    '''
-    '''
+    """
+    @brief Reads a JSON file and returns its contents as a Python object.
+
+    @param FPN Full path name of the JSON file to read.
+    @param verbose If set to 1, prints status messages during execution. Default is 0.
+    @return Returns the loaded JSON object if successful, None if the file is not found or an error occurs.
+    """
         
     if verbose:
         
@@ -43,8 +48,14 @@ def Read_json(FPN,verbose=0):
         return None
     
 def Dump_json(FPN, data, indent=2, verbose=0):
-    '''
-    '''
+    """
+    @brief Dumps a Python object to a JSON file.
+
+    @param FPN Full path name of the JSON file to write.
+    @param data The Python object to write to the JSON file.
+    @param indent Number of spaces to use for indentation in the output JSON file.
+    @param verbose If set to 1, prints status messages during execution. Default is 0.
+    """
     
     if verbose:
         

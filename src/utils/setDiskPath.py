@@ -8,8 +8,17 @@ from os import path
 import platform
 
 def SetDiskPath(volume):
-    ''' Set path dependent on operating system
-    '''
+    """
+    @brief Set disk/volume path dependent on operating system.
+
+    This function returns a path string based on the operating system and the provided volume name.
+    On Linux, it constructs a path under /media/<user>/<volume>.
+    On macOS, it constructs a path under /Volumes/<volume>.
+    If volume is '.', returns the current directory.
+
+    @param volume (str): The name of the volume or '.' for current directory.
+    @return str: The constructed path string based on OS and volume.
+    """
         
     home = path.expanduser("~")
     

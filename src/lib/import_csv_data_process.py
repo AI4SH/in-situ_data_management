@@ -2,6 +2,7 @@
 Created on 5 Jan 2025
 Update on 11 Mar 2025
 Update on 21 Aug 2025
+Updated on 1 Sept 2025 (doxygen comments added)
 
 @author: thomasgumbricht
 '''

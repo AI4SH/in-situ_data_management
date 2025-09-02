@@ -16,7 +16,7 @@ from .version import __version__, VERSION, metadataD
 
 #from .process_center import Project_processes_loop
 
-from .process_job import Job_processes_loop
+from .process_job import Structure_processes
 
 #from ..import_csv_data.import_csv_data_py.json_4_Ai4SH import Json_4_AI4SH_DB_v1_xspectre, Prep_gr_penetrometer_data, \
 #    CSV_to_json_for_AI4SH, Loop_data_records, Parameters_fix

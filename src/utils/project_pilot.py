@@ -1,5 +1,7 @@
 '''
 Created on 4 Jan 2024
+Updated on 1 Sept 2025 (Changed from os.path to pathlib.Path for home directory resolution,
+doxygen comments added)
 
 @author: thomasgumbricht
 '''
@@ -8,9 +10,21 @@ Created on 4 Jan 2024
 
 from os import path, makedirs
 
+from copy import deepcopy
+
 from pathlib import Path
 
 def Get_project_path(notebook_FP, project_path):
+    """
+    @brief Resolve and validate a project path based on a reference notebook file path and a project path string.
+
+    This function interprets the project_path argument, which may use relative (../, ./), home (~, ~/), or absolute (/)
+    path notation, and returns the resolved absolute path if it exists. If the path does not exist, returns None.
+
+    @param notebook_FP (str): The file path of the reference notebook.
+    @param project_path (str): The project path string, which may be relative, home-based, or absolute.
+    @return str or None: The resolved project path if it exists, otherwise None.
+    """
 
     if project_path.startswith('../'):
 
@@ -38,7 +52,6 @@ def Get_project_path(notebook_FP, project_path):
 
         sub_path = project_path[2:len(project_path)]
 
-        #home_dir = path.expanduser('~')
         home_dir = Path.home()
 
         rootpath = home_dir
@@ -49,7 +62,6 @@ def Get_project_path(notebook_FP, project_path):
 
         sub_path = project_path[1:len(project_path)]
 
-        #home_dir = path.expanduser('~')
         home_dir = Path.home()
 
         top_path = home_dir
@@ -64,13 +76,6 @@ def Get_project_path(notebook_FP, project_path):
 
         project_path = project_path
 
-        #msg = 'Project main path not defined correctly in:\n    %s' %(project_path)
-
-        #print (msg)
-
-        #return None
-
-
     if not path.exists(project_path):
 
         msg = 'Project main path does not exist:', project_path
@@ -82,6 +87,17 @@ def Get_project_path(notebook_FP, project_path):
     return project_path
 
 def Project_locate(notebook_FP, project_json_path, default_FPN):
+    """
+    @brief Locate and validate the project JSON path based on a notebook file path and a project path string.
+
+    This function resolves the project_json_path argument, which may use relative (../, ./), home (~), or absolute (/)
+    path notation, and returns the resolved absolute path if it exists. If the path is not defined correctly or does not exist, returns None.
+
+    @param notebook_FP (str): The file path of the reference notebook.
+    @param project_json_path (str): The project JSON path string, which may be relative, home-based, or absolute.
+    @param default_FPN (str): The default file path name, used for error reporting.
+    @return str or None: The resolved project JSON path if it exists, otherwise None.
+    """
 
     if project_json_path.startswith('../'):
 
@@ -139,6 +155,16 @@ def Project_locate(notebook_FP, project_json_path, default_FPN):
     return project_path
 
 def Root_locate(start_FP, path_string):
+    """
+    @brief Resolve and validate a root path based on a starting file path and a path string.
+
+    This function interprets the path_string argument, which may use relative (../, .), home (~), or absolute (/) path notation,
+    and returns the resolved absolute path if it exists. If the path does not exist or is not defined correctly, returns None.
+
+    @param start_FP (str): The starting file path from which to resolve the root path.
+    @param path_string (str): The path string, which may be relative, home-based, or absolute.
+    @return str or None: The resolved root path if it exists, otherwise None.
+    """
 
     sub_path = path_string[1:len(path_string)]
 
@@ -329,9 +355,11 @@ def Split_up_dirpath(start_FP,path_string):
 
     return start_FP, path_string
     
-def Full_path_locate(start_FP, path_string, dir_make = False):
+def Full_path_locate(orignal_start_FP, path_string, dir_make = False):
 
-    if start_FP.startswith('~'):
+    start_FP = deepcopy(orignal_start_FP)
+
+    if start_FP.startswith('~'): 
 
         #start_FP = path.expanduser(start_FP)
         start_FP = str(Path(start_FP).expanduser())
@@ -358,24 +386,9 @@ def Full_path_locate(start_FP, path_string, dir_make = False):
 
         FPN = str(Path(path_string).expanduser())
 
-        
-        
-
-        #path_string = path_string[2:]
-
-        #FPN = path.join(start_FP, path_string)
-
     elif path_string.startswith('~'):
 
-        #FPN = path.expanduser(path_string)
-
         FPN = Path.home(path_string)
- 
-        #path_string = path_string[1:]
-
-        #start_FP = path.expanduser('~')
-
-        #FPN = path.join(start_FP, path_string)
 
     elif path_string.startswith('/'):
 
