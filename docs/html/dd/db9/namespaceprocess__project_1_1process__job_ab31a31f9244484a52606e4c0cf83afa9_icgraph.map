@@ -1,5 +1,7 @@
 <map id="process_project.process_job.Project_login" name="process_project.process_job.Project_login">
-<area shape="rect" id="Node000001" title=" " alt="" coords="222,5,385,46"/>
-<area shape="rect" id="Node000002" href="$dd/db9/namespaceprocess__project_1_1process__job.html#a976b96c312845f2587467a6cca6adb38" title=" " alt="" coords="5,5,174,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,28,174,28,174,23,206,23"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="434,13,597,54"/>
+<area shape="rect" id="Node000002" href="$dd/db9/namespaceprocess__project_1_1process__job.html#a624dabc0b7f4ddc75e249110d7b70dcb" title=" " alt="" coords="223,5,386,61"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="419,36,386,36,386,30,419,30"/>
+<area shape="rect" id="Node000003" href="$dd/db9/namespaceprocess__project_1_1process__job.html#af24d711e85754ff4956e7f34c1453c47" title=" " alt="" coords="5,13,175,54"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="207,36,175,36,175,30,207,30"/>
 </map>

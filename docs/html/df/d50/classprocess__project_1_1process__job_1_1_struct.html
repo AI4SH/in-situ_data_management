@@ -123,9 +123,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a316af4eea0ca574024afbd4fa7ce7a7a" id="r_a316af4eea0ca574024afbd4fa7ce7a7a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a316af4eea0ca574024afbd4fa7ce7a7a">_wrap</a> (self, value)</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><pre class="fragment"> Recursive class for building project objects
+<div class="textblock"><pre class="fragment"> @brief Class for recuresively building project objects
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dc/d17/process__job_8py_source.html#l00128">128</a> of file <a class="el" href="../../dc/d17/process__job_8py_source.html">process_job.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dc/d17/process__job_8py_source.html#l00134">134</a> of file <a class="el" href="../../dc/d17/process__job_8py_source.html">process_job.py</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac90e676fe16cb4520d83042e56171d4a" name="ac90e676fe16cb4520d83042e56171d4a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac90e676fe16cb4520d83042e56171d4a">&#9670;&#160;</a></span>__init__()</h2>
@@ -145,14 +145,30 @@ Protected Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<pre class="fragment">@brief Constructor for the Struct class, recursively initializes a Struct object from a dictionary.
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d17/process__job_8py_source.html#l00131">131</a> of file <a class="el" href="../../dc/d17/process__job_8py_source.html">process_job.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  131</span>    <span class="keyword">def </span>__init__(self, data):</div>
-<div class="line"><span class="lineno">  132</span> </div>
-<div class="line"><span class="lineno">  133</span>        <span class="keywordflow">for</span> name, value <span class="keywordflow">in</span> data.items():</div>
-<div class="line"><span class="lineno">  134</span> </div>
-<div class="line"><span class="lineno">  135</span>            setattr(self, name, self._wrap(value))</div>
-<div class="line"><span class="lineno">  136</span> </div>
+This constructor takes a dictionary and sets each key-value pair as an attribute of the Struct instance.
+If a value is itself a dictionary, it is recursively wrapped as a Struct object. Lists, tuples, sets, and frozensets
+are also recursively wrapped.
+
+@param data Dictionary containing the data to initialize the Struct object.
+</pre> 
+<p class="definition">Definition at line <a class="el" href="../../dc/d17/process__job_8py_source.html#l00137">137</a> of file <a class="el" href="../../dc/d17/process__job_8py_source.html">process_job.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  137</span>    <span class="keyword">def </span>__init__(self, data):</div>
+<div class="line"><span class="lineno">  138</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  139</span><span class="stringliteral">        @brief Constructor for the Struct class, recursively initializes a Struct object from a dictionary.</span></div>
+<div class="line"><span class="lineno">  140</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  141</span><span class="stringliteral">        This constructor takes a dictionary and sets each key-value pair as an attribute of the Struct instance.</span></div>
+<div class="line"><span class="lineno">  142</span><span class="stringliteral">        If a value is itself a dictionary, it is recursively wrapped as a Struct object. Lists, tuples, sets, and frozensets</span></div>
+<div class="line"><span class="lineno">  143</span><span class="stringliteral">        are also recursively wrapped.</span></div>
+<div class="line"><span class="lineno">  144</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  145</span><span class="stringliteral">        @param data Dictionary containing the data to initialize the Struct object.</span></div>
+<div class="line"><span class="lineno">  146</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  147</span> </div>
+<div class="line"><span class="lineno">  148</span>        <span class="keywordflow">for</span> name, value <span class="keywordflow">in</span> data.items():</div>
+<div class="line"><span class="lineno">  149</span> </div>
+<div class="line"><span class="lineno">  150</span>            setattr(self, name, self._wrap(value))</div>
+<div class="line"><span class="lineno">  151</span> </div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -194,18 +210,36 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<pre class="fragment">@brief Recursively wraps values for Struct initialization.
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d17/process__job_8py_source.html#l00137">137</a> of file <a class="el" href="../../dc/d17/process__job_8py_source.html">process_job.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  137</span>    <span class="keyword">def </span>_wrap(self, value):</div>
-<div class="line"><span class="lineno">  138</span> </div>
-<div class="line"><span class="lineno">  139</span>        <span class="keywordflow">if</span> isinstance(value, (tuple, list, set, frozenset)):</div>
-<div class="line"><span class="lineno">  140</span> </div>
-<div class="line"><span class="lineno">  141</span>            <span class="keywordflow">return</span> type(value)([self._wrap(v) <span class="keywordflow">for</span> v <span class="keywordflow">in</span> value])</div>
-<div class="line"><span class="lineno">  142</span> </div>
-<div class="line"><span class="lineno">  143</span>        <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  144</span> </div>
-<div class="line"><span class="lineno">  145</span>            <span class="keywordflow">return</span> Struct(value) <span class="keywordflow">if</span> isinstance(value, dict) <span class="keywordflow">else</span> value</div>
-<div class="line"><span class="lineno">  146</span> </div>
+This method takes a value and recursively wraps it as a Struct object if it is a dictionary.
+For iterable types (tuple, list, set, frozenset), it applies itself to each element and returns
+the same type containing the wrapped elements. For other types, it returns the value unchanged.
+
+@param value The value to wrap. Can be a dict, tuple, list, set, frozenset, or any other type.
+@return The wrapped value: Struct if dict, recursively wrapped iterable if tuple/list/set/frozenset, or the value itself otherwise.
+</pre> 
+<p class="definition">Definition at line <a class="el" href="../../dc/d17/process__job_8py_source.html#l00152">152</a> of file <a class="el" href="../../dc/d17/process__job_8py_source.html">process_job.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  152</span>    <span class="keyword">def </span>_wrap(self, value):</div>
+<div class="line"><span class="lineno">  153</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  154</span><span class="stringliteral">        @brief Recursively wraps values for Struct initialization.</span></div>
+<div class="line"><span class="lineno">  155</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  156</span><span class="stringliteral">        This method takes a value and recursively wraps it as a Struct object if it is a dictionary.</span></div>
+<div class="line"><span class="lineno">  157</span><span class="stringliteral">        For iterable types (tuple, list, set, frozenset), it applies itself to each element and returns</span></div>
+<div class="line"><span class="lineno">  158</span><span class="stringliteral">        the same type containing the wrapped elements. For other types, it returns the value unchanged.</span></div>
+<div class="line"><span class="lineno">  159</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  160</span><span class="stringliteral">        @param value The value to wrap. Can be a dict, tuple, list, set, frozenset, or any other type.</span></div>
+<div class="line"><span class="lineno">  161</span><span class="stringliteral">        @return The wrapped value: Struct if dict, recursively wrapped iterable if tuple/list/set/frozenset, or the value itself otherwise.</span></div>
+<div class="line"><span class="lineno">  162</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  163</span> </div>
+<div class="line"><span class="lineno">  164</span>        <span class="keywordflow">if</span> isinstance(value, (tuple, list, set, frozenset)):</div>
+<div class="line"><span class="lineno">  165</span> </div>
+<div class="line"><span class="lineno">  166</span>            <span class="keywordflow">return</span> type(value)([self._wrap(v) <span class="keywordflow">for</span> v <span class="keywordflow">in</span> value])</div>
+<div class="line"><span class="lineno">  167</span> </div>
+<div class="line"><span class="lineno">  168</span>        <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  169</span> </div>
+<div class="line"><span class="lineno">  170</span>            <span class="keywordflow">return</span> Struct(value) <span class="keywordflow">if</span> isinstance(value, dict) <span class="keywordflow">else</span> value</div>
+<div class="line"><span class="lineno">  171</span> </div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

@@ -123,28 +123,46 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<pre class="fragment">@brief Reads a CSV file and returns its header and data rows.
 
+@param FPN Full path name to the CSV file.
+@param mode File open mode (default is 'r').
+@return tuple (column_L, data_L_L):
+    column_L: List of column headers.
+    data_L_L: List of rows, each row is a list of values.
+    Returns None if file does not exist.
+</pre> 
 <p class="definition">Definition at line <a class="el" href="../../d5/d8d/csv__read__write_8py_source.html#l00014">14</a> of file <a class="el" href="../../d5/d8d/csv__read__write_8py_source.html">csv_read_write.py</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   14</span><span class="keyword">def </span>Read_csv(FPN, mode = &#39;r&#39;):</div>
 <div class="line"><span class="lineno">   15</span> </div>
-<div class="line"><span class="lineno">   16</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> path.exists(FPN):</div>
-<div class="line"><span class="lineno">   17</span>        </div>
-<div class="line"><span class="lineno">   18</span>        msg = <span class="stringliteral">&#39;WARNING - csv file not found:\n     %s&#39;</span> %(FPN)</div>
-<div class="line"><span class="lineno">   19</span> </div>
-<div class="line"><span class="lineno">   20</span>        <span class="keywordflow">print</span> (msg)</div>
-<div class="line"><span class="lineno">   21</span>        </div>
-<div class="line"><span class="lineno">   22</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">   23</span> </div>
-<div class="line"><span class="lineno">   24</span>    <span class="keyword">with</span> open(FPN, mode) <span class="keyword">as</span> csv_file:</div>
-<div class="line"><span class="lineno">   25</span>   </div>
-<div class="line"><span class="lineno">   26</span>        csvreader = csv.reader(csv_file)</div>
-<div class="line"><span class="lineno">   27</span> </div>
-<div class="line"><span class="lineno">   28</span>        column_L = next(csvreader)</div>
+<div class="line"><span class="lineno">   16</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   17</span><span class="stringliteral">    @brief Reads a CSV file and returns its header and data rows.</span></div>
+<div class="line"><span class="lineno">   18</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   19</span><span class="stringliteral">    @param FPN Full path name to the CSV file.</span></div>
+<div class="line"><span class="lineno">   20</span><span class="stringliteral">    @param mode File open mode (default is &#39;r&#39;).</span></div>
+<div class="line"><span class="lineno">   21</span><span class="stringliteral">    @return tuple (column_L, data_L_L):</span></div>
+<div class="line"><span class="lineno">   22</span><span class="stringliteral">        column_L: List of column headers.</span></div>
+<div class="line"><span class="lineno">   23</span><span class="stringliteral">        data_L_L: List of rows, each row is a list of values.</span></div>
+<div class="line"><span class="lineno">   24</span><span class="stringliteral">        Returns None if file does not exist.</span></div>
+<div class="line"><span class="lineno">   25</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   26</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> path.exists(FPN):</div>
+<div class="line"><span class="lineno">   27</span>        </div>
+<div class="line"><span class="lineno">   28</span>        msg = <span class="stringliteral">&#39;WARNING - csv file not found:\n     %s&#39;</span> %(FPN)</div>
 <div class="line"><span class="lineno">   29</span> </div>
-<div class="line"><span class="lineno">   30</span>        data_L_L = [row <span class="keywordflow">for</span> row <span class="keywordflow">in</span> csvreader]</div>
-<div class="line"><span class="lineno">   31</span> </div>
-<div class="line"><span class="lineno">   32</span>    <span class="keywordflow">return</span> (column_L, data_L_L)</div>
+<div class="line"><span class="lineno">   30</span>        <span class="keywordflow">print</span> (msg)</div>
+<div class="line"><span class="lineno">   31</span>        </div>
+<div class="line"><span class="lineno">   32</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
 <div class="line"><span class="lineno">   33</span> </div>
+<div class="line"><span class="lineno">   34</span>    <span class="keyword">with</span> open(FPN, mode) <span class="keyword">as</span> csv_file:</div>
+<div class="line"><span class="lineno">   35</span>   </div>
+<div class="line"><span class="lineno">   36</span>        csvreader = csv.reader(csv_file)</div>
+<div class="line"><span class="lineno">   37</span> </div>
+<div class="line"><span class="lineno">   38</span>        column_L = next(csvreader)</div>
+<div class="line"><span class="lineno">   39</span> </div>
+<div class="line"><span class="lineno">   40</span>        data_L_L = [row <span class="keywordflow">for</span> row <span class="keywordflow">in</span> csvreader]</div>
+<div class="line"><span class="lineno">   41</span> </div>
+<div class="line"><span class="lineno">   42</span>    <span class="keywordflow">return</span> (column_L, data_L_L)</div>
+<div class="line"><span class="lineno">   43</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -162,20 +180,30 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<pre class="fragment">@brief Reads a CSV file using the 'excel' dialect and returns its header and data rows.
 
-<p class="definition">Definition at line <a class="el" href="../../d5/d8d/csv__read__write_8py_source.html#l00034">34</a> of file <a class="el" href="../../d5/d8d/csv__read__write_8py_source.html">csv_read_write.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   34</span><span class="keyword">def </span>Read_csv_excel(FPN):</div>
-<div class="line"><span class="lineno">   35</span> </div>
-<div class="line"><span class="lineno">   36</span>    <span class="keyword">with</span> open(FPN, <span class="stringliteral">&#39;r&#39;</span>) <span class="keyword">as</span> csv_file:</div>
-<div class="line"><span class="lineno">   37</span>   </div>
-<div class="line"><span class="lineno">   38</span>        csvreader = csv.reader(csv_file, dialect=<span class="stringliteral">&#39;excel&#39;</span>)</div>
-<div class="line"><span class="lineno">   39</span> </div>
-<div class="line"><span class="lineno">   40</span>        column_L = next(csvreader)</div>
-<div class="line"><span class="lineno">   41</span> </div>
-<div class="line"><span class="lineno">   42</span>        data_L_L = [row <span class="keywordflow">for</span> row <span class="keywordflow">in</span> csvreader]</div>
-<div class="line"><span class="lineno">   43</span> </div>
-<div class="line"><span class="lineno">   44</span>    <span class="keywordflow">return</span> (column_L, data_L_L)</div>
-<div class="line"><span class="lineno">   45</span>    </div>
+@param FPN Full path name to the CSV file.
+@return tuple (column_L, data_L_L):
+    column_L: List of column headers.
+    data_L_L: List of rows, each row is a list of values.
+</pre> 
+<p class="definition">Definition at line <a class="el" href="../../d5/d8d/csv__read__write_8py_source.html#l00044">44</a> of file <a class="el" href="../../d5/d8d/csv__read__write_8py_source.html">csv_read_write.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   44</span><span class="keyword">def </span>Read_csv_excel(FPN):</div>
+<div class="line"><span class="lineno">   45</span> </div>
+<div class="line"><span class="lineno">   46</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   47</span><span class="stringliteral">    @brief Reads a CSV file using the &#39;excel&#39; dialect and returns its header and data rows.</span></div>
+<div class="line"><span class="lineno">   48</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   49</span><span class="stringliteral">    @param FPN Full path name to the CSV file.</span></div>
+<div class="line"><span class="lineno">   50</span><span class="stringliteral">    @return tuple (column_L, data_L_L):</span></div>
+<div class="line"><span class="lineno">   51</span><span class="stringliteral">        column_L: List of column headers.</span></div>
+<div class="line"><span class="lineno">   52</span><span class="stringliteral">        data_L_L: List of rows, each row is a list of values.</span></div>
+<div class="line"><span class="lineno">   53</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   54</span>    <span class="keyword">with</span> open(FPN, <span class="stringliteral">&#39;r&#39;</span>) <span class="keyword">as</span> csv_file:</div>
+<div class="line"><span class="lineno">   55</span>        csvreader = csv.reader(csv_file, dialect=<span class="stringliteral">&#39;excel&#39;</span>)</div>
+<div class="line"><span class="lineno">   56</span>        column_L = next(csvreader)</div>
+<div class="line"><span class="lineno">   57</span>        data_L_L = [row <span class="keywordflow">for</span> row <span class="keywordflow">in</span> csvreader]</div>
+<div class="line"><span class="lineno">   58</span>    <span class="keywordflow">return</span> (column_L, data_L_L)</div>
+<div class="line"><span class="lineno">   59</span>    </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -197,20 +225,22 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<pre class="fragment">@brief Writes a list of strings to a text file, one per line.
 
-<p class="definition">Definition at line <a class="el" href="../../d5/d8d/csv__read__write_8py_source.html#l00046">46</a> of file <a class="el" href="../../d5/d8d/csv__read__write_8py_source.html">csv_read_write.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   46</span><span class="keyword">def </span>Write_txt_L(FPN, data_L):</div>
-<div class="line"><span class="lineno">   47</span> </div>
-<div class="line"><span class="lineno">   48</span>    <span class="keyword">with</span> open(FPN, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> txt_file:</div>
-<div class="line"><span class="lineno">   49</span>        </div>
-<div class="line"><span class="lineno">   50</span>        <span class="keywordflow">for</span> line <span class="keywordflow">in</span> data_L:</div>
-<div class="line"><span class="lineno">   51</span>            </div>
-<div class="line"><span class="lineno">   52</span>            txt_file.write(line)</div>
-<div class="line"><span class="lineno">   53</span> </div>
-<div class="line"><span class="lineno">   54</span> </div>
-<div class="line"><span class="lineno">   55</span> </div>
-<div class="line"><span class="lineno">   56</span> </div>
-<div class="line"><span class="lineno">   57</span>        </div>
+@param FPN Full path name to the output text file.
+@param data_L List of strings to write to the file.
+</pre> 
+<p class="definition">Definition at line <a class="el" href="../../d5/d8d/csv__read__write_8py_source.html#l00060">60</a> of file <a class="el" href="../../d5/d8d/csv__read__write_8py_source.html">csv_read_write.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   60</span><span class="keyword">def </span>Write_txt_L(FPN, data_L):</div>
+<div class="line"><span class="lineno">   61</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   62</span><span class="stringliteral">    @brief Writes a list of strings to a text file, one per line.</span></div>
+<div class="line"><span class="lineno">   63</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   64</span><span class="stringliteral">    @param FPN Full path name to the output text file.</span></div>
+<div class="line"><span class="lineno">   65</span><span class="stringliteral">    @param data_L List of strings to write to the file.</span></div>
+<div class="line"><span class="lineno">   66</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   67</span>    <span class="keyword">with</span> open(FPN, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> txt_file:</div>
+<div class="line"><span class="lineno">   68</span>        <span class="keywordflow">for</span> line <span class="keywordflow">in</span> data_L:</div>
+<div class="line"><span class="lineno">   69</span>            txt_file.write(line)    </div>
 </div><!-- fragment -->
 </div>
 </div>

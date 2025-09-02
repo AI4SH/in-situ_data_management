@@ -101,6 +101,7 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><pre class="fragment">Created on 21 Aug 2025
 Update on 26 Aug 2025
+Updated on 1 Sept 2025 (Structure_processes replaced older call, doxygen comments added)
 
 @author: thomasgumbricht
 </pre> </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
@@ -135,39 +136,41 @@ If the process file exists, it will load the user default parameters and process
 run the job processes loop, and manage the process.
 If the process is completed, it will print 'Done'.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../db/d31/import__csv__data__initiate_8py_source.html#l00013">13</a> of file <a class="el" href="../../db/d31/import__csv__data__initiate_8py_source.html">import_csv_data_initiate.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   13</span><span class="keyword">def </span>Initiate_process(user_project_file, process_file):</div>
-<div class="line"><span class="lineno">   14</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">   15</span><span class="stringliteral">    Initiate the process by loading the user project file and the process file.</span></div>
-<div class="line"><span class="lineno">   16</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   17</span><span class="stringliteral">    Parameters:</span></div>
-<div class="line"><span class="lineno">   18</span><span class="stringliteral">    - user_project_file: Path to the user project file.</span></div>
-<div class="line"><span class="lineno">   19</span><span class="stringliteral">    - process_file: Name of the process file (root path set in user_project_file).</span></div>
-<div class="line"><span class="lineno">   20</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   21</span><span class="stringliteral">    Returns:</span></div>
-<div class="line"><span class="lineno">   22</span><span class="stringliteral">    Nothing. The function will print the status of the process.</span></div>
-<div class="line"><span class="lineno">   23</span><span class="stringliteral">    If the process file does not exist, it will print an error message.</span></div>
-<div class="line"><span class="lineno">   24</span><span class="stringliteral">    If the process file exists, it will load the user default parameters and process files,</span></div>
-<div class="line"><span class="lineno">   25</span><span class="stringliteral">    run the job processes loop, and manage the process.</span></div>
-<div class="line"><span class="lineno">   26</span><span class="stringliteral">    If the process is completed, it will print &#39;Done&#39;.</span></div>
-<div class="line"><span class="lineno">   27</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">   28</span> </div>
-<div class="line"><span class="lineno">   29</span>    <span class="keywordflow">print</span> (<span class="stringliteral">&#39;Initiating process with user project file:&#39;</span>, user_project_file)</div>
-<div class="line"><span class="lineno">   30</span> </div>
-<div class="line"><span class="lineno">   31</span>    <span class="comment"># Load user project and process file</span></div>
-<div class="line"><span class="lineno">   32</span>    user_default_params_D, process_file_FPN_L = Notebook_initiate(user_project_file, process_file)</div>
+<p class="definition">Definition at line <a class="el" href="../../db/d31/import__csv__data__initiate_8py_source.html#l00016">16</a> of file <a class="el" href="../../db/d31/import__csv__data__initiate_8py_source.html">import_csv_data_initiate.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   16</span><span class="keyword">def </span>Initiate_process(user_project_file, process_file):</div>
+<div class="line"><span class="lineno">   17</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   18</span><span class="stringliteral">    Initiate the process by loading the user project file and the process file.</span></div>
+<div class="line"><span class="lineno">   19</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   20</span><span class="stringliteral">    Parameters:</span></div>
+<div class="line"><span class="lineno">   21</span><span class="stringliteral">    - user_project_file: Path to the user project file.</span></div>
+<div class="line"><span class="lineno">   22</span><span class="stringliteral">    - process_file: Name of the process file (root path set in user_project_file).</span></div>
+<div class="line"><span class="lineno">   23</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   24</span><span class="stringliteral">    Returns:</span></div>
+<div class="line"><span class="lineno">   25</span><span class="stringliteral">    Nothing. The function will print the status of the process.</span></div>
+<div class="line"><span class="lineno">   26</span><span class="stringliteral">    If the process file does not exist, it will print an error message.</span></div>
+<div class="line"><span class="lineno">   27</span><span class="stringliteral">    If the process file exists, it will load the user default parameters and process files,</span></div>
+<div class="line"><span class="lineno">   28</span><span class="stringliteral">    run the job processes loop, and manage the process.</span></div>
+<div class="line"><span class="lineno">   29</span><span class="stringliteral">    If the process is completed, it will print &#39;Done&#39;.</span></div>
+<div class="line"><span class="lineno">   30</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   31</span> </div>
+<div class="line"><span class="lineno">   32</span>    <span class="keywordflow">print</span> (<span class="stringliteral">&#39;Initiating process with user project file:&#39;</span>, user_project_file)</div>
 <div class="line"><span class="lineno">   33</span> </div>
-<div class="line"><span class="lineno">   34</span>    <span class="keywordflow">if</span> process_file_FPN_L:</div>
+<div class="line"><span class="lineno">   34</span>    user_project_file = Full_path_locate(<span class="stringliteral">&#39;None&#39;</span>,user_project_file)</div>
 <div class="line"><span class="lineno">   35</span> </div>
-<div class="line"><span class="lineno">   36</span>        json_job_D = Job_processes_loop(user_default_params_D, process_file_FPN_L)</div>
-<div class="line"><span class="lineno">   37</span> </div>
-<div class="line"><span class="lineno">   38</span>        Manage_process(json_job_D)</div>
-<div class="line"><span class="lineno">   39</span> </div>
-<div class="line"><span class="lineno">   40</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;Done&#39;</span>)</div>
-<div class="line"><span class="lineno">   41</span> </div>
-<div class="line"><span class="lineno">   42</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">   43</span> </div>
-<div class="line"><span class="lineno">   44</span>        print(<span class="stringliteral">&#39;No process to run&#39;</span>)</div>
+<div class="line"><span class="lineno">   36</span>    <span class="comment"># Load user project and process file</span></div>
+<div class="line"><span class="lineno">   37</span>    user_default_params_D, process_file_FPN_L = Notebook_initiate(user_project_file, process_file)</div>
+<div class="line"><span class="lineno">   38</span> </div>
+<div class="line"><span class="lineno">   39</span>    <span class="keywordflow">if</span> process_file_FPN_L:</div>
+<div class="line"><span class="lineno">   40</span> </div>
+<div class="line"><span class="lineno">   41</span>        json_job_D = Structure_processes(user_default_params_D, process_file_FPN_L)</div>
+<div class="line"><span class="lineno">   42</span> </div>
+<div class="line"><span class="lineno">   43</span>        Manage_process(user_default_params_D[<span class="stringliteral">&#39;project_path&#39;</span>],json_job_D)</div>
+<div class="line"><span class="lineno">   44</span> </div>
+<div class="line"><span class="lineno">   45</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;Done&#39;</span>)</div>
+<div class="line"><span class="lineno">   46</span> </div>
+<div class="line"><span class="lineno">   47</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">   48</span> </div>
+<div class="line"><span class="lineno">   49</span>        print(<span class="stringliteral">&#39;No process to run&#39;</span>)</div>
 </div><!-- fragment -->
 </div>
 </div>

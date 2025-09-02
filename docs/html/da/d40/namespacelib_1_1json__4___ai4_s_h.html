@@ -100,9 +100,9 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa2cc165acd81ed2e0d8d8094f5cecd8e" id="r_aa2cc165acd81ed2e0d8d8094f5cecd8e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2cc165acd81ed2e0d8d8094f5cecd8e">Loop_data_records</a> (process, column_L, data_L_L, all_parameter_D, unit_D, method_D, equipment_D, std_row=None)</td></tr>
-<tr class="memitem:adbfbdb5c3f68667e7f6e7b39f2fb9383" id="r_adbfbdb5c3f68667e7f6e7b39f2fb9383"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adbfbdb5c3f68667e7f6e7b39f2fb9383">Parameters_fix</a> (method_src_FPN)</td></tr>
-<tr class="memitem:aaed8580181cd7117022aba57580055ac" id="r_aaed8580181cd7117022aba57580055ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaed8580181cd7117022aba57580055ac">Data_read</a> (data_FPN)</td></tr>
+<tr class="memitem:acac6972c467f7e5b2d7111b0e5776e32" id="r_acac6972c467f7e5b2d7111b0e5776e32"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acac6972c467f7e5b2d7111b0e5776e32">Loop_data_records</a> (project_FP, process, column_L, data_L_L, all_parameter_D, unit_D, method_D, equipment_D, std_row=None)</td></tr>
+<tr class="memitem:a9bb7ff9a56175b205d5820c9655580eb" id="r_a9bb7ff9a56175b205d5820c9655580eb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9bb7ff9a56175b205d5820c9655580eb">Parameters_fix</a> (project_FP, method_src_FPN)</td></tr>
+<tr class="memitem:a14149bc686ac963b83d84c924ab4f6bd" id="r_a14149bc686ac963b83d84c924ab4f6bd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14149bc686ac963b83d84c924ab4f6bd">Data_read</a> (project_FP, data_FPN)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -114,12 +114,13 @@ Variables</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><pre class="fragment">Created on 14 jan 2025
-Last updated on 25 aug 2025
+Last updated on 25 aug 2025 (complete rewrite to object oriented class structure)
+Updated on 1 Sept 2025 (doxygen comments added)
 
 @author: thomasgumbricht
 </pre> </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
-<a id="aaed8580181cd7117022aba57580055ac" name="aaed8580181cd7117022aba57580055ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaed8580181cd7117022aba57580055ac">&#9670;&#160;</a></span>Data_read()</h2>
+<a id="a14149bc686ac963b83d84c924ab4f6bd" name="a14149bc686ac963b83d84c924ab4f6bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14149bc686ac963b83d84c924ab4f6bd">&#9670;&#160;</a></span>Data_read()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -127,43 +128,49 @@ Last updated on 25 aug 2025
         <tr>
           <td class="memname">lib.json_4_Ai4SH.Data_read </td>
           <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>data_FPN</em></span></td><td>)</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>project_FP</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>data_FPN</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00687">687</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  687</span><span class="keyword">def </span>Data_read(data_FPN):</div>
-<div class="line"><span class="lineno">  688</span> </div>
-<div class="line"><span class="lineno">  689</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> path.exists(data_FPN):</div>
-<div class="line"><span class="lineno">  690</span> </div>
-<div class="line"><span class="lineno">  691</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&quot;❌ The data path does not exist: %s&quot;</span> % (data_FPN))</div>
-<div class="line"><span class="lineno">  692</span> </div>
-<div class="line"><span class="lineno">  693</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00693">693</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  693</span><span class="keyword">def </span>Data_read(project_FP,data_FPN):</div>
 <div class="line"><span class="lineno">  694</span> </div>
-<div class="line"><span class="lineno">  695</span>    data_pack = Read_csv(data_FPN)</div>
-<div class="line"><span class="lineno">  696</span> </div>
-<div class="line"><span class="lineno">  697</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> data_pack:</div>
-<div class="line"><span class="lineno">  698</span>        </div>
-<div class="line"><span class="lineno">  699</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">  700</span>    </div>
-<div class="line"><span class="lineno">  701</span>    <span class="keywordflow">return</span> data_pack</div>
+<div class="line"><span class="lineno">  695</span>    data_FPN = Full_path_locate(project_FP, data_FPN)</div>
+<div class="line"><span class="lineno">  696</span>   </div>
+<div class="line"><span class="lineno">  697</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> path.exists(data_FPN):</div>
+<div class="line"><span class="lineno">  698</span> </div>
+<div class="line"><span class="lineno">  699</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&quot;❌ The data path does not exist: %s&quot;</span> % (data_FPN))</div>
+<div class="line"><span class="lineno">  700</span> </div>
+<div class="line"><span class="lineno">  701</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  702</span> </div>
+<div class="line"><span class="lineno">  703</span>    data_pack = Read_csv(data_FPN)</div>
+<div class="line"><span class="lineno">  704</span> </div>
+<div class="line"><span class="lineno">  705</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> data_pack:</div>
+<div class="line"><span class="lineno">  706</span>        </div>
+<div class="line"><span class="lineno">  707</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  708</span>    </div>
+<div class="line"><span class="lineno">  709</span>    <span class="keywordflow">return</span> data_pack</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../da/d40/namespacelib_1_1json__4___ai4_s_h_aaed8580181cd7117022aba57580055ac_icgraph.png" border="0" usemap="#ada/d40/namespacelib_1_1json__4___ai4_s_h_aaed8580181cd7117022aba57580055ac_icgraph" loading="lazy" alt=""/></div>
-<map name="ada/d40/namespacelib_1_1json__4___ai4_s_h_aaed8580181cd7117022aba57580055ac_icgraph" id="ada/d40/namespacelib_1_1json__4___ai4_s_h_aaed8580181cd7117022aba57580055ac_icgraph">
+<div class="center"><img src="../../da/d40/namespacelib_1_1json__4___ai4_s_h_a14149bc686ac963b83d84c924ab4f6bd_icgraph.png" border="0" usemap="#ada/d40/namespacelib_1_1json__4___ai4_s_h_a14149bc686ac963b83d84c924ab4f6bd_icgraph" loading="lazy" alt=""/></div>
+<map name="ada/d40/namespacelib_1_1json__4___ai4_s_h_a14149bc686ac963b83d84c924ab4f6bd_icgraph" id="ada/d40/namespacelib_1_1json__4___ai4_s_h_a14149bc686ac963b83d84c924ab4f6bd_icgraph">
 <area shape="rect" title=" " alt="" coords="267,5,452,31"/>
-<area shape="rect" href="../../da/d40/namespacelib_1_1json__4___ai4_s_h.html#adbfbdb5c3f68667e7f6e7b39f2fb9383" title=" " alt="" coords="5,5,219,31"/>
+<area shape="rect" href="../../da/d40/namespacelib_1_1json__4___ai4_s_h.html#a9bb7ff9a56175b205d5820c9655580eb" title=" " alt="" coords="5,5,219,31"/>
 <area shape="poly" title=" " alt="" coords="251,21,219,21,219,16,251,16"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="aa2cc165acd81ed2e0d8d8094f5cecd8e" name="aa2cc165acd81ed2e0d8d8094f5cecd8e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2cc165acd81ed2e0d8d8094f5cecd8e">&#9670;&#160;</a></span>Loop_data_records()</h2>
+<a id="acac6972c467f7e5b2d7111b0e5776e32" name="acac6972c467f7e5b2d7111b0e5776e32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acac6972c467f7e5b2d7111b0e5776e32">&#9670;&#160;</a></span>Loop_data_records()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -171,6 +178,11 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">lib.json_4_Ai4SH.Loop_data_records </td>
           <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>project_FP</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>process</em></span>, </td>
         </tr>
         <tr>
@@ -243,126 +255,126 @@ checks consistency, and loops through each data record to assemble and export sa
 
 @return None if any error occurs during processing, otherwise creates JSON files for each sample event.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00497">497</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  497</span><span class="keyword">def </span>Loop_data_records(process, column_L, data_L_L, all_parameter_D, unit_D, method_D, equipment_D, std_row = None):</div>
-<div class="line"><span class="lineno">  498</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  499</span><span class="stringliteral">    @brief Processes CSV data records and exports them to hierarchical JSON format for AI4SH in-situ data management.</span></div>
-<div class="line"><span class="lineno">  500</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  501</span><span class="stringliteral">    @details</span></div>
-<div class="line"><span class="lineno">  502</span><span class="stringliteral">    This function orchestrates the conversion of CSV data rows into structured JSON sample events. </span></div>
-<div class="line"><span class="lineno">  503</span><span class="stringliteral">    It initializes the json_db class, sets up output folders, cleans column headers, distills parameter dictionaries, </span></div>
-<div class="line"><span class="lineno">  504</span><span class="stringliteral">    checks consistency, and loops through each data record to assemble and export sample events.</span></div>
-<div class="line"><span class="lineno">  505</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  506</span><span class="stringliteral">    - Initializes the json_db class with process parameters.</span></div>
-<div class="line"><span class="lineno">  507</span><span class="stringliteral">    - Sets up the destination folder for JSON output.</span></div>
-<div class="line"><span class="lineno">  508</span><span class="stringliteral">    - Cleans and normalizes column headers.</span></div>
-<div class="line"><span class="lineno">  509</span><span class="stringliteral">    - Distills parameter, method, equipment, and unit dictionaries.</span></div>
-<div class="line"><span class="lineno">  510</span><span class="stringliteral">    - Checks consistency among method, equipment, and unit mappings.</span></div>
-<div class="line"><span class="lineno">  511</span><span class="stringliteral">    - Adds compulsory parameters with default values if missing.</span></div>
-<div class="line"><span class="lineno">  512</span><span class="stringliteral">    - Loops through each data record:</span></div>
-<div class="line"><span class="lineno">  513</span><span class="stringliteral">        - Initializes equipment-method mapping.</span></div>
-<div class="line"><span class="lineno">  514</span><span class="stringliteral">        - Converts row data to dictionary.</span></div>
-<div class="line"><span class="lineno">  515</span><span class="stringliteral">        - Ensures all compulsory parameters are set.</span></div>
-<div class="line"><span class="lineno">  516</span><span class="stringliteral">        - Extracts and processes observation measurements.</span></div>
-<div class="line"><span class="lineno">  517</span><span class="stringliteral">        - Sets unique identifiers for pilot, site, point, and sample.</span></div>
-<div class="line"><span class="lineno">  518</span><span class="stringliteral">        - Sets observation metadata, sample, and sampling log.</span></div>
-<div class="line"><span class="lineno">  519</span><span class="stringliteral">        - Assembles the sample event and exports to JSON.</span></div>
-<div class="line"><span class="lineno">  520</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  521</span><span class="stringliteral">    @param process Object containing process parameters, expected to have a &#39;parameters&#39; attribute.</span></div>
-<div class="line"><span class="lineno">  522</span><span class="stringliteral">    @param column_L List of column header strings from the CSV file.</span></div>
-<div class="line"><span class="lineno">  523</span><span class="stringliteral">    @param data_L_L List of lists, each representing a row of data from the CSV file.</span></div>
-<div class="line"><span class="lineno">  524</span><span class="stringliteral">    @param all_parameter_D Dictionary mapping column headers to parameter names.</span></div>
-<div class="line"><span class="lineno">  525</span><span class="stringliteral">    @param unit_D Dictionary mapping column headers to unit names.</span></div>
-<div class="line"><span class="lineno">  526</span><span class="stringliteral">    @param method_D Dictionary mapping column headers to method names.</span></div>
-<div class="line"><span class="lineno">  527</span><span class="stringliteral">    @param equipment_D Dictionary mapping column headers to equipment names.</span></div>
-<div class="line"><span class="lineno">  528</span><span class="stringliteral">    @param std_row (Optional) Standard deviation row or index, if available.</span></div>
-<div class="line"><span class="lineno">  529</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  530</span><span class="stringliteral">    @return None if any error occurs during processing, otherwise creates JSON files for each sample event.</span></div>
-<div class="line"><span class="lineno">  531</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  532</span>    <span class="comment"># Initiate the json_db class</span></div>
-<div class="line"><span class="lineno">  533</span>    json_db_C = json_db(process)</div>
-<div class="line"><span class="lineno">  534</span> </div>
-<div class="line"><span class="lineno">  535</span>    <span class="comment"># Create the destination folder if it doesn&#39;t exist</span></div>
-<div class="line"><span class="lineno">  536</span>    json_db_C._Set_dst_FP()</div>
-<div class="line"><span class="lineno">  537</span> </div>
-<div class="line"><span class="lineno">  538</span>    <span class="comment"># Clean and set the column headers</span></div>
-<div class="line"><span class="lineno">  539</span>    json_db_C._Set_column_L(column_L)</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00503">503</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  503</span><span class="keyword">def </span>Loop_data_records(project_FP,process, column_L, data_L_L, all_parameter_D, unit_D, method_D, equipment_D, std_row = None):</div>
+<div class="line"><span class="lineno">  504</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  505</span><span class="stringliteral">    @brief Processes CSV data records and exports them to hierarchical JSON format for AI4SH in-situ data management.</span></div>
+<div class="line"><span class="lineno">  506</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  507</span><span class="stringliteral">    @details</span></div>
+<div class="line"><span class="lineno">  508</span><span class="stringliteral">    This function orchestrates the conversion of CSV data rows into structured JSON sample events. </span></div>
+<div class="line"><span class="lineno">  509</span><span class="stringliteral">    It initializes the json_db class, sets up output folders, cleans column headers, distills parameter dictionaries, </span></div>
+<div class="line"><span class="lineno">  510</span><span class="stringliteral">    checks consistency, and loops through each data record to assemble and export sample events.</span></div>
+<div class="line"><span class="lineno">  511</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  512</span><span class="stringliteral">    - Initializes the json_db class with process parameters.</span></div>
+<div class="line"><span class="lineno">  513</span><span class="stringliteral">    - Sets up the destination folder for JSON output.</span></div>
+<div class="line"><span class="lineno">  514</span><span class="stringliteral">    - Cleans and normalizes column headers.</span></div>
+<div class="line"><span class="lineno">  515</span><span class="stringliteral">    - Distills parameter, method, equipment, and unit dictionaries.</span></div>
+<div class="line"><span class="lineno">  516</span><span class="stringliteral">    - Checks consistency among method, equipment, and unit mappings.</span></div>
+<div class="line"><span class="lineno">  517</span><span class="stringliteral">    - Adds compulsory parameters with default values if missing.</span></div>
+<div class="line"><span class="lineno">  518</span><span class="stringliteral">    - Loops through each data record:</span></div>
+<div class="line"><span class="lineno">  519</span><span class="stringliteral">        - Initializes equipment-method mapping.</span></div>
+<div class="line"><span class="lineno">  520</span><span class="stringliteral">        - Converts row data to dictionary.</span></div>
+<div class="line"><span class="lineno">  521</span><span class="stringliteral">        - Ensures all compulsory parameters are set.</span></div>
+<div class="line"><span class="lineno">  522</span><span class="stringliteral">        - Extracts and processes observation measurements.</span></div>
+<div class="line"><span class="lineno">  523</span><span class="stringliteral">        - Sets unique identifiers for pilot, site, point, and sample.</span></div>
+<div class="line"><span class="lineno">  524</span><span class="stringliteral">        - Sets observation metadata, sample, and sampling log.</span></div>
+<div class="line"><span class="lineno">  525</span><span class="stringliteral">        - Assembles the sample event and exports to JSON.</span></div>
+<div class="line"><span class="lineno">  526</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  527</span><span class="stringliteral">    @param process Object containing process parameters, expected to have a &#39;parameters&#39; attribute.</span></div>
+<div class="line"><span class="lineno">  528</span><span class="stringliteral">    @param column_L List of column header strings from the CSV file.</span></div>
+<div class="line"><span class="lineno">  529</span><span class="stringliteral">    @param data_L_L List of lists, each representing a row of data from the CSV file.</span></div>
+<div class="line"><span class="lineno">  530</span><span class="stringliteral">    @param all_parameter_D Dictionary mapping column headers to parameter names.</span></div>
+<div class="line"><span class="lineno">  531</span><span class="stringliteral">    @param unit_D Dictionary mapping column headers to unit names.</span></div>
+<div class="line"><span class="lineno">  532</span><span class="stringliteral">    @param method_D Dictionary mapping column headers to method names.</span></div>
+<div class="line"><span class="lineno">  533</span><span class="stringliteral">    @param equipment_D Dictionary mapping column headers to equipment names.</span></div>
+<div class="line"><span class="lineno">  534</span><span class="stringliteral">    @param std_row (Optional) Standard deviation row or index, if available.</span></div>
+<div class="line"><span class="lineno">  535</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  536</span><span class="stringliteral">    @return None if any error occurs during processing, otherwise creates JSON files for each sample event.</span></div>
+<div class="line"><span class="lineno">  537</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  538</span>    <span class="comment"># Initiate the json_db class</span></div>
+<div class="line"><span class="lineno">  539</span>    json_db_C = json_db(project_FP,process)</div>
 <div class="line"><span class="lineno">  540</span> </div>
-<div class="line"><span class="lineno">  541</span>    parameter_id_L =[<span class="stringliteral">&#39;parameter&#39;</span>,<span class="stringliteral">&#39;method&#39;</span>,<span class="stringliteral">&#39;equipment&#39;</span>,<span class="stringliteral">&#39;unit&#39;</span>]</div>
-<div class="line"><span class="lineno">  542</span> </div>
-<div class="line"><span class="lineno">  543</span>    <span class="comment"># Distill the parameter, method, equipment and unit dictionaries</span></div>
-<div class="line"><span class="lineno">  544</span>    <span class="keywordflow">for</span> i, item <span class="keywordflow">in</span> enumerate([all_parameter_D, method_D, equipment_D, unit_D]):</div>
-<div class="line"><span class="lineno">  545</span> </div>
-<div class="line"><span class="lineno">  546</span>        result = json_db_C._Distill_parameters( item, parameter_id_L[i])</div>
-<div class="line"><span class="lineno">  547</span> </div>
-<div class="line"><span class="lineno">  548</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> result:</div>
-<div class="line"><span class="lineno">  549</span> </div>
-<div class="line"><span class="lineno">  550</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  541</span>    <span class="comment"># Create the destination folder if it doesn&#39;t exist</span></div>
+<div class="line"><span class="lineno">  542</span>    json_db_C._Set_dst_FP()</div>
+<div class="line"><span class="lineno">  543</span> </div>
+<div class="line"><span class="lineno">  544</span>    <span class="comment"># Clean and set the column headers</span></div>
+<div class="line"><span class="lineno">  545</span>    json_db_C._Set_column_L(column_L)</div>
+<div class="line"><span class="lineno">  546</span> </div>
+<div class="line"><span class="lineno">  547</span>    parameter_id_L =[<span class="stringliteral">&#39;parameter&#39;</span>,<span class="stringliteral">&#39;method&#39;</span>,<span class="stringliteral">&#39;equipment&#39;</span>,<span class="stringliteral">&#39;unit&#39;</span>]</div>
+<div class="line"><span class="lineno">  548</span> </div>
+<div class="line"><span class="lineno">  549</span>    <span class="comment"># Distill the parameter, method, equipment and unit dictionaries</span></div>
+<div class="line"><span class="lineno">  550</span>    <span class="keywordflow">for</span> i, item <span class="keywordflow">in</span> enumerate([all_parameter_D, method_D, equipment_D, unit_D]):</div>
 <div class="line"><span class="lineno">  551</span> </div>
-<div class="line"><span class="lineno">  552</span>    <span class="comment"># Check that the method, equipment and unit parameters are consistent</span></div>
-<div class="line"><span class="lineno">  553</span>    result = json_db_C._Check_parameter_consistency()</div>
-<div class="line"><span class="lineno">  554</span> </div>
-<div class="line"><span class="lineno">  555</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> result:</div>
-<div class="line"><span class="lineno">  556</span> </div>
-<div class="line"><span class="lineno">  557</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">  558</span> </div>
-<div class="line"><span class="lineno">  559</span>    <span class="comment"># Add compulsary parameters with default values if they are not set in the csv data file</span></div>
-<div class="line"><span class="lineno">  560</span>    json_db_C._Add_compulsary_default_parameters()</div>
-<div class="line"><span class="lineno">  561</span> </div>
-<div class="line"><span class="lineno">  562</span>    <span class="comment"># Loop all the data records in the csv data file</span></div>
-<div class="line"><span class="lineno">  563</span>    <span class="keywordflow">for</span> d,data_row <span class="keywordflow">in</span>  enumerate(data_L_L):</div>
+<div class="line"><span class="lineno">  552</span>        result = json_db_C._Distill_parameters( item, parameter_id_L[i])</div>
+<div class="line"><span class="lineno">  553</span> </div>
+<div class="line"><span class="lineno">  554</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> result:</div>
+<div class="line"><span class="lineno">  555</span> </div>
+<div class="line"><span class="lineno">  556</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  557</span> </div>
+<div class="line"><span class="lineno">  558</span>    <span class="comment"># Check that the method, equipment and unit parameters are consistent</span></div>
+<div class="line"><span class="lineno">  559</span>    result = json_db_C._Check_parameter_consistency()</div>
+<div class="line"><span class="lineno">  560</span> </div>
+<div class="line"><span class="lineno">  561</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> result:</div>
+<div class="line"><span class="lineno">  562</span> </div>
+<div class="line"><span class="lineno">  563</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
 <div class="line"><span class="lineno">  564</span> </div>
-<div class="line"><span class="lineno">  565</span>        <span class="comment"># Create a hierarchical dictionary to hold equipment -&gt; methods (must be recreated in each loop)</span></div>
-<div class="line"><span class="lineno">  566</span>        json_db_C._Set_equipment_method()</div>
+<div class="line"><span class="lineno">  565</span>    <span class="comment"># Add compulsary parameters with default values if they are not set in the csv data file</span></div>
+<div class="line"><span class="lineno">  566</span>    json_db_C._Add_compulsary_default_parameters()</div>
 <div class="line"><span class="lineno">  567</span> </div>
-<div class="line"><span class="lineno">  568</span>        <span class="comment"># Convert the csv data row to a dict using the csv header records as keys</span></div>
-<div class="line"><span class="lineno">  569</span>        json_db_C._Row_data_to_dict(data_row)</div>
+<div class="line"><span class="lineno">  568</span>    <span class="comment"># Loop all the data records in the csv data file</span></div>
+<div class="line"><span class="lineno">  569</span>    <span class="keywordflow">for</span> d,data_row <span class="keywordflow">in</span>  enumerate(data_L_L):</div>
 <div class="line"><span class="lineno">  570</span> </div>
-<div class="line"><span class="lineno">  571</span>        <span class="comment"># Check that all compulsory parameters are set in in the row data dictionary </span></div>
-<div class="line"><span class="lineno">  572</span>        result = json_db_C._Check_set_compulsary_record_parameters()</div>
+<div class="line"><span class="lineno">  571</span>        <span class="comment"># Create a hierarchical dictionary to hold equipment -&gt; methods (must be recreated in each loop)</span></div>
+<div class="line"><span class="lineno">  572</span>        json_db_C._Set_equipment_method()</div>
 <div class="line"><span class="lineno">  573</span> </div>
-<div class="line"><span class="lineno">  574</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> result:</div>
-<div class="line"><span class="lineno">  575</span> </div>
-<div class="line"><span class="lineno">  576</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">  577</span> </div>
-<div class="line"><span class="lineno">  578</span>        <span class="comment"># Set the observed measurements linked to the correct equipment and method</span></div>
-<div class="line"><span class="lineno">  579</span>        json_db_C._Get_observation_measurements(data_row)</div>
-<div class="line"><span class="lineno">  580</span> </div>
-<div class="line"><span class="lineno">  581</span>        <span class="comment"># Set the ids for pilot, site, point and sample</span></div>
-<div class="line"><span class="lineno">  582</span>        json_db_C._Set_pilot_site_point_sample_id()</div>
+<div class="line"><span class="lineno">  574</span>        <span class="comment"># Convert the csv data row to a dict using the csv header records as keys</span></div>
+<div class="line"><span class="lineno">  575</span>        json_db_C._Row_data_to_dict(data_row)</div>
+<div class="line"><span class="lineno">  576</span> </div>
+<div class="line"><span class="lineno">  577</span>        <span class="comment"># Check that all compulsory parameters are set in in the row data dictionary </span></div>
+<div class="line"><span class="lineno">  578</span>        result = json_db_C._Check_set_compulsary_record_parameters()</div>
+<div class="line"><span class="lineno">  579</span> </div>
+<div class="line"><span class="lineno">  580</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> result:</div>
+<div class="line"><span class="lineno">  581</span> </div>
+<div class="line"><span class="lineno">  582</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
 <div class="line"><span class="lineno">  583</span> </div>
-<div class="line"><span class="lineno">  584</span>        <span class="comment"># Set the observation metadata</span></div>
-<div class="line"><span class="lineno">  585</span>        result = json_db_C._Set_observation_metadata()</div>
+<div class="line"><span class="lineno">  584</span>        <span class="comment"># Set the observed measurements linked to the correct equipment and method</span></div>
+<div class="line"><span class="lineno">  585</span>        json_db_C._Get_observation_measurements(data_row)</div>
 <div class="line"><span class="lineno">  586</span> </div>
-<div class="line"><span class="lineno">  587</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> result:</div>
-<div class="line"><span class="lineno">  588</span> </div>
-<div class="line"><span class="lineno">  589</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">  590</span> </div>
-<div class="line"><span class="lineno">  591</span>        <span class="comment"># Set the sample parameters</span></div>
-<div class="line"><span class="lineno">  592</span>        json_db_C._Set_sample()</div>
-<div class="line"><span class="lineno">  593</span> </div>
-<div class="line"><span class="lineno">  594</span>        <span class="comment"># Set the sampling log parameters</span></div>
-<div class="line"><span class="lineno">  595</span>        json_db_C._Set_sampling_log()</div>
+<div class="line"><span class="lineno">  587</span>        <span class="comment"># Set the ids for pilot, site, point and sample</span></div>
+<div class="line"><span class="lineno">  588</span>        json_db_C._Set_pilot_site_point_sample_id()</div>
+<div class="line"><span class="lineno">  589</span> </div>
+<div class="line"><span class="lineno">  590</span>        <span class="comment"># Set the observation metadata</span></div>
+<div class="line"><span class="lineno">  591</span>        result = json_db_C._Set_observation_metadata()</div>
+<div class="line"><span class="lineno">  592</span> </div>
+<div class="line"><span class="lineno">  593</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> result:</div>
+<div class="line"><span class="lineno">  594</span> </div>
+<div class="line"><span class="lineno">  595</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
 <div class="line"><span class="lineno">  596</span> </div>
-<div class="line"><span class="lineno">  597</span>        <span class="comment"># Assemble the complete sample event to a final dictionary containing all parameters</span></div>
-<div class="line"><span class="lineno">  598</span>        sample_event = json_db_C._Assemble_sample_event()</div>
+<div class="line"><span class="lineno">  597</span>        <span class="comment"># Set the sample parameters</span></div>
+<div class="line"><span class="lineno">  598</span>        json_db_C._Set_sample()</div>
 <div class="line"><span class="lineno">  599</span> </div>
-<div class="line"><span class="lineno">  600</span>        <span class="keywordflow">if</span> sample_event:</div>
-<div class="line"><span class="lineno">  601</span> </div>
-<div class="line"><span class="lineno">  602</span>            <span class="comment"># Dump the complete sample event to a JSON file</span></div>
-<div class="line"><span class="lineno">  603</span>            json_db_C._Dump_sample_json(sample_event)</div>
-<div class="line"><span class="lineno">  604</span> </div>
-<div class="line"><span class="lineno">  605</span>        <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  606</span> </div>
-<div class="line"><span class="lineno">  607</span>            print(<span class="stringliteral">&#39;❌ Error creating JSON post&#39;</span>)</div>
-<div class="line"><span class="lineno">  608</span> </div>
-<div class="line"><span class="lineno">  609</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  600</span>        <span class="comment"># Set the sampling log parameters</span></div>
+<div class="line"><span class="lineno">  601</span>        json_db_C._Set_sampling_log()</div>
+<div class="line"><span class="lineno">  602</span> </div>
+<div class="line"><span class="lineno">  603</span>        <span class="comment"># Assemble the complete sample event to a final dictionary containing all parameters</span></div>
+<div class="line"><span class="lineno">  604</span>        sample_event = json_db_C._Assemble_sample_event()</div>
+<div class="line"><span class="lineno">  605</span> </div>
+<div class="line"><span class="lineno">  606</span>        <span class="keywordflow">if</span> sample_event:</div>
+<div class="line"><span class="lineno">  607</span> </div>
+<div class="line"><span class="lineno">  608</span>            <span class="comment"># Dump the complete sample event to a JSON file</span></div>
+<div class="line"><span class="lineno">  609</span>            json_db_C._Dump_sample_json(sample_event)</div>
 <div class="line"><span class="lineno">  610</span> </div>
+<div class="line"><span class="lineno">  611</span>        <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  612</span> </div>
+<div class="line"><span class="lineno">  613</span>            print(<span class="stringliteral">&#39;❌ Error creating JSON post&#39;</span>)</div>
+<div class="line"><span class="lineno">  614</span> </div>
+<div class="line"><span class="lineno">  615</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  616</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="adbfbdb5c3f68667e7f6e7b39f2fb9383" name="adbfbdb5c3f68667e7f6e7b39f2fb9383"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adbfbdb5c3f68667e7f6e7b39f2fb9383">&#9670;&#160;</a></span>Parameters_fix()</h2>
+<a id="a9bb7ff9a56175b205d5820c9655580eb" name="a9bb7ff9a56175b205d5820c9655580eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bb7ff9a56175b205d5820c9655580eb">&#9670;&#160;</a></span>Parameters_fix()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -370,8 +382,12 @@ checks consistency, and loops through each data record to assemble and export sa
         <tr>
           <td class="memname">lib.json_4_Ai4SH.Parameters_fix </td>
           <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>method_src_FPN</em></span></td><td>)</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>project_FP</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>method_src_FPN</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -396,90 +412,90 @@ This function reads a method definition CSV file, processes its contents, and re
 
 @exception Prints error messages if the file path does not exist or if dictionary creation fails.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00611">611</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  611</span><span class="keyword">def </span>Parameters_fix(method_src_FPN):</div>
-<div class="line"><span class="lineno">  612</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  613</span><span class="stringliteral">    @brief Extracts parameter, unit, method, and equipment dictionaries from a method definition CSV file.</span></div>
-<div class="line"><span class="lineno">  614</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  615</span><span class="stringliteral">    @details</span></div>
-<div class="line"><span class="lineno">  616</span><span class="stringliteral">    This function reads a method definition CSV file, processes its contents, and returns four dictionaries mapping headers to their respective parameter, unit, method, and equipment values. It performs the following steps:</span></div>
-<div class="line"><span class="lineno">  617</span><span class="stringliteral">    - Checks if the provided file path exists.</span></div>
-<div class="line"><span class="lineno">  618</span><span class="stringliteral">    - Reads the CSV file and unpacks the header and data rows.</span></div>
-<div class="line"><span class="lineno">  619</span><span class="stringliteral">    - Normalizes header and row values to lowercase and replaces missing values with None.</span></div>
-<div class="line"><span class="lineno">  620</span><span class="stringliteral">    - Constructs column-wise lists for each header.</span></div>
-<div class="line"><span class="lineno">  621</span><span class="stringliteral">    - Creates dictionaries for parameters, units, methods, and equipment using the header as keys.</span></div>
-<div class="line"><span class="lineno">  622</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  623</span><span class="stringliteral">    @param method_src_FPN Absolute file path to the method definition CSV file.</span></div>
-<div class="line"><span class="lineno">  624</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  625</span><span class="stringliteral">    @return Tuple containing:</span></div>
-<div class="line"><span class="lineno">  626</span><span class="stringliteral">        - parameter_D (dict): Maps header to parameter name.</span></div>
-<div class="line"><span class="lineno">  627</span><span class="stringliteral">        - unit_D (dict): Maps header to unit name.</span></div>
-<div class="line"><span class="lineno">  628</span><span class="stringliteral">        - method_D (dict): Maps header to method name.</span></div>
-<div class="line"><span class="lineno">  629</span><span class="stringliteral">        - equipment_D (dict): Maps header to equipment name.</span></div>
-<div class="line"><span class="lineno">  630</span><span class="stringliteral">        Returns None if the file does not exist or if an error occurs during processing.</span></div>
-<div class="line"><span class="lineno">  631</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  632</span><span class="stringliteral">    @exception Prints error messages if the file path does not exist or if dictionary creation fails.</span></div>
-<div class="line"><span class="lineno">  633</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  634</span> </div>
-<div class="line"><span class="lineno">  635</span>    data_pack = Data_read(method_src_FPN)</div>
-<div class="line"><span class="lineno">  636</span>    </div>
-<div class="line"><span class="lineno">  637</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> data_pack:</div>
-<div class="line"><span class="lineno">  638</span>        </div>
-<div class="line"><span class="lineno">  639</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00617">617</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  617</span><span class="keyword">def </span>Parameters_fix(project_FP,method_src_FPN):</div>
+<div class="line"><span class="lineno">  618</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  619</span><span class="stringliteral">    @brief Extracts parameter, unit, method, and equipment dictionaries from a method definition CSV file.</span></div>
+<div class="line"><span class="lineno">  620</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  621</span><span class="stringliteral">    @details</span></div>
+<div class="line"><span class="lineno">  622</span><span class="stringliteral">    This function reads a method definition CSV file, processes its contents, and returns four dictionaries mapping headers to their respective parameter, unit, method, and equipment values. It performs the following steps:</span></div>
+<div class="line"><span class="lineno">  623</span><span class="stringliteral">    - Checks if the provided file path exists.</span></div>
+<div class="line"><span class="lineno">  624</span><span class="stringliteral">    - Reads the CSV file and unpacks the header and data rows.</span></div>
+<div class="line"><span class="lineno">  625</span><span class="stringliteral">    - Normalizes header and row values to lowercase and replaces missing values with None.</span></div>
+<div class="line"><span class="lineno">  626</span><span class="stringliteral">    - Constructs column-wise lists for each header.</span></div>
+<div class="line"><span class="lineno">  627</span><span class="stringliteral">    - Creates dictionaries for parameters, units, methods, and equipment using the header as keys.</span></div>
+<div class="line"><span class="lineno">  628</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  629</span><span class="stringliteral">    @param method_src_FPN Absolute file path to the method definition CSV file.</span></div>
+<div class="line"><span class="lineno">  630</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  631</span><span class="stringliteral">    @return Tuple containing:</span></div>
+<div class="line"><span class="lineno">  632</span><span class="stringliteral">        - parameter_D (dict): Maps header to parameter name.</span></div>
+<div class="line"><span class="lineno">  633</span><span class="stringliteral">        - unit_D (dict): Maps header to unit name.</span></div>
+<div class="line"><span class="lineno">  634</span><span class="stringliteral">        - method_D (dict): Maps header to method name.</span></div>
+<div class="line"><span class="lineno">  635</span><span class="stringliteral">        - equipment_D (dict): Maps header to equipment name.</span></div>
+<div class="line"><span class="lineno">  636</span><span class="stringliteral">        Returns None if the file does not exist or if an error occurs during processing.</span></div>
+<div class="line"><span class="lineno">  637</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  638</span><span class="stringliteral">    @exception Prints error messages if the file path does not exist or if dictionary creation fails.</span></div>
+<div class="line"><span class="lineno">  639</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
 <div class="line"><span class="lineno">  640</span> </div>
-<div class="line"><span class="lineno">  641</span>    <span class="comment"># Unpack the CSV to a header column list and a list of lists of data rows</span></div>
-<div class="line"><span class="lineno">  642</span>    column_L, data_L_L = data_pack</div>
-<div class="line"><span class="lineno">  643</span> </div>
-<div class="line"><span class="lineno">  644</span>    <span class="comment"># Convert header column names to lowercase</span></div>
-<div class="line"><span class="lineno">  645</span>    column_L = [col.strip().lower() <span class="keywordflow">for</span> col <span class="keywordflow">in</span> column_L]</div>
+<div class="line"><span class="lineno">  641</span>    data_pack = Data_read(project_FP,method_src_FPN)</div>
+<div class="line"><span class="lineno">  642</span>    </div>
+<div class="line"><span class="lineno">  643</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> data_pack:</div>
+<div class="line"><span class="lineno">  644</span>        </div>
+<div class="line"><span class="lineno">  645</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
 <div class="line"><span class="lineno">  646</span> </div>
-<div class="line"><span class="lineno">  647</span>    <span class="comment"># Create a dictionary to hold column data</span></div>
-<div class="line"><span class="lineno">  648</span>    column_D = {}</div>
+<div class="line"><span class="lineno">  647</span>    <span class="comment"># Unpack the CSV to a header column list and a list of lists of data rows</span></div>
+<div class="line"><span class="lineno">  648</span>    column_L, data_L_L = data_pack</div>
 <div class="line"><span class="lineno">  649</span> </div>
-<div class="line"><span class="lineno">  650</span>    <span class="keywordflow">for</span> item <span class="keywordflow">in</span> column_L:</div>
-<div class="line"><span class="lineno">  651</span> </div>
-<div class="line"><span class="lineno">  652</span>        column_D[item] = []</div>
-<div class="line"><span class="lineno">  653</span> </div>
-<div class="line"><span class="lineno">  654</span>    <span class="comment"># Loop over the data rows and populate the column data dictionary</span></div>
-<div class="line"><span class="lineno">  655</span>    <span class="keywordflow">for</span> row <span class="keywordflow">in</span> data_L_L:</div>
-<div class="line"><span class="lineno">  656</span> </div>
-<div class="line"><span class="lineno">  657</span>        <span class="keywordflow">for</span> c, col <span class="keywordflow">in</span> enumerate(column_L):</div>
-<div class="line"><span class="lineno">  658</span> </div>
-<div class="line"><span class="lineno">  659</span>            row_item = row[c].strip().lower()</div>
-<div class="line"><span class="lineno">  660</span> </div>
-<div class="line"><span class="lineno">  661</span>            <span class="keywordflow">if</span> row_item.lower() <span class="keywordflow">in</span> [<span class="stringliteral">&#39;na&#39;</span>, <span class="stringliteral">&#39;none&#39;</span>, <span class="stringliteral">&#39;n/a&#39;</span>, <span class="stringliteral">&#39;nan&#39;</span>, <span class="stringliteral">&#39;&#39;</span>, <span class="stringliteral">&#39;null&#39;</span>]:</div>
+<div class="line"><span class="lineno">  650</span>    <span class="comment"># Convert header column names to lowercase</span></div>
+<div class="line"><span class="lineno">  651</span>    column_L = [col.strip().lower() <span class="keywordflow">for</span> col <span class="keywordflow">in</span> column_L]</div>
+<div class="line"><span class="lineno">  652</span> </div>
+<div class="line"><span class="lineno">  653</span>    <span class="comment"># Create a dictionary to hold column data</span></div>
+<div class="line"><span class="lineno">  654</span>    column_D = {}</div>
+<div class="line"><span class="lineno">  655</span> </div>
+<div class="line"><span class="lineno">  656</span>    <span class="keywordflow">for</span> item <span class="keywordflow">in</span> column_L:</div>
+<div class="line"><span class="lineno">  657</span> </div>
+<div class="line"><span class="lineno">  658</span>        column_D[item] = []</div>
+<div class="line"><span class="lineno">  659</span> </div>
+<div class="line"><span class="lineno">  660</span>    <span class="comment"># Loop over the data rows and populate the column data dictionary</span></div>
+<div class="line"><span class="lineno">  661</span>    <span class="keywordflow">for</span> row <span class="keywordflow">in</span> data_L_L:</div>
 <div class="line"><span class="lineno">  662</span> </div>
-<div class="line"><span class="lineno">  663</span>                row[c] = <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  663</span>        <span class="keywordflow">for</span> c, col <span class="keywordflow">in</span> enumerate(column_L):</div>
 <div class="line"><span class="lineno">  664</span> </div>
-<div class="line"><span class="lineno">  665</span>            column_D[col].append(row_item)</div>
+<div class="line"><span class="lineno">  665</span>            row_item = row[c].strip().lower()</div>
 <div class="line"><span class="lineno">  666</span> </div>
-<div class="line"><span class="lineno">  667</span>    <span class="comment"># Create a parameter dictionary</span></div>
-<div class="line"><span class="lineno">  668</span>    <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  669</span> </div>
-<div class="line"><span class="lineno">  670</span>        parameter_D = dict(zip(column_D[<span class="stringliteral">&#39;header&#39;</span>], column_D[<span class="stringliteral">&#39;parameter&#39;</span>]))</div>
-<div class="line"><span class="lineno">  671</span> </div>
-<div class="line"><span class="lineno">  672</span>    <span class="keywordflow">except</span>:</div>
-<div class="line"><span class="lineno">  673</span> </div>
-<div class="line"><span class="lineno">  674</span>        print(<span class="stringliteral">&quot;❌ Error creating parameter dictionary - check header: %s&quot;</span> %(column_D[<span class="stringliteral">&#39;header&#39;</span>]))</div>
+<div class="line"><span class="lineno">  667</span>            <span class="keywordflow">if</span> row_item.lower() <span class="keywordflow">in</span> [<span class="stringliteral">&#39;na&#39;</span>, <span class="stringliteral">&#39;none&#39;</span>, <span class="stringliteral">&#39;n/a&#39;</span>, <span class="stringliteral">&#39;nan&#39;</span>, <span class="stringliteral">&#39;&#39;</span>, <span class="stringliteral">&#39;null&#39;</span>]:</div>
+<div class="line"><span class="lineno">  668</span> </div>
+<div class="line"><span class="lineno">  669</span>                row[c] = <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  670</span> </div>
+<div class="line"><span class="lineno">  671</span>            column_D[col].append(row_item)</div>
+<div class="line"><span class="lineno">  672</span> </div>
+<div class="line"><span class="lineno">  673</span>    <span class="comment"># Create a parameter dictionary</span></div>
+<div class="line"><span class="lineno">  674</span>    <span class="keywordflow">try</span>:</div>
 <div class="line"><span class="lineno">  675</span> </div>
-<div class="line"><span class="lineno">  676</span>    <span class="comment"># Create a unit dictionary from the column data</span></div>
-<div class="line"><span class="lineno">  677</span>    unit_D = dict(zip(column_D[<span class="stringliteral">&#39;header&#39;</span>], column_D[<span class="stringliteral">&#39;unit&#39;</span>]))</div>
-<div class="line"><span class="lineno">  678</span> </div>
-<div class="line"><span class="lineno">  679</span>    <span class="comment"># Create a method dictionary from the column data</span></div>
-<div class="line"><span class="lineno">  680</span>    method_D = dict(zip(column_D[<span class="stringliteral">&#39;header&#39;</span>], column_D[<span class="stringliteral">&#39;method&#39;</span>]))</div>
+<div class="line"><span class="lineno">  676</span>        parameter_D = dict(zip(column_D[<span class="stringliteral">&#39;header&#39;</span>], column_D[<span class="stringliteral">&#39;parameter&#39;</span>]))</div>
+<div class="line"><span class="lineno">  677</span> </div>
+<div class="line"><span class="lineno">  678</span>    <span class="keywordflow">except</span>:</div>
+<div class="line"><span class="lineno">  679</span> </div>
+<div class="line"><span class="lineno">  680</span>        print(<span class="stringliteral">&quot;❌ Error creating parameter dictionary - check header: %s&quot;</span> %(column_D[<span class="stringliteral">&#39;header&#39;</span>]))</div>
 <div class="line"><span class="lineno">  681</span> </div>
-<div class="line"><span class="lineno">  682</span>    <span class="comment"># Create an equipment dictionary from the column data</span></div>
-<div class="line"><span class="lineno">  683</span>    equipment_D = dict(zip(column_D[<span class="stringliteral">&#39;header&#39;</span>], column_D[<span class="stringliteral">&#39;equipment&#39;</span>]))</div>
-<div class="line"><span class="lineno">  684</span>    </div>
-<div class="line"><span class="lineno">  685</span>    <span class="keywordflow">return</span> parameter_D, unit_D, method_D, equipment_D</div>
-<div class="line"><span class="lineno">  686</span> </div>
+<div class="line"><span class="lineno">  682</span>    <span class="comment"># Create a unit dictionary from the column data</span></div>
+<div class="line"><span class="lineno">  683</span>    unit_D = dict(zip(column_D[<span class="stringliteral">&#39;header&#39;</span>], column_D[<span class="stringliteral">&#39;unit&#39;</span>]))</div>
+<div class="line"><span class="lineno">  684</span> </div>
+<div class="line"><span class="lineno">  685</span>    <span class="comment"># Create a method dictionary from the column data</span></div>
+<div class="line"><span class="lineno">  686</span>    method_D = dict(zip(column_D[<span class="stringliteral">&#39;header&#39;</span>], column_D[<span class="stringliteral">&#39;method&#39;</span>]))</div>
+<div class="line"><span class="lineno">  687</span> </div>
+<div class="line"><span class="lineno">  688</span>    <span class="comment"># Create an equipment dictionary from the column data</span></div>
+<div class="line"><span class="lineno">  689</span>    equipment_D = dict(zip(column_D[<span class="stringliteral">&#39;header&#39;</span>], column_D[<span class="stringliteral">&#39;equipment&#39;</span>]))</div>
+<div class="line"><span class="lineno">  690</span>    </div>
+<div class="line"><span class="lineno">  691</span>    <span class="keywordflow">return</span> parameter_D, unit_D, method_D, equipment_D</div>
+<div class="line"><span class="lineno">  692</span> </div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../da/d40/namespacelib_1_1json__4___ai4_s_h_adbfbdb5c3f68667e7f6e7b39f2fb9383_cgraph.png" border="0" usemap="#ada/d40/namespacelib_1_1json__4___ai4_s_h_adbfbdb5c3f68667e7f6e7b39f2fb9383_cgraph" loading="lazy" alt=""/></div>
-<map name="ada/d40/namespacelib_1_1json__4___ai4_s_h_adbfbdb5c3f68667e7f6e7b39f2fb9383_cgraph" id="ada/d40/namespacelib_1_1json__4___ai4_s_h_adbfbdb5c3f68667e7f6e7b39f2fb9383_cgraph">
+<div class="center"><img src="../../da/d40/namespacelib_1_1json__4___ai4_s_h_a9bb7ff9a56175b205d5820c9655580eb_cgraph.png" border="0" usemap="#ada/d40/namespacelib_1_1json__4___ai4_s_h_a9bb7ff9a56175b205d5820c9655580eb_cgraph" loading="lazy" alt=""/></div>
+<map name="ada/d40/namespacelib_1_1json__4___ai4_s_h_a9bb7ff9a56175b205d5820c9655580eb_cgraph" id="ada/d40/namespacelib_1_1json__4___ai4_s_h_a9bb7ff9a56175b205d5820c9655580eb_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,219,31"/>
-<area shape="rect" href="../../da/d40/namespacelib_1_1json__4___ai4_s_h.html#aaed8580181cd7117022aba57580055ac" title=" " alt="" coords="267,5,452,31"/>
+<area shape="rect" href="../../da/d40/namespacelib_1_1json__4___ai4_s_h.html#a14149bc686ac963b83d84c924ab4f6bd" title=" " alt="" coords="267,5,452,31"/>
 <area shape="poly" title=" " alt="" coords="219,16,251,16,251,21,219,21"/>
 </map>
 </div>
@@ -499,7 +515,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00022">22</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00023">23</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -519,7 +535,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">    3</span>                                <span class="stringliteral">&#39;sample_transport__name&#39;</span>,<span class="stringliteral">&#39;transport_duration_h&#39;</span>,<span class="stringliteral">&#39;sample_storage__name&#39;</span>,<span class="stringliteral">&#39;user_email_analysis&#39;</span>,</div>
 <div class="line"><span class="lineno">    4</span>                                <span class="stringliteral">&#39;user_email_sampling&#39;</span>,<span class="stringliteral">&#39;user_email_logistic&#39;</span>]</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00015">15</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00016">16</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -535,7 +551,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00020">20</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00021">21</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -554,7 +570,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">    2</span>               <span class="stringliteral">&#39;a&#39;</span>: 0, <span class="stringliteral">&#39;b&#39;</span>:1,<span class="stringliteral">&#39;c&#39;</span>:2,<span class="stringliteral">&#39;d&#39;</span>:3,<span class="stringliteral">&#39;e&#39;</span>:4,<span class="stringliteral">&#39;f&#39;</span>:5,<span class="stringliteral">&#39;g&#39;</span>:6,<span class="stringliteral">&#39;h&#39;</span>:7,<span class="stringliteral">&#39;i&#39;</span>:8,<span class="stringliteral">&#39;j&#39;</span>:9,<span class="stringliteral">&#39;k&#39;</span>:10,</div>
 <div class="line"><span class="lineno">    3</span>                <span class="stringliteral">&#39;ab&#39;</span>:2,<span class="stringliteral">&#39;ac&#39;</span>:3}</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00024">24</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00025">25</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -573,7 +589,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">    2</span>               <span class="stringliteral">&#39;a1&#39;</span>:<span class="stringliteral">&quot;a&quot;</span>,<span class="stringliteral">&#39;a2&#39;</span>:<span class="stringliteral">&quot;b&quot;</span>,<span class="stringliteral">&#39;a3&#39;</span>:<span class="stringliteral">&quot;c&quot;</span>,<span class="stringliteral">&#39;a4&#39;</span>:<span class="stringliteral">&quot;d&quot;</span>,<span class="stringliteral">&#39;b1&#39;</span>:<span class="stringliteral">&quot;e&quot;</span>,<span class="stringliteral">&#39;b2&#39;</span>:<span class="stringliteral">&quot;f&quot;</span>,<span class="stringliteral">&#39;b3&#39;</span>:<span class="stringliteral">&quot;g&quot;</span>,</div>
 <div class="line"><span class="lineno">    3</span>                  <span class="stringliteral">&#39;c1&#39;</span>:<span class="stringliteral">&quot;h&quot;</span>,<span class="stringliteral">&#39;c2&#39;</span>:<span class="stringliteral">&quot;i&quot;</span>,<span class="stringliteral">&#39;c3&#39;</span>:<span class="stringliteral">&quot;j&quot;</span>,<span class="stringliteral">&#39;d1&#39;</span>:<span class="stringliteral">&quot;k&quot;</span>,<span class="stringliteral">&#39;d2&#39;</span>:<span class="stringliteral">&quot;l&quot;</span>,<span class="stringliteral">&#39;d3&#39;</span>:<span class="stringliteral">&quot;m&quot;</span>}</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00028">28</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00029">29</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>

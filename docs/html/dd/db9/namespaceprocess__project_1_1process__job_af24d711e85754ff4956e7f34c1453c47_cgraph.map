@@ -1,0 +1,13 @@
+<map id="process_project.process_job.Structure_processes" name="process_project.process_job.Structure_processes">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,77,175,118"/>
+<area shape="rect" id="Node000002" href="$dd/db9/namespaceprocess__project_1_1process__job.html#a45dd1e2871de33230b58614aa19de4ce" title=" " alt="" coords="225,5,388,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,74,228,49,230,54,154,79"/>
+<area shape="rect" id="Node000003" href="$dd/db9/namespaceprocess__project_1_1process__job.html#a624dabc0b7f4ddc75e249110d7b70dcb" title=" " alt="" coords="225,70,388,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="175,95,210,95,210,100,175,100"/>
+<area shape="rect" id="Node000005" href="$dd/db9/namespaceprocess__project_1_1process__job.html#af561b524f455f4394d6d7a62f4c7aaed" title=" " alt="" coords="223,149,391,190"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="154,116,230,141,228,146,152,121"/>
+<area shape="rect" id="Node000004" href="$dd/db9/namespaceprocess__project_1_1process__job.html#ab31a31f9244484a52606e4c0cf83afa9" title=" " alt="" coords="446,77,609,118"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="389,95,431,95,431,100,389,100"/>
+<area shape="rect" id="Node000006" href="$dd/db9/namespaceprocess__project_1_1process__job.html#ad0dfd2bf57bcac8ca2e90d8e26199533" title=" " alt="" coords="439,149,616,190"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="391,167,423,167,423,172,391,172"/>
+</map>

@@ -1,54 +1,9 @@
 var namespaceutils =
 [
-    [ "character_check", "d7/dde/namespaceutils_1_1character__check.html", [
-      [ "Check_underscore", "d7/dde/namespaceutils_1_1character__check.html#a78e173ac16c776ebef1a81b406a413fe", null ],
-      [ "Check_white_space", "d7/dde/namespaceutils_1_1character__check.html#a5e066de1a716ddc6792f45e01d46e1be", null ]
-    ] ],
     [ "csv_read_write", "d4/d77/namespaceutils_1_1csv__read__write.html", [
       [ "Read_csv", "d4/d77/namespaceutils_1_1csv__read__write.html#aef5f3be813c8cc0b9235eaf1c509bc68", null ],
       [ "Read_csv_excel", "d4/d77/namespaceutils_1_1csv__read__write.html#ac6ffa1462abc1f1019c1585b06b25590", null ],
       [ "Write_txt_L", "d4/d77/namespaceutils_1_1csv__read__write.html#a1485b2bcad56e5eeb3a039ba5768886e", null ]
-    ] ],
-    [ "datetime_conversion", "dc/dd1/namespaceutils_1_1datetime__conversion.html", [
-      [ "AddMonth", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a967932d7685b2f2a46d0bb7c2da73e3e", null ],
-      [ "AddYear", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a009fa83bef317e6cc3b8b72da6831592", null ],
-      [ "DateDiff", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a4073207733235388969be5022b2a5404", null ],
-      [ "DateFromTmTime", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a47181cc02dd4a08bf9929757c37a17ac", null ],
-      [ "DateRange", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a9c5507bdca09ad966c537b97f7ed24be", null ],
-      [ "DateTimeFromStartDate", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a851c45aa27fd6b960c7ba1c38562efd9", null ],
-      [ "DateTimeToNumpyDate", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a7fff6842082c51e7767a9e2190c19045", null ],
-      [ "DateToDOY", "dc/dd1/namespaceutils_1_1datetime__conversion.html#af503e7033bff827f0246dcd1fc155e09", null ],
-      [ "DateToStrDate", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a5de58715356d8061641b741033c871eb", null ],
-      [ "DateToStrHyphenDate", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a93aa6509b0a85e30a78236851ebee1b9", null ],
-      [ "DateToStrPointDate", "dc/dd1/namespaceutils_1_1datetime__conversion.html#ad15b62d95deecda0994e1c646df62f1a", null ],
-      [ "DateToYYYYDOY", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a52a3d33c5354f84a0383cff9dc7d1abf", null ],
-      [ "DateToYYYYMM", "dc/dd1/namespaceutils_1_1datetime__conversion.html#aa3555983a3f22e04524130031adfb5b8", null ],
-      [ "Delta_days", "dc/dd1/namespaceutils_1_1datetime__conversion.html#afc154a8d1cc7c9de17a1533db260b78b", null ],
-      [ "DeltaTime", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a6f4a1f9dc6d90a0da4147e257994ff01", null ],
-      [ "DoyStr", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a490d9e2118a1a01cffc0d1a64edbe5a7", null ],
-      [ "GetDaysInYYYY_MM", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a3027900bdffa5059f05f08cccf1aae54", null ],
-      [ "GetLastDayOfMonth", "dc/dd1/namespaceutils_1_1datetime__conversion.html#ad0c37a2cfa9e575a2cca0062f10ed673", null ],
-      [ "GetMonthRange", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a37f0dd9ad478b75af35ebbddbe2fa356", null ],
-      [ "IntYYYYMMDDDate", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a6c3c3e7c6e3e495406082a67d961985d", null ],
-      [ "IsDate", "dc/dd1/namespaceutils_1_1datetime__conversion.html#ae7b2751649e28655637000afa4198759", null ],
-      [ "IsDatetime", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a17ed0001e99c50aa8af396a09a5b4d94", null ],
-      [ "MonthToStr", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a68b5e7dd8db262c46ce4b9054ae909d6", null ],
-      [ "Now", "dc/dd1/namespaceutils_1_1datetime__conversion.html#adcceb7d941040f0ddac2a48c5b0ebe9b", null ],
-      [ "ResetDateToYYYYMM01", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a007a24b45568201ec5004617656b7d29", null ],
-      [ "SetYYYY1Jan", "dc/dd1/namespaceutils_1_1datetime__conversion.html#aa569e581ab74714b8a91e707bb8bedf1", null ],
-      [ "Today", "dc/dd1/namespaceutils_1_1datetime__conversion.html#aa18e2fb7094cbc34716bda8cdb1bb33d", null ],
-      [ "yyyy_mm_dd_Date", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a98e553104b010c7a927969e3e8eafc8f", null ],
-      [ "yyyy_mm_dd_Str_ToDate", "dc/dd1/namespaceutils_1_1datetime__conversion.html#ace65c998150885d46dd029c880fbe6d3", null ],
-      [ "yyyydoyDate", "dc/dd1/namespaceutils_1_1datetime__conversion.html#ab4bc3cb580502c5993828f035f4912a9", null ],
-      [ "YYYYDOYStr", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a91299ad0f422b00ad1462256445ea5a9", null ],
-      [ "YYYYDOYToDate", "dc/dd1/namespaceutils_1_1datetime__conversion.html#adb6f2192c0e417f0c2361137ef94331a", null ],
-      [ "yyyymmdd_str_to_date", "dc/dd1/namespaceutils_1_1datetime__conversion.html#af659eda931aec4bb4a860636c4a66ac3", null ],
-      [ "YYYYMMtoYYYYMMDD", "dc/dd1/namespaceutils_1_1datetime__conversion.html#afde85af3272be48e44fcf66936c87377", null ],
-      [ "datum", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a7a5d9a5a434a6c96dce6718a1f8fc6c9", null ],
-      [ "yyyydoystr", "dc/dd1/namespaceutils_1_1datetime__conversion.html#a124f78201f60e4bd1d9ab33a5b476076", null ]
-    ] ],
-    [ "file_dates", "d5/d5e/namespaceutils_1_1file__dates.html", [
-      [ "creation_timestamp", "d5/d5e/namespaceutils_1_1file__dates.html#aeeca15eb08ad8a4977fbe6b4f32072a8", null ]
     ] ],
     [ "json_read_write", "d8/d3d/namespaceutils_1_1json__read__write.html", [
       [ "Dump_json", "d8/d3d/namespaceutils_1_1json__read__write.html#af30b0f9cf4cad59e596abf6a67a28b41", null ],
@@ -95,17 +50,12 @@ var namespaceutils =
       [ "datum", "df/d12/namespaceutils_1_1karttur__dt.html#a3f02ff711bc3fd2b72d6853b3ed2cce3", null ],
       [ "yyyydoystr", "df/d12/namespaceutils_1_1karttur__dt.html#afba23e1594a73f2fb3153ffab378e3a0", null ]
     ] ],
-    [ "list_files", "d9/d08/namespaceutils_1_1list__files.html", [
-      [ "Csv_file_list", "d9/d08/namespaceutils_1_1list__files.html#a1934256b458c82806ad5cd2790026932", null ],
-      [ "Glob_get_file_list", "d9/d08/namespaceutils_1_1list__files.html#a9137cb29bb8ba9ce15a89abc79687a14", null ],
-      [ "Path_lib_get_file_list", "d9/d08/namespaceutils_1_1list__files.html#a732f09b715846749562d5dba0688e73f", null ]
-    ] ],
     [ "pretty_print", "d1/d69/namespaceutils_1_1pretty__print.html", [
       [ "Pprint_parameter", "d1/d69/namespaceutils_1_1pretty__print.html#a2b83f5512e5524df7edef5f609d9ccb9", null ]
     ] ],
     [ "project_pilot", "dc/d82/namespaceutils_1_1project__pilot.html", [
       [ "Doc_locate", "dc/d82/namespaceutils_1_1project__pilot.html#a3b2563a37d93369bc484ab88922bf111", null ],
-      [ "Full_path_locate", "dc/d82/namespaceutils_1_1project__pilot.html#af73847c703e2791e760c1b215525389b", null ],
+      [ "Full_path_locate", "dc/d82/namespaceutils_1_1project__pilot.html#a7923e5f1fb102dcd462b672b23d7627c", null ],
       [ "Get_project_path", "dc/d82/namespaceutils_1_1project__pilot.html#ad1d50c19ece3c2a924679fa5d27d4d04", null ],
       [ "Job_pilot_locate", "dc/d82/namespaceutils_1_1project__pilot.html#adb653a5542f34f3ca8d541c9ff8d2043", null ],
       [ "Json_locate", "dc/d82/namespaceutils_1_1project__pilot.html#aaac6f78419c5a4cc39977549cc6837e3", null ],

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Organise AI4SH in-situ data: Main Page</title>
+<title>Organise AI4SH in-situ data: Organise AI4SoilHealth in-situ data</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -89,10 +89,224 @@ $(function(){initNavTree('index.html','',''); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Organise AI4SH in-situ data Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Organise AI4SoilHealth in-situ data </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
+<p>Created by Thomas Gumbricht, Stockholm University for the EU funded project <a href="https://ai4soilhealth.eu">Ai4SoilHealth</a>.</p>
+<p>Last edits: 26 August 2025</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
+SUMMARY</h1>
+<p>This repository consists of a Jupyter notebook front calling a set of Python packages for converting Comma Separated Values (CSV) files to structured json files. This README.md file explains how to use the Jupyter notebook. The Python packages are documented through the menu to the left.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+Objective</h1>
+<p>The Jupyter notebook <a href="https://github.com/xspectrometrics/ai4sh_in-situ_data_management/blob/main/README.md">AI4SH in-situ data management</a> compiles in-situ data from soil sampling campaigns into organised json documents. The input data must be organised as CSV files, typically created by first putting the in-situ sampled data together in a spreadsheet and then exporting the spreadsheet as a .csv file.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+Running the notebook</h1>
+<p>The notebook consists of 2 pyton cells, an inital cell setting up the environment and second cell that points to the data to be converted from csv to json format. You should not need to edit anything in the first cell. In the second cell you need set:</p>
+<ul>
+<li>user project file, and</li>
+<li>process file.</li>
+</ul>
+<div class="fragment"><div class="line">user_project_file = &#39;&#39;~/ai4sh_in-situ_data/project_file_digit-soil_sear.json&#39;</div>
+<div class="line"> </div>
+<div class="line">process_file = &#39;doc/json/process_digit-soil_sear_all.json&#39;</div>
+<div class="line"> </div>
+<div class="line">Initiate_process(user_project_file, process_file)</div>
+</div><!-- fragment --><p>How to structure these files and the data files to which they point is explained below.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+Input data requirements and organisation</h1>
+<p>To run the notebook at least four files must be defined, i) one defining the user project settings (<em>user project file</em>), ii) one defining process parameters (<em>process file</em>), iii) one with the actual data (<em>data source file</em>), and iv) one that defines the columns (header) in the data file (<em>method source file</em>). The latter two are defined as process parameters in the <em>process file</em>, whereas the <em>user project file</em> and the <em>process file</em> are defined directly in the notebook. <br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+User project file</h2>
+<p>The user project file must be in json format and defines the path to the root folder where all the other files can be found. The user project file also defines the user and if database access is required (not in the present version of the notebook) the login credentials for the given user must be given. Running the notebook without a database connection, the <em>host</em>, <em>db</em> and <em>host_netrc_id</em> values should be set to <em>null</em>.</p>
+<div class="fragment"><div class="line">{</div>
+<div class="line">  &quot;project_path&quot;: &quot;/Path/To/projects/ai4sh_sueloanalys/digit-soil_SEAR&quot;,</div>
+<div class="line">  &quot;postgresdb&quot;: {</div>
+<div class="line">    &quot;host&quot;: null,</div>
+<div class="line">    &quot;db&quot;: null,</div>
+<div class="line">    &quot;host_netrc_id&quot;: null</div>
+<div class="line">  },</div>
+<div class="line">  &quot;userproject&quot;: {</div>
+<div class="line">    &quot;userid&quot;: &quot;thomasg&quot;,</div>
+<div class="line">    &quot;user_netrc_id&quot;: &quot;thomasg_xspectre&quot;,</div>
+<div class="line">    &quot;user_pswd&quot;: &quot;&quot;</div>
+<div class="line">  },</div>
+<div class="line">  &quot;process&quot;: [</div>
+<div class="line">    {</div>
+<div class="line">      &quot;verbose&quot;: 3,</div>
+<div class="line">      &quot;overwrite&quot;: false,</div>
+<div class="line">      &quot;delete&quot;: false,</div>
+<div class="line">      &quot;src_path&quot;: {</div>
+<div class="line">        &quot;volume&quot;: &quot;.&quot;,</div>
+<div class="line">        &quot;ext&quot;: &quot;json&quot;</div>
+<div class="line">      }</div>
+<div class="line">    }</div>
+<div class="line">  ]</div>
+<div class="line">}</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+Process file</h2>
+<p>A <em>process_file</em>, whether linked directly in the notebook or via a <em>job file</em> (see below) must include the <em>sub_process_id</em> (at present the only defined <em>sub_process_id</em> is <em>import_csv_single-lines</em>) and the full paths to the <em>data source file</em> (<em>data_src_FPN</em>), the <em>method source file</em> (<em>method_src_FPN</em>) and the path to the destination directory (<em>dst_FP</em>) where to save the json formatted output.</p>
+<p>If there are metadata entries that are exactly identical for all records (lines) in the <em>data source file</em> (e.g. the person responsible for the field sampling, the analysis or the sample logistics), then this metadata can be stated in the <em>process file</em> instead of being repeated for evay record (line) in the <em>data source file</em>, as in the example below.</p>
+<div class="fragment"><div class="line">{</div>
+<div class="line">  &quot;process&quot;: [</div>
+<div class="line">    {</div>
+<div class="line">      &quot;overwrite&quot;: false,</div>
+<div class="line">      &quot;sub_process_id&quot;: &quot;import_csv_single-lines&quot;,</div>
+<div class="line">      &quot;parameters&quot;: {</div>
+<div class="line">        &quot;user_email_sampling&quot;: &quot;sampling@gmail.com&quot;,</div>
+<div class="line">        &quot;user_email_logistic&quot;: &quot;logistic@gmail.com&quot;,</div>
+<div class="line">        &quot;user_email_analysis&quot;: &quot;analysis@gmail.com&quot;,</div>
+<div class="line">        &quot;method_src_FPN&quot;: &quot;/Users/thomasgumbricht/projects/ai4sh_sueloanalys/header_dictionary/header_dictionary.csv&quot;,</div>
+<div class="line">        &quot;data_src_FPN&quot;: &quot;/Users/thomasgumbricht/projects/ai4sh_sueloanalys/digit-soil_SEAR/csv_data/AI4SH_SEAR_all_results.csv&quot;,</div>
+<div class="line">        &quot;dst_FP&quot;: &quot;/Users/thomasgumbricht/projects/ai4sh_sueloanalys/digit-soil_SEAR/database&quot;</div>
+<div class="line">      }</div>
+<div class="line">    }</div>
+<div class="line">  ]</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>You can add any number of processes in the array <em>process</em> in the <em>process file</em>.</p>
+<div class="fragment"><div class="line">{</div>
+<div class="line">  &quot;process&quot;: [</div>
+<div class="line">    {</div>
+<div class="line">      &quot;overwrite&quot;: false,</div>
+<div class="line">      &quot;sub_process_id&quot;: &quot;import_csv_single-lines&quot;,</div>
+<div class="line">      &quot;parameters&quot;: {</div>
+<div class="line">        ...</div>
+<div class="line">        ...</div>
+<div class="line">      }</div>
+<div class="line">    },</div>
+<div class="line">    {</div>
+<div class="line">      &quot;overwrite&quot;: false,</div>
+<div class="line">      &quot;sub_process_id&quot;: &quot;import_csv_single-lines&quot;,</div>
+<div class="line">      &quot;parameters&quot;: {</div>
+<div class="line">        ...</div>
+<div class="line">        ...</div>
+<div class="line">      }</div>
+<div class="line">    }</div>
+<div class="line">  ]</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>If there are relatively few data files to process, the best option is to put these few processes in a single <em>process file</em> and link that <em>process file</em> directly from the notebook.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+Job file</h2>
+<p>If you have a multitude of files to process, or if you need to set varying common records (e.g. different persons responsible for the field sampling, the analysis or the sample logistics), an alternative is to use a <em>job file</em> that links to a set of sequential <em>process files</em>.</p>
+<p>In a <em>job file</em> you can link to a sequence of <em>process files</em> either as an array directly in the <em>job file</em> or by linking to a <em>pilot file</em> (simple text file) that lists the <em>process files</em> to execute.</p>
+<p>List the <em>process files</em> to run as an array directly in the <em>job file</em>. </p><div class="fragment"><div class="line">{</div>
+<div class="line">  &quot;process&quot;: {</div>
+<div class="line">    &quot;job_folder&quot;: &quot;doc&quot;,</div>
+<div class="line">    &quot;pilot_list&quot;: [</div>
+<div class="line">      &quot;process_digit-soil_sear.json&quot;,</div>
+<div class="line">      &quot;process_microbiometer.json&quot;</div>
+<div class="line">    ],</div>
+<div class="line">    &quot;process_sub_folder&quot;: &quot;json&quot;</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>Or link to a <em>pilot_file in the _job_file</em>: </p><div class="fragment"><div class="line">{</div>
+<div class="line">  &quot;process&quot;: {</div>
+<div class="line">    &quot;job_folder&quot;: &quot;doc&quot;,</div>
+<div class="line">    &quot;pilot_file&quot;: &quot;ai4sh_import_csv_data.txt&quot;,</div>
+<div class="line">    &quot;process_sub_folder&quot;: &quot;json&quot;</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>The json file objects <em>job_folder</em> (<em>doc</em> in the example above) and <em>process_sub_folder</em> (<em>json</em>) in the example above, refer to the hierarchical path structure of the files to process. For the example above the strucure that is expected is this:</p>
+<div class="fragment"><div class="line">.</div>
+<div class="line">├── ai4sh_import_digit-soil_sear.json</div>
+<div class="line">└── doc</div>
+<div class="line">    ├── ai4sh_import_csv_data.txt</div>
+<div class="line">    └── json</div>
+<div class="line">        └── process_digit-soil_sear.json</div>
+</div><!-- fragment --><p>Where the root directory (denoted by ".") is the <em>project_path</em> given in the <em>user_project_file</em>.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+Pilot file</h2>
+<p>A <em>pilot file</em> is a simple text files that lists the <em>process_files</em> to run and where blank lines or lines starting with hashtag are ignored:</p>
+<div class="fragment"><div class="line">#### All digit soil SEAR in one process ####</div>
+<div class="line"> </div>
+<div class="line">process_digit-soil_sear.json</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+Data source file</h2>
+<p>All the actual data from the in-situ sampled soil analysis must be in the <em>data source file</em>. In addition, all metadata that are unique to each sample (e.g the sample point id) must also be listed in the data source file. The colums headers in the data source file can, in principle, have any name, the actual content transferred to the json output files is defined in the <em>method source file</em>. To make life easier it is, however, better to set the header column in the <em>data source file</em> to the parameter name used in the json output.</p>
+<p>Required metadata to generate the json output include:</p><ul>
+<li>pilot_country,</li>
+<li>pilot_site,</li>
+<li>sample_id,</li>
+<li>min_depth,</li>
+<li>max_depth,</li>
+<li>sample_date,</li>
+<li>sample_analysis_date,</li>
+<li>user_email_sampling,</li>
+<li>user_email_logistic, and</li>
+<li>user_email_analysis.</li>
+</ul>
+<p>Optional metadata, assigned default values (in parenthesis) if missing in the <em>data source file</em>, include:</p>
+<ul>
+<li>subsample (a),</li>
+<li>replicate (0),</li>
+<li>sample_preparation__name (None),</li>
+<li>sample_preservation__name (None),</li>
+<li>sample_transport__name (None),</li>
+<li>sample_storage__name (None),</li>
+<li>transport_duration_h (0), and</li>
+<li>comment ().</li>
+</ul>
+<p>Metadata that is common across all samples listed in a <em>data source file</em> can instead be added as parameters in the <em>process_file</em>, and typically include:</p><ul>
+<li>user_email_sampling,</li>
+<li>user_email_logistic, and</li>
+<li>user_email_analysis.</li>
+</ul>
+<p>But also other metadata can be put in the <em>process file</em> instead of the <em>data source file</em> If your <em>data soruce file</em> contains data only for a single site (or pilot_site) you can omit the parameters for <em>pilot_country</em> and <em>pilot_site</em> from the <em>data source file</em> and add them as parameteres in the <em>process_file</em>. Similarly, if all samples are taken the same date you can also put the <em>sample_date</em> parameter in the <em>process_file</em> and omit it from the <em>data source file</em>.</p>
+<p>As noted in the very beginning of this paragraf, the actual data on soil properties <b>must</b> be listed in the <em>data source file</em>. As the actual data can be in many different units, derived from a variety of methods and meaasured with different instruments (inlcuding different makes and models), the parameters to include in the <em>data source file</em> are not predefiend. But they must be defined in the <em>method source file</em>; defined regarding three properties:</p><ul>
+<li>method,</li>
+<li>equipment, and</li>
+<li>unit.</li>
+</ul>
+<p>Example of <em>data source file</em>:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">pilot_country  </th><th class="markdownTableHeadNone">pilot_site  </th><th class="markdownTableHeadNone">sample_id  </th><th class="markdownTableHeadNone">min_depth  </th><th class="markdownTableHeadNone">max_depth  </th><th class="markdownTableHeadNone">Sample_date  </th><th class="markdownTableHeadNone">Sample_analysis_date  </th><th class="markdownTableHeadNone">data_1_id  </th><th class="markdownTableHeadNone">data_2_id  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SE  </td><td class="markdownTableBodyNone">some_place  </td><td class="markdownTableBodyNone">x  </td><td class="markdownTableBodyNone">0  </td><td class="markdownTableBodyNone">20  </td><td class="markdownTableBodyNone">20240815  </td><td class="markdownTableBodyNone">20240816  </td><td class="markdownTableBodyNone">x.y  </td><td class="markdownTableBodyNone">m.n  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SE  </td><td class="markdownTableBodyNone">some_place  </td><td class="markdownTableBodyNone">x  </td><td class="markdownTableBodyNone">20  </td><td class="markdownTableBodyNone">50  </td><td class="markdownTableBodyNone">20240815  </td><td class="markdownTableBodyNone">20240816  </td><td class="markdownTableBodyNone">a.b  </td><td class="markdownTableBodyNone">i.j  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SE  </td><td class="markdownTableBodyNone">some_place  </td><td class="markdownTableBodyNone">y  </td><td class="markdownTableBodyNone">0  </td><td class="markdownTableBodyNone">20  </td><td class="markdownTableBodyNone">20240815  </td><td class="markdownTableBodyNone">20240816  </td><td class="markdownTableBodyNone">c.d  </td><td class="markdownTableBodyNone">e.f  </td></tr>
+</table>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+Method source file</h2>
+<p>A method source file, in contrast to the <em>data source file</em>, must have exactly 6 columns, all with the exact headers:</p>
+<ul>
+<li>"header",</li>
+<li>"parameter",</li>
+<li>"unit",</li>
+<li>"method",</li>
+<li>"equipment", and</li>
+<li>"url".</li>
+</ul>
+<p>Entries in the <em>header</em> column must correspond to column headers (exact spelling) in the <em>data source file</em>. You might thus edit the records in the <em>header</em> column in the <em>method source file</em>. The second column in the <em>method source file</em>, <em>parameter</em>, is the object name that will appear in the json output file. It should not be changed. The columns for <em>unit</em>, <em>method</em> and <em>equipment</em> should only be filled for actual records (lines) where the <em>header</em> column corresponds to data. For metadata these fields should all be set to "None".</p>
+<p>The method file corresponding to the example <em>data source file</em> above should thus contain information on the observed data (<em>data_1_id</em> and <em>data_2_id</em>):</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">header  </th><th class="markdownTableHeadNone">parameter  </th><th class="markdownTableHeadNone">unit  </th><th class="markdownTableHeadNone">method  </th><th class="markdownTableHeadNone">equipment  </th><th class="markdownTableHeadNone">url  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">pilot_country  </td><td class="markdownTableBodyNone">pilot_coutry  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">sample_id  </td><td class="markdownTableBodyNone">sample_id  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">min_depth  </td><td class="markdownTableBodyNone">min_depth  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">max_depth  </td><td class="markdownTableBodyNone">max_depth  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">min_depth  </td><td class="markdownTableBodyNone">min_depth  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">sample_date  </td><td class="markdownTableBodyNone">sample_date  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">sample_analysis_date  </td><td class="markdownTableBodyNone">sample_analysis_date  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td><td class="markdownTableBodyNone">None  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">data_1_id  </td><td class="markdownTableBodyNone">data_1  </td><td class="markdownTableBodyNone">data_unit  </td><td class="markdownTableBodyNone">analysis_method  </td><td class="markdownTableBodyNone">analysis_equipment  </td><td class="markdownTableBodyNone">analysis_url  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">data_1_id  </td><td class="markdownTableBodyNone">data_1  </td><td class="markdownTableBodyNone">data_unit  </td><td class="markdownTableBodyNone">analysis_method  </td><td class="markdownTableBodyNone">analysis_equipment  </td><td class="markdownTableBodyNone">analysis_url  </td></tr>
+</table>
+</div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
 </div><!-- doc-content -->

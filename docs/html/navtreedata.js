@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "Organise AI4SH in-situ data", "index.html", [
+    [ "Organise AI4SoilHealth in-situ data", "index.html", "index" ],
     [ "Packages", "namespaces.html", [
       [ "Package List", "namespaces.html", "namespaces_dup" ],
       [ "Package Members", "namespacemembers.html", [
@@ -52,7 +53,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"dc/dd1/namespaceutils_1_1datetime__conversion.html"
+"df/d02/update__dict_8py_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

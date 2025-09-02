@@ -101,18 +101,82 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8de01388620c70bc7727f52a01c36aaa" id="r_a8de01388620c70bc7727f52a01c36aaa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8de01388620c70bc7727f52a01c36aaa">Update_dict</a> (user_D, default_D)</td></tr>
 <tr class="memitem:acf426ca2d91d8c68f2fe026f5676dac3" id="r_acf426ca2d91d8c68f2fe026f5676dac3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf426ca2d91d8c68f2fe026f5676dac3">Check_param_instance</a> (p, typeD, process_D, json_file_FN, p_str)</td></tr>
 <tr class="memitem:ab31a31f9244484a52606e4c0cf83afa9" id="r_ab31a31f9244484a52606e4c0cf83afa9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab31a31f9244484a52606e4c0cf83afa9">Project_login</a> (default_parameter_D)</td></tr>
 <tr class="memitem:ad0dfd2bf57bcac8ca2e90d8e26199533" id="r_ad0dfd2bf57bcac8ca2e90d8e26199533"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0dfd2bf57bcac8ca2e90d8e26199533">Get_process_from_db</a> (pg_session_C, process_schema, process_parameter_C, user_status_D, json_file_obj, p_str)</td></tr>
-<tr class="memitem:a976b96c312845f2587467a6cca6adb38" id="r_a976b96c312845f2587467a6cca6adb38"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a976b96c312845f2587467a6cca6adb38">Job_processes_loop</a> (default_parameter_D, user_json_process_L, process_path='', process_schema='process')</td></tr>
+<tr class="memitem:af561b524f455f4394d6d7a62f4c7aaed" id="r_af561b524f455f4394d6d7a62f4c7aaed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af561b524f455f4394d6d7a62f4c7aaed">Job_processes_loop</a> (default_parameter_D, process_file_FPN_L, process_parameter_C, process_schema='process')</td></tr>
+<tr class="memitem:a624dabc0b7f4ddc75e249110d7b70dcb" id="r_a624dabc0b7f4ddc75e249110d7b70dcb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a624dabc0b7f4ddc75e249110d7b70dcb">Get_set_database_session</a> (default_parameter_D)</td></tr>
+<tr class="memitem:a45dd1e2871de33230b58614aa19de4ce" id="r_a45dd1e2871de33230b58614aa19de4ce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45dd1e2871de33230b58614aa19de4ce">Check_json_files</a> (process_file_FPN_L)</td></tr>
+<tr class="memitem:af24d711e85754ff4956e7f34c1453c47" id="r_af24d711e85754ff4956e7f34c1453c47"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af24d711e85754ff4956e7f34c1453c47">Structure_processes</a> (default_parameter_D, process_file_FPN_L, process_path='')</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><pre class="fragment">Created on 5 jan 2025
 Updated 11 Mar 2025
+Updated on 21 Aug 2025 (added option for running without DB connection)
+Updated on 1 Sept 2025 (Large loop function replaced with several smaller functions,
+doxygen comments added)
 
 @author: thomasgumbricht
 </pre> </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a45dd1e2871de33230b58614aa19de4ce" name="a45dd1e2871de33230b58614aa19de4ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45dd1e2871de33230b58614aa19de4ce">&#9670;&#160;</a></span>Check_json_files()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">process_project.process_job.Check_json_files </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>process_file_FPN_L</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">@brief Checks the existence of JSON process files in a given list.
+
+This function iterates over a list of file paths and verifies that each file exists on disk.
+If any file is missing, it prints a warning message and returns None. If all files exist, it returns True.
+
+@param process_file_FPN_L List of file paths to JSON process configuration files.
+@return True if all files exist, None if any file is missing.
+</pre> 
+<p class="definition">Definition at line <a class="el" href="../../dc/d17/process__job_8py_source.html#l01355">1355</a> of file <a class="el" href="../../dc/d17/process__job_8py_source.html">process_job.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno"> 1355</span><span class="keyword">def </span>Check_json_files(process_file_FPN_L):</div>
+<div class="line"><span class="lineno"> 1356</span> </div>
+<div class="line"><span class="lineno"> 1357</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno"> 1358</span><span class="stringliteral">    @brief Checks the existence of JSON process files in a given list.</span></div>
+<div class="line"><span class="lineno"> 1359</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1360</span><span class="stringliteral">    This function iterates over a list of file paths and verifies that each file exists on disk.</span></div>
+<div class="line"><span class="lineno"> 1361</span><span class="stringliteral">    If any file is missing, it prints a warning message and returns None. If all files exist, it returns True.</span></div>
+<div class="line"><span class="lineno"> 1362</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1363</span><span class="stringliteral">    @param process_file_FPN_L List of file paths to JSON process configuration files.</span></div>
+<div class="line"><span class="lineno"> 1364</span><span class="stringliteral">    @return True if all files exist, None if any file is missing.</span></div>
+<div class="line"><span class="lineno"> 1365</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno"> 1366</span>    <span class="keywordflow">for</span> json_file_obj <span class="keywordflow">in</span> process_file_FPN_L:</div>
+<div class="line"><span class="lineno"> 1367</span> </div>
+<div class="line"><span class="lineno"> 1368</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> path.exists(json_file_obj):</div>
+<div class="line"><span class="lineno"> 1369</span> </div>
+<div class="line"><span class="lineno"> 1370</span>            error_msg = <span class="stringliteral">&#39;          ❌ WARNING - json process file not found:\n    %s&#39;</span> %(json_file_obj)</div>
+<div class="line"><span class="lineno"> 1371</span> </div>
+<div class="line"><span class="lineno"> 1372</span>            <span class="keywordflow">print</span> (error_msg)</div>
+<div class="line"><span class="lineno"> 1373</span> </div>
+<div class="line"><span class="lineno"> 1374</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1375</span> </div>
+<div class="line"><span class="lineno"> 1376</span>    <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><span class="lineno"> 1377</span> </div>
+</div><!-- fragment --><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/db9/namespaceprocess__project_1_1process__job_a45dd1e2871de33230b58614aa19de4ce_icgraph.png" border="0" usemap="#add/db9/namespaceprocess__project_1_1process__job_a45dd1e2871de33230b58614aa19de4ce_icgraph" loading="lazy" alt=""/></div>
+<map name="add/db9/namespaceprocess__project_1_1process__job_a45dd1e2871de33230b58614aa19de4ce_icgraph" id="add/db9/namespaceprocess__project_1_1process__job_a45dd1e2871de33230b58614aa19de4ce_icgraph">
+<area shape="rect" title=" " alt="" coords="223,5,386,46"/>
+<area shape="rect" href="../../dd/db9/namespaceprocess__project_1_1process__job.html#af24d711e85754ff4956e7f34c1453c47" title=" " alt="" coords="5,5,175,46"/>
+<area shape="poly" title=" " alt="" coords="207,28,175,28,175,23,207,23"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="acf426ca2d91d8c68f2fe026f5676dac3" name="acf426ca2d91d8c68f2fe026f5676dac3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acf426ca2d91d8c68f2fe026f5676dac3">&#9670;&#160;</a></span>Check_param_instance()</h2>
 
@@ -146,92 +210,118 @@ Updated 11 Mar 2025
         </tr>
       </table>
 </div><div class="memdoc">
+<pre class="fragment">@brief Checks the type and validity of a process parameter instance.
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d17/process__job_8py_source.html#l00044">44</a> of file <a class="el" href="../../dc/d17/process__job_8py_source.html">process_job.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   44</span><span class="keyword">def </span>Check_param_instance(p, typeD, process_D, json_file_FN, p_str):</div>
-<div class="line"><span class="lineno">   45</span> </div>
-<div class="line"><span class="lineno">   46</span>    <span class="keyword">def </span>_Print_error_msg(error_msg):</div>
-<div class="line"><span class="lineno">   47</span> </div>
-<div class="line"><span class="lineno">   48</span>        error_msg += <span class="stringliteral">&#39;              (file: %s;  process nr %s)&#39;</span> %(json_file_FN, p_str)</div>
-<div class="line"><span class="lineno">   49</span> </div>
-<div class="line"><span class="lineno">   50</span>        <span class="keywordflow">print</span> (error_msg)</div>
+This function validates the value of a parameter in a process dictionary against its expected type,
+as defined in the type dictionary. It prints warnings for invalid types and attempts to coerce certain
+string representations to their correct types (e.g., booleans).
+
+@param p Parameter name (str)
+@param typeD Dictionary mapping parameter names to expected types (dict)
+@param process_D Dictionary containing parameter values for the process (dict)
+@param json_file_FN Filename of the JSON file containing the process definition (str)
+@param p_str String identifier for the process (str)
+@return 1 if the parameter instance is valid, None otherwise
+</pre> 
+<p class="definition">Definition at line <a class="el" href="../../dc/d17/process__job_8py_source.html#l00036">36</a> of file <a class="el" href="../../dc/d17/process__job_8py_source.html">process_job.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   36</span><span class="keyword">def </span>Check_param_instance(p, typeD, process_D, json_file_FN, p_str):</div>
+<div class="line"><span class="lineno">   37</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   38</span><span class="stringliteral">    @brief Checks the type and validity of a process parameter instance.</span></div>
+<div class="line"><span class="lineno">   39</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   40</span><span class="stringliteral">    This function validates the value of a parameter in a process dictionary against its expected type,</span></div>
+<div class="line"><span class="lineno">   41</span><span class="stringliteral">    as defined in the type dictionary. It prints warnings for invalid types and attempts to coerce certain</span></div>
+<div class="line"><span class="lineno">   42</span><span class="stringliteral">    string representations to their correct types (e.g., booleans).</span></div>
+<div class="line"><span class="lineno">   43</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   44</span><span class="stringliteral">    @param p Parameter name (str)</span></div>
+<div class="line"><span class="lineno">   45</span><span class="stringliteral">    @param typeD Dictionary mapping parameter names to expected types (dict)</span></div>
+<div class="line"><span class="lineno">   46</span><span class="stringliteral">    @param process_D Dictionary containing parameter values for the process (dict)</span></div>
+<div class="line"><span class="lineno">   47</span><span class="stringliteral">    @param json_file_FN Filename of the JSON file containing the process definition (str)</span></div>
+<div class="line"><span class="lineno">   48</span><span class="stringliteral">    @param p_str String identifier for the process (str)</span></div>
+<div class="line"><span class="lineno">   49</span><span class="stringliteral">    @return 1 if the parameter instance is valid, None otherwise</span></div>
+<div class="line"><span class="lineno">   50</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
 <div class="line"><span class="lineno">   51</span> </div>
-<div class="line"><span class="lineno">   52</span>    <span class="keywordflow">if</span> <span class="stringliteral">&#39;array&#39;</span> <span class="keywordflow">in</span> typeD[p].lower() <span class="keywordflow">or</span> typeD[p].lower()[0:3] == <span class="stringliteral">&#39;csv&#39;</span>:</div>
-<div class="line"><span class="lineno">   53</span>        </div>
-<div class="line"><span class="lineno">   54</span>        <span class="comment"># TGTODO The array (csvList) is a tricky alternative to solve here</span></div>
-<div class="line"><span class="lineno">   55</span>        <span class="comment">#if not isinstance(process_D[p], list):</span></div>
-<div class="line"><span class="lineno">   56</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> isinstance(process_D[p], str) <span class="keywordflow">and</span> <span class="keywordflow">not</span> isinstance(process_D[p], list):</div>
+<div class="line"><span class="lineno">   52</span>    <span class="keyword">def </span>_Print_error_msg(error_msg):</div>
+<div class="line"><span class="lineno">   53</span> </div>
+<div class="line"><span class="lineno">   54</span>        error_msg += <span class="stringliteral">&#39;              (file: %s;  process nr %s)&#39;</span> %(json_file_FN, p_str)</div>
+<div class="line"><span class="lineno">   55</span> </div>
+<div class="line"><span class="lineno">   56</span>        <span class="keywordflow">print</span> (error_msg)</div>
 <div class="line"><span class="lineno">   57</span> </div>
-<div class="line"><span class="lineno">   58</span>            error_msg = <span class="stringliteral">&#39;          ❌ WARNING parameter %s is not a list (%s)\n&#39;</span> %(p,process_D[p])</div>
-<div class="line"><span class="lineno">   59</span> </div>
-<div class="line"><span class="lineno">   60</span>            _Print_error_msg(error_msg)</div>
-<div class="line"><span class="lineno">   61</span> </div>
-<div class="line"><span class="lineno">   62</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">   58</span>    <span class="keywordflow">if</span> <span class="stringliteral">&#39;array&#39;</span> <span class="keywordflow">in</span> typeD[p].lower() <span class="keywordflow">or</span> typeD[p].lower()[0:3] == <span class="stringliteral">&#39;csv&#39;</span>:</div>
+<div class="line"><span class="lineno">   59</span>        </div>
+<div class="line"><span class="lineno">   60</span>        <span class="comment"># TGTODO The array (csvList) is a tricky alternative to solve here</span></div>
+<div class="line"><span class="lineno">   61</span>        <span class="comment">#if not isinstance(process_D[p], list):</span></div>
+<div class="line"><span class="lineno">   62</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> isinstance(process_D[p], str) <span class="keywordflow">and</span> <span class="keywordflow">not</span> isinstance(process_D[p], list):</div>
 <div class="line"><span class="lineno">   63</span> </div>
-<div class="line"><span class="lineno">   64</span>    <span class="keywordflow">elif</span> typeD[p].lower()[0:3] == <span class="stringliteral">&#39;tex&#39;</span>:</div>
+<div class="line"><span class="lineno">   64</span>            error_msg = <span class="stringliteral">&#39;          ❌ WARNING parameter %s is not a list (%s)\n&#39;</span> %(p,process_D[p])</div>
 <div class="line"><span class="lineno">   65</span> </div>
-<div class="line"><span class="lineno">   66</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> isinstance(process_D[p], str):</div>
+<div class="line"><span class="lineno">   66</span>            _Print_error_msg(error_msg)</div>
 <div class="line"><span class="lineno">   67</span> </div>
-<div class="line"><span class="lineno">   68</span>            error_msg = <span class="stringliteral">&#39;          ❌ WARNING parameter %s is not a string (%s)\n&#39;</span> %(p,process_D[p])</div>
+<div class="line"><span class="lineno">   68</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
 <div class="line"><span class="lineno">   69</span> </div>
-<div class="line"><span class="lineno">   70</span>            _Print_error_msg(error_msg)</div>
+<div class="line"><span class="lineno">   70</span>    <span class="keywordflow">elif</span> typeD[p].lower()[0:3] == <span class="stringliteral">&#39;tex&#39;</span>:</div>
 <div class="line"><span class="lineno">   71</span> </div>
-<div class="line"><span class="lineno">   72</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">   72</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> isinstance(process_D[p], str):</div>
 <div class="line"><span class="lineno">   73</span> </div>
-<div class="line"><span class="lineno">   74</span>        <span class="keywordflow">if</span> <span class="stringliteral">&#39;_dir&#39;</span> <span class="keywordflow">in</span> p.lower():</div>
+<div class="line"><span class="lineno">   74</span>            error_msg = <span class="stringliteral">&#39;          ❌ WARNING parameter %s is not a string (%s)\n&#39;</span> %(p,process_D[p])</div>
 <div class="line"><span class="lineno">   75</span> </div>
-<div class="line"><span class="lineno">   76</span>            <span class="keywordflow">if</span> process_D[p][0] <span class="keywordflow">in</span> [<span class="stringliteral">&#39;/&#39;</span>] <span class="keywordflow">or</span> process_D[p][len(process_D[p])-1] <span class="keywordflow">in</span> [<span class="stringliteral">&#39;/&#39;</span>]:</div>
+<div class="line"><span class="lineno">   76</span>            _Print_error_msg(error_msg)</div>
 <div class="line"><span class="lineno">   77</span> </div>
-<div class="line"><span class="lineno">   78</span>                error_msg = <span class="stringliteral">&#39;          ❌ WARNING parameter %s can not start or end with a slash (%s)\n&#39;</span> %(p,process_D[p])</div>
+<div class="line"><span class="lineno">   78</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
 <div class="line"><span class="lineno">   79</span> </div>
-<div class="line"><span class="lineno">   80</span>                _Print_error_msg(error_msg)</div>
+<div class="line"><span class="lineno">   80</span>        <span class="keywordflow">if</span> <span class="stringliteral">&#39;_dir&#39;</span> <span class="keywordflow">in</span> p.lower():</div>
 <div class="line"><span class="lineno">   81</span> </div>
-<div class="line"><span class="lineno">   82</span>                <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">   82</span>            <span class="keywordflow">if</span> process_D[p][0] <span class="keywordflow">in</span> [<span class="stringliteral">&#39;/&#39;</span>] <span class="keywordflow">or</span> process_D[p][len(process_D[p])-1] <span class="keywordflow">in</span> [<span class="stringliteral">&#39;/&#39;</span>]:</div>
 <div class="line"><span class="lineno">   83</span> </div>
-<div class="line"><span class="lineno">   84</span>    <span class="keywordflow">elif</span> typeD[p].lower()[0:3] == <span class="stringliteral">&#39;int&#39;</span>:</div>
+<div class="line"><span class="lineno">   84</span>                error_msg = <span class="stringliteral">&#39;          ❌ WARNING parameter %s can not start or end with a slash (%s)\n&#39;</span> %(p,process_D[p])</div>
 <div class="line"><span class="lineno">   85</span> </div>
-<div class="line"><span class="lineno">   86</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> isinstance(process_D[p], int) <span class="keywordflow">and</span> <span class="keywordflow">not</span> process_D[p].isdigit():</div>
+<div class="line"><span class="lineno">   86</span>                _Print_error_msg(error_msg)</div>
 <div class="line"><span class="lineno">   87</span> </div>
-<div class="line"><span class="lineno">   88</span>            error_msg = <span class="stringliteral">&#39;          ❌ WARNING parameter %s is not an integer (%s)\n&#39;</span> %(p,process_D[p])</div>
+<div class="line"><span class="lineno">   88</span>                <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
 <div class="line"><span class="lineno">   89</span> </div>
-<div class="line"><span class="lineno">   90</span>            _Print_error_msg(error_msg)</div>
+<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">elif</span> typeD[p].lower()[0:3] == <span class="stringliteral">&#39;int&#39;</span>:</div>
 <div class="line"><span class="lineno">   91</span> </div>
-<div class="line"><span class="lineno">   92</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">   92</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> isinstance(process_D[p], int) <span class="keywordflow">and</span> <span class="keywordflow">not</span> process_D[p].isdigit():</div>
 <div class="line"><span class="lineno">   93</span> </div>
-<div class="line"><span class="lineno">   94</span>    <span class="keywordflow">elif</span> typeD[p].lower()[0:3] == <span class="stringliteral">&#39;flo&#39;</span>:</div>
+<div class="line"><span class="lineno">   94</span>            error_msg = <span class="stringliteral">&#39;          ❌ WARNING parameter %s is not an integer (%s)\n&#39;</span> %(p,process_D[p])</div>
 <div class="line"><span class="lineno">   95</span> </div>
-<div class="line"><span class="lineno">   96</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> isinstance(process_D[p], float):</div>
+<div class="line"><span class="lineno">   96</span>            _Print_error_msg(error_msg)</div>
 <div class="line"><span class="lineno">   97</span> </div>
-<div class="line"><span class="lineno">   98</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> isinstance(process_D[p], int):</div>
+<div class="line"><span class="lineno">   98</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
 <div class="line"><span class="lineno">   99</span> </div>
-<div class="line"><span class="lineno">  100</span>                error_msg = <span class="stringliteral">&#39;          ❌ WARNING parameter %s is neither a float nor an integer (%s)\n&#39;</span> %(p,process_D[p])</div>
+<div class="line"><span class="lineno">  100</span>    <span class="keywordflow">elif</span> typeD[p].lower()[0:3] == <span class="stringliteral">&#39;flo&#39;</span>:</div>
 <div class="line"><span class="lineno">  101</span> </div>
-<div class="line"><span class="lineno">  102</span>                _Print_error_msg(error_msg)</div>
+<div class="line"><span class="lineno">  102</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> isinstance(process_D[p], float):</div>
 <div class="line"><span class="lineno">  103</span> </div>
-<div class="line"><span class="lineno">  104</span>                <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  104</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> isinstance(process_D[p], int):</div>
 <div class="line"><span class="lineno">  105</span> </div>
-<div class="line"><span class="lineno">  106</span>    <span class="keywordflow">elif</span> typeD[p].lower()[0:3] == <span class="stringliteral">&#39;boo&#39;</span>:</div>
+<div class="line"><span class="lineno">  106</span>                error_msg = <span class="stringliteral">&#39;          ❌ WARNING parameter %s is neither a float nor an integer (%s)\n&#39;</span> %(p,process_D[p])</div>
 <div class="line"><span class="lineno">  107</span> </div>
-<div class="line"><span class="lineno">  108</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> isinstance(process_D[p], bool):</div>
+<div class="line"><span class="lineno">  108</span>                _Print_error_msg(error_msg)</div>
 <div class="line"><span class="lineno">  109</span> </div>
-<div class="line"><span class="lineno">  110</span>            <span class="keywordflow">if</span> isinstance(process_D[p], str) <span class="keywordflow">and</span> process_D[p].lower() <span class="keywordflow">in</span> [<span class="stringliteral">&#39;true&#39;</span>, <span class="stringliteral">&#39;1&#39;</span>]:</div>
+<div class="line"><span class="lineno">  110</span>                <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
 <div class="line"><span class="lineno">  111</span> </div>
-<div class="line"><span class="lineno">  112</span>                process_D[p] = process_D[p].lower() == <span class="stringliteral">&#39;true&#39;</span></div>
+<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">elif</span> typeD[p].lower()[0:3] == <span class="stringliteral">&#39;boo&#39;</span>:</div>
 <div class="line"><span class="lineno">  113</span> </div>
-<div class="line"><span class="lineno">  114</span>            <span class="keywordflow">elif</span> isinstance(process_D[p], str) <span class="keywordflow">and</span> process_D[p].lower() <span class="keywordflow">in</span> [<span class="stringliteral">&#39;false&#39;</span>,<span class="stringliteral">&#39;0&#39;</span>]:</div>
+<div class="line"><span class="lineno">  114</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> isinstance(process_D[p], bool):</div>
 <div class="line"><span class="lineno">  115</span> </div>
-<div class="line"><span class="lineno">  116</span>                process_D[p] = process_D[p].lower() == <span class="stringliteral">&#39;false&#39;</span></div>
+<div class="line"><span class="lineno">  116</span>            <span class="keywordflow">if</span> isinstance(process_D[p], str) <span class="keywordflow">and</span> process_D[p].lower() <span class="keywordflow">in</span> [<span class="stringliteral">&#39;true&#39;</span>, <span class="stringliteral">&#39;1&#39;</span>]:</div>
 <div class="line"><span class="lineno">  117</span> </div>
-<div class="line"><span class="lineno">  118</span>            <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  118</span>                process_D[p] = process_D[p].lower() == <span class="stringliteral">&#39;true&#39;</span></div>
 <div class="line"><span class="lineno">  119</span> </div>
-<div class="line"><span class="lineno">  120</span>                error_msg = <span class="stringliteral">&#39;          ❌ WARNING parameter %s is not a boolean (%s)\n&#39;</span> %(p,process_D[p])</div>
+<div class="line"><span class="lineno">  120</span>            <span class="keywordflow">elif</span> isinstance(process_D[p], str) <span class="keywordflow">and</span> process_D[p].lower() <span class="keywordflow">in</span> [<span class="stringliteral">&#39;false&#39;</span>,<span class="stringliteral">&#39;0&#39;</span>]:</div>
 <div class="line"><span class="lineno">  121</span> </div>
-<div class="line"><span class="lineno">  122</span>                _Print_error_msg(error_msg)</div>
+<div class="line"><span class="lineno">  122</span>                process_D[p] = process_D[p].lower() == <span class="stringliteral">&#39;false&#39;</span></div>
 <div class="line"><span class="lineno">  123</span> </div>
-<div class="line"><span class="lineno">  124</span>                <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  124</span>            <span class="keywordflow">else</span>:</div>
 <div class="line"><span class="lineno">  125</span> </div>
-<div class="line"><span class="lineno">  126</span>    <span class="keywordflow">return</span> 1</div>
+<div class="line"><span class="lineno">  126</span>                error_msg = <span class="stringliteral">&#39;          ❌ WARNING parameter %s is not a boolean (%s)\n&#39;</span> %(p,process_D[p])</div>
 <div class="line"><span class="lineno">  127</span> </div>
+<div class="line"><span class="lineno">  128</span>                _Print_error_msg(error_msg)</div>
+<div class="line"><span class="lineno">  129</span> </div>
+<div class="line"><span class="lineno">  130</span>                <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  131</span> </div>
+<div class="line"><span class="lineno">  132</span>    <span class="keywordflow">return</span> 1</div>
+<div class="line"><span class="lineno">  133</span> </div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -284,169 +374,251 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dc/d17/process__job_8py_source.html#l00991">991</a> of file <a class="el" href="../../dc/d17/process__job_8py_source.html">process_job.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  991</span><span class="keyword">def </span>Get_process_from_db(pg_session_C,process_schema,process_parameter_C,user_status_D,json_file_obj, p_str):</div>
-<div class="line"><span class="lineno">  992</span>    </div>
-<div class="line"><span class="lineno">  993</span>    <span class="comment"># Check if the process is in the database</span></div>
-<div class="line"><span class="lineno">  994</span>    query_D = {<span class="stringliteral">&#39;sub_process_id&#39;</span>:p[<span class="stringliteral">&#39;sub_process_id&#39;</span>]}</div>
-<div class="line"><span class="lineno">  995</span> </div>
-<div class="line"><span class="lineno">  996</span>    record = pg_session_C._Single_Search(query_D, [<span class="stringliteral">&#39;sub_process_id&#39;</span>], process_schema, <span class="stringliteral">&#39;sub_process&#39;</span>)</div>
-<div class="line"><span class="lineno">  997</span> </div>
-<div class="line"><span class="lineno">  998</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> record:</div>
-<div class="line"><span class="lineno">  999</span> </div>
-<div class="line"><span class="lineno"> 1000</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;          ❌ WARNING: sub process &lt;%s&gt; not in DB - skipping&#39;</span> %p[<span class="stringliteral">&#39;sub_process_id&#39;</span>])</div>
-<div class="line"><span class="lineno"> 1001</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;          Json: %s\n          process nr: %s&#39;</span> %(json_file_obj, p_str))</div>
-<div class="line"><span class="lineno"> 1002</span> </div>
-<div class="line"><span class="lineno"> 1003</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1004</span> </div>
-<div class="line"><span class="lineno"> 1005</span>    <span class="comment"># Get the root process for this sub process</span></div>
-<div class="line"><span class="lineno"> 1006</span>    query_D = {<span class="stringliteral">&#39;sub_process_id&#39;</span>:p[<span class="stringliteral">&#39;sub_process_id&#39;</span>]}</div>
-<div class="line"><span class="lineno"> 1007</span> </div>
-<div class="line"><span class="lineno"> 1008</span>    record = pg_session_C._Single_Search(query_D, [<span class="stringliteral">&#39;root_process_id&#39;</span>,<span class="stringliteral">&#39;min_user_stratum&#39;</span>], process_schema, <span class="stringliteral">&#39;sub_process&#39;</span>)</div>
-<div class="line"><span class="lineno"> 1009</span> </div>
-<div class="line"><span class="lineno"> 1010</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> record:</div>
-<div class="line"><span class="lineno"> 1011</span> </div>
-<div class="line"><span class="lineno"> 1012</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;          ❌ WARNING: root process id for sub process &lt;%s&gt; not in DB - skipping&#39;</span> %p[<span class="stringliteral">&#39;sub_process_id&#39;</span>])</div>
-<div class="line"><span class="lineno"> 1013</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;          Json: %s\n          process nr: %s&#39;</span> %(json_file_obj, p_str))</div>
-<div class="line"><span class="lineno"> 1014</span> </div>
-<div class="line"><span class="lineno"> 1015</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1016</span> </div>
-<div class="line"><span class="lineno"> 1017</span>    root_process_id, min_user_stratum = record</div>
-<div class="line"><span class="lineno"> 1018</span> </div>
-<div class="line"><span class="lineno"> 1019</span>    <span class="keywordflow">if</span> user_status_D[<span class="stringliteral">&#39;stratum_code&#39;</span>] &lt; min_user_stratum:</div>
-<div class="line"><span class="lineno"> 1020</span> </div>
-<div class="line"><span class="lineno"> 1021</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;          ❌ WARNING: user stratum too low for process %s - skipping&#39;</span> %p[<span class="stringliteral">&#39;sub_process_id&#39;</span>])</div>
-<div class="line"><span class="lineno"> 1022</span> </div>
-<div class="line"><span class="lineno"> 1023</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1024</span> </div>
-<div class="line"><span class="lineno"> 1025</span>    process_parameter_C._Assemble_single_process(p_str, p, path.split(json_file_obj)[1])</div>
-<div class="line"><span class="lineno"> 1026</span> </div>
-<div class="line"><span class="lineno"> 1027</span>    status_OK = process_parameter_C._Assemble_parameters(pg_session_C)</div>
-<div class="line"><span class="lineno"> 1028</span> </div>
-<div class="line"><span class="lineno"> 1029</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> status_OK:</div>
-<div class="line"><span class="lineno"> 1030</span> </div>
-<div class="line"><span class="lineno"> 1031</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;\n          ❌ WARNING: process nr %s &lt;%s&gt; not ready - skipping&#39;</span> %(p_nr, p[<span class="stringliteral">&#39;sub_process_id&#39;</span>]))</div>
-<div class="line"><span class="lineno"> 1032</span> </div>
-<div class="line"><span class="lineno"> 1033</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1034</span> </div>
-<div class="line"><span class="lineno"> 1035</span>    </div>
-<div class="line"><span class="lineno"> 1036</span>    <span class="stringliteral">&#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno"> 1037</span><span class="stringliteral">    # Initiate a Timestep object</span></div>
-<div class="line"><span class="lineno"> 1038</span><span class="stringliteral">    timestep_C = Timesteps()</span></div>
-<div class="line"><span class="lineno"> 1039</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1040</span><span class="stringliteral">    # Set the time period and frequency for the process</span></div>
-<div class="line"><span class="lineno"> 1041</span><span class="stringliteral">    if hasattr(process_parameter_C.process_S, &#39;period&#39;):</span></div>
-<div class="line"><span class="lineno"> 1042</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1043</span><span class="stringliteral">        timestep = timestep_C._Set_initial_timesteps( process_parameter_C.process_S.period )</span></div>
-<div class="line"><span class="lineno"> 1044</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1045</span><span class="stringliteral">    else:</span></div>
-<div class="line"><span class="lineno"> 1046</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1047</span><span class="stringliteral">        timestep = None</span></div>
-<div class="line"><span class="lineno"> 1048</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno"> 1049</span>    <span class="stringliteral">&#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno"> 1050</span><span class="stringliteral">    # Set timestep to the Timestep class</span></div>
-<div class="line"><span class="lineno"> 1051</span><span class="stringliteral">    timestep = timestep_C</span></div>
-<div class="line"><span class="lineno"> 1052</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1053</span><span class="stringliteral">    # Set the source and destination timesteps</span></div>
-<div class="line"><span class="lineno"> 1054</span><span class="stringliteral">    status_OK = process_parameter_C._Set_timestep(timestep)</span></div>
-<div class="line"><span class="lineno"> 1055</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1056</span><span class="stringliteral">    if not status_OK:</span></div>
-<div class="line"><span class="lineno"> 1057</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1058</span><span class="stringliteral">        print (&#39;\n          ❌ WARNING: period and timesteps for process nr %s &lt;%s&gt; not ready - skipping&#39; %(p_nr, p[&#39;sub_process_id&#39;]))</span></div>
-<div class="line"><span class="lineno"> 1059</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1060</span><span class="stringliteral">        continue</span></div>
-<div class="line"><span class="lineno"> 1061</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno"> 1062</span> </div>
-<div class="line"><span class="lineno"> 1063</span>    </div>
-<div class="line"><span class="lineno"> 1064</span>    <span class="stringliteral">&#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno"> 1065</span><span class="stringliteral">    # Initiate a Location object</span></div>
-<div class="line"><span class="lineno"> 1066</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1067</span><span class="stringliteral">    location_C = Location(process_parameter_C.process_S, </span></div>
-<div class="line"><span class="lineno"> 1068</span><span class="stringliteral">                            pg_session_C )</span></div>
-<div class="line"><span class="lineno"> 1069</span><span class="stringliteral">    </span></div>
-<div class="line"><span class="lineno"> 1070</span><span class="stringliteral">    # Set the time period and frequency for the process</span></div>
-<div class="line"><span class="lineno"> 1071</span><span class="stringliteral">    if hasattr(process_parameter_C.process_S, &#39;coordinate_system&#39;):</span></div>
-<div class="line"><span class="lineno"> 1072</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1073</span><span class="stringliteral">        location = location_C._Set_initial_location( process_parameter_C.process_S.parameters, </span></div>
-<div class="line"><span class="lineno"> 1074</span><span class="stringliteral">                                                    process_parameter_C.process_S.coordinate_system, </span></div>
-<div class="line"><span class="lineno"> 1075</span><span class="stringliteral">                                                    pg_session_C )</span></div>
-<div class="line"><span class="lineno"> 1076</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1077</span><span class="stringliteral">    else:</span></div>
-<div class="line"><span class="lineno"> 1078</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1079</span><span class="stringliteral">        location = None</span></div>
-<div class="line"><span class="lineno"> 1080</span><span class="stringliteral">    </span></div>
-<div class="line"><span class="lineno"> 1081</span><span class="stringliteral">    if not location:</span></div>
-<div class="line"><span class="lineno"> 1082</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1083</span><span class="stringliteral">        print (&#39;\n          ❌ WARNING: period and timesteps for process nr %s &lt;%s&gt; not ready - skipping&#39; %(p_nr, p[&#39;sub_process_id&#39;]))</span></div>
-<div class="line"><span class="lineno"> 1084</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1085</span><span class="stringliteral">        continue</span></div>
-<div class="line"><span class="lineno"> 1086</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1087</span><span class="stringliteral">    # Set timestep to the Timestep class</span></div>
-<div class="line"><span class="lineno"> 1088</span><span class="stringliteral">    location = location_C</span></div>
-<div class="line"><span class="lineno"> 1089</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1090</span><span class="stringliteral">    # Set the source and destination timesteps</span></div>
-<div class="line"><span class="lineno"> 1091</span><span class="stringliteral">    status_OK = process_parameter_C._Set_location(location)</span></div>
-<div class="line"><span class="lineno"> 1092</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1093</span><span class="stringliteral">    if not status_OK:</span></div>
-<div class="line"><span class="lineno"> 1094</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1095</span><span class="stringliteral">        print (&#39;\n          ❌ WARNING: location for process nr %s &lt;%s&gt; not ready - skipping&#39; %(p_nr, p[&#39;sub_process_id&#39;]))</span></div>
-<div class="line"><span class="lineno"> 1096</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno"> 1097</span><span class="stringliteral">        continue</span></div>
-<div class="line"><span class="lineno"> 1098</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d17/process__job_8py_source.html#l01070">1070</a> of file <a class="el" href="../../dc/d17/process__job_8py_source.html">process_job.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno"> 1070</span><span class="keyword">def </span>Get_process_from_db(pg_session_C,process_schema,process_parameter_C,user_status_D,json_file_obj, p_str):</div>
+<div class="line"><span class="lineno"> 1071</span>    </div>
+<div class="line"><span class="lineno"> 1072</span>    <span class="comment"># Check if the process is in the database</span></div>
+<div class="line"><span class="lineno"> 1073</span>    query_D = {<span class="stringliteral">&#39;sub_process_id&#39;</span>:p[<span class="stringliteral">&#39;sub_process_id&#39;</span>]}</div>
+<div class="line"><span class="lineno"> 1074</span> </div>
+<div class="line"><span class="lineno"> 1075</span>    record = pg_session_C._Single_Search(query_D, [<span class="stringliteral">&#39;sub_process_id&#39;</span>], process_schema, <span class="stringliteral">&#39;sub_process&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1076</span> </div>
+<div class="line"><span class="lineno"> 1077</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> record:</div>
+<div class="line"><span class="lineno"> 1078</span> </div>
+<div class="line"><span class="lineno"> 1079</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;          ❌ WARNING: sub process &lt;%s&gt; not in DB - skipping&#39;</span> %p[<span class="stringliteral">&#39;sub_process_id&#39;</span>])</div>
+<div class="line"><span class="lineno"> 1080</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;          Json: %s\n          process nr: %s&#39;</span> %(json_file_obj, p_str))</div>
+<div class="line"><span class="lineno"> 1081</span> </div>
+<div class="line"><span class="lineno"> 1082</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1083</span> </div>
+<div class="line"><span class="lineno"> 1084</span>    <span class="comment"># Get the root process for this sub process</span></div>
+<div class="line"><span class="lineno"> 1085</span>    query_D = {<span class="stringliteral">&#39;sub_process_id&#39;</span>:p[<span class="stringliteral">&#39;sub_process_id&#39;</span>]}</div>
+<div class="line"><span class="lineno"> 1086</span> </div>
+<div class="line"><span class="lineno"> 1087</span>    record = pg_session_C._Single_Search(query_D, [<span class="stringliteral">&#39;root_process_id&#39;</span>,<span class="stringliteral">&#39;min_user_stratum&#39;</span>], process_schema, <span class="stringliteral">&#39;sub_process&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1088</span> </div>
+<div class="line"><span class="lineno"> 1089</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> record:</div>
+<div class="line"><span class="lineno"> 1090</span> </div>
+<div class="line"><span class="lineno"> 1091</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;          ❌ WARNING: root process id for sub process &lt;%s&gt; not in DB - skipping&#39;</span> %p[<span class="stringliteral">&#39;sub_process_id&#39;</span>])</div>
+<div class="line"><span class="lineno"> 1092</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;          Json: %s\n          process nr: %s&#39;</span> %(json_file_obj, p_str))</div>
+<div class="line"><span class="lineno"> 1093</span> </div>
+<div class="line"><span class="lineno"> 1094</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1095</span> </div>
+<div class="line"><span class="lineno"> 1096</span>    root_process_id, min_user_stratum = record</div>
+<div class="line"><span class="lineno"> 1097</span> </div>
+<div class="line"><span class="lineno"> 1098</span>    <span class="keywordflow">if</span> user_status_D[<span class="stringliteral">&#39;stratum_code&#39;</span>] &lt; min_user_stratum:</div>
 <div class="line"><span class="lineno"> 1099</span> </div>
-<div class="line"><span class="lineno"> 1100</span>    </div>
-<div class="line"><span class="lineno"> 1102</span>    status_OK = process_parameter_C._Set_timestep(pg_session_C)</div>
+<div class="line"><span class="lineno"> 1100</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;          ❌ WARNING: user stratum too low for process %s - skipping&#39;</span> %p[<span class="stringliteral">&#39;sub_process_id&#39;</span>])</div>
+<div class="line"><span class="lineno"> 1101</span> </div>
+<div class="line"><span class="lineno"> 1102</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
 <div class="line"><span class="lineno"> 1103</span> </div>
-<div class="line"><span class="lineno"> 1104</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> status_OK:</div>
+<div class="line"><span class="lineno"> 1104</span>    process_parameter_C._Assemble_single_process(p_str, p, path.split(json_file_obj)[1])</div>
 <div class="line"><span class="lineno"> 1105</span> </div>
-<div class="line"><span class="lineno"> 1106</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;\n          ❌ WARNING: timestep for process nr %s &lt;%s&gt; not ready - skipping&#39;</span> %(p_nr, p[<span class="stringliteral">&#39;sub_process_id&#39;</span>]))</div>
+<div class="line"><span class="lineno"> 1106</span>    status_OK = process_parameter_C._Assemble_parameters(pg_session_C)</div>
 <div class="line"><span class="lineno"> 1107</span> </div>
-<div class="line"><span class="lineno"> 1108</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1108</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> status_OK:</div>
 <div class="line"><span class="lineno"> 1109</span> </div>
-<div class="line"><span class="lineno"> 1110</span>    </div>
-<div class="line"><span class="lineno"> 1112</span>    status_OK = process_parameter_C._Set_paths(pg_session_C)</div>
+<div class="line"><span class="lineno"> 1110</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;\n          ❌ WARNING: process nr %s &lt;%s&gt; not ready - skipping&#39;</span> %(p_nr, p[<span class="stringliteral">&#39;sub_process_id&#39;</span>]))</div>
+<div class="line"><span class="lineno"> 1111</span> </div>
+<div class="line"><span class="lineno"> 1112</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
 <div class="line"><span class="lineno"> 1113</span> </div>
-<div class="line"><span class="lineno"> 1114</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> status_OK:</div>
-<div class="line"><span class="lineno"> 1115</span> </div>
-<div class="line"><span class="lineno"> 1116</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;\n          ❌ WARNING: src/dst volumes for process nr %s &lt;%s&gt; not ready - skipping&#39;</span> %(p_nr, p[<span class="stringliteral">&#39;sub_process_id&#39;</span>]))</div>
-<div class="line"><span class="lineno"> 1117</span> </div>
-<div class="line"><span class="lineno"> 1118</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1119</span> </div>
-<div class="line"><span class="lineno"> 1120</span>    <span class="comment">#process_parameter_C._Set_compositions(pg_session_C)</span></div>
-<div class="line"><span class="lineno"> 1121</span> </div>
-<div class="line"><span class="lineno"> 1122</span>    <span class="comment">#PP._CopyCompositions(self.session)</span></div>
-<div class="line"><span class="lineno"> 1123</span> </div>
-<div class="line"><span class="lineno"> 1124</span>    <span class="comment">#PP._SetLayers()</span></div>
-<div class="line"><span class="lineno"> 1125</span> </div>
-<div class="line"><span class="lineno"> 1126</span>    status_OK = process_parameter_C._Location(pg_session_C)</div>
-<div class="line"><span class="lineno"> 1127</span> </div>
-<div class="line"><span class="lineno"> 1128</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> status_OK:</div>
-<div class="line"><span class="lineno"> 1129</span> </div>
-<div class="line"><span class="lineno"> 1130</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;\n          ❌ WARNING: location for process nr %s &lt;%s&gt; not ready - skipping&#39;</span> %(p_nr, p[<span class="stringliteral">&#39;sub_process_id&#39;</span>]))</div>
-<div class="line"><span class="lineno"> 1131</span> </div>
-<div class="line"><span class="lineno"> 1132</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1133</span> </div>
-<div class="line"><span class="lineno"> 1134</span>    process_parameter_C.process_S.process.root_process_id = root_process_id</div>
-<div class="line"><span class="lineno"> 1135</span> </div>
-<div class="line"><span class="lineno"> 1136</span>    <span class="keywordflow">return</span> process_parameter_C.process_S</div>
-<div class="line"><span class="lineno"> 1137</span> </div>
-<div class="line"><span class="lineno"> 1138</span>    <span class="comment">#json_cmd_D[json_file_obj][p_nr] = process_parameter_C.process_S</span></div>
-<div class="line"><span class="lineno"> 1139</span> </div>
+<div class="line"><span class="lineno"> 1114</span>    </div>
+<div class="line"><span class="lineno"> 1115</span>    <span class="stringliteral">&#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno"> 1116</span><span class="stringliteral">    # Initiate a Timestep object</span></div>
+<div class="line"><span class="lineno"> 1117</span><span class="stringliteral">    timestep_C = Timesteps()</span></div>
+<div class="line"><span class="lineno"> 1118</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1119</span><span class="stringliteral">    # Set the time period and frequency for the process</span></div>
+<div class="line"><span class="lineno"> 1120</span><span class="stringliteral">    if hasattr(process_parameter_C.process_S, &#39;period&#39;):</span></div>
+<div class="line"><span class="lineno"> 1121</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1122</span><span class="stringliteral">        timestep = timestep_C._Set_initial_timesteps( process_parameter_C.process_S.period )</span></div>
+<div class="line"><span class="lineno"> 1123</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1124</span><span class="stringliteral">    else:</span></div>
+<div class="line"><span class="lineno"> 1125</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1126</span><span class="stringliteral">        timestep = None</span></div>
+<div class="line"><span class="lineno"> 1127</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno"> 1128</span>    <span class="stringliteral">&#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno"> 1129</span><span class="stringliteral">    # Set timestep to the Timestep class</span></div>
+<div class="line"><span class="lineno"> 1130</span><span class="stringliteral">    timestep = timestep_C</span></div>
+<div class="line"><span class="lineno"> 1131</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1132</span><span class="stringliteral">    # Set the source and destination timesteps</span></div>
+<div class="line"><span class="lineno"> 1133</span><span class="stringliteral">    status_OK = process_parameter_C._Set_timestep(timestep)</span></div>
+<div class="line"><span class="lineno"> 1134</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1135</span><span class="stringliteral">    if not status_OK:</span></div>
+<div class="line"><span class="lineno"> 1136</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1137</span><span class="stringliteral">        print (&#39;\n          ❌ WARNING: period and timesteps for process nr %s &lt;%s&gt; not ready - skipping&#39; %(p_nr, p[&#39;sub_process_id&#39;]))</span></div>
+<div class="line"><span class="lineno"> 1138</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1139</span><span class="stringliteral">        continue</span></div>
+<div class="line"><span class="lineno"> 1140</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno"> 1141</span> </div>
+<div class="line"><span class="lineno"> 1142</span>    </div>
+<div class="line"><span class="lineno"> 1143</span>    <span class="stringliteral">&#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno"> 1144</span><span class="stringliteral">    # Initiate a Location object</span></div>
+<div class="line"><span class="lineno"> 1145</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1146</span><span class="stringliteral">    location_C = Location(process_parameter_C.process_S, </span></div>
+<div class="line"><span class="lineno"> 1147</span><span class="stringliteral">                            pg_session_C )</span></div>
+<div class="line"><span class="lineno"> 1148</span><span class="stringliteral">    </span></div>
+<div class="line"><span class="lineno"> 1149</span><span class="stringliteral">    # Set the time period and frequency for the process</span></div>
+<div class="line"><span class="lineno"> 1150</span><span class="stringliteral">    if hasattr(process_parameter_C.process_S, &#39;coordinate_system&#39;):</span></div>
+<div class="line"><span class="lineno"> 1151</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1152</span><span class="stringliteral">        location = location_C._Set_initial_location( process_parameter_C.process_S.parameters, </span></div>
+<div class="line"><span class="lineno"> 1153</span><span class="stringliteral">                                                    process_parameter_C.process_S.coordinate_system, </span></div>
+<div class="line"><span class="lineno"> 1154</span><span class="stringliteral">                                                    pg_session_C )</span></div>
+<div class="line"><span class="lineno"> 1155</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1156</span><span class="stringliteral">    else:</span></div>
+<div class="line"><span class="lineno"> 1157</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1158</span><span class="stringliteral">        location = None</span></div>
+<div class="line"><span class="lineno"> 1159</span><span class="stringliteral">    </span></div>
+<div class="line"><span class="lineno"> 1160</span><span class="stringliteral">    if not location:</span></div>
+<div class="line"><span class="lineno"> 1161</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1162</span><span class="stringliteral">        print (&#39;\n          ❌ WARNING: period and timesteps for process nr %s &lt;%s&gt; not ready - skipping&#39; %(p_nr, p[&#39;sub_process_id&#39;]))</span></div>
+<div class="line"><span class="lineno"> 1163</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1164</span><span class="stringliteral">        continue</span></div>
+<div class="line"><span class="lineno"> 1165</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1166</span><span class="stringliteral">    # Set timestep to the Timestep class</span></div>
+<div class="line"><span class="lineno"> 1167</span><span class="stringliteral">    location = location_C</span></div>
+<div class="line"><span class="lineno"> 1168</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1169</span><span class="stringliteral">    # Set the source and destination timesteps</span></div>
+<div class="line"><span class="lineno"> 1170</span><span class="stringliteral">    status_OK = process_parameter_C._Set_location(location)</span></div>
+<div class="line"><span class="lineno"> 1171</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1172</span><span class="stringliteral">    if not status_OK:</span></div>
+<div class="line"><span class="lineno"> 1173</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1174</span><span class="stringliteral">        print (&#39;\n          ❌ WARNING: location for process nr %s &lt;%s&gt; not ready - skipping&#39; %(p_nr, p[&#39;sub_process_id&#39;]))</span></div>
+<div class="line"><span class="lineno"> 1175</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1176</span><span class="stringliteral">        continue</span></div>
+<div class="line"><span class="lineno"> 1177</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno"> 1178</span> </div>
+<div class="line"><span class="lineno"> 1179</span>    </div>
+<div class="line"><span class="lineno"> 1181</span>    status_OK = process_parameter_C._Set_timestep(pg_session_C)</div>
+<div class="line"><span class="lineno"> 1182</span> </div>
+<div class="line"><span class="lineno"> 1183</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> status_OK:</div>
+<div class="line"><span class="lineno"> 1184</span> </div>
+<div class="line"><span class="lineno"> 1185</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;\n          ❌ WARNING: timestep for process nr %s &lt;%s&gt; not ready - skipping&#39;</span> %(p_nr, p[<span class="stringliteral">&#39;sub_process_id&#39;</span>]))</div>
+<div class="line"><span class="lineno"> 1186</span> </div>
+<div class="line"><span class="lineno"> 1187</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1188</span> </div>
+<div class="line"><span class="lineno"> 1189</span>    </div>
+<div class="line"><span class="lineno"> 1191</span>    status_OK = process_parameter_C._Set_paths(pg_session_C)</div>
+<div class="line"><span class="lineno"> 1192</span> </div>
+<div class="line"><span class="lineno"> 1193</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> status_OK:</div>
+<div class="line"><span class="lineno"> 1194</span> </div>
+<div class="line"><span class="lineno"> 1195</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;\n          ❌ WARNING: src/dst volumes for process nr %s &lt;%s&gt; not ready - skipping&#39;</span> %(p_nr, p[<span class="stringliteral">&#39;sub_process_id&#39;</span>]))</div>
+<div class="line"><span class="lineno"> 1196</span> </div>
+<div class="line"><span class="lineno"> 1197</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1198</span> </div>
+<div class="line"><span class="lineno"> 1199</span>    <span class="comment">#process_parameter_C._Set_compositions(pg_session_C)</span></div>
+<div class="line"><span class="lineno"> 1200</span> </div>
+<div class="line"><span class="lineno"> 1201</span>    <span class="comment">#PP._CopyCompositions(self.session)</span></div>
+<div class="line"><span class="lineno"> 1202</span> </div>
+<div class="line"><span class="lineno"> 1203</span>    <span class="comment">#PP._SetLayers()</span></div>
+<div class="line"><span class="lineno"> 1204</span> </div>
+<div class="line"><span class="lineno"> 1205</span>    status_OK = process_parameter_C._Location(pg_session_C)</div>
+<div class="line"><span class="lineno"> 1206</span> </div>
+<div class="line"><span class="lineno"> 1207</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> status_OK:</div>
+<div class="line"><span class="lineno"> 1208</span> </div>
+<div class="line"><span class="lineno"> 1209</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;\n          ❌ WARNING: location for process nr %s &lt;%s&gt; not ready - skipping&#39;</span> %(p_nr, p[<span class="stringliteral">&#39;sub_process_id&#39;</span>]))</div>
+<div class="line"><span class="lineno"> 1210</span> </div>
+<div class="line"><span class="lineno"> 1211</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1212</span> </div>
+<div class="line"><span class="lineno"> 1213</span>    process_parameter_C.process_S.process.root_process_id = root_process_id</div>
+<div class="line"><span class="lineno"> 1214</span> </div>
+<div class="line"><span class="lineno"> 1215</span>    <span class="keywordflow">return</span> process_parameter_C.process_S</div>
+<div class="line"><span class="lineno"> 1216</span> </div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/db9/namespaceprocess__project_1_1process__job_ad0dfd2bf57bcac8ca2e90d8e26199533_icgraph.png" border="0" usemap="#add/db9/namespaceprocess__project_1_1process__job_ad0dfd2bf57bcac8ca2e90d8e26199533_icgraph" loading="lazy" alt=""/></div>
 <map name="add/db9/namespaceprocess__project_1_1process__job_ad0dfd2bf57bcac8ca2e90d8e26199533_icgraph" id="add/db9/namespaceprocess__project_1_1process__job_ad0dfd2bf57bcac8ca2e90d8e26199533_icgraph">
-<area shape="rect" title=" " alt="" coords="222,5,399,46"/>
-<area shape="rect" href="../../dd/db9/namespaceprocess__project_1_1process__job.html#a976b96c312845f2587467a6cca6adb38" title=" " alt="" coords="5,5,174,46"/>
-<area shape="poly" title=" " alt="" coords="206,28,174,28,174,23,206,23"/>
+<area shape="rect" title=" " alt="" coords="439,5,616,46"/>
+<area shape="rect" href="../../dd/db9/namespaceprocess__project_1_1process__job.html#af561b524f455f4394d6d7a62f4c7aaed" title=" " alt="" coords="223,5,391,46"/>
+<area shape="poly" title=" " alt="" coords="424,28,391,28,391,23,424,23"/>
+<area shape="rect" href="../../dd/db9/namespaceprocess__project_1_1process__job.html#af24d711e85754ff4956e7f34c1453c47" title=" " alt="" coords="5,5,175,46"/>
+<area shape="poly" title=" " alt="" coords="207,28,175,28,175,23,207,23"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a976b96c312845f2587467a6cca6adb38" name="a976b96c312845f2587467a6cca6adb38"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a976b96c312845f2587467a6cca6adb38">&#9670;&#160;</a></span>Job_processes_loop()</h2>
+<a id="a624dabc0b7f4ddc75e249110d7b70dcb" name="a624dabc0b7f4ddc75e249110d7b70dcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a624dabc0b7f4ddc75e249110d7b70dcb">&#9670;&#160;</a></span>Get_set_database_session()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">process_project.process_job.Get_set_database_session </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>default_parameter_D</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">@brief Initializes and returns the user status and PostgreSQL database session.
+
+This function performs the following steps:
+- Logs in the user and retrieves their status using the provided default parameters.
+- Updates the default parameters dictionary with the user status.
+- Initializes a PostgreSQL session object with the database name and verbosity level.
+- Returns the user status dictionary and the PostgreSQL session object.
+
+@param default_parameter_D Dictionary containing default parameters, including database and process information.
+@return Tuple (user_status_D, pg_session_C):
+    - user_status_D: Dictionary with user status information, or None if login fails.
+    - pg_session_C: PostgreSQL session object, or None if login fails.
+</pre> 
+<p class="definition">Definition at line <a class="el" href="../../dc/d17/process__job_8py_source.html#l01324">1324</a> of file <a class="el" href="../../dc/d17/process__job_8py_source.html">process_job.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno"> 1324</span><span class="keyword">def </span>Get_set_database_session(default_parameter_D):</div>
+<div class="line"><span class="lineno"> 1325</span> </div>
+<div class="line"><span class="lineno"> 1326</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno"> 1327</span><span class="stringliteral">    @brief Initializes and returns the user status and PostgreSQL database session.</span></div>
+<div class="line"><span class="lineno"> 1328</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1329</span><span class="stringliteral">    This function performs the following steps:</span></div>
+<div class="line"><span class="lineno"> 1330</span><span class="stringliteral">    - Logs in the user and retrieves their status using the provided default parameters.</span></div>
+<div class="line"><span class="lineno"> 1331</span><span class="stringliteral">    - Updates the default parameters dictionary with the user status.</span></div>
+<div class="line"><span class="lineno"> 1332</span><span class="stringliteral">    - Initializes a PostgreSQL session object with the database name and verbosity level.</span></div>
+<div class="line"><span class="lineno"> 1333</span><span class="stringliteral">    - Returns the user status dictionary and the PostgreSQL session object.</span></div>
+<div class="line"><span class="lineno"> 1334</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1335</span><span class="stringliteral">    @param default_parameter_D Dictionary containing default parameters, including database and process information.</span></div>
+<div class="line"><span class="lineno"> 1336</span><span class="stringliteral">    @return Tuple (user_status_D, pg_session_C):</span></div>
+<div class="line"><span class="lineno"> 1337</span><span class="stringliteral">        - user_status_D: Dictionary with user status information, or None if login fails.</span></div>
+<div class="line"><span class="lineno"> 1338</span><span class="stringliteral">        - pg_session_C: PostgreSQL session object, or None if login fails.</span></div>
+<div class="line"><span class="lineno"> 1339</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno"> 1340</span>    <span class="comment"># Get user status</span></div>
+<div class="line"><span class="lineno"> 1341</span>    user_status_D = Project_login(default_parameter_D)</div>
+<div class="line"><span class="lineno"> 1342</span> </div>
+<div class="line"><span class="lineno"> 1343</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> user_status_D:</div>
+<div class="line"><span class="lineno"> 1344</span> </div>
+<div class="line"><span class="lineno"> 1345</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span>, <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1346</span>    </div>
+<div class="line"><span class="lineno"> 1347</span>    <span class="comment"># Set user status </span></div>
+<div class="line"><span class="lineno"> 1348</span>    default_parameter_D[<span class="stringliteral">&#39;user_status&#39;</span>] = user_status_D</div>
+<div class="line"><span class="lineno"> 1349</span> </div>
+<div class="line"><span class="lineno"> 1350</span>    <span class="comment"># Set verbosity for database responses</span></div>
+<div class="line"><span class="lineno"> 1351</span>    pg_session_C = PG_session(default_parameter_D[<span class="stringliteral">&#39;postgresdb&#39;</span>][<span class="stringliteral">&#39;db&#39;</span>], default_parameter_D[<span class="stringliteral">&#39;process&#39;</span>][0][<span class="stringliteral">&#39;verbose&#39;</span>])</div>
+<div class="line"><span class="lineno"> 1352</span> </div>
+<div class="line"><span class="lineno"> 1353</span>    <span class="keywordflow">return</span> user_status_D, pg_session_C</div>
+<div class="line"><span class="lineno"> 1354</span> </div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/db9/namespaceprocess__project_1_1process__job_a624dabc0b7f4ddc75e249110d7b70dcb_cgraph.png" border="0" usemap="#add/db9/namespaceprocess__project_1_1process__job_a624dabc0b7f4ddc75e249110d7b70dcb_cgraph" loading="lazy" alt=""/></div>
+<map name="add/db9/namespaceprocess__project_1_1process__job_a624dabc0b7f4ddc75e249110d7b70dcb_cgraph" id="add/db9/namespaceprocess__project_1_1process__job_a624dabc0b7f4ddc75e249110d7b70dcb_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,169,61"/>
+<area shape="rect" href="../../dd/db9/namespaceprocess__project_1_1process__job.html#ab31a31f9244484a52606e4c0cf83afa9" title=" " alt="" coords="217,13,380,54"/>
+<area shape="poly" title=" " alt="" coords="169,30,201,30,201,36,169,36"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/db9/namespaceprocess__project_1_1process__job_a624dabc0b7f4ddc75e249110d7b70dcb_icgraph.png" border="0" usemap="#add/db9/namespaceprocess__project_1_1process__job_a624dabc0b7f4ddc75e249110d7b70dcb_icgraph" loading="lazy" alt=""/></div>
+<map name="add/db9/namespaceprocess__project_1_1process__job_a624dabc0b7f4ddc75e249110d7b70dcb_icgraph" id="add/db9/namespaceprocess__project_1_1process__job_a624dabc0b7f4ddc75e249110d7b70dcb_icgraph">
+<area shape="rect" title=" " alt="" coords="223,5,386,61"/>
+<area shape="rect" href="../../dd/db9/namespaceprocess__project_1_1process__job.html#af24d711e85754ff4956e7f34c1453c47" title=" " alt="" coords="5,13,175,54"/>
+<area shape="poly" title=" " alt="" coords="207,36,175,36,175,30,207,30"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af561b524f455f4394d6d7a62f4c7aaed" name="af561b524f455f4394d6d7a62f4c7aaed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af561b524f455f4394d6d7a62f4c7aaed">&#9670;&#160;</a></span>Job_processes_loop()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -459,12 +631,12 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>user_json_process_L</em></span>, </td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>process_file_FPN_L</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>process_path</em></span><span class="paramdefsep"> = </span><span class="paramdefval">''</span>, </td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>process_parameter_C</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -473,129 +645,151 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Setup the processes to run the project
+<pre class="fragment">@brief Main loop to process job configurations from JSON files and assemble process objects.
+
+This function iterates over a list of JSON process files, reads user-defined parameters, and assembles process configurations
+either by retrieving details from a database or directly from the provided parameters. It supports both database-backed and
+standalone operation modes. The assembled process objects are stored in a dictionary keyed by the JSON file name and process index.
+
+@details
+- For each JSON file in the input list, reads the process definitions and sets user parameters.
+- For each process entry, checks for required fields and either retrieves process details from the database (if available)
+or assembles them from user parameters.
+- Handles missing fields, insufficient user privileges, and file read errors with warnings.
+- Returns a dictionary of assembled process objects ready for execution.
+
+@param default_parameter_D Dictionary of default parameters for the job and database connection.
+@param process_file_FPN_L List of file paths to JSON process configuration files.
+@param process_parameter_C Params object for managing process parameters and assembly.
+@param process_schema Name of the process schema in the database (default: 'process').
+@return Dictionary of assembled process objects, keyed by JSON file and process index.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dc/d17/process__job_8py_source.html#l01140">1140</a> of file <a class="el" href="../../dc/d17/process__job_8py_source.html">process_job.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno"> 1140</span><span class="keyword">def </span>Job_processes_loop(default_parameter_D, user_json_process_L, process_path=&#39;&#39;, process_schema=&#39;process&#39;):</div>
-<div class="line"><span class="lineno"> 1141</span>    <span class="stringliteral">&#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno"> 1142</span><span class="stringliteral">    Setup the processes to run the project</span></div>
-<div class="line"><span class="lineno"> 1143</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno"> 1144</span> </div>
-<div class="line"><span class="lineno"> 1145</span>    <span class="keywordflow">if</span> (default_parameter_D[<span class="stringliteral">&#39;postgresdb&#39;</span>][<span class="stringliteral">&#39;db&#39;</span>]):</div>
-<div class="line"><span class="lineno"> 1146</span> </div>
-<div class="line"><span class="lineno"> 1147</span>        <span class="comment"># Get user status</span></div>
-<div class="line"><span class="lineno"> 1148</span>        user_status_D = Project_login(default_parameter_D)</div>
-<div class="line"><span class="lineno"> 1149</span> </div>
-<div class="line"><span class="lineno"> 1150</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> user_status_D:</div>
-<div class="line"><span class="lineno"> 1151</span> </div>
-<div class="line"><span class="lineno"> 1152</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1153</span>        </div>
-<div class="line"><span class="lineno"> 1154</span>        <span class="comment"># Set user status</span></div>
-<div class="line"><span class="lineno"> 1155</span>        default_parameter_D[<span class="stringliteral">&#39;user_status&#39;</span>] = user_status_D</div>
-<div class="line"><span class="lineno"> 1156</span> </div>
-<div class="line"><span class="lineno"> 1157</span>        <span class="comment"># Set verbosity for database responses</span></div>
-<div class="line"><span class="lineno"> 1158</span>        pg_session_C = PG_session(default_parameter_D[<span class="stringliteral">&#39;postgresdb&#39;</span>][<span class="stringliteral">&#39;db&#39;</span>], default_parameter_D[<span class="stringliteral">&#39;process&#39;</span>][0][<span class="stringliteral">&#39;verbose&#39;</span>])</div>
-<div class="line"><span class="lineno"> 1159</span> </div>
-<div class="line"><span class="lineno"> 1160</span>    default_parameter_D[<span class="stringliteral">&#39;process_path&#39;</span>] = process_path</div>
-<div class="line"><span class="lineno"> 1161</span> </div>
-<div class="line"><span class="lineno"> 1162</span>    verbose = default_parameter_D[<span class="stringliteral">&#39;process&#39;</span>][0][<span class="stringliteral">&#39;verbose&#39;</span>]</div>
-<div class="line"><span class="lineno"> 1163</span> </div>
-<div class="line"><span class="lineno"> 1164</span>    <span class="comment">#user_json_process_L = pilot_L</span></div>
-<div class="line"><span class="lineno"> 1165</span> </div>
-<div class="line"><span class="lineno"> 1166</span>    <span class="comment"># Clean the list of json objects from comments and whithe space etc</span></div>
-<div class="line"><span class="lineno"> 1167</span>    <span class="comment"># user_json_process_L = [path.join(process_path,x.strip())  for x in pilot_L if len(x) &gt; 1 and x[0] != &#39;#&#39;]</span></div>
-<div class="line"><span class="lineno"> 1168</span> </div>
-<div class="line"><span class="lineno"> 1169</span>    <span class="comment"># Set the default parameters</span></div>
-<div class="line"><span class="lineno"> 1170</span>    process_parameter_C  = Params(default_parameter_D)</div>
-<div class="line"><span class="lineno"> 1171</span> </div>
-<div class="line"><span class="lineno"> 1172</span>    <span class="comment"># Loop over all json files to check if they exists</span></div>
-<div class="line"><span class="lineno"> 1173</span>    <span class="keywordflow">for</span> json_file_obj <span class="keywordflow">in</span> user_json_process_L:</div>
-<div class="line"><span class="lineno"> 1174</span> </div>
-<div class="line"><span class="lineno"> 1175</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> path.exists(json_file_obj):</div>
-<div class="line"><span class="lineno"> 1176</span> </div>
-<div class="line"><span class="lineno"> 1177</span>            error_msg = <span class="stringliteral">&#39;          ❌ WARNING - json process file not found:\n    %s&#39;</span> %(json_file_obj)</div>
-<div class="line"><span class="lineno"> 1178</span> </div>
-<div class="line"><span class="lineno"> 1179</span>            <span class="keywordflow">print</span> (error_msg)</div>
-<div class="line"><span class="lineno"> 1180</span> </div>
-<div class="line"><span class="lineno"> 1181</span>            <span class="keywordflow">if</span> (default_parameter_D[<span class="stringliteral">&#39;postgresdb&#39;</span>][<span class="stringliteral">&#39;db&#39;</span>]):</div>
-<div class="line"><span class="lineno"> 1182</span> </div>
-<div class="line"><span class="lineno"> 1183</span>                <span class="comment"># Close the db connection</span></div>
-<div class="line"><span class="lineno"> 1184</span>                pg_session_C._Close()</div>
-<div class="line"><span class="lineno"> 1185</span> </div>
-<div class="line"><span class="lineno"> 1186</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno"> 1187</span> </div>
-<div class="line"><span class="lineno"> 1188</span>    <span class="comment"># Dict to hold all processes ready to run</span></div>
-<div class="line"><span class="lineno"> 1189</span>    json_cmd_D = {}</div>
-<div class="line"><span class="lineno"> 1190</span> </div>
-<div class="line"><span class="lineno"> 1191</span>    <span class="comment"># Loop over all json files</span></div>
-<div class="line"><span class="lineno"> 1192</span>    <span class="keywordflow">for</span> json_file_obj <span class="keywordflow">in</span> user_json_process_L:</div>
-<div class="line"><span class="lineno"> 1193</span> </div>
-<div class="line"><span class="lineno"> 1194</span>        json_cmd_D[json_file_obj] = {}</div>
-<div class="line"><span class="lineno"> 1195</span> </div>
-<div class="line"><span class="lineno"> 1196</span>        <span class="keywordflow">if</span> verbose &gt; 0:</div>
-<div class="line"><span class="lineno"> 1197</span> </div>
-<div class="line"><span class="lineno"> 1198</span>            msg = <span class="stringliteral">&#39;\n    reading jsonObj:\n    %s&#39;</span> %(json_file_obj)</div>
-<div class="line"><span class="lineno"> 1199</span> </div>
-<div class="line"><span class="lineno"> 1200</span>            <span class="keywordflow">print</span> (msg)</div>
-<div class="line"><span class="lineno"> 1201</span> </div>
-<div class="line"><span class="lineno"> 1202</span>        user_parameter_D = Read_json(json_file_obj)</div>
-<div class="line"><span class="lineno"> 1203</span> </div>
-<div class="line"><span class="lineno"> 1204</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> user_parameter_D:</div>
-<div class="line"><span class="lineno"> 1205</span> </div>
-<div class="line"><span class="lineno"> 1206</span>            msg = (<span class="stringliteral">&#39;\n          ❌ WARNING: json file\n          %s\n          not read - skipping&#39;</span> %json_file_obj)</div>
-<div class="line"><span class="lineno"> 1207</span> </div>
-<div class="line"><span class="lineno"> 1208</span>            <span class="keywordflow">print</span> (msg)</div>
-<div class="line"><span class="lineno"> 1209</span> </div>
-<div class="line"><span class="lineno"> 1210</span>            <span class="keywordflow">continue</span></div>
-<div class="line"><span class="lineno"> 1211</span> </div>
-<div class="line"><span class="lineno"> 1212</span>        <span class="comment"># Set the user defined parameters</span></div>
-<div class="line"><span class="lineno"> 1213</span>        process_parameter_C._Set_user_params(user_parameter_D, path.split(json_file_obj)[1])</div>
-<div class="line"><span class="lineno"> 1214</span> </div>
-<div class="line"><span class="lineno"> 1215</span>        <span class="comment"># Loop over all processes in the json file</span></div>
-<div class="line"><span class="lineno"> 1216</span>        <span class="keywordflow">for</span> p_nr, p <span class="keywordflow">in</span> enumerate(user_parameter_D[<span class="stringliteral">&#39;process&#39;</span>]):</div>
-<div class="line"><span class="lineno"> 1217</span> </div>
-<div class="line"><span class="lineno"> 1218</span>            p_str = str(p_nr)</div>
-<div class="line"><span class="lineno"> 1219</span> </div>
-<div class="line"><span class="lineno"> 1220</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> <span class="stringliteral">&#39;sub_process_id&#39;</span> <span class="keywordflow">in</span> p:</div>
-<div class="line"><span class="lineno"> 1221</span> </div>
-<div class="line"><span class="lineno"> 1222</span>                error_msg = <span class="stringliteral">&#39;          ❌ WARNING: process %s missing sub_process_id&#39;</span> %(p_str)</div>
-<div class="line"><span class="lineno"> 1223</span>                </div>
-<div class="line"><span class="lineno"> 1224</span>                <span class="keywordflow">print</span> (error_msg)</div>
-<div class="line"><span class="lineno"> 1225</span> </div>
-<div class="line"><span class="lineno"> 1226</span>                <span class="keywordflow">continue</span></div>
-<div class="line"><span class="lineno"> 1227</span> </div>
-<div class="line"><span class="lineno"> 1228</span>            <span class="keywordflow">if</span> (default_parameter_D[<span class="stringliteral">&#39;postgresdb&#39;</span>][<span class="stringliteral">&#39;db&#39;</span>]):</div>
-<div class="line"><span class="lineno"> 1229</span> </div>
-<div class="line"><span class="lineno"> 1230</span>                result = Get_process_from_db(pg_session_C,process_schema,process_parameter_C,user_status_D,json_file_obj, p_str)</div>
-<div class="line"><span class="lineno"> 1231</span>                </div>
-<div class="line"><span class="lineno"> 1232</span>                <span class="keywordflow">if</span> result:</div>
-<div class="line"><span class="lineno"> 1233</span> </div>
-<div class="line"><span class="lineno"> 1234</span>                    json_cmd_D[json_file_obj][p_nr] = process_parameter_C.process_S</div>
-<div class="line"><span class="lineno"> 1235</span>                    </div>
-<div class="line"><span class="lineno"> 1236</span>            <span class="keywordflow">else</span>: <span class="comment"># No db connection, just read the parameters</span></div>
-<div class="line"><span class="lineno"> 1237</span> </div>
-<div class="line"><span class="lineno"> 1238</span>                process_D = {<span class="stringliteral">&quot;process_S&quot;</span>:{<span class="stringliteral">&quot;process&quot;</span>:{ <span class="stringliteral">&quot;sub_process_id&quot;</span>: user_parameter_D[<span class="stringliteral">&#39;process&#39;</span>][p_nr][<span class="stringliteral">&#39;sub_process_id&#39;</span>],</div>
-<div class="line"><span class="lineno"> 1239</span>                                                                  <span class="stringliteral">&quot;overwrite&quot;</span>: user_parameter_D[<span class="stringliteral">&#39;process&#39;</span>][p_nr][<span class="stringliteral">&#39;overwrite&#39;</span>],</div>
-<div class="line"><span class="lineno"> 1240</span>                                                                    <span class="stringliteral">&quot;parameters&quot;</span>: user_parameter_D[<span class="stringliteral">&#39;process&#39;</span>][p_nr][<span class="stringliteral">&#39;parameters&#39;</span>]}}}</div>
-<div class="line"><span class="lineno"> 1241</span> </div>
-<div class="line"><span class="lineno"> 1242</span>                json_cmd_D[json_file_obj][p_nr] = Struct(process_D)</div>
-<div class="line"><span class="lineno"> 1243</span> </div>
-<div class="line"><span class="lineno"> 1244</span>    <span class="comment"># Close the db connection if this is a database required process</span></div>
-<div class="line"><span class="lineno"> 1245</span>    <span class="keywordflow">if</span> (default_parameter_D[<span class="stringliteral">&#39;postgresdb&#39;</span>][<span class="stringliteral">&#39;db&#39;</span>]):</div>
-<div class="line"><span class="lineno"> 1246</span> </div>
-<div class="line"><span class="lineno"> 1247</span>        pg_session_C._Close()</div>
-<div class="line"><span class="lineno"> 1248</span> </div>
-<div class="line"><span class="lineno"> 1249</span>    <span class="keywordflow">return</span> json_cmd_D</div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d17/process__job_8py_source.html#l01217">1217</a> of file <a class="el" href="../../dc/d17/process__job_8py_source.html">process_job.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno"> 1217</span><span class="keyword">def </span>Job_processes_loop(default_parameter_D, process_file_FPN_L, process_parameter_C, process_schema=&#39;process&#39;):</div>
+<div class="line"><span class="lineno"> 1218</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno"> 1219</span><span class="stringliteral">    @brief Main loop to process job configurations from JSON files and assemble process objects.</span></div>
+<div class="line"><span class="lineno"> 1220</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1221</span><span class="stringliteral">    This function iterates over a list of JSON process files, reads user-defined parameters, and assembles process configurations</span></div>
+<div class="line"><span class="lineno"> 1222</span><span class="stringliteral">    either by retrieving details from a database or directly from the provided parameters. It supports both database-backed and</span></div>
+<div class="line"><span class="lineno"> 1223</span><span class="stringliteral">    standalone operation modes. The assembled process objects are stored in a dictionary keyed by the JSON file name and process index.</span></div>
+<div class="line"><span class="lineno"> 1224</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1225</span><span class="stringliteral">    @details</span></div>
+<div class="line"><span class="lineno"> 1226</span><span class="stringliteral">    - For each JSON file in the input list, reads the process definitions and sets user parameters.</span></div>
+<div class="line"><span class="lineno"> 1227</span><span class="stringliteral">    - For each process entry, checks for required fields and either retrieves process details from the database (if available)</span></div>
+<div class="line"><span class="lineno"> 1228</span><span class="stringliteral">    or assembles them from user parameters.</span></div>
+<div class="line"><span class="lineno"> 1229</span><span class="stringliteral">    - Handles missing fields, insufficient user privileges, and file read errors with warnings.</span></div>
+<div class="line"><span class="lineno"> 1230</span><span class="stringliteral">    - Returns a dictionary of assembled process objects ready for execution.</span></div>
+<div class="line"><span class="lineno"> 1231</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1232</span><span class="stringliteral">    @param default_parameter_D Dictionary of default parameters for the job and database connection.</span></div>
+<div class="line"><span class="lineno"> 1233</span><span class="stringliteral">    @param process_file_FPN_L List of file paths to JSON process configuration files.</span></div>
+<div class="line"><span class="lineno"> 1234</span><span class="stringliteral">    @param process_parameter_C Params object for managing process parameters and assembly.</span></div>
+<div class="line"><span class="lineno"> 1235</span><span class="stringliteral">    @param process_schema Name of the process schema in the database (default: &#39;process&#39;).</span></div>
+<div class="line"><span class="lineno"> 1236</span><span class="stringliteral">    @return Dictionary of assembled process objects, keyed by JSON file and process index.</span></div>
+<div class="line"><span class="lineno"> 1237</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno"> 1238</span>    <span class="keyword">def </span>Process_loop():</div>
+<div class="line"><span class="lineno"> 1239</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno"> 1240</span><span class="stringliteral">        @brief Loop over all processes in the JSON file and assemble process configurations.</span></div>
+<div class="line"><span class="lineno"> 1241</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1242</span><span class="stringliteral">        This function iterates through each process entry in the user parameter dictionary, checks for required fields,</span></div>
+<div class="line"><span class="lineno"> 1243</span><span class="stringliteral">        and either retrieves process details from the database or assembles them from the provided parameters. The results</span></div>
+<div class="line"><span class="lineno"> 1244</span><span class="stringliteral">        are stored in the json_cmd_D dictionary for further use.</span></div>
+<div class="line"><span class="lineno"> 1245</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1246</span><span class="stringliteral">        @details</span></div>
+<div class="line"><span class="lineno"> 1247</span><span class="stringliteral">        - Checks for the presence of &#39;sub_process_id&#39; in each process entry and prints a warning if missing.</span></div>
+<div class="line"><span class="lineno"> 1248</span><span class="stringliteral">        - If a database connection is available, retrieves process details using Get_process_from_db and updates json_cmd_D.</span></div>
+<div class="line"><span class="lineno"> 1249</span><span class="stringliteral">        - If no database connection, assembles process details directly from user parameters and updates json_cmd_D.</span></div>
+<div class="line"><span class="lineno"> 1250</span><span class="stringliteral">        - Skips processes with missing required fields or insufficient user privileges.</span></div>
+<div class="line"><span class="lineno"> 1251</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1252</span><span class="stringliteral">        @note</span></div>
+<div class="line"><span class="lineno"> 1253</span><span class="stringliteral">        - Relies on global variables: user_parameter_D, default_parameter_D, pg_session_C, process_schema,</span></div>
+<div class="line"><span class="lineno"> 1254</span><span class="stringliteral">            process_parameter_C, user_status_D, json_file_obj, json_cmd_D.</span></div>
+<div class="line"><span class="lineno"> 1255</span><span class="stringliteral">        - Designed to be called within Job_processes_loop.</span></div>
+<div class="line"><span class="lineno"> 1256</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1257</span><span class="stringliteral">        @return None. Results are stored in json_cmd_D.</span></div>
+<div class="line"><span class="lineno"> 1258</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno"> 1259</span> </div>
+<div class="line"><span class="lineno"> 1260</span>        <span class="comment"># Loop over all processes in the json file</span></div>
+<div class="line"><span class="lineno"> 1261</span>        <span class="keywordflow">for</span> p_nr, p <span class="keywordflow">in</span> enumerate(user_parameter_D[<span class="stringliteral">&#39;process&#39;</span>]):</div>
+<div class="line"><span class="lineno"> 1262</span> </div>
+<div class="line"><span class="lineno"> 1263</span>            p_str = str(p_nr)</div>
+<div class="line"><span class="lineno"> 1264</span> </div>
+<div class="line"><span class="lineno"> 1265</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> <span class="stringliteral">&#39;sub_process_id&#39;</span> <span class="keywordflow">in</span> p:</div>
+<div class="line"><span class="lineno"> 1266</span> </div>
+<div class="line"><span class="lineno"> 1267</span>                error_msg = <span class="stringliteral">&#39;          ❌ WARNING: process %s missing sub_process_id&#39;</span> %(p_str)</div>
+<div class="line"><span class="lineno"> 1268</span>                </div>
+<div class="line"><span class="lineno"> 1269</span>                <span class="keywordflow">print</span> (error_msg)</div>
+<div class="line"><span class="lineno"> 1270</span> </div>
+<div class="line"><span class="lineno"> 1271</span>                <span class="keywordflow">continue</span></div>
+<div class="line"><span class="lineno"> 1272</span> </div>
+<div class="line"><span class="lineno"> 1273</span>            <span class="keywordflow">if</span> (default_parameter_D[<span class="stringliteral">&#39;postgresdb&#39;</span>][<span class="stringliteral">&#39;db&#39;</span>]):</div>
+<div class="line"><span class="lineno"> 1274</span> </div>
+<div class="line"><span class="lineno"> 1275</span>                result = Get_process_from_db(pg_session_C,process_schema,process_parameter_C,user_status_D,json_file_obj, p_str)</div>
+<div class="line"><span class="lineno"> 1276</span>                </div>
+<div class="line"><span class="lineno"> 1277</span>                <span class="keywordflow">if</span> result:</div>
+<div class="line"><span class="lineno"> 1278</span> </div>
+<div class="line"><span class="lineno"> 1279</span>                    json_cmd_D[json_file_obj][p_nr] = process_parameter_C.process_S</div>
+<div class="line"><span class="lineno"> 1280</span>                    </div>
+<div class="line"><span class="lineno"> 1281</span>            <span class="keywordflow">else</span>: <span class="comment"># No db connection, just read the parameters</span></div>
+<div class="line"><span class="lineno"> 1282</span> </div>
+<div class="line"><span class="lineno"> 1283</span>                process_D = {<span class="stringliteral">&quot;process_S&quot;</span>:{<span class="stringliteral">&quot;process&quot;</span>:{ <span class="stringliteral">&quot;sub_process_id&quot;</span>: user_parameter_D[<span class="stringliteral">&#39;process&#39;</span>][p_nr][<span class="stringliteral">&#39;sub_process_id&#39;</span>],</div>
+<div class="line"><span class="lineno"> 1284</span>                                                                    <span class="stringliteral">&quot;overwrite&quot;</span>: user_parameter_D[<span class="stringliteral">&#39;process&#39;</span>][p_nr][<span class="stringliteral">&#39;overwrite&#39;</span>],</div>
+<div class="line"><span class="lineno"> 1285</span>                                                                    <span class="stringliteral">&quot;parameters&quot;</span>: user_parameter_D[<span class="stringliteral">&#39;process&#39;</span>][p_nr][<span class="stringliteral">&#39;parameters&#39;</span>]}}}</div>
+<div class="line"><span class="lineno"> 1286</span> </div>
+<div class="line"><span class="lineno"> 1287</span>                json_cmd_D[json_file_obj][p_nr] = Struct(process_D)</div>
+<div class="line"><span class="lineno"> 1288</span> </div>
+<div class="line"><span class="lineno"> 1289</span>    <span class="comment"># Main loop function</span></div>
+<div class="line"><span class="lineno"> 1290</span>    verbose = default_parameter_D[<span class="stringliteral">&#39;process&#39;</span>][0][<span class="stringliteral">&#39;verbose&#39;</span>]</div>
+<div class="line"><span class="lineno"> 1291</span> </div>
+<div class="line"><span class="lineno"> 1292</span>    <span class="comment"># Dict to hold all processes ready to run</span></div>
+<div class="line"><span class="lineno"> 1293</span>    json_cmd_D = {}</div>
+<div class="line"><span class="lineno"> 1294</span> </div>
+<div class="line"><span class="lineno"> 1295</span>    <span class="comment"># Loop over all json files</span></div>
+<div class="line"><span class="lineno"> 1296</span>    <span class="keywordflow">for</span> json_file_obj <span class="keywordflow">in</span> process_file_FPN_L:</div>
+<div class="line"><span class="lineno"> 1297</span> </div>
+<div class="line"><span class="lineno"> 1298</span>        json_cmd_D[json_file_obj] = {}</div>
+<div class="line"><span class="lineno"> 1299</span> </div>
+<div class="line"><span class="lineno"> 1300</span>        <span class="keywordflow">if</span> verbose &gt; 0:</div>
+<div class="line"><span class="lineno"> 1301</span> </div>
+<div class="line"><span class="lineno"> 1302</span>            msg = <span class="stringliteral">&#39;\n    reading jsonObj:\n    %s&#39;</span> %(json_file_obj)</div>
+<div class="line"><span class="lineno"> 1303</span> </div>
+<div class="line"><span class="lineno"> 1304</span>            <span class="keywordflow">print</span> (msg)</div>
+<div class="line"><span class="lineno"> 1305</span> </div>
+<div class="line"><span class="lineno"> 1306</span>        user_parameter_D = Read_json(json_file_obj)</div>
+<div class="line"><span class="lineno"> 1307</span> </div>
+<div class="line"><span class="lineno"> 1308</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> user_parameter_D:</div>
+<div class="line"><span class="lineno"> 1309</span> </div>
+<div class="line"><span class="lineno"> 1310</span>            msg = (<span class="stringliteral">&#39;\n          ❌ WARNING: json file\n          %s\n          not read - skipping&#39;</span> %json_file_obj)</div>
+<div class="line"><span class="lineno"> 1311</span> </div>
+<div class="line"><span class="lineno"> 1312</span>            <span class="keywordflow">print</span> (msg)</div>
+<div class="line"><span class="lineno"> 1313</span> </div>
+<div class="line"><span class="lineno"> 1314</span>            <span class="keywordflow">continue</span></div>
+<div class="line"><span class="lineno"> 1315</span> </div>
+<div class="line"><span class="lineno"> 1316</span>        <span class="comment"># Set the user defined parameters</span></div>
+<div class="line"><span class="lineno"> 1317</span>        process_parameter_C._Set_user_params(user_parameter_D, path.split(json_file_obj)[1])</div>
+<div class="line"><span class="lineno"> 1318</span> </div>
+<div class="line"><span class="lineno"> 1319</span>        <span class="comment"># Loop over all processes in the json file</span></div>
+<div class="line"><span class="lineno"> 1320</span>        Process_loop()</div>
+<div class="line"><span class="lineno"> 1321</span> </div>
+<div class="line"><span class="lineno"> 1322</span>    <span class="keywordflow">return</span> json_cmd_D</div>
+<div class="line"><span class="lineno"> 1323</span> </div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../dd/db9/namespaceprocess__project_1_1process__job_a976b96c312845f2587467a6cca6adb38_cgraph.png" border="0" usemap="#add/db9/namespaceprocess__project_1_1process__job_a976b96c312845f2587467a6cca6adb38_cgraph" loading="lazy" alt=""/></div>
-<map name="add/db9/namespaceprocess__project_1_1process__job_a976b96c312845f2587467a6cca6adb38_cgraph" id="add/db9/namespaceprocess__project_1_1process__job_a976b96c312845f2587467a6cca6adb38_cgraph">
-<area shape="rect" title=" " alt="" coords="5,39,174,79"/>
+<div class="center"><img src="../../dd/db9/namespaceprocess__project_1_1process__job_af561b524f455f4394d6d7a62f4c7aaed_cgraph.png" border="0" usemap="#add/db9/namespaceprocess__project_1_1process__job_af561b524f455f4394d6d7a62f4c7aaed_cgraph" loading="lazy" alt=""/></div>
+<map name="add/db9/namespaceprocess__project_1_1process__job_af561b524f455f4394d6d7a62f4c7aaed_cgraph" id="add/db9/namespaceprocess__project_1_1process__job_af561b524f455f4394d6d7a62f4c7aaed_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,174,46"/>
 <area shape="rect" href="../../dd/db9/namespaceprocess__project_1_1process__job.html#ad0dfd2bf57bcac8ca2e90d8e26199533" title=" " alt="" coords="222,5,399,46"/>
-<area shape="poly" title=" " alt="" coords="174,44,206,39,206,44,174,49"/>
-<area shape="rect" href="../../dd/db9/namespaceprocess__project_1_1process__job.html#ab31a31f9244484a52606e4c0cf83afa9" title=" " alt="" coords="229,71,392,111"/>
-<area shape="poly" title=" " alt="" coords="174,69,214,74,213,80,174,74"/>
+<area shape="poly" title=" " alt="" coords="174,23,206,23,206,28,174,28"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/db9/namespaceprocess__project_1_1process__job_af561b524f455f4394d6d7a62f4c7aaed_icgraph.png" border="0" usemap="#add/db9/namespaceprocess__project_1_1process__job_af561b524f455f4394d6d7a62f4c7aaed_icgraph" loading="lazy" alt=""/></div>
+<map name="add/db9/namespaceprocess__project_1_1process__job_af561b524f455f4394d6d7a62f4c7aaed_icgraph" id="add/db9/namespaceprocess__project_1_1process__job_af561b524f455f4394d6d7a62f4c7aaed_icgraph">
+<area shape="rect" title=" " alt="" coords="223,5,391,46"/>
+<area shape="rect" href="../../dd/db9/namespaceprocess__project_1_1process__job.html#af24d711e85754ff4956e7f34c1453c47" title=" " alt="" coords="5,5,175,46"/>
+<area shape="poly" title=" " alt="" coords="207,28,175,28,175,23,207,23"/>
 </map>
 </div>
 
@@ -617,105 +811,156 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 <pre class="fragment">Login to the project and set user status
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dc/d17/process__job_8py_source.html#l00948">948</a> of file <a class="el" href="../../dc/d17/process__job_8py_source.html">process_job.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  948</span><span class="keyword">def </span>Project_login(default_parameter_D):</div>
-<div class="line"><span class="lineno">  949</span>    <span class="stringliteral">&#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  950</span><span class="stringliteral">    Login to the project and set user status</span></div>
-<div class="line"><span class="lineno">  951</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  952</span> </div>
-<div class="line"><span class="lineno">  953</span>    result = PG_check_user_settings(default_parameter_D)</div>
-<div class="line"><span class="lineno">  954</span> </div>
-<div class="line"><span class="lineno">  955</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> result:</div>
-<div class="line"><span class="lineno">  956</span> </div>
-<div class="line"><span class="lineno">  957</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;❌ WARNING: could not login to database - exiting&#39;</span>)</div>
-<div class="line"><span class="lineno">  958</span> </div>
-<div class="line"><span class="lineno">  959</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">  960</span>    </div>
-<div class="line"><span class="lineno">  961</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> <span class="stringliteral">&#39;user_project&#39;</span> <span class="keywordflow">in</span> default_parameter_D:</div>
-<div class="line"><span class="lineno">  962</span> </div>
-<div class="line"><span class="lineno">  963</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;❌ WARNING: object &lt;user_project&gt; missing in suer_project_file&#39;</span>)</div>
-<div class="line"><span class="lineno">  964</span> </div>
-<div class="line"><span class="lineno">  965</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">  966</span> </div>
-<div class="line"><span class="lineno">  967</span>    <span class="keywordflow">if</span> <span class="stringliteral">&#39;user_netrc_id&#39;</span> <span class="keywordflow">in</span> default_parameter_D[<span class="stringliteral">&#39;user_project&#39;</span>] <span class="keywordflow">and</span> \</div>
-<div class="line"><span class="lineno">  968</span>        len(default_parameter_D[<span class="stringliteral">&#39;user_project&#39;</span>][<span class="stringliteral">&#39;user_netrc_id&#39;</span>]) &gt; 0:</div>
-<div class="line"><span class="lineno">  969</span> </div>
-<div class="line"><span class="lineno">  970</span>        rec = PG_user_status(result, default_parameter_D[<span class="stringliteral">&#39;user_project&#39;</span>][<span class="stringliteral">&#39;user_netrc_id&#39;</span>])</div>
-<div class="line"><span class="lineno">  971</span> </div>
-<div class="line"><span class="lineno">  972</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  973</span> </div>
-<div class="line"><span class="lineno">  974</span>        rec = PG_user_status(result,</div>
-<div class="line"><span class="lineno">  975</span>                             <span class="keywordtype">None</span>,</div>
-<div class="line"><span class="lineno">  976</span>                             default_parameter_D[<span class="stringliteral">&#39;user_project&#39;</span>][<span class="stringliteral">&#39;user_id&#39;</span>],</div>
-<div class="line"><span class="lineno">  977</span>                             b64encode(default_parameter_D[<span class="stringliteral">&#39;user_project&#39;</span>][<span class="stringliteral">&#39;user_password&#39;</span>]).encode())</div>
-<div class="line"><span class="lineno">  978</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> rec:</div>
-<div class="line"><span class="lineno">  979</span> </div>
-<div class="line"><span class="lineno">  980</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;❌ WARNING: unrecognised user (%s) - exiting&#39;</span> %(default_parameter_D[<span class="stringliteral">&#39;user_project&#39;</span>][<span class="stringliteral">&#39;user_id&#39;</span>]))</div>
-<div class="line"><span class="lineno">  981</span> </div>
-<div class="line"><span class="lineno">  982</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">  983</span> </div>
-<div class="line"><span class="lineno">  984</span>    parmas = [<span class="stringliteral">&#39;id&#39;</span>, <span class="stringliteral">&#39;email&#39;</span>, <span class="stringliteral">&#39;first_name&#39;</span>, <span class="stringliteral">&#39;middle_name&#39;</span>, <span class="stringliteral">&#39;last_name&#39;</span>, <span class="stringliteral">&#39;name&#39;</span>, <span class="stringliteral">&#39;stratum_code&#39;</span>, <span class="stringliteral">&#39;status_code&#39;</span>]</div>
-<div class="line"><span class="lineno">  985</span>    <span class="comment">#user_id, user_rights, user_region, user_project, user_project_id, user_project_region, user_project_region_id = rec</span></div>
-<div class="line"><span class="lineno">  986</span> </div>
-<div class="line"><span class="lineno">  987</span>    user_status_D = dict(zip(parmas, rec))</div>
-<div class="line"><span class="lineno">  988</span> </div>
-<div class="line"><span class="lineno">  989</span>    <span class="keywordflow">return</span> user_status_D</div>
-<div class="line"><span class="lineno">  990</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../dc/d17/process__job_8py_source.html#l01027">1027</a> of file <a class="el" href="../../dc/d17/process__job_8py_source.html">process_job.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno"> 1027</span><span class="keyword">def </span>Project_login(default_parameter_D):</div>
+<div class="line"><span class="lineno"> 1028</span>    <span class="stringliteral">&#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno"> 1029</span><span class="stringliteral">    Login to the project and set user status</span></div>
+<div class="line"><span class="lineno"> 1030</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
+<div class="line"><span class="lineno"> 1031</span> </div>
+<div class="line"><span class="lineno"> 1032</span>    result = PG_check_user_settings(default_parameter_D)</div>
+<div class="line"><span class="lineno"> 1033</span> </div>
+<div class="line"><span class="lineno"> 1034</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> result:</div>
+<div class="line"><span class="lineno"> 1035</span> </div>
+<div class="line"><span class="lineno"> 1036</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;❌ WARNING: could not login to database - exiting&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1037</span> </div>
+<div class="line"><span class="lineno"> 1038</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1039</span>    </div>
+<div class="line"><span class="lineno"> 1040</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> <span class="stringliteral">&#39;user_project&#39;</span> <span class="keywordflow">in</span> default_parameter_D:</div>
+<div class="line"><span class="lineno"> 1041</span> </div>
+<div class="line"><span class="lineno"> 1042</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;❌ WARNING: object &lt;user_project&gt; missing in suer_project_file&#39;</span>)</div>
+<div class="line"><span class="lineno"> 1043</span> </div>
+<div class="line"><span class="lineno"> 1044</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1045</span> </div>
+<div class="line"><span class="lineno"> 1046</span>    <span class="keywordflow">if</span> <span class="stringliteral">&#39;user_netrc_id&#39;</span> <span class="keywordflow">in</span> default_parameter_D[<span class="stringliteral">&#39;user_project&#39;</span>] <span class="keywordflow">and</span> \</div>
+<div class="line"><span class="lineno"> 1047</span>        len(default_parameter_D[<span class="stringliteral">&#39;user_project&#39;</span>][<span class="stringliteral">&#39;user_netrc_id&#39;</span>]) &gt; 0:</div>
+<div class="line"><span class="lineno"> 1048</span> </div>
+<div class="line"><span class="lineno"> 1049</span>        rec = PG_user_status(result, default_parameter_D[<span class="stringliteral">&#39;user_project&#39;</span>][<span class="stringliteral">&#39;user_netrc_id&#39;</span>])</div>
+<div class="line"><span class="lineno"> 1050</span> </div>
+<div class="line"><span class="lineno"> 1051</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno"> 1052</span> </div>
+<div class="line"><span class="lineno"> 1053</span>        rec = PG_user_status(result,</div>
+<div class="line"><span class="lineno"> 1054</span>                             <span class="keywordtype">None</span>,</div>
+<div class="line"><span class="lineno"> 1055</span>                             default_parameter_D[<span class="stringliteral">&#39;user_project&#39;</span>][<span class="stringliteral">&#39;user_id&#39;</span>],</div>
+<div class="line"><span class="lineno"> 1056</span>                             b64encode(default_parameter_D[<span class="stringliteral">&#39;user_project&#39;</span>][<span class="stringliteral">&#39;user_password&#39;</span>]).encode())</div>
+<div class="line"><span class="lineno"> 1057</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> rec:</div>
+<div class="line"><span class="lineno"> 1058</span> </div>
+<div class="line"><span class="lineno"> 1059</span>        <span class="keywordflow">print</span> (<span class="stringliteral">&#39;❌ WARNING: unrecognised user (%s) - exiting&#39;</span> %(default_parameter_D[<span class="stringliteral">&#39;user_project&#39;</span>][<span class="stringliteral">&#39;user_id&#39;</span>]))</div>
+<div class="line"><span class="lineno"> 1060</span> </div>
+<div class="line"><span class="lineno"> 1061</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1062</span> </div>
+<div class="line"><span class="lineno"> 1063</span>    parmas = [<span class="stringliteral">&#39;id&#39;</span>, <span class="stringliteral">&#39;email&#39;</span>, <span class="stringliteral">&#39;first_name&#39;</span>, <span class="stringliteral">&#39;middle_name&#39;</span>, <span class="stringliteral">&#39;last_name&#39;</span>, <span class="stringliteral">&#39;name&#39;</span>, <span class="stringliteral">&#39;stratum_code&#39;</span>, <span class="stringliteral">&#39;status_code&#39;</span>]</div>
+<div class="line"><span class="lineno"> 1064</span>    <span class="comment">#user_id, user_rights, user_region, user_project, user_project_id, user_project_region, user_project_region_id = rec</span></div>
+<div class="line"><span class="lineno"> 1065</span> </div>
+<div class="line"><span class="lineno"> 1066</span>    user_status_D = dict(zip(parmas, rec))</div>
+<div class="line"><span class="lineno"> 1067</span> </div>
+<div class="line"><span class="lineno"> 1068</span>    <span class="keywordflow">return</span> user_status_D</div>
+<div class="line"><span class="lineno"> 1069</span> </div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/db9/namespaceprocess__project_1_1process__job_ab31a31f9244484a52606e4c0cf83afa9_icgraph.png" border="0" usemap="#add/db9/namespaceprocess__project_1_1process__job_ab31a31f9244484a52606e4c0cf83afa9_icgraph" loading="lazy" alt=""/></div>
 <map name="add/db9/namespaceprocess__project_1_1process__job_ab31a31f9244484a52606e4c0cf83afa9_icgraph" id="add/db9/namespaceprocess__project_1_1process__job_ab31a31f9244484a52606e4c0cf83afa9_icgraph">
-<area shape="rect" title=" " alt="" coords="222,5,385,46"/>
-<area shape="rect" href="../../dd/db9/namespaceprocess__project_1_1process__job.html#a976b96c312845f2587467a6cca6adb38" title=" " alt="" coords="5,5,174,46"/>
-<area shape="poly" title=" " alt="" coords="206,28,174,28,174,23,206,23"/>
+<area shape="rect" title=" " alt="" coords="434,13,597,54"/>
+<area shape="rect" href="../../dd/db9/namespaceprocess__project_1_1process__job.html#a624dabc0b7f4ddc75e249110d7b70dcb" title=" " alt="" coords="223,5,386,61"/>
+<area shape="poly" title=" " alt="" coords="419,36,386,36,386,30,419,30"/>
+<area shape="rect" href="../../dd/db9/namespaceprocess__project_1_1process__job.html#af24d711e85754ff4956e7f34c1453c47" title=" " alt="" coords="5,13,175,54"/>
+<area shape="poly" title=" " alt="" coords="207,36,175,36,175,30,207,30"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a8de01388620c70bc7727f52a01c36aaa" name="a8de01388620c70bc7727f52a01c36aaa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8de01388620c70bc7727f52a01c36aaa">&#9670;&#160;</a></span>Update_dict()</h2>
+<a id="af24d711e85754ff4956e7f34c1453c47" name="af24d711e85754ff4956e7f34c1453c47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af24d711e85754ff4956e7f34c1453c47">&#9670;&#160;</a></span>Structure_processes()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">process_project.process_job.Update_dict </td>
+          <td class="memname">process_project.process_job.Structure_processes </td>
           <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>user_D</em></span>, </td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>default_parameter_D</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>default_D</em></span>&#160;)</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>process_file_FPN_L</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>process_path</em></span><span class="paramdefsep"> = </span><span class="paramdefval">''</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment"></pre> 
-<p class="definition">Definition at line <a class="el" href="../../dc/d17/process__job_8py_source.html#l00032">32</a> of file <a class="el" href="../../dc/d17/process__job_8py_source.html">process_job.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   32</span><span class="keyword">def </span>Update_dict(user_D, default_D):</div>
-<div class="line"><span class="lineno">   33</span>    <span class="stringliteral">&#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">   34</span><span class="stringliteral">    &#39;&#39;&#39;</span></div>
-<div class="line"><span class="lineno">   35</span> </div>
-<div class="line"><span class="lineno">   36</span>    d = {key: default_D.get(key, user_D[key]) <span class="keywordflow">for</span> key <span class="keywordflow">in</span> user_D}</div>
-<div class="line"><span class="lineno">   37</span> </div>
-<div class="line"><span class="lineno">   38</span>    <span class="keywordflow">for</span> key <span class="keywordflow">in</span> default_D:</div>
-<div class="line"><span class="lineno">   39</span> </div>
-<div class="line"><span class="lineno">   40</span>        <span class="keywordflow">if</span> key <span class="keywordflow">not</span> <span class="keywordflow">in</span> d:</div>
-<div class="line"><span class="lineno">   41</span> </div>
-<div class="line"><span class="lineno">   42</span>            user_D[key] = default_D[key]</div>
-<div class="line"><span class="lineno">   43</span> </div>
+<pre class="fragment">@brief Assemble and structure process jobs from JSON files and database parameters.
+
+This function checks the existence of provided JSON process files, optionally establishes a database session,
+sets up default parameters, and loops over all process files to assemble job configurations. If a database is required,
+it retrieves user status and closes the session after processing. Returns a dictionary of assembled job objects.
+
+@param default_parameter_D Dictionary containing default parameters for the process and database connection.
+@param process_file_FPN_L List of file paths to JSON process configuration files.
+@param process_path Optional path for process execution context (default: '').
+@return Dictionary of assembled job objects, or None if any file is missing or user/database status is invalid.
+</pre> 
+<p class="definition">Definition at line <a class="el" href="../../dc/d17/process__job_8py_source.html#l01378">1378</a> of file <a class="el" href="../../dc/d17/process__job_8py_source.html">process_job.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno"> 1378</span><span class="keyword">def </span>Structure_processes(default_parameter_D, process_file_FPN_L, process_path=&#39;&#39;):</div>
+<div class="line"><span class="lineno"> 1379</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno"> 1380</span><span class="stringliteral">    @brief Assemble and structure process jobs from JSON files and database parameters.</span></div>
+<div class="line"><span class="lineno"> 1381</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1382</span><span class="stringliteral">    This function checks the existence of provided JSON process files, optionally establishes a database session,</span></div>
+<div class="line"><span class="lineno"> 1383</span><span class="stringliteral">    sets up default parameters, and loops over all process files to assemble job configurations. If a database is required,</span></div>
+<div class="line"><span class="lineno"> 1384</span><span class="stringliteral">    it retrieves user status and closes the session after processing. Returns a dictionary of assembled job objects.</span></div>
+<div class="line"><span class="lineno"> 1385</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno"> 1386</span><span class="stringliteral">    @param default_parameter_D Dictionary containing default parameters for the process and database connection.</span></div>
+<div class="line"><span class="lineno"> 1387</span><span class="stringliteral">    @param process_file_FPN_L List of file paths to JSON process configuration files.</span></div>
+<div class="line"><span class="lineno"> 1388</span><span class="stringliteral">    @param process_path Optional path for process execution context (default: &#39;&#39;).</span></div>
+<div class="line"><span class="lineno"> 1389</span><span class="stringliteral">    @return Dictionary of assembled job objects, or None if any file is missing or user/database status is invalid.</span></div>
+<div class="line"><span class="lineno"> 1390</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno"> 1391</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> Check_json_files(process_file_FPN_L):</div>
+<div class="line"><span class="lineno"> 1392</span> </div>
+<div class="line"><span class="lineno"> 1393</span>        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1394</span>    </div>
+<div class="line"><span class="lineno"> 1395</span>    <span class="keywordflow">if</span> (default_parameter_D[<span class="stringliteral">&#39;postgresdb&#39;</span>][<span class="stringliteral">&#39;db&#39;</span>]):</div>
+<div class="line"><span class="lineno"> 1396</span> </div>
+<div class="line"><span class="lineno"> 1397</span>        <span class="comment"># Get user status</span></div>
+<div class="line"><span class="lineno"> 1398</span>        user_status_D, pg_session_C = Get_set_database_session(default_parameter_D)</div>
+<div class="line"><span class="lineno"> 1399</span> </div>
+<div class="line"><span class="lineno"> 1400</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> user_status_D:</div>
+<div class="line"><span class="lineno"> 1401</span> </div>
+<div class="line"><span class="lineno"> 1402</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno"> 1403</span>        </div>
+<div class="line"><span class="lineno"> 1404</span>    default_parameter_D[<span class="stringliteral">&#39;process_path&#39;</span>] = process_path</div>
+<div class="line"><span class="lineno"> 1405</span> </div>
+<div class="line"><span class="lineno"> 1406</span>    <span class="comment"># Set the default parameters</span></div>
+<div class="line"><span class="lineno"> 1407</span>    process_parameter_C  = Params(default_parameter_D)</div>
+<div class="line"><span class="lineno"> 1408</span> </div>
+<div class="line"><span class="lineno"> 1409</span>    <span class="comment"># Loop over all process files</span></div>
+<div class="line"><span class="lineno"> 1410</span>    json_job_D = Job_processes_loop(default_parameter_D, process_file_FPN_L, process_parameter_C)</div>
+<div class="line"><span class="lineno"> 1411</span>    </div>
+<div class="line"><span class="lineno"> 1412</span>    <span class="comment"># Close the db connection if this is a database required process</span></div>
+<div class="line"><span class="lineno"> 1413</span>    <span class="keywordflow">if</span> (default_parameter_D[<span class="stringliteral">&#39;postgresdb&#39;</span>][<span class="stringliteral">&#39;db&#39;</span>]):</div>
+<div class="line"><span class="lineno"> 1414</span> </div>
+<div class="line"><span class="lineno"> 1415</span>        pg_session_C._Close()</div>
+<div class="line"><span class="lineno"> 1416</span> </div>
+<div class="line"><span class="lineno"> 1417</span>    <span class="keywordflow">return</span> json_job_D</div>
 </div><!-- fragment --><div class="dynheader">
-Here is the caller graph for this function:</div>
+Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../dd/db9/namespaceprocess__project_1_1process__job_a8de01388620c70bc7727f52a01c36aaa_icgraph.png" border="0" usemap="#add/db9/namespaceprocess__project_1_1process__job_a8de01388620c70bc7727f52a01c36aaa_icgraph" loading="lazy" alt=""/></div>
-<map name="add/db9/namespaceprocess__project_1_1process__job_a8de01388620c70bc7727f52a01c36aaa_icgraph" id="add/db9/namespaceprocess__project_1_1process__job_a8de01388620c70bc7727f52a01c36aaa_icgraph">
-<area shape="rect" title=" " alt="" coords="218,49,381,90"/>
-<area shape="rect" href="../../d5/df4/classprocess__project_1_1process__job_1_1_params.html#ad2bfd9730ec0c91e90064849554f11be" title=" " alt="" coords="6,5,169,61"/>
-<area shape="poly" title=" " alt="" coords="202,55,169,50,170,44,202,50"/>
-<area shape="rect" href="../../d5/df4/classprocess__project_1_1process__job_1_1_params.html#aa1852a9d20e8846bed9bbefdc69bdd14" title=" " alt="" coords="5,85,170,126"/>
-<area shape="poly" title=" " alt="" coords="203,88,171,94,170,89,202,83"/>
+<div class="center"><img src="../../dd/db9/namespaceprocess__project_1_1process__job_af24d711e85754ff4956e7f34c1453c47_cgraph.png" border="0" usemap="#add/db9/namespaceprocess__project_1_1process__job_af24d711e85754ff4956e7f34c1453c47_cgraph" loading="lazy" alt=""/></div>
+<map name="add/db9/namespaceprocess__project_1_1process__job_af24d711e85754ff4956e7f34c1453c47_cgraph" id="add/db9/namespaceprocess__project_1_1process__job_af24d711e85754ff4956e7f34c1453c47_cgraph">
+<area shape="rect" title=" " alt="" coords="5,77,175,118"/>
+<area shape="rect" href="../../dd/db9/namespaceprocess__project_1_1process__job.html#a45dd1e2871de33230b58614aa19de4ce" title=" " alt="" coords="225,5,388,46"/>
+<area shape="poly" title=" " alt="" coords="152,74,228,49,230,54,154,79"/>
+<area shape="rect" href="../../dd/db9/namespaceprocess__project_1_1process__job.html#a624dabc0b7f4ddc75e249110d7b70dcb" title=" " alt="" coords="225,70,388,126"/>
+<area shape="poly" title=" " alt="" coords="175,95,210,95,210,100,175,100"/>
+<area shape="rect" href="../../dd/db9/namespaceprocess__project_1_1process__job.html#af561b524f455f4394d6d7a62f4c7aaed" title=" " alt="" coords="223,149,391,190"/>
+<area shape="poly" title=" " alt="" coords="154,116,230,141,228,146,152,121"/>
+<area shape="rect" href="../../dd/db9/namespaceprocess__project_1_1process__job.html#ab31a31f9244484a52606e4c0cf83afa9" title=" " alt="" coords="446,77,609,118"/>
+<area shape="poly" title=" " alt="" coords="389,95,431,95,431,100,389,100"/>
+<area shape="rect" href="../../dd/db9/namespaceprocess__project_1_1process__job.html#ad0dfd2bf57bcac8ca2e90d8e26199533" title=" " alt="" coords="439,149,616,190"/>
+<area shape="poly" title=" " alt="" coords="391,167,423,167,423,172,391,172"/>
 </map>
 </div>
 

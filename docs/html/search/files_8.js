@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['notebook_5fstartup_2epy_0',['notebook_startup.py',['../d4/d47/notebook__startup_8py.html',1,'']]]
+  ['setdiskpath_2epy_0',['setDiskPath.py',['../d8/d8a/set_disk_path_8py.html',1,'']]]
 ];

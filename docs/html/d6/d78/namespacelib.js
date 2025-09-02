@@ -4,8 +4,8 @@ var namespacelib =
       [ "Initiate_process", "d2/da4/namespacelib_1_1import__csv__data__initiate.html#a8edcd21d59a3d023d56412097d72867e", null ]
     ] ],
     [ "import_csv_data_process", "d2/d4b/namespacelib_1_1import__csv__data__process.html", [
-      [ "Import_csv_single_line", "d2/d4b/namespacelib_1_1import__csv__data__process.html#ac5dc25dab810f627079fdb64a1d353b1", null ],
-      [ "Manage_process", "d2/d4b/namespacelib_1_1import__csv__data__process.html#a7bf892296a41987f5279b48fcb2800f7", null ]
+      [ "Import_csv_single_line", "d2/d4b/namespacelib_1_1import__csv__data__process.html#a220e8a00d12d4b42387ce7c96934134c", null ],
+      [ "Manage_process", "d2/d4b/namespacelib_1_1import__csv__data__process.html#a25fb121f8a782f504948361a92fdb02d", null ]
     ] ],
     [ "json_4_Ai4SH", "da/d40/namespacelib_1_1json__4___ai4_s_h.html", "da/d40/namespacelib_1_1json__4___ai4_s_h" ],
     [ "version", "d0/dd8/namespacelib_1_1version.html", [

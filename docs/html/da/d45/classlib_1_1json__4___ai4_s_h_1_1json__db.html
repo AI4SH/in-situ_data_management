@@ -96,13 +96,14 @@ $(function(){initNavTree('da/d45/classlib_1_1json__4___ai4_s_h_1_1json__db.html'
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7196949f715f13250e0559d434c9821d" id="r_a7196949f715f13250e0559d434c9821d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7196949f715f13250e0559d434c9821d">__init__</a> (self, process)</td></tr>
+<tr class="memitem:a59534c2b319eb9c01fd413d851c9ae25" id="r_a59534c2b319eb9c01fd413d851c9ae25"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59534c2b319eb9c01fd413d851c9ae25">__init__</a> (self, <a class="el" href="#aff70f422590646ee2ffac7f89bdc6646">project_FP</a>, process)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:aff70f422590646ee2ffac7f89bdc6646" id="r_aff70f422590646ee2ffac7f89bdc6646"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff70f422590646ee2ffac7f89bdc6646">project_FP</a> = project_FP</td></tr>
 <tr class="memitem:aa053501634dc1c2448500f0dd48fe7f3" id="r_aa053501634dc1c2448500f0dd48fe7f3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa053501634dc1c2448500f0dd48fe7f3">process_parameters</a> = process.parameters</td></tr>
 <tr class="memitem:a4a5316f30c172b2299ee1cffbbe6ebc6" id="r_a4a5316f30c172b2299ee1cffbbe6ebc6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a5316f30c172b2299ee1cffbbe6ebc6">process_parameters_D</a> = dict(list(process.parameters.__dict__.items()))</td></tr>
-<tr class="memitem:a0425a5f4b0a8145b1f417f5040eecc02" id="r_a0425a5f4b0a8145b1f417f5040eecc02"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0425a5f4b0a8145b1f417f5040eecc02">dst_FP</a> = self.process_parameters.dst_FP</td></tr>
+<tr class="memitem:a0425a5f4b0a8145b1f417f5040eecc02" id="r_a0425a5f4b0a8145b1f417f5040eecc02"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0425a5f4b0a8145b1f417f5040eecc02">dst_FP</a> = Full_path_locate(self.project_FP, self.process_parameters.dst_FP, True)</td></tr>
 <tr class="memitem:aa94c52c1ac717e1101686ba1208316d9" id="r_aa94c52c1ac717e1101686ba1208316d9"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa94c52c1ac717e1101686ba1208316d9">column_L</a> = [col.replace('\ufeff','').strip().lower() for col in column_L]</td></tr>
 <tr class="memitem:a48cbf7279143dbe6e0690c0382839442" id="r_a48cbf7279143dbe6e0690c0382839442"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48cbf7279143dbe6e0690c0382839442">parameter_D</a> = distill_D</td></tr>
 <tr class="memitem:a640a98d93ba357ec1d3cb5d1b0ca62ab" id="r_a640a98d93ba357ec1d3cb5d1b0ca62ab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a640a98d93ba357ec1d3cb5d1b0ca62ab">method_D</a> = distill_D</td></tr>
@@ -163,10 +164,10 @@ The json_db class provides methods to:
 - Assemble hierarchical sample event dictionaries for JSON export.
 - Write sample event data to JSON files.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00032">32</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00033">33</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a7196949f715f13250e0559d434c9821d" name="a7196949f715f13250e0559d434c9821d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7196949f715f13250e0559d434c9821d">&#9670;&#160;</a></span>__init__()</h2>
+<a id="a59534c2b319eb9c01fd413d851c9ae25" name="a59534c2b319eb9c01fd413d851c9ae25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59534c2b319eb9c01fd413d851c9ae25">&#9670;&#160;</a></span>__init__()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -179,11 +180,16 @@ The json_db class provides methods to:
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>project_FP</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>process</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">@brief Initializes the json_db class with process parameters.
+<pre class="fragment">@brief Constructor for the json_db class, recursively initializes a Struct object from a dictionary.
 
 @details
 - Extracts and stores the process parameters from the provided process object.
@@ -193,22 +199,23 @@ The json_db class provides methods to:
 
 @return None
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00055">55</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   55</span>    <span class="keyword">def </span>__init__(self, process):</div>
-<div class="line"><span class="lineno">   56</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">   57</span><span class="stringliteral">        @brief Initializes the json_db class with process parameters.</span></div>
-<div class="line"><span class="lineno">   58</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   59</span><span class="stringliteral">        @details</span></div>
-<div class="line"><span class="lineno">   60</span><span class="stringliteral">        - Extracts and stores the process parameters from the provided process object.</span></div>
-<div class="line"><span class="lineno">   61</span><span class="stringliteral">        - Converts the process parameters to a dictionary for easier access and manipulation.</span></div>
-<div class="line"><span class="lineno">   62</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   63</span><span class="stringliteral">        @param process An object containing process parameters, expected to have a &#39;parameters&#39; attribute.</span></div>
-<div class="line"><span class="lineno">   64</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   65</span><span class="stringliteral">        @return None</span></div>
-<div class="line"><span class="lineno">   66</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">   67</span>        self.process_parameters = process.parameters</div>
-<div class="line"><span class="lineno">   68</span>        self.process_parameters_D = dict(list(process.parameters.__dict__.items()))</div>
-<div class="line"><span class="lineno">   69</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00056">56</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   56</span>    <span class="keyword">def </span>__init__(self, project_FP,process):</div>
+<div class="line"><span class="lineno">   57</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   58</span><span class="stringliteral">        @brief Constructor for the json_db class, recursively initializes a Struct object from a dictionary.</span></div>
+<div class="line"><span class="lineno">   59</span><span class="stringliteral">   </span></div>
+<div class="line"><span class="lineno">   60</span><span class="stringliteral">        @details</span></div>
+<div class="line"><span class="lineno">   61</span><span class="stringliteral">        - Extracts and stores the process parameters from the provided process object.</span></div>
+<div class="line"><span class="lineno">   62</span><span class="stringliteral">        - Converts the process parameters to a dictionary for easier access and manipulation.</span></div>
+<div class="line"><span class="lineno">   63</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   64</span><span class="stringliteral">        @param process An object containing process parameters, expected to have a &#39;parameters&#39; attribute.</span></div>
+<div class="line"><span class="lineno">   65</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   66</span><span class="stringliteral">        @return None</span></div>
+<div class="line"><span class="lineno">   67</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   68</span>        self.project_FP = project_FP</div>
+<div class="line"><span class="lineno">   69</span>        self.process_parameters = process.parameters</div>
+<div class="line"><span class="lineno">   70</span>        self.process_parameters_D = dict(list(process.parameters.__dict__.items()))</div>
+<div class="line"><span class="lineno">   71</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -242,23 +249,23 @@ If a parameter is missing, it assigns the corresponding value from ASSUMED_DEFAU
 
 @return None
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00186">186</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  186</span>    <span class="keyword">def </span>_Add_compulsary_default_parameters(self):</div>
-<div class="line"><span class="lineno">  187</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  188</span><span class="stringliteral">        @brief Adds compulsory parameters with assumed default values to the process parameters dictionary if they are missing.</span></div>
-<div class="line"><span class="lineno">  189</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  190</span><span class="stringliteral">        This function checks for each parameter listed in PARAMETERS_WITH_ASSUMED_DEFAULT whether it exists in self.process_parameters_D.</span></div>
-<div class="line"><span class="lineno">  191</span><span class="stringliteral">        If a parameter is missing, it assigns the corresponding value from ASSUMED_DEFAULT_VALUES and prints a warning message.</span></div>
-<div class="line"><span class="lineno">  192</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  193</span><span class="stringliteral">        @return None</span></div>
-<div class="line"><span class="lineno">  194</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  195</span>        default_D = dict(zip(PARAMETERS_WITH_ASSUMED_DEFAULT, ASSUMED_DEFAULT_VALUES))</div>
-<div class="line"><span class="lineno">  196</span> </div>
-<div class="line"><span class="lineno">  197</span>        <span class="keywordflow">for</span> parameter <span class="keywordflow">in</span> default_D:</div>
-<div class="line"><span class="lineno">  198</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> parameter <span class="keywordflow">in</span> self.process_parameters_D:</div>
-<div class="line"><span class="lineno">  199</span>                self.process_parameters_D[parameter] = default_D[parameter]</div>
-<div class="line"><span class="lineno">  200</span>                <span class="keywordflow">print</span> (<span class="stringliteral">&#39; ⚠️ WARNING - assuming default value &lt;%s&gt; for  parameter &lt;%s&gt;&#39;</span> %(default_D[parameter], parameter))</div>
-<div class="line"><span class="lineno">  201</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00190">190</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  190</span>    <span class="keyword">def </span>_Add_compulsary_default_parameters(self):</div>
+<div class="line"><span class="lineno">  191</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  192</span><span class="stringliteral">        @brief Adds compulsory parameters with assumed default values to the process parameters dictionary if they are missing.</span></div>
+<div class="line"><span class="lineno">  193</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  194</span><span class="stringliteral">        This function checks for each parameter listed in PARAMETERS_WITH_ASSUMED_DEFAULT whether it exists in self.process_parameters_D.</span></div>
+<div class="line"><span class="lineno">  195</span><span class="stringliteral">        If a parameter is missing, it assigns the corresponding value from ASSUMED_DEFAULT_VALUES and prints a warning message.</span></div>
+<div class="line"><span class="lineno">  196</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  197</span><span class="stringliteral">        @return None</span></div>
+<div class="line"><span class="lineno">  198</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  199</span>        default_D = dict(zip(PARAMETERS_WITH_ASSUMED_DEFAULT, ASSUMED_DEFAULT_VALUES))</div>
+<div class="line"><span class="lineno">  200</span> </div>
+<div class="line"><span class="lineno">  201</span>        <span class="keywordflow">for</span> parameter <span class="keywordflow">in</span> default_D:</div>
+<div class="line"><span class="lineno">  202</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> parameter <span class="keywordflow">in</span> self.process_parameters_D:</div>
+<div class="line"><span class="lineno">  203</span>                self.process_parameters_D[parameter] = default_D[parameter]</div>
+<div class="line"><span class="lineno">  204</span>                <span class="keywordflow">print</span> (<span class="stringliteral">&#39; ⚠️ WARNING - assuming default value &lt;%s&gt; for  parameter &lt;%s&gt;&#39;</span> %(default_D[parameter], parameter))</div>
+<div class="line"><span class="lineno">  205</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -295,45 +302,45 @@ The structure is built from previously set metadata and measurement dictionaries
 
 @return Dictionary containing the complete sample event structure, or None if an error occurs during assembly.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00438">438</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  438</span>    <span class="keyword">def </span>_Assemble_sample_event(self):</div>
-<div class="line"><span class="lineno">  439</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  440</span><span class="stringliteral">        @brief Assembles a hierarchical sample event dictionary for JSON export.</span></div>
-<div class="line"><span class="lineno">  441</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  442</span><span class="stringliteral">        This function constructs a nested dictionary representing a sample event, including data source, site, point, sampling log, sample, observation, and analysis method. </span></div>
-<div class="line"><span class="lineno">  443</span><span class="stringliteral">        The structure is built from previously set metadata and measurement dictionaries within the class instance.</span></div>
-<div class="line"><span class="lineno">  444</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  445</span><span class="stringliteral">        @details</span></div>
-<div class="line"><span class="lineno">  446</span><span class="stringliteral">        - Combines equipment-method mapping, observation metadata, sample, sampling log, point, site, and data source into a single hierarchical dictionary.</span></div>
-<div class="line"><span class="lineno">  447</span><span class="stringliteral">        - Intended for use in exporting structured sample event data to JSON.</span></div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00442">442</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  442</span>    <span class="keyword">def </span>_Assemble_sample_event(self):</div>
+<div class="line"><span class="lineno">  443</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  444</span><span class="stringliteral">        @brief Assembles a hierarchical sample event dictionary for JSON export.</span></div>
+<div class="line"><span class="lineno">  445</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  446</span><span class="stringliteral">        This function constructs a nested dictionary representing a sample event, including data source, site, point, sampling log, sample, observation, and analysis method. </span></div>
+<div class="line"><span class="lineno">  447</span><span class="stringliteral">        The structure is built from previously set metadata and measurement dictionaries within the class instance.</span></div>
 <div class="line"><span class="lineno">  448</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  449</span><span class="stringliteral">        @return Dictionary containing the complete sample event structure, or None if an error occurs during assembly.</span></div>
-<div class="line"><span class="lineno">  450</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  451</span> </div>
-<div class="line"><span class="lineno">  452</span>        <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  453</span> </div>
-<div class="line"><span class="lineno">  454</span>            analysis_method = [self.equipment_method_D]</div>
+<div class="line"><span class="lineno">  449</span><span class="stringliteral">        @details</span></div>
+<div class="line"><span class="lineno">  450</span><span class="stringliteral">        - Combines equipment-method mapping, observation metadata, sample, sampling log, point, site, and data source into a single hierarchical dictionary.</span></div>
+<div class="line"><span class="lineno">  451</span><span class="stringliteral">        - Intended for use in exporting structured sample event data to JSON.</span></div>
+<div class="line"><span class="lineno">  452</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  453</span><span class="stringliteral">        @return Dictionary containing the complete sample event structure, or None if an error occurs during assembly.</span></div>
+<div class="line"><span class="lineno">  454</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
 <div class="line"><span class="lineno">  455</span> </div>
-<div class="line"><span class="lineno">  456</span>            observation = [{**self.observation_metadata, <span class="stringliteral">&quot;analysis_method&quot;</span>: analysis_method}]</div>
+<div class="line"><span class="lineno">  456</span>        <span class="keywordflow">try</span>:</div>
 <div class="line"><span class="lineno">  457</span> </div>
-<div class="line"><span class="lineno">  458</span>            sample = [{**self.sample, <span class="stringliteral">&quot;observation&quot;</span>: observation}]</div>
+<div class="line"><span class="lineno">  458</span>            analysis_method = [self.equipment_method_D]</div>
 <div class="line"><span class="lineno">  459</span> </div>
-<div class="line"><span class="lineno">  460</span>            sampling_log = [{**self.sampling_log, <span class="stringliteral">&quot;sample&quot;</span>: sample}]</div>
+<div class="line"><span class="lineno">  460</span>            observation = [{**self.observation_metadata, <span class="stringliteral">&quot;analysis_method&quot;</span>: analysis_method}]</div>
 <div class="line"><span class="lineno">  461</span> </div>
-<div class="line"><span class="lineno">  462</span>            point = [{**self.point, <span class="stringliteral">&quot;sampling_log&quot;</span>: sampling_log}]</div>
+<div class="line"><span class="lineno">  462</span>            sample = [{**self.sample, <span class="stringliteral">&quot;observation&quot;</span>: observation}]</div>
 <div class="line"><span class="lineno">  463</span> </div>
-<div class="line"><span class="lineno">  464</span>            site = [{**self.site, <span class="stringliteral">&quot;point&quot;</span>: point}]</div>
+<div class="line"><span class="lineno">  464</span>            sampling_log = [{**self.sampling_log, <span class="stringliteral">&quot;sample&quot;</span>: sample}]</div>
 <div class="line"><span class="lineno">  465</span> </div>
-<div class="line"><span class="lineno">  466</span>            data_source = [{**self.data_source, <span class="stringliteral">&quot;site&quot;</span>: site}]</div>
+<div class="line"><span class="lineno">  466</span>            point = [{**self.point, <span class="stringliteral">&quot;sampling_log&quot;</span>: sampling_log}]</div>
 <div class="line"><span class="lineno">  467</span> </div>
-<div class="line"><span class="lineno">  468</span>            sample_event = {<span class="stringliteral">&quot;data_source&quot;</span>: data_source}</div>
+<div class="line"><span class="lineno">  468</span>            site = [{**self.site, <span class="stringliteral">&quot;point&quot;</span>: point}]</div>
 <div class="line"><span class="lineno">  469</span> </div>
-<div class="line"><span class="lineno">  470</span>            <span class="keywordflow">return</span> sample_event</div>
+<div class="line"><span class="lineno">  470</span>            data_source = [{**self.data_source, <span class="stringliteral">&quot;site&quot;</span>: site}]</div>
 <div class="line"><span class="lineno">  471</span> </div>
-<div class="line"><span class="lineno">  472</span>        <span class="keywordflow">except</span>:</div>
+<div class="line"><span class="lineno">  472</span>            sample_event = {<span class="stringliteral">&quot;data_source&quot;</span>: data_source}</div>
 <div class="line"><span class="lineno">  473</span> </div>
-<div class="line"><span class="lineno">  474</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  474</span>            <span class="keywordflow">return</span> sample_event</div>
 <div class="line"><span class="lineno">  475</span> </div>
+<div class="line"><span class="lineno">  476</span>        <span class="keywordflow">except</span>:</div>
+<div class="line"><span class="lineno">  477</span> </div>
+<div class="line"><span class="lineno">  478</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  479</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -370,37 +377,37 @@ If any inconsistency is found, an error message is printed and False is returned
 
 @return True if all dictionaries are consistent, False otherwise.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00142">142</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  142</span>    <span class="keyword">def </span>_Check_parameter_consistency(self):</div>
-<div class="line"><span class="lineno">  143</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  144</span><span class="stringliteral">        @brief Checks consistency between method, equipment, and unit parameter dictionaries.</span></div>
-<div class="line"><span class="lineno">  145</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  146</span><span class="stringliteral">        This function verifies that:</span></div>
-<div class="line"><span class="lineno">  147</span><span class="stringliteral">        - Every key in method_D exists in equipment_D.</span></div>
-<div class="line"><span class="lineno">  148</span><span class="stringliteral">        - Every key in equipment_D exists in unit_D.</span></div>
-<div class="line"><span class="lineno">  149</span><span class="stringliteral">        - Every key in unit_D exists in method_D.</span></div>
-<div class="line"><span class="lineno">  150</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  151</span><span class="stringliteral">        If any inconsistency is found, an error message is printed and False is returned.</span></div>
-<div class="line"><span class="lineno">  152</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  153</span><span class="stringliteral">        @return True if all dictionaries are consistent, False otherwise.</span></div>
-<div class="line"><span class="lineno">  154</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  155</span>        <span class="keywordflow">for</span> key <span class="keywordflow">in</span> self.method_D:</div>
-<div class="line"><span class="lineno">  156</span>            <span class="keywordflow">if</span> key <span class="keywordflow">not</span> <span class="keywordflow">in</span> self.equipment_D:</div>
-<div class="line"><span class="lineno">  157</span>                print(f<span class="stringliteral">&quot; ❌ ERROR - equipment &lt;{key}&gt; is missing in the parameter dictionary&quot;</span>)</div>
-<div class="line"><span class="lineno">  158</span>                <span class="keywordflow">return</span> <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  159</span> </div>
-<div class="line"><span class="lineno">  160</span>        <span class="keywordflow">for</span> key <span class="keywordflow">in</span> self.equipment_D:</div>
-<div class="line"><span class="lineno">  161</span>            <span class="keywordflow">if</span> key <span class="keywordflow">not</span> <span class="keywordflow">in</span> self.unit_D:</div>
-<div class="line"><span class="lineno">  162</span>                print(f<span class="stringliteral">&quot; ❌ ERROR - unit &lt;{key}&gt; is missing in the parameter dictionary&quot;</span>)</div>
-<div class="line"><span class="lineno">  163</span>                <span class="keywordflow">return</span> <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  164</span> </div>
-<div class="line"><span class="lineno">  165</span>        <span class="keywordflow">for</span> key <span class="keywordflow">in</span> self.unit_D:</div>
-<div class="line"><span class="lineno">  166</span>            <span class="keywordflow">if</span> key <span class="keywordflow">not</span> <span class="keywordflow">in</span> self.method_D:</div>
-<div class="line"><span class="lineno">  167</span>                print(f<span class="stringliteral">&quot; ❌ ERROR - method &lt;{key}&gt; is missing in the parameter dictionary&quot;</span>)</div>
-<div class="line"><span class="lineno">  168</span>                <span class="keywordflow">return</span> <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  169</span> </div>
-<div class="line"><span class="lineno">  170</span>        <span class="keywordflow">return</span> <span class="keyword">True</span></div>
-<div class="line"><span class="lineno">  171</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00146">146</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  146</span>    <span class="keyword">def </span>_Check_parameter_consistency(self):</div>
+<div class="line"><span class="lineno">  147</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  148</span><span class="stringliteral">        @brief Checks consistency between method, equipment, and unit parameter dictionaries.</span></div>
+<div class="line"><span class="lineno">  149</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  150</span><span class="stringliteral">        This function verifies that:</span></div>
+<div class="line"><span class="lineno">  151</span><span class="stringliteral">        - Every key in method_D exists in equipment_D.</span></div>
+<div class="line"><span class="lineno">  152</span><span class="stringliteral">        - Every key in equipment_D exists in unit_D.</span></div>
+<div class="line"><span class="lineno">  153</span><span class="stringliteral">        - Every key in unit_D exists in method_D.</span></div>
+<div class="line"><span class="lineno">  154</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  155</span><span class="stringliteral">        If any inconsistency is found, an error message is printed and False is returned.</span></div>
+<div class="line"><span class="lineno">  156</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  157</span><span class="stringliteral">        @return True if all dictionaries are consistent, False otherwise.</span></div>
+<div class="line"><span class="lineno">  158</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  159</span>        <span class="keywordflow">for</span> key <span class="keywordflow">in</span> self.method_D:</div>
+<div class="line"><span class="lineno">  160</span>            <span class="keywordflow">if</span> key <span class="keywordflow">not</span> <span class="keywordflow">in</span> self.equipment_D:</div>
+<div class="line"><span class="lineno">  161</span>                print(f<span class="stringliteral">&quot; ❌ ERROR - equipment &lt;{key}&gt; is missing in the parameter dictionary&quot;</span>)</div>
+<div class="line"><span class="lineno">  162</span>                <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  163</span> </div>
+<div class="line"><span class="lineno">  164</span>        <span class="keywordflow">for</span> key <span class="keywordflow">in</span> self.equipment_D:</div>
+<div class="line"><span class="lineno">  165</span>            <span class="keywordflow">if</span> key <span class="keywordflow">not</span> <span class="keywordflow">in</span> self.unit_D:</div>
+<div class="line"><span class="lineno">  166</span>                print(f<span class="stringliteral">&quot; ❌ ERROR - unit &lt;{key}&gt; is missing in the parameter dictionary&quot;</span>)</div>
+<div class="line"><span class="lineno">  167</span>                <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  168</span> </div>
+<div class="line"><span class="lineno">  169</span>        <span class="keywordflow">for</span> key <span class="keywordflow">in</span> self.unit_D:</div>
+<div class="line"><span class="lineno">  170</span>            <span class="keywordflow">if</span> key <span class="keywordflow">not</span> <span class="keywordflow">in</span> self.method_D:</div>
+<div class="line"><span class="lineno">  171</span>                print(f<span class="stringliteral">&quot; ❌ ERROR - method &lt;{key}&gt; is missing in the parameter dictionary&quot;</span>)</div>
+<div class="line"><span class="lineno">  172</span>                <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  173</span> </div>
+<div class="line"><span class="lineno">  174</span>        <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  175</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -441,55 +448,55 @@ cannot be found, an error message is printed with instructions for resolving the
 
 @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00202">202</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  202</span>    <span class="keyword">def </span>_Check_set_compulsary_record_parameters(self):</div>
-<div class="line"><span class="lineno">  203</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  204</span><span class="stringliteral">        @brief Ensures all compulsory record parameters are set in the row data dictionary.</span></div>
-<div class="line"><span class="lineno">  205</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  206</span><span class="stringliteral">        This function checks and sets compulsory parameters required for a data record. If the &#39;pilot&#39; column is missing,</span></div>
-<div class="line"><span class="lineno">  207</span><span class="stringliteral">        it assumes its value is equal to &#39;pilot_site&#39; and issues a warning. For each compulsory parameter, if it is missing</span></div>
-<div class="line"><span class="lineno">  208</span><span class="stringliteral">        or empty in the row data, the function attempts to set it from the process parameters dictionary. If the parameter</span></div>
-<div class="line"><span class="lineno">  209</span><span class="stringliteral">        cannot be found, an error message is printed with instructions for resolving the issue.</span></div>
-<div class="line"><span class="lineno">  210</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  211</span><span class="stringliteral">        @details</span></div>
-<div class="line"><span class="lineno">  212</span><span class="stringliteral">        - If &#39;pilot&#39; is not present in the column list, its value is set to &#39;pilot_site&#39;.</span></div>
-<div class="line"><span class="lineno">  213</span><span class="stringliteral">        - Iterates through COMPULSARY_DATA_RECORDS to ensure each is present and non-empty in row_data_D.</span></div>
-<div class="line"><span class="lineno">  214</span><span class="stringliteral">        - If a compulsory parameter is missing, attempts to set it from process_parameters_D.</span></div>
-<div class="line"><span class="lineno">  215</span><span class="stringliteral">        - Prints error and instructions if a compulsory parameter cannot be found.</span></div>
-<div class="line"><span class="lineno">  216</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  217</span><span class="stringliteral">        @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.</span></div>
-<div class="line"><span class="lineno">  218</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  219</span>        self.pilot_site = <span class="stringliteral">&#39;&lt;PILOT_SITE&gt;&#39;</span></div>
-<div class="line"><span class="lineno">  220</span> </div>
-<div class="line"><span class="lineno">  221</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> <span class="stringliteral">&#39;pilot&#39;</span> <span class="keywordflow">in</span> self.column_L:</div>
-<div class="line"><span class="lineno">  222</span> </div>
-<div class="line"><span class="lineno">  223</span>            <span class="keywordflow">if</span> self.row_data_D[<span class="stringliteral">&#39;pilot_site&#39;</span>] != self.pilot_site:</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00206">206</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  206</span>    <span class="keyword">def </span>_Check_set_compulsary_record_parameters(self):</div>
+<div class="line"><span class="lineno">  207</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  208</span><span class="stringliteral">        @brief Ensures all compulsory record parameters are set in the row data dictionary.</span></div>
+<div class="line"><span class="lineno">  209</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  210</span><span class="stringliteral">        This function checks and sets compulsory parameters required for a data record. If the &#39;pilot&#39; column is missing,</span></div>
+<div class="line"><span class="lineno">  211</span><span class="stringliteral">        it assumes its value is equal to &#39;pilot_site&#39; and issues a warning. For each compulsory parameter, if it is missing</span></div>
+<div class="line"><span class="lineno">  212</span><span class="stringliteral">        or empty in the row data, the function attempts to set it from the process parameters dictionary. If the parameter</span></div>
+<div class="line"><span class="lineno">  213</span><span class="stringliteral">        cannot be found, an error message is printed with instructions for resolving the issue.</span></div>
+<div class="line"><span class="lineno">  214</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  215</span><span class="stringliteral">        @details</span></div>
+<div class="line"><span class="lineno">  216</span><span class="stringliteral">        - If &#39;pilot&#39; is not present in the column list, its value is set to &#39;pilot_site&#39;.</span></div>
+<div class="line"><span class="lineno">  217</span><span class="stringliteral">        - Iterates through COMPULSARY_DATA_RECORDS to ensure each is present and non-empty in row_data_D.</span></div>
+<div class="line"><span class="lineno">  218</span><span class="stringliteral">        - If a compulsory parameter is missing, attempts to set it from process_parameters_D.</span></div>
+<div class="line"><span class="lineno">  219</span><span class="stringliteral">        - Prints error and instructions if a compulsory parameter cannot be found.</span></div>
+<div class="line"><span class="lineno">  220</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  221</span><span class="stringliteral">        @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.</span></div>
+<div class="line"><span class="lineno">  222</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  223</span>        self.pilot_site = <span class="stringliteral">&#39;&lt;PILOT_SITE&gt;&#39;</span></div>
 <div class="line"><span class="lineno">  224</span> </div>
-<div class="line"><span class="lineno">  225</span>                self.pilot_site = self.row_data_D[<span class="stringliteral">&#39;pilot_site&#39;</span>]</div>
+<div class="line"><span class="lineno">  225</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> <span class="stringliteral">&#39;pilot&#39;</span> <span class="keywordflow">in</span> self.column_L:</div>
 <div class="line"><span class="lineno">  226</span> </div>
-<div class="line"><span class="lineno">  227</span>                <span class="keywordflow">print</span> (<span class="stringliteral">&#39; ⚠️ WARNING - assuming value for &lt;pilot&gt; is equal to &lt;pilot_site&gt;: &#39;</span>+self.pilot_site)</div>
+<div class="line"><span class="lineno">  227</span>            <span class="keywordflow">if</span> self.row_data_D[<span class="stringliteral">&#39;pilot_site&#39;</span>] != self.pilot_site:</div>
 <div class="line"><span class="lineno">  228</span> </div>
-<div class="line"><span class="lineno">  229</span>            self.row_data_D[<span class="stringliteral">&#39;pilot&#39;</span>] =  self.row_data_D[<span class="stringliteral">&#39;pilot_site&#39;</span>]</div>
+<div class="line"><span class="lineno">  229</span>                self.pilot_site = self.row_data_D[<span class="stringliteral">&#39;pilot_site&#39;</span>]</div>
 <div class="line"><span class="lineno">  230</span> </div>
-<div class="line"><span class="lineno">  231</span>        <span class="keywordflow">for</span> item <span class="keywordflow">in</span> COMPULSARY_DATA_RECORDS:</div>
+<div class="line"><span class="lineno">  231</span>                <span class="keywordflow">print</span> (<span class="stringliteral">&#39; ⚠️ WARNING - assuming value for &lt;pilot&gt; is equal to &lt;pilot_site&gt;: &#39;</span>+self.pilot_site)</div>
 <div class="line"><span class="lineno">  232</span> </div>
-<div class="line"><span class="lineno">  233</span>            <span class="keywordflow">if</span> item <span class="keywordflow">not</span> <span class="keywordflow">in</span> self.row_data_D <span class="keywordflow">or</span> len(self.row_data_D[item]) == 0:</div>
+<div class="line"><span class="lineno">  233</span>            self.row_data_D[<span class="stringliteral">&#39;pilot&#39;</span>] =  self.row_data_D[<span class="stringliteral">&#39;pilot_site&#39;</span>]</div>
 <div class="line"><span class="lineno">  234</span> </div>
-<div class="line"><span class="lineno">  235</span>                <span class="keywordflow">if</span> item <span class="keywordflow">in</span> self.process_parameters_D:</div>
+<div class="line"><span class="lineno">  235</span>        <span class="keywordflow">for</span> item <span class="keywordflow">in</span> COMPULSARY_DATA_RECORDS:</div>
 <div class="line"><span class="lineno">  236</span> </div>
-<div class="line"><span class="lineno">  237</span>                    self.row_data_D[item] = self.process_parameters_D[item]</div>
+<div class="line"><span class="lineno">  237</span>            <span class="keywordflow">if</span> item <span class="keywordflow">not</span> <span class="keywordflow">in</span> self.row_data_D <span class="keywordflow">or</span> len(self.row_data_D[item]) == 0:</div>
 <div class="line"><span class="lineno">  238</span> </div>
-<div class="line"><span class="lineno">  239</span>                <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  239</span>                <span class="keywordflow">if</span> item <span class="keywordflow">in</span> self.process_parameters_D:</div>
 <div class="line"><span class="lineno">  240</span> </div>
-<div class="line"><span class="lineno">  241</span>                    <span class="keywordflow">print</span> (<span class="stringliteral">&#39;❌  ERROR - compulsory data not found: &#39;</span>+item)</div>
-<div class="line"><span class="lineno">  242</span>                    <span class="keywordflow">print</span> (<span class="stringliteral">&#39; You can add &lt;&#39;</span>+item+<span class="stringliteral">&#39;&gt; parameter to either:&#39;</span>)</div>
-<div class="line"><span class="lineno">  243</span>                    print(<span class="stringliteral">&#39;  - the method header definition file: %s&#39;</span> %(self.process_parameters.method_src_FPN))</div>
-<div class="line"><span class="lineno">  244</span>                    print(<span class="stringliteral">&#39;  - or the data file: %s&#39;</span> %(self.process_parameters.data_src_FPN))</div>
-<div class="line"><span class="lineno">  245</span> </div>
-<div class="line"><span class="lineno">  246</span>                    <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">  247</span> </div>
-<div class="line"><span class="lineno">  248</span>        <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  241</span>                    self.row_data_D[item] = self.process_parameters_D[item]</div>
+<div class="line"><span class="lineno">  242</span> </div>
+<div class="line"><span class="lineno">  243</span>                <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  244</span> </div>
+<div class="line"><span class="lineno">  245</span>                    <span class="keywordflow">print</span> (<span class="stringliteral">&#39;❌  ERROR - compulsory data not found: &#39;</span>+item)</div>
+<div class="line"><span class="lineno">  246</span>                    <span class="keywordflow">print</span> (<span class="stringliteral">&#39; You can add &lt;&#39;</span>+item+<span class="stringliteral">&#39;&gt; parameter to either:&#39;</span>)</div>
+<div class="line"><span class="lineno">  247</span>                    print(<span class="stringliteral">&#39;  - the method header definition file: %s&#39;</span> %(self.process_parameters.method_src_FPN))</div>
+<div class="line"><span class="lineno">  248</span>                    print(<span class="stringliteral">&#39;  - or the data file: %s&#39;</span> %(self.process_parameters.data_src_FPN))</div>
 <div class="line"><span class="lineno">  249</span> </div>
+<div class="line"><span class="lineno">  250</span>                    <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  251</span> </div>
+<div class="line"><span class="lineno">  252</span>        <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  253</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -535,45 +542,45 @@ is then assigned to the corresponding attribute (parameter_D, method_D, equipmen
 
 @return True if successful, None if a required parameter is missing.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00104">104</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  104</span>    <span class="keyword">def </span>_Distill_parameters(self, dict_D, parameter_id):</div>
-<div class="line"><span class="lineno">  105</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  106</span><span class="stringliteral">        @brief Distills relevant parameters from a dictionary based on the column headers and assigns them to the appropriate attribute.</span></div>
-<div class="line"><span class="lineno">  107</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  108</span><span class="stringliteral">        This function checks each item in self.column_L against the provided dictionary dict_D. If the item exists and its value is not &#39;none&#39;,</span></div>
-<div class="line"><span class="lineno">  109</span><span class="stringliteral">        it is added to a distilled dictionary. If an item is missing, an error message is printed and None is returned. The distilled dictionary</span></div>
-<div class="line"><span class="lineno">  110</span><span class="stringliteral">        is then assigned to the corresponding attribute (parameter_D, method_D, equipment_D, unit_D, or url_D) based on the parameter_id argument.</span></div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00108">108</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  108</span>    <span class="keyword">def </span>_Distill_parameters(self, dict_D, parameter_id):</div>
+<div class="line"><span class="lineno">  109</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  110</span><span class="stringliteral">        @brief Distills relevant parameters from a dictionary based on the column headers and assigns them to the appropriate attribute.</span></div>
 <div class="line"><span class="lineno">  111</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  112</span><span class="stringliteral">        @param dict_D Dictionary containing parameter values to be distilled.</span></div>
-<div class="line"><span class="lineno">  113</span><span class="stringliteral">        @param parameter_id String specifying which attribute to assign the distilled dictionary to. Accepted values: &#39;parameter&#39;, &#39;method&#39;, &#39;equipment&#39;, &#39;unit&#39;, &#39;url&#39;.</span></div>
-<div class="line"><span class="lineno">  114</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  115</span><span class="stringliteral">        @return True if successful, None if a required parameter is missing.</span></div>
-<div class="line"><span class="lineno">  116</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  117</span>        distill_D = {}</div>
-<div class="line"><span class="lineno">  118</span> </div>
-<div class="line"><span class="lineno">  119</span>        <span class="keywordflow">for</span> item <span class="keywordflow">in</span> self.column_L:</div>
-<div class="line"><span class="lineno">  120</span>            <span class="keywordflow">if</span> item <span class="keywordflow">in</span> dict_D:</div>
-<div class="line"><span class="lineno">  121</span>                <span class="keywordflow">if</span> dict_D[item] != <span class="stringliteral">&#39;none&#39;</span>:</div>
-<div class="line"><span class="lineno">  122</span>                    distill_D[item] = dict_D[item]</div>
-<div class="line"><span class="lineno">  123</span>            <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  124</span>                print(<span class="stringliteral">&#39; ❌ ERROR - parameter &lt;%s&gt; is missing in the header dictionary&#39;</span> %(item))</div>
-<div class="line"><span class="lineno">  125</span>                print(<span class="stringliteral">&#39;  Check the header definition file: %s&#39;</span> %(self.process_parameters.method_src_FPN))</div>
-<div class="line"><span class="lineno">  126</span>                print(<span class="stringliteral">&#39;  and/or the data file: %s&#39;</span> %(self.process_parameters.data_src_FPN))</div>
-<div class="line"><span class="lineno">  127</span>                <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">  128</span>        </div>
-<div class="line"><span class="lineno">  129</span>        <span class="keywordflow">if</span> parameter_id == <span class="stringliteral">&#39;parameter&#39;</span>:</div>
-<div class="line"><span class="lineno">  130</span>            self.parameter_D = distill_D</div>
-<div class="line"><span class="lineno">  131</span>        <span class="keywordflow">elif</span> parameter_id == <span class="stringliteral">&#39;method&#39;</span>:</div>
-<div class="line"><span class="lineno">  132</span>            self.method_D = distill_D</div>
-<div class="line"><span class="lineno">  133</span>        <span class="keywordflow">elif</span> parameter_id == <span class="stringliteral">&#39;equipment&#39;</span>:</div>
-<div class="line"><span class="lineno">  134</span>            self.equipment_D = distill_D</div>
-<div class="line"><span class="lineno">  135</span>        <span class="keywordflow">elif</span> parameter_id == <span class="stringliteral">&#39;unit&#39;</span>:</div>
-<div class="line"><span class="lineno">  136</span>            self.unit_D = distill_D</div>
-<div class="line"><span class="lineno">  137</span>        <span class="keywordflow">elif</span> parameter_id == <span class="stringliteral">&#39;url&#39;</span>:</div>
-<div class="line"><span class="lineno">  138</span>            self.url_D = distill_D</div>
-<div class="line"><span class="lineno">  139</span>        </div>
-<div class="line"><span class="lineno">  140</span>        <span class="keywordflow">return</span> <span class="keyword">True</span></div>
-<div class="line"><span class="lineno">  141</span> </div>
+<div class="line"><span class="lineno">  112</span><span class="stringliteral">        This function checks each item in self.column_L against the provided dictionary dict_D. If the item exists and its value is not &#39;none&#39;,</span></div>
+<div class="line"><span class="lineno">  113</span><span class="stringliteral">        it is added to a distilled dictionary. If an item is missing, an error message is printed and None is returned. The distilled dictionary</span></div>
+<div class="line"><span class="lineno">  114</span><span class="stringliteral">        is then assigned to the corresponding attribute (parameter_D, method_D, equipment_D, unit_D, or url_D) based on the parameter_id argument.</span></div>
+<div class="line"><span class="lineno">  115</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  116</span><span class="stringliteral">        @param dict_D Dictionary containing parameter values to be distilled.</span></div>
+<div class="line"><span class="lineno">  117</span><span class="stringliteral">        @param parameter_id String specifying which attribute to assign the distilled dictionary to. Accepted values: &#39;parameter&#39;, &#39;method&#39;, &#39;equipment&#39;, &#39;unit&#39;, &#39;url&#39;.</span></div>
+<div class="line"><span class="lineno">  118</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  119</span><span class="stringliteral">        @return True if successful, None if a required parameter is missing.</span></div>
+<div class="line"><span class="lineno">  120</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  121</span>        distill_D = {}</div>
+<div class="line"><span class="lineno">  122</span> </div>
+<div class="line"><span class="lineno">  123</span>        <span class="keywordflow">for</span> item <span class="keywordflow">in</span> self.column_L:</div>
+<div class="line"><span class="lineno">  124</span>            <span class="keywordflow">if</span> item <span class="keywordflow">in</span> dict_D:</div>
+<div class="line"><span class="lineno">  125</span>                <span class="keywordflow">if</span> dict_D[item] != <span class="stringliteral">&#39;none&#39;</span>:</div>
+<div class="line"><span class="lineno">  126</span>                    distill_D[item] = dict_D[item]</div>
+<div class="line"><span class="lineno">  127</span>            <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  128</span>                print(<span class="stringliteral">&#39; ❌ ERROR - parameter &lt;%s&gt; is missing in the header dictionary&#39;</span> %(item))</div>
+<div class="line"><span class="lineno">  129</span>                print(<span class="stringliteral">&#39;  Check the header definition file: %s&#39;</span> %(self.process_parameters.method_src_FPN))</div>
+<div class="line"><span class="lineno">  130</span>                print(<span class="stringliteral">&#39;  and/or the data file: %s&#39;</span> %(self.process_parameters.data_src_FPN))</div>
+<div class="line"><span class="lineno">  131</span>                <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  132</span>        </div>
+<div class="line"><span class="lineno">  133</span>        <span class="keywordflow">if</span> parameter_id == <span class="stringliteral">&#39;parameter&#39;</span>:</div>
+<div class="line"><span class="lineno">  134</span>            self.parameter_D = distill_D</div>
+<div class="line"><span class="lineno">  135</span>        <span class="keywordflow">elif</span> parameter_id == <span class="stringliteral">&#39;method&#39;</span>:</div>
+<div class="line"><span class="lineno">  136</span>            self.method_D = distill_D</div>
+<div class="line"><span class="lineno">  137</span>        <span class="keywordflow">elif</span> parameter_id == <span class="stringliteral">&#39;equipment&#39;</span>:</div>
+<div class="line"><span class="lineno">  138</span>            self.equipment_D = distill_D</div>
+<div class="line"><span class="lineno">  139</span>        <span class="keywordflow">elif</span> parameter_id == <span class="stringliteral">&#39;unit&#39;</span>:</div>
+<div class="line"><span class="lineno">  140</span>            self.unit_D = distill_D</div>
+<div class="line"><span class="lineno">  141</span>        <span class="keywordflow">elif</span> parameter_id == <span class="stringliteral">&#39;url&#39;</span>:</div>
+<div class="line"><span class="lineno">  142</span>            self.url_D = distill_D</div>
+<div class="line"><span class="lineno">  143</span>        </div>
+<div class="line"><span class="lineno">  144</span>        <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  145</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -613,28 +620,30 @@ After successful writing, it prints the path of the created JSON file.
 
 @return None
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00476">476</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  476</span>    <span class="keyword">def </span>_Dump_sample_json(self, sample_event):</div>
-<div class="line"><span class="lineno">  477</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  478</span><span class="stringliteral">        @brief Dumps a sample event dictionary to a JSON file.</span></div>
-<div class="line"><span class="lineno">  479</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  480</span><span class="stringliteral">        This function creates a destination file name and path based on the sample ID and destination folder path.</span></div>
-<div class="line"><span class="lineno">  481</span><span class="stringliteral">        It then writes the provided sample event dictionary to the JSON file using the Dump_json function with indentation.</span></div>
-<div class="line"><span class="lineno">  482</span><span class="stringliteral">        After successful writing, it prints the path of the created JSON file.</span></div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00480">480</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  480</span>    <span class="keyword">def </span>_Dump_sample_json(self, sample_event):</div>
+<div class="line"><span class="lineno">  481</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  482</span><span class="stringliteral">        @brief Dumps a sample event dictionary to a JSON file.</span></div>
 <div class="line"><span class="lineno">  483</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  484</span><span class="stringliteral">        @param sample_event Dictionary containing the sample event data to be exported to JSON.</span></div>
-<div class="line"><span class="lineno">  485</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  486</span><span class="stringliteral">        @return None</span></div>
-<div class="line"><span class="lineno">  487</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  488</span>        dst_FN = <span class="stringliteral">&#39;%s_x.json&#39;</span> %(self.sample_id)</div>
-<div class="line"><span class="lineno">  489</span>        dst_FPN = path.join(self.dst_FP, dst_FN)</div>
-<div class="line"><span class="lineno">  490</span> </div>
-<div class="line"><span class="lineno">  491</span>        <span class="comment"># Write the updated json file</span></div>
-<div class="line"><span class="lineno">  492</span>        Dump_json(dst_FPN, sample_event, indent=2)</div>
+<div class="line"><span class="lineno">  484</span><span class="stringliteral">        This function creates a destination file name and path based on the sample ID and destination folder path.</span></div>
+<div class="line"><span class="lineno">  485</span><span class="stringliteral">        It then writes the provided sample event dictionary to the JSON file using the Dump_json function with indentation.</span></div>
+<div class="line"><span class="lineno">  486</span><span class="stringliteral">        After successful writing, it prints the path of the created JSON file.</span></div>
+<div class="line"><span class="lineno">  487</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  488</span><span class="stringliteral">        @param sample_event Dictionary containing the sample event data to be exported to JSON.</span></div>
+<div class="line"><span class="lineno">  489</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  490</span><span class="stringliteral">        @return None</span></div>
+<div class="line"><span class="lineno">  491</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  492</span>        dst_FN = <span class="stringliteral">&#39;%s_x.json&#39;</span> %(self.sample_id)</div>
 <div class="line"><span class="lineno">  493</span> </div>
-<div class="line"><span class="lineno">  494</span>        print(<span class="stringliteral">&#39;Json post created:&#39;</span>,dst_FPN)</div>
-<div class="line"><span class="lineno">  495</span> </div>
+<div class="line"><span class="lineno">  494</span>        </div>
+<div class="line"><span class="lineno">  495</span>        dst_FPN = path.join(self.dst_FP, dst_FN)</div>
 <div class="line"><span class="lineno">  496</span> </div>
+<div class="line"><span class="lineno">  497</span>        <span class="comment"># Write the updated json file</span></div>
+<div class="line"><span class="lineno">  498</span>        Dump_json(dst_FPN, sample_event, indent=2)</div>
+<div class="line"><span class="lineno">  499</span> </div>
+<div class="line"><span class="lineno">  500</span>        print(<span class="stringliteral">&#39;Json post created:&#39;</span>,dst_FPN)</div>
+<div class="line"><span class="lineno">  501</span> </div>
+<div class="line"><span class="lineno">  502</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -688,57 +697,57 @@ includes standard deviation if provided. The processed observation is appended t
 
 @return None
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00265">265</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  265</span>    <span class="keyword">def </span>_Get_observation_measurements(self, data_row, sd_column = None):</div>
-<div class="line"><span class="lineno">  266</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  267</span><span class="stringliteral">        @brief Extracts observation measurements from a data row and appends them to the equipment-method mapping.</span></div>
-<div class="line"><span class="lineno">  268</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  269</span><span class="stringliteral">        This function iterates over the columns in the data row, identifies measurement columns based on the method dictionary,</span></div>
-<div class="line"><span class="lineno">  270</span><span class="stringliteral">        and processes their values. It handles missing values, values with &#39;&lt;&#39; (interpreted as half the threshold), and optionally</span></div>
-<div class="line"><span class="lineno">  271</span><span class="stringliteral">        includes standard deviation if provided. The processed observation is appended to the corresponding equipment-method list.</span></div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00269">269</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  269</span>    <span class="keyword">def </span>_Get_observation_measurements(self, data_row, sd_column = None):</div>
+<div class="line"><span class="lineno">  270</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  271</span><span class="stringliteral">        @brief Extracts observation measurements from a data row and appends them to the equipment-method mapping.</span></div>
 <div class="line"><span class="lineno">  272</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  273</span><span class="stringliteral">        @param data_row List of values representing a single row of measurement data.</span></div>
-<div class="line"><span class="lineno">  274</span><span class="stringliteral">        @param sd_column (Optional) Index of the column containing standard deviation values. If provided, standard deviation is included in the observation dictionary.</span></div>
-<div class="line"><span class="lineno">  275</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  276</span><span class="stringliteral">        @details</span></div>
-<div class="line"><span class="lineno">  277</span><span class="stringliteral">        - For each measurement column:</span></div>
-<div class="line"><span class="lineno">  278</span><span class="stringliteral">        - If the value is empty, it is set to None.</span></div>
-<div class="line"><span class="lineno">  279</span><span class="stringliteral">        - If the value starts with &#39;&lt;&#39;, it is converted to half the threshold value.</span></div>
-<div class="line"><span class="lineno">  280</span><span class="stringliteral">        - The value and standard deviation (if available) are converted to float, with &#39;,&#39; replaced by &#39;.&#39;.</span></div>
-<div class="line"><span class="lineno">  281</span><span class="stringliteral">        - The observation dictionary includes value, unit name, indicator name, lab analysis method name, and optionally standard deviation.</span></div>
-<div class="line"><span class="lineno">  282</span><span class="stringliteral">        - The observation is appended to the equipment-method mapping dictionary.</span></div>
-<div class="line"><span class="lineno">  283</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  284</span><span class="stringliteral">        @return None</span></div>
-<div class="line"><span class="lineno">  285</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  286</span>        <span class="keywordflow">for</span>  m, key <span class="keywordflow">in</span> enumerate(self.column_L):</div>
-<div class="line"><span class="lineno">  287</span> </div>
-<div class="line"><span class="lineno">  288</span>            <span class="keywordflow">if</span> key <span class="keywordflow">in</span> self.method_D:</div>
-<div class="line"><span class="lineno">  289</span> </div>
-<div class="line"><span class="lineno">  290</span>                <span class="keywordflow">if</span> len(data_row[m]) == 0:</div>
+<div class="line"><span class="lineno">  273</span><span class="stringliteral">        This function iterates over the columns in the data row, identifies measurement columns based on the method dictionary,</span></div>
+<div class="line"><span class="lineno">  274</span><span class="stringliteral">        and processes their values. It handles missing values, values with &#39;&lt;&#39; (interpreted as half the threshold), and optionally</span></div>
+<div class="line"><span class="lineno">  275</span><span class="stringliteral">        includes standard deviation if provided. The processed observation is appended to the corresponding equipment-method list.</span></div>
+<div class="line"><span class="lineno">  276</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  277</span><span class="stringliteral">        @param data_row List of values representing a single row of measurement data.</span></div>
+<div class="line"><span class="lineno">  278</span><span class="stringliteral">        @param sd_column (Optional) Index of the column containing standard deviation values. If provided, standard deviation is included in the observation dictionary.</span></div>
+<div class="line"><span class="lineno">  279</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  280</span><span class="stringliteral">        @details</span></div>
+<div class="line"><span class="lineno">  281</span><span class="stringliteral">        - For each measurement column:</span></div>
+<div class="line"><span class="lineno">  282</span><span class="stringliteral">        - If the value is empty, it is set to None.</span></div>
+<div class="line"><span class="lineno">  283</span><span class="stringliteral">        - If the value starts with &#39;&lt;&#39;, it is converted to half the threshold value.</span></div>
+<div class="line"><span class="lineno">  284</span><span class="stringliteral">        - The value and standard deviation (if available) are converted to float, with &#39;,&#39; replaced by &#39;.&#39;.</span></div>
+<div class="line"><span class="lineno">  285</span><span class="stringliteral">        - The observation dictionary includes value, unit name, indicator name, lab analysis method name, and optionally standard deviation.</span></div>
+<div class="line"><span class="lineno">  286</span><span class="stringliteral">        - The observation is appended to the equipment-method mapping dictionary.</span></div>
+<div class="line"><span class="lineno">  287</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  288</span><span class="stringliteral">        @return None</span></div>
+<div class="line"><span class="lineno">  289</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  290</span>        <span class="keywordflow">for</span>  m, key <span class="keywordflow">in</span> enumerate(self.column_L):</div>
 <div class="line"><span class="lineno">  291</span> </div>
-<div class="line"><span class="lineno">  292</span>                    data_row[m] = <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">  293</span>                </div>
-<div class="line"><span class="lineno">  294</span>                <span class="keywordflow">elif</span> data_row[m][0] == <span class="stringliteral">&#39;&lt;&#39;</span>:</div>
+<div class="line"><span class="lineno">  292</span>            <span class="keywordflow">if</span> key <span class="keywordflow">in</span> self.method_D:</div>
+<div class="line"><span class="lineno">  293</span> </div>
+<div class="line"><span class="lineno">  294</span>                <span class="keywordflow">if</span> len(data_row[m]) == 0:</div>
 <div class="line"><span class="lineno">  295</span> </div>
-<div class="line"><span class="lineno">  296</span>                    data_row[m] = str(float(data_row[m][1:])/2)</div>
-<div class="line"><span class="lineno">  297</span> </div>
-<div class="line"><span class="lineno">  298</span>                <span class="keywordflow">if</span> sd_column:</div>
+<div class="line"><span class="lineno">  296</span>                    data_row[m] = <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  297</span>                </div>
+<div class="line"><span class="lineno">  298</span>                <span class="keywordflow">elif</span> data_row[m][0] == <span class="stringliteral">&#39;&lt;&#39;</span>:</div>
 <div class="line"><span class="lineno">  299</span> </div>
-<div class="line"><span class="lineno">  300</span>                    observation_D =  {<span class="stringliteral">&#39;value&#39;</span>: <span class="keywordtype">None</span> <span class="keywordflow">if</span> data_row[m] == <span class="stringliteral">&#39;None&#39;</span> <span class="keywordflow">else</span> float(data_row[m].replace(<span class="stringliteral">&#39;,&#39;</span>,<span class="stringliteral">&#39;.&#39;</span>)), </div>
-<div class="line"><span class="lineno">  301</span>                                <span class="stringliteral">&#39;standard_deviation&#39;</span>: <span class="keywordtype">None</span> <span class="keywordflow">if</span> data_row[sd_column] == <span class="stringliteral">&#39;None&#39;</span> <span class="keywordflow">else</span> float(data_row[sd_column].replace(<span class="stringliteral">&#39;,&#39;</span>,<span class="stringliteral">&#39;.&#39;</span>)),</div>
-<div class="line"><span class="lineno">  302</span>                                <span class="stringliteral">&#39;unit__name&#39;</span>: self.unit_D[key],</div>
-<div class="line"><span class="lineno">  303</span>                                <span class="stringliteral">&#39;indicator__name&#39;</span>: self.parameter_D[key],</div>
-<div class="line"><span class="lineno">  304</span>                                <span class="stringliteral">&#39;lab_analysis_method__name&#39;</span>: self.method_D[key]}</div>
-<div class="line"><span class="lineno">  305</span> </div>
-<div class="line"><span class="lineno">  306</span>                <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  307</span> </div>
-<div class="line"><span class="lineno">  308</span>                    observation_D =  {<span class="stringliteral">&#39;value&#39;</span>: <span class="keywordtype">None</span> <span class="keywordflow">if</span> data_row[m] == <span class="stringliteral">&#39;None&#39;</span> <span class="keywordflow">else</span> float(data_row[m].replace(<span class="stringliteral">&#39;,&#39;</span>,<span class="stringliteral">&#39;.&#39;</span>)),</div>
-<div class="line"><span class="lineno">  309</span>                                <span class="stringliteral">&#39;unit__name&#39;</span>: self.unit_D[key],</div>
-<div class="line"><span class="lineno">  310</span>                                <span class="stringliteral">&#39;indicator__name&#39;</span>: self.parameter_D[key],</div>
-<div class="line"><span class="lineno">  311</span>                                <span class="stringliteral">&#39;lab_analysis_method__name&#39;</span>: self.method_D[key]}</div>
-<div class="line"><span class="lineno">  312</span> </div>
-<div class="line"><span class="lineno">  313</span>                self.equipment_method_D[self.equipment_D[key]][self.method_D[key]].append(observation_D)</div>
-<div class="line"><span class="lineno">  314</span> </div>
+<div class="line"><span class="lineno">  300</span>                    data_row[m] = str(float(data_row[m][1:])/2)</div>
+<div class="line"><span class="lineno">  301</span> </div>
+<div class="line"><span class="lineno">  302</span>                <span class="keywordflow">if</span> sd_column:</div>
+<div class="line"><span class="lineno">  303</span> </div>
+<div class="line"><span class="lineno">  304</span>                    observation_D =  {<span class="stringliteral">&#39;value&#39;</span>: <span class="keywordtype">None</span> <span class="keywordflow">if</span> data_row[m] == <span class="stringliteral">&#39;None&#39;</span> <span class="keywordflow">else</span> float(data_row[m].replace(<span class="stringliteral">&#39;,&#39;</span>,<span class="stringliteral">&#39;.&#39;</span>)), </div>
+<div class="line"><span class="lineno">  305</span>                                <span class="stringliteral">&#39;standard_deviation&#39;</span>: <span class="keywordtype">None</span> <span class="keywordflow">if</span> data_row[sd_column] == <span class="stringliteral">&#39;None&#39;</span> <span class="keywordflow">else</span> float(data_row[sd_column].replace(<span class="stringliteral">&#39;,&#39;</span>,<span class="stringliteral">&#39;.&#39;</span>)),</div>
+<div class="line"><span class="lineno">  306</span>                                <span class="stringliteral">&#39;unit__name&#39;</span>: self.unit_D[key],</div>
+<div class="line"><span class="lineno">  307</span>                                <span class="stringliteral">&#39;indicator__name&#39;</span>: self.parameter_D[key],</div>
+<div class="line"><span class="lineno">  308</span>                                <span class="stringliteral">&#39;lab_analysis_method__name&#39;</span>: self.method_D[key]}</div>
+<div class="line"><span class="lineno">  309</span> </div>
+<div class="line"><span class="lineno">  310</span>                <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  311</span> </div>
+<div class="line"><span class="lineno">  312</span>                    observation_D =  {<span class="stringliteral">&#39;value&#39;</span>: <span class="keywordtype">None</span> <span class="keywordflow">if</span> data_row[m] == <span class="stringliteral">&#39;None&#39;</span> <span class="keywordflow">else</span> float(data_row[m].replace(<span class="stringliteral">&#39;,&#39;</span>,<span class="stringliteral">&#39;.&#39;</span>)),</div>
+<div class="line"><span class="lineno">  313</span>                                <span class="stringliteral">&#39;unit__name&#39;</span>: self.unit_D[key],</div>
+<div class="line"><span class="lineno">  314</span>                                <span class="stringliteral">&#39;indicator__name&#39;</span>: self.parameter_D[key],</div>
+<div class="line"><span class="lineno">  315</span>                                <span class="stringliteral">&#39;lab_analysis_method__name&#39;</span>: self.method_D[key]}</div>
+<div class="line"><span class="lineno">  316</span> </div>
+<div class="line"><span class="lineno">  317</span>                self.equipment_method_D[self.equipment_D[key]][self.method_D[key]].append(observation_D)</div>
+<div class="line"><span class="lineno">  318</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -778,21 +787,21 @@ The resulting dictionary is assigned to self.row_data_D.
 
 @return None. The resulting dictionary is stored in self.row_data_D.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00172">172</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  172</span>    <span class="keyword">def </span>_Row_data_to_dict(self, row_data):</div>
-<div class="line"><span class="lineno">  173</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  174</span><span class="stringliteral">        @brief Converts a row of data into a dictionary using column headers as keys.</span></div>
-<div class="line"><span class="lineno">  175</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  176</span><span class="stringliteral">        This function takes a list of row data and maps each value to its corresponding column name</span></div>
-<div class="line"><span class="lineno">  177</span><span class="stringliteral">        from self.column_L, creating a dictionary where keys are column names and values are row entries.</span></div>
-<div class="line"><span class="lineno">  178</span><span class="stringliteral">        The resulting dictionary is assigned to self.row_data_D.</span></div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00176">176</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  176</span>    <span class="keyword">def </span>_Row_data_to_dict(self, row_data):</div>
+<div class="line"><span class="lineno">  177</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  178</span><span class="stringliteral">        @brief Converts a row of data into a dictionary using column headers as keys.</span></div>
 <div class="line"><span class="lineno">  179</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  180</span><span class="stringliteral">        @param row_data List of values representing a single row of data.</span></div>
-<div class="line"><span class="lineno">  181</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  182</span><span class="stringliteral">        @return None. The resulting dictionary is stored in self.row_data_D.</span></div>
-<div class="line"><span class="lineno">  183</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  184</span>        self.row_data_D = dict(zip(self.column_L, row_data))</div>
-<div class="line"><span class="lineno">  185</span> </div>
+<div class="line"><span class="lineno">  180</span><span class="stringliteral">        This function takes a list of row data and maps each value to its corresponding column name</span></div>
+<div class="line"><span class="lineno">  181</span><span class="stringliteral">        from self.column_L, creating a dictionary where keys are column names and values are row entries.</span></div>
+<div class="line"><span class="lineno">  182</span><span class="stringliteral">        The resulting dictionary is assigned to self.row_data_D.</span></div>
+<div class="line"><span class="lineno">  183</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  184</span><span class="stringliteral">        @param row_data List of values representing a single row of data.</span></div>
+<div class="line"><span class="lineno">  185</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  186</span><span class="stringliteral">        @return None. The resulting dictionary is stored in self.row_data_D.</span></div>
+<div class="line"><span class="lineno">  187</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  188</span>        self.row_data_D = dict(zip(self.column_L, row_data))</div>
+<div class="line"><span class="lineno">  189</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -833,23 +842,23 @@ This function processes the input list of column headers by:
 
 @return None. The cleaned list is assigned to self.column_L.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00088">88</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   88</span>    <span class="keyword">def </span>_Set_column_L(self, column_L):</div>
-<div class="line"><span class="lineno">   89</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">   90</span><span class="stringliteral">        @brief Cleans and normalizes a list of column headers.</span></div>
-<div class="line"><span class="lineno">   91</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   92</span><span class="stringliteral">        This function processes the input list of column headers by:</span></div>
-<div class="line"><span class="lineno">   93</span><span class="stringliteral">        - Removing any leading Byte Order Mark (BOM) characters and whitespace.</span></div>
-<div class="line"><span class="lineno">   94</span><span class="stringliteral">        - Converting all column names to lowercase.</span></div>
-<div class="line"><span class="lineno">   95</span><span class="stringliteral">        - Replacing values that indicate missing data (e.g., &#39;na&#39;, &#39;none&#39;, &#39;n/a&#39;, &#39;nan&#39;, &#39;&#39;, &#39;null&#39;) with None.</span></div>
-<div class="line"><span class="lineno">   96</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   97</span><span class="stringliteral">        @param column_L List of column header strings to be cleaned and normalized.</span></div>
-<div class="line"><span class="lineno">   98</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   99</span><span class="stringliteral">        @return None. The cleaned list is assigned to self.column_L.</span></div>
-<div class="line"><span class="lineno">  100</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  101</span>        self.column_L = [col.replace(<span class="stringliteral">&#39;\ufeff&#39;</span>,<span class="stringliteral">&#39;&#39;</span>).strip().lower() <span class="keywordflow">for</span> col <span class="keywordflow">in</span> column_L]</div>
-<div class="line"><span class="lineno">  102</span>        self.column_L = [<span class="keywordtype">None</span> <span class="keywordflow">if</span> col <span class="keywordflow">in</span> [<span class="stringliteral">&#39;na&#39;</span>, <span class="stringliteral">&#39;none&#39;</span>, <span class="stringliteral">&#39;n/a&#39;</span>, <span class="stringliteral">&#39;nan&#39;</span>, <span class="stringliteral">&#39;&#39;</span>, <span class="stringliteral">&#39;null&#39;</span>] <span class="keywordflow">else</span> col <span class="keywordflow">for</span> col <span class="keywordflow">in</span> self.column_L]</div>
-<div class="line"><span class="lineno">  103</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00092">92</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   92</span>    <span class="keyword">def </span>_Set_column_L(self, column_L):</div>
+<div class="line"><span class="lineno">   93</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   94</span><span class="stringliteral">        @brief Cleans and normalizes a list of column headers.</span></div>
+<div class="line"><span class="lineno">   95</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   96</span><span class="stringliteral">        This function processes the input list of column headers by:</span></div>
+<div class="line"><span class="lineno">   97</span><span class="stringliteral">        - Removing any leading Byte Order Mark (BOM) characters and whitespace.</span></div>
+<div class="line"><span class="lineno">   98</span><span class="stringliteral">        - Converting all column names to lowercase.</span></div>
+<div class="line"><span class="lineno">   99</span><span class="stringliteral">        - Replacing values that indicate missing data (e.g., &#39;na&#39;, &#39;none&#39;, &#39;n/a&#39;, &#39;nan&#39;, &#39;&#39;, &#39;null&#39;) with None.</span></div>
+<div class="line"><span class="lineno">  100</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  101</span><span class="stringliteral">        @param column_L List of column header strings to be cleaned and normalized.</span></div>
+<div class="line"><span class="lineno">  102</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  103</span><span class="stringliteral">        @return None. The cleaned list is assigned to self.column_L.</span></div>
+<div class="line"><span class="lineno">  104</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  105</span>        self.column_L = [col.replace(<span class="stringliteral">&#39;\ufeff&#39;</span>,<span class="stringliteral">&#39;&#39;</span>).strip().lower() <span class="keywordflow">for</span> col <span class="keywordflow">in</span> column_L]</div>
+<div class="line"><span class="lineno">  106</span>        self.column_L = [<span class="keywordtype">None</span> <span class="keywordflow">if</span> col <span class="keywordflow">in</span> [<span class="stringliteral">&#39;na&#39;</span>, <span class="stringliteral">&#39;none&#39;</span>, <span class="stringliteral">&#39;n/a&#39;</span>, <span class="stringliteral">&#39;nan&#39;</span>, <span class="stringliteral">&#39;&#39;</span>, <span class="stringliteral">&#39;null&#39;</span>] <span class="keywordflow">else</span> col <span class="keywordflow">for</span> col <span class="keywordflow">in</span> self.column_L]</div>
+<div class="line"><span class="lineno">  107</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -887,25 +896,27 @@ If the folder does not exist, it creates the directory using `os.makedirs`.
 
 @return None
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00070">70</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   70</span>    <span class="keyword">def </span>_Set_dst_FP(self):</div>
-<div class="line"><span class="lineno">   71</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">   72</span><span class="stringliteral">        @brief Sets the destination folder path and creates it if it does not exist.</span></div>
-<div class="line"><span class="lineno">   73</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   74</span><span class="stringliteral">        This function assigns the destination folder path from the process parameters to the instance variable `dst_FP`.</span></div>
-<div class="line"><span class="lineno">   75</span><span class="stringliteral">        If the folder does not exist, it creates the directory using `os.makedirs`.</span></div>
-<div class="line"><span class="lineno">   76</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   77</span><span class="stringliteral">        @details</span></div>
-<div class="line"><span class="lineno">   78</span><span class="stringliteral">        - Retrieves the destination folder path from `self.process_parameters.dst_FP`.</span></div>
-<div class="line"><span class="lineno">   79</span><span class="stringliteral">        - Checks if the folder exists using `os.path.exists`.</span></div>
-<div class="line"><span class="lineno">   80</span><span class="stringliteral">        - Creates the folder if it does not exist.</span></div>
-<div class="line"><span class="lineno">   81</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   82</span><span class="stringliteral">        @return None</span></div>
-<div class="line"><span class="lineno">   83</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">   84</span>        self.dst_FP = self.process_parameters.dst_FP</div>
-<div class="line"><span class="lineno">   85</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> path.exists(self.dst_FP):</div>
-<div class="line"><span class="lineno">   86</span>            makedirs(self.dst_FP)</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00072">72</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   72</span>    <span class="keyword">def </span>_Set_dst_FP(self):</div>
+<div class="line"><span class="lineno">   73</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   74</span><span class="stringliteral">        @brief Sets the destination folder path and creates it if it does not exist.</span></div>
+<div class="line"><span class="lineno">   75</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   76</span><span class="stringliteral">        This function assigns the destination folder path from the process parameters to the instance variable `dst_FP`.</span></div>
+<div class="line"><span class="lineno">   77</span><span class="stringliteral">        If the folder does not exist, it creates the directory using `os.makedirs`.</span></div>
+<div class="line"><span class="lineno">   78</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   79</span><span class="stringliteral">        @details</span></div>
+<div class="line"><span class="lineno">   80</span><span class="stringliteral">        - Retrieves the destination folder path from `self.process_parameters.dst_FP`.</span></div>
+<div class="line"><span class="lineno">   81</span><span class="stringliteral">        - Checks if the folder exists using `os.path.exists`.</span></div>
+<div class="line"><span class="lineno">   82</span><span class="stringliteral">        - Creates the folder if it does not exist.</span></div>
+<div class="line"><span class="lineno">   83</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   84</span><span class="stringliteral">        @return None</span></div>
+<div class="line"><span class="lineno">   85</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   86</span>        self.dst_FP = Full_path_locate(self.project_FP, self.process_parameters.dst_FP, <span class="keyword">True</span>)</div>
 <div class="line"><span class="lineno">   87</span> </div>
+<div class="line"><span class="lineno">   88</span>        <span class="comment">#self.dst_FP = self.process_parameters.dst_FP</span></div>
+<div class="line"><span class="lineno">   89</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> path.exists(self.dst_FP):</div>
+<div class="line"><span class="lineno">   90</span>            makedirs(self.dst_FP)</div>
+<div class="line"><span class="lineno">   91</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -939,22 +950,22 @@ If the folder does not exist, it creates the directory using `os.makedirs`.
 
 @return None
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00250">250</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  250</span>    <span class="keyword">def </span>_Set_equipment_method(self):</div>
-<div class="line"><span class="lineno">  251</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  252</span><span class="stringliteral">        @brief Initializes the equipment-method mapping dictionary.</span></div>
-<div class="line"><span class="lineno">  253</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  254</span><span class="stringliteral">        @details</span></div>
-<div class="line"><span class="lineno">  255</span><span class="stringliteral">        - Creates a dictionary (equipment_method_D) where each unique equipment is a key, and its value is a dictionary of methods associated with that equipment.</span></div>
-<div class="line"><span class="lineno">  256</span><span class="stringliteral">        - For each method in method_D, associates it with the corresponding equipment in equipment_D and initializes an empty list for storing observations.</span></div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00254">254</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  254</span>    <span class="keyword">def </span>_Set_equipment_method(self):</div>
+<div class="line"><span class="lineno">  255</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  256</span><span class="stringliteral">        @brief Initializes the equipment-method mapping dictionary.</span></div>
 <div class="line"><span class="lineno">  257</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  258</span><span class="stringliteral">        @return None</span></div>
-<div class="line"><span class="lineno">  259</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  260</span>        unique_equipment_set = set(self.equipment_D.values())</div>
-<div class="line"><span class="lineno">  261</span>        self.equipment_method_D = dict.fromkeys(unique_equipment_set, {})</div>
-<div class="line"><span class="lineno">  262</span>        <span class="keywordflow">for</span> key <span class="keywordflow">in</span> self.method_D:</div>
-<div class="line"><span class="lineno">  263</span>            self.equipment_method_D[self.equipment_D[key]][self.method_D[key]] = []</div>
-<div class="line"><span class="lineno">  264</span> </div>
+<div class="line"><span class="lineno">  258</span><span class="stringliteral">        @details</span></div>
+<div class="line"><span class="lineno">  259</span><span class="stringliteral">        - Creates a dictionary (equipment_method_D) where each unique equipment is a key, and its value is a dictionary of methods associated with that equipment.</span></div>
+<div class="line"><span class="lineno">  260</span><span class="stringliteral">        - For each method in method_D, associates it with the corresponding equipment in equipment_D and initializes an empty list for storing observations.</span></div>
+<div class="line"><span class="lineno">  261</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  262</span><span class="stringliteral">        @return None</span></div>
+<div class="line"><span class="lineno">  263</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  264</span>        unique_equipment_set = set(self.equipment_D.values())</div>
+<div class="line"><span class="lineno">  265</span>        self.equipment_method_D = dict.fromkeys(unique_equipment_set, {})</div>
+<div class="line"><span class="lineno">  266</span>        <span class="keywordflow">for</span> key <span class="keywordflow">in</span> self.method_D:</div>
+<div class="line"><span class="lineno">  267</span>            self.equipment_method_D[self.equipment_D[key]][self.method_D[key]] = []</div>
+<div class="line"><span class="lineno">  268</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -994,49 +1005,49 @@ with preservation, transport, storage, and logistic user information. The result
 
 @return True if metadata is set successfully, None if validation fails.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00351">351</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  351</span>    <span class="keyword">def </span>_Set_observation_metadata(self):</div>
-<div class="line"><span class="lineno">  352</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  353</span><span class="stringliteral">        @brief Sets metadata for an observation, including sample preparation, user emails, subsample, replicate, date, and logistics.</span></div>
-<div class="line"><span class="lineno">  354</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  355</span><span class="stringliteral">        This function validates the &#39;subsample&#39; and &#39;replicate&#39; fields in the row data against predefined dictionaries (SUBSAMPLE_D and REPLICATE_D).</span></div>
-<div class="line"><span class="lineno">  356</span><span class="stringliteral">        If either value is not recognized, an error message is printed and None is returned. Otherwise, it assembles a metadata dictionary</span></div>
-<div class="line"><span class="lineno">  357</span><span class="stringliteral">        containing sample preparation details, user emails, subsample and replicate identifiers, date stamp, and a nested logistics dictionary</span></div>
-<div class="line"><span class="lineno">  358</span><span class="stringliteral">        with preservation, transport, storage, and logistic user information. The resulting metadata is assigned to self.observation_metadata.</span></div>
-<div class="line"><span class="lineno">  359</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  360</span><span class="stringliteral">        @details</span></div>
-<div class="line"><span class="lineno">  361</span><span class="stringliteral">        - Checks validity of &#39;subsample&#39; and &#39;replicate&#39; fields.</span></div>
-<div class="line"><span class="lineno">  362</span><span class="stringliteral">        - Assembles observation metadata including sample preparation, user emails, subsample, replicate, date, and logistics.</span></div>
-<div class="line"><span class="lineno">  363</span><span class="stringliteral">        - Calculates storage duration in hours using Delta_days between sample and analysis dates.</span></div>
-<div class="line"><span class="lineno">  364</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  365</span><span class="stringliteral">        @return True if metadata is set successfully, None if validation fails.</span></div>
-<div class="line"><span class="lineno">  366</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  367</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.row_data_D[<span class="stringliteral">&#39;subsample&#39;</span>] <span class="keywordflow">in</span> SUBSAMPLE_D:</div>
-<div class="line"><span class="lineno">  368</span>            <span class="keywordflow">print</span> (<span class="stringliteral">&#39;❌  ERROR - subsample id not recognised: %s&#39;</span> % self.row_data_D[<span class="stringliteral">&#39;subsample&#39;</span>])</div>
-<div class="line"><span class="lineno">  369</span> </div>
-<div class="line"><span class="lineno">  370</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">  371</span> </div>
-<div class="line"><span class="lineno">  372</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.row_data_D[<span class="stringliteral">&#39;replicate&#39;</span>] <span class="keywordflow">in</span> REPLICATE_D:</div>
-<div class="line"><span class="lineno">  373</span>            <span class="keywordflow">print</span> (<span class="stringliteral">&#39;❌  ERROR - replicate id not recognised: %s&#39;</span> % self.row_data_D[<span class="stringliteral">&#39;replicate&#39;</span>])</div>
-<div class="line"><span class="lineno">  374</span> </div>
-<div class="line"><span class="lineno">  375</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">  376</span> </div>
-<div class="line"><span class="lineno">  377</span>        self.observation_metadata = {</div>
-<div class="line"><span class="lineno">  378</span>                        <span class="stringliteral">&quot;sample_preparation__name&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;sample_preparation__name&#39;</span>],</div>
-<div class="line"><span class="lineno">  379</span>                        <span class="stringliteral">&quot;person__email&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;user_email_analysis&#39;</span>],</div>
-<div class="line"><span class="lineno">  380</span>                        <span class="stringliteral">&quot;subsample&quot;</span>: SUBSAMPLE_D[self.row_data_D[<span class="stringliteral">&#39;subsample&#39;</span>]],</div>
-<div class="line"><span class="lineno">  381</span>                        <span class="stringliteral">&quot;replicate&quot;</span>: REPLICATE_D[self.row_data_D[<span class="stringliteral">&#39;replicate&#39;</span>]],</div>
-<div class="line"><span class="lineno">  382</span>                        <span class="stringliteral">&quot;date_stamp&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;sample_date&#39;</span>],</div>
-<div class="line"><span class="lineno">  383</span>                        <span class="stringliteral">&quot;logistic&quot;</span>: {</div>
-<div class="line"><span class="lineno">  384</span>                          <span class="stringliteral">&quot;sample_preservation__name&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;sample_preservation__name&#39;</span>],</div>
-<div class="line"><span class="lineno">  385</span>                          <span class="stringliteral">&quot;sample_transport__name&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;sample_transport__name&#39;</span>],</div>
-<div class="line"><span class="lineno">  386</span>                          <span class="stringliteral">&quot;transport_duration_h&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;transport_duration_h&#39;</span>],</div>
-<div class="line"><span class="lineno">  387</span>                          <span class="stringliteral">&quot;sample_storage__name&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;sample_storage__name&#39;</span>],</div>
-<div class="line"><span class="lineno">  388</span>                          <span class="stringliteral">&quot;storage_duration_h&quot;</span>:  24*(Delta_days(self.row_data_D[<span class="stringliteral">&#39;sample_date&#39;</span>],self.row_data_D[<span class="stringliteral">&#39;sample_analysis_date&#39;</span>] )),</div>
-<div class="line"><span class="lineno">  389</span>                          <span class="stringliteral">&quot;person__email&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;user_email_logistic&#39;</span>]}</div>
-<div class="line"><span class="lineno">  390</span>                        }</div>
-<div class="line"><span class="lineno">  391</span>        <span class="keywordflow">return</span> <span class="keyword">True</span></div>
-<div class="line"><span class="lineno">  392</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00355">355</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  355</span>    <span class="keyword">def </span>_Set_observation_metadata(self):</div>
+<div class="line"><span class="lineno">  356</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  357</span><span class="stringliteral">        @brief Sets metadata for an observation, including sample preparation, user emails, subsample, replicate, date, and logistics.</span></div>
+<div class="line"><span class="lineno">  358</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  359</span><span class="stringliteral">        This function validates the &#39;subsample&#39; and &#39;replicate&#39; fields in the row data against predefined dictionaries (SUBSAMPLE_D and REPLICATE_D).</span></div>
+<div class="line"><span class="lineno">  360</span><span class="stringliteral">        If either value is not recognized, an error message is printed and None is returned. Otherwise, it assembles a metadata dictionary</span></div>
+<div class="line"><span class="lineno">  361</span><span class="stringliteral">        containing sample preparation details, user emails, subsample and replicate identifiers, date stamp, and a nested logistics dictionary</span></div>
+<div class="line"><span class="lineno">  362</span><span class="stringliteral">        with preservation, transport, storage, and logistic user information. The resulting metadata is assigned to self.observation_metadata.</span></div>
+<div class="line"><span class="lineno">  363</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  364</span><span class="stringliteral">        @details</span></div>
+<div class="line"><span class="lineno">  365</span><span class="stringliteral">        - Checks validity of &#39;subsample&#39; and &#39;replicate&#39; fields.</span></div>
+<div class="line"><span class="lineno">  366</span><span class="stringliteral">        - Assembles observation metadata including sample preparation, user emails, subsample, replicate, date, and logistics.</span></div>
+<div class="line"><span class="lineno">  367</span><span class="stringliteral">        - Calculates storage duration in hours using Delta_days between sample and analysis dates.</span></div>
+<div class="line"><span class="lineno">  368</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  369</span><span class="stringliteral">        @return True if metadata is set successfully, None if validation fails.</span></div>
+<div class="line"><span class="lineno">  370</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  371</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.row_data_D[<span class="stringliteral">&#39;subsample&#39;</span>] <span class="keywordflow">in</span> SUBSAMPLE_D:</div>
+<div class="line"><span class="lineno">  372</span>            <span class="keywordflow">print</span> (<span class="stringliteral">&#39;❌  ERROR - subsample id not recognised: %s&#39;</span> % self.row_data_D[<span class="stringliteral">&#39;subsample&#39;</span>])</div>
+<div class="line"><span class="lineno">  373</span> </div>
+<div class="line"><span class="lineno">  374</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  375</span> </div>
+<div class="line"><span class="lineno">  376</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.row_data_D[<span class="stringliteral">&#39;replicate&#39;</span>] <span class="keywordflow">in</span> REPLICATE_D:</div>
+<div class="line"><span class="lineno">  377</span>            <span class="keywordflow">print</span> (<span class="stringliteral">&#39;❌  ERROR - replicate id not recognised: %s&#39;</span> % self.row_data_D[<span class="stringliteral">&#39;replicate&#39;</span>])</div>
+<div class="line"><span class="lineno">  378</span> </div>
+<div class="line"><span class="lineno">  379</span>            <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  380</span> </div>
+<div class="line"><span class="lineno">  381</span>        self.observation_metadata = {</div>
+<div class="line"><span class="lineno">  382</span>                        <span class="stringliteral">&quot;sample_preparation__name&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;sample_preparation__name&#39;</span>],</div>
+<div class="line"><span class="lineno">  383</span>                        <span class="stringliteral">&quot;person__email&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;user_email_analysis&#39;</span>],</div>
+<div class="line"><span class="lineno">  384</span>                        <span class="stringliteral">&quot;subsample&quot;</span>: SUBSAMPLE_D[self.row_data_D[<span class="stringliteral">&#39;subsample&#39;</span>]],</div>
+<div class="line"><span class="lineno">  385</span>                        <span class="stringliteral">&quot;replicate&quot;</span>: REPLICATE_D[self.row_data_D[<span class="stringliteral">&#39;replicate&#39;</span>]],</div>
+<div class="line"><span class="lineno">  386</span>                        <span class="stringliteral">&quot;date_stamp&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;sample_date&#39;</span>],</div>
+<div class="line"><span class="lineno">  387</span>                        <span class="stringliteral">&quot;logistic&quot;</span>: {</div>
+<div class="line"><span class="lineno">  388</span>                          <span class="stringliteral">&quot;sample_preservation__name&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;sample_preservation__name&#39;</span>],</div>
+<div class="line"><span class="lineno">  389</span>                          <span class="stringliteral">&quot;sample_transport__name&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;sample_transport__name&#39;</span>],</div>
+<div class="line"><span class="lineno">  390</span>                          <span class="stringliteral">&quot;transport_duration_h&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;transport_duration_h&#39;</span>],</div>
+<div class="line"><span class="lineno">  391</span>                          <span class="stringliteral">&quot;sample_storage__name&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;sample_storage__name&#39;</span>],</div>
+<div class="line"><span class="lineno">  392</span>                          <span class="stringliteral">&quot;storage_duration_h&quot;</span>:  24*(Delta_days(self.row_data_D[<span class="stringliteral">&#39;sample_date&#39;</span>],self.row_data_D[<span class="stringliteral">&#39;sample_analysis_date&#39;</span>] )),</div>
+<div class="line"><span class="lineno">  393</span>                          <span class="stringliteral">&quot;person__email&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;user_email_logistic&#39;</span>]}</div>
+<div class="line"><span class="lineno">  394</span>                        }</div>
+<div class="line"><span class="lineno">  395</span>        <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  396</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1074,43 +1085,43 @@ It also creates metadata dictionaries for point, site, and data source, which ar
 
 @return None
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00315">315</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  315</span>    <span class="keyword">def </span>_Set_pilot_site_point_sample_id(self):</div>
-<div class="line"><span class="lineno">  316</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  317</span><span class="stringliteral">        @brief Sets unique identifiers for pilot, site, point, and sample, and initializes related metadata dictionaries.</span></div>
-<div class="line"><span class="lineno">  318</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  319</span><span class="stringliteral">        This function processes the current row data to generate normalized and unique IDs for pilot, site, point, and sample.</span></div>
-<div class="line"><span class="lineno">  320</span><span class="stringliteral">        It also creates metadata dictionaries for point, site, and data source, which are used in subsequent data structuring.</span></div>
-<div class="line"><span class="lineno">  321</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  322</span><span class="stringliteral">        @details</span></div>
-<div class="line"><span class="lineno">  323</span><span class="stringliteral">        - Normalizes and formats the &#39;pilot&#39;, &#39;pilot_site&#39;, and &#39;sample_id&#39; fields from the row data.</span></div>
-<div class="line"><span class="lineno">  324</span><span class="stringliteral">        - Constructs a unique sample ID using site, point, depth, and date information.</span></div>
-<div class="line"><span class="lineno">  325</span><span class="stringliteral">        - Initializes dictionaries for point, site, and data source metadata.</span></div>
-<div class="line"><span class="lineno">  326</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  327</span><span class="stringliteral">        @return None</span></div>
-<div class="line"><span class="lineno">  328</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  329</span>        </div>
-<div class="line"><span class="lineno">  330</span>        self.pilot_id = self.row_data_D[<span class="stringliteral">&#39;pilot&#39;</span>].replace(<span class="stringliteral">&#39; &#39;</span>, <span class="stringliteral">&#39;-&#39;</span>).replace(<span class="stringliteral">&#39;_&#39;</span>, <span class="stringliteral">&#39;-&#39;</span>).lower()</div>
-<div class="line"><span class="lineno">  331</span>        self.site_id = self.row_data_D[<span class="stringliteral">&#39;pilot_site&#39;</span>].replace(<span class="stringliteral">&#39; &#39;</span>, <span class="stringliteral">&#39;-&#39;</span>).replace(<span class="stringliteral">&#39;_&#39;</span>, <span class="stringliteral">&#39;-&#39;</span>).lower()</div>
-<div class="line"><span class="lineno">  332</span>        self.point_id = self.row_data_D[<span class="stringliteral">&#39;sample_id&#39;</span>].replace(<span class="stringliteral">&#39; &#39;</span>, <span class="stringliteral">&#39;-&#39;</span>).replace(<span class="stringliteral">&#39;_&#39;</span>, <span class="stringliteral">&#39;-&#39;</span>).lower()</div>
-<div class="line"><span class="lineno">  333</span> </div>
-<div class="line"><span class="lineno">  334</span>        self.sample_id =  self.site_id+<span class="stringliteral">&#39;_&#39;</span>+self.point_id+\</div>
-<div class="line"><span class="lineno">  335</span>                    <span class="stringliteral">&#39;_&#39;</span>+self.row_data_D[<span class="stringliteral">&#39;min_depth&#39;</span>]+\</div>
-<div class="line"><span class="lineno">  336</span>                    <span class="stringliteral">&#39;-&#39;</span>+self.row_data_D[<span class="stringliteral">&#39;max_depth&#39;</span>]+\</div>
-<div class="line"><span class="lineno">  337</span>                        <span class="stringliteral">&#39;_&#39;</span>+self.row_data_D[<span class="stringliteral">&#39;sample_date&#39;</span>]</div>
-<div class="line"><span class="lineno">  338</span> </div>
-<div class="line"><span class="lineno">  339</span>        self.point = {</div>
-<div class="line"><span class="lineno">  340</span>            <span class="stringliteral">&quot;name&quot;</span>: self.point_id</div>
-<div class="line"><span class="lineno">  341</span>        }</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00319">319</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  319</span>    <span class="keyword">def </span>_Set_pilot_site_point_sample_id(self):</div>
+<div class="line"><span class="lineno">  320</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  321</span><span class="stringliteral">        @brief Sets unique identifiers for pilot, site, point, and sample, and initializes related metadata dictionaries.</span></div>
+<div class="line"><span class="lineno">  322</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  323</span><span class="stringliteral">        This function processes the current row data to generate normalized and unique IDs for pilot, site, point, and sample.</span></div>
+<div class="line"><span class="lineno">  324</span><span class="stringliteral">        It also creates metadata dictionaries for point, site, and data source, which are used in subsequent data structuring.</span></div>
+<div class="line"><span class="lineno">  325</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  326</span><span class="stringliteral">        @details</span></div>
+<div class="line"><span class="lineno">  327</span><span class="stringliteral">        - Normalizes and formats the &#39;pilot&#39;, &#39;pilot_site&#39;, and &#39;sample_id&#39; fields from the row data.</span></div>
+<div class="line"><span class="lineno">  328</span><span class="stringliteral">        - Constructs a unique sample ID using site, point, depth, and date information.</span></div>
+<div class="line"><span class="lineno">  329</span><span class="stringliteral">        - Initializes dictionaries for point, site, and data source metadata.</span></div>
+<div class="line"><span class="lineno">  330</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  331</span><span class="stringliteral">        @return None</span></div>
+<div class="line"><span class="lineno">  332</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  333</span>        </div>
+<div class="line"><span class="lineno">  334</span>        self.pilot_id = self.row_data_D[<span class="stringliteral">&#39;pilot&#39;</span>].replace(<span class="stringliteral">&#39; &#39;</span>, <span class="stringliteral">&#39;-&#39;</span>).replace(<span class="stringliteral">&#39;_&#39;</span>, <span class="stringliteral">&#39;-&#39;</span>).lower()</div>
+<div class="line"><span class="lineno">  335</span>        self.site_id = self.row_data_D[<span class="stringliteral">&#39;pilot_site&#39;</span>].replace(<span class="stringliteral">&#39; &#39;</span>, <span class="stringliteral">&#39;-&#39;</span>).replace(<span class="stringliteral">&#39;_&#39;</span>, <span class="stringliteral">&#39;-&#39;</span>).lower()</div>
+<div class="line"><span class="lineno">  336</span>        self.point_id = self.row_data_D[<span class="stringliteral">&#39;sample_id&#39;</span>].replace(<span class="stringliteral">&#39; &#39;</span>, <span class="stringliteral">&#39;-&#39;</span>).replace(<span class="stringliteral">&#39;_&#39;</span>, <span class="stringliteral">&#39;-&#39;</span>).lower()</div>
+<div class="line"><span class="lineno">  337</span> </div>
+<div class="line"><span class="lineno">  338</span>        self.sample_id =  self.site_id+<span class="stringliteral">&#39;_&#39;</span>+self.point_id+\</div>
+<div class="line"><span class="lineno">  339</span>                    <span class="stringliteral">&#39;_&#39;</span>+self.row_data_D[<span class="stringliteral">&#39;min_depth&#39;</span>]+\</div>
+<div class="line"><span class="lineno">  340</span>                    <span class="stringliteral">&#39;-&#39;</span>+self.row_data_D[<span class="stringliteral">&#39;max_depth&#39;</span>]+\</div>
+<div class="line"><span class="lineno">  341</span>                        <span class="stringliteral">&#39;_&#39;</span>+self.row_data_D[<span class="stringliteral">&#39;sample_date&#39;</span>]</div>
 <div class="line"><span class="lineno">  342</span> </div>
-<div class="line"><span class="lineno">  343</span>        self.site = {</div>
-<div class="line"><span class="lineno">  344</span>            <span class="stringliteral">&quot;name&quot;</span>: self.site_id</div>
+<div class="line"><span class="lineno">  343</span>        self.point = {</div>
+<div class="line"><span class="lineno">  344</span>            <span class="stringliteral">&quot;name&quot;</span>: self.point_id</div>
 <div class="line"><span class="lineno">  345</span>        }</div>
 <div class="line"><span class="lineno">  346</span> </div>
-<div class="line"><span class="lineno">  347</span>        self.data_source = {</div>
-<div class="line"><span class="lineno">  348</span>            <span class="stringliteral">&quot;name&quot;</span>: <span class="stringliteral">&#39;%s_%s&#39;</span> % (<span class="stringliteral">&#39;ai4sh&#39;</span>,self.row_data_D[<span class="stringliteral">&#39;pilot_country&#39;</span>].lower())</div>
+<div class="line"><span class="lineno">  347</span>        self.site = {</div>
+<div class="line"><span class="lineno">  348</span>            <span class="stringliteral">&quot;name&quot;</span>: self.site_id</div>
 <div class="line"><span class="lineno">  349</span>        }</div>
 <div class="line"><span class="lineno">  350</span> </div>
+<div class="line"><span class="lineno">  351</span>        self.data_source = {</div>
+<div class="line"><span class="lineno">  352</span>            <span class="stringliteral">&quot;name&quot;</span>: <span class="stringliteral">&#39;%s_%s&#39;</span> % (<span class="stringliteral">&#39;ai4sh&#39;</span>,self.row_data_D[<span class="stringliteral">&#39;pilot_country&#39;</span>].lower())</div>
+<div class="line"><span class="lineno">  353</span>        }</div>
+<div class="line"><span class="lineno">  354</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1151,29 +1162,29 @@ The values for min_depth and max_depth are extracted from the current row data a
 
 @return None. The sample dictionary is assigned to `self.sample`.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00393">393</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  393</span>    <span class="keyword">def </span>_Set_sample(self):</div>
-<div class="line"><span class="lineno">  394</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  395</span><span class="stringliteral">        @brief Sets the sample metadata dictionary for the current data row.</span></div>
-<div class="line"><span class="lineno">  396</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  397</span><span class="stringliteral">        This function initializes the `self.sample` attribute as a dictionary containing:</span></div>
-<div class="line"><span class="lineno">  398</span><span class="stringliteral">        - The sample name (unique sample ID)</span></div>
-<div class="line"><span class="lineno">  399</span><span class="stringliteral">        - Minimum depth</span></div>
-<div class="line"><span class="lineno">  400</span><span class="stringliteral">        - Maximum depth</span></div>
-<div class="line"><span class="lineno">  401</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  402</span><span class="stringliteral">        The values for min_depth and max_depth are extracted from the current row data and converted to integers.</span></div>
-<div class="line"><span class="lineno">  403</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  404</span><span class="stringliteral">        @details</span></div>
-<div class="line"><span class="lineno">  405</span><span class="stringliteral">        - Uses `self.sample_id` for the sample name.</span></div>
-<div class="line"><span class="lineno">  406</span><span class="stringliteral">        - Retrieves `min_depth` and `max_depth` from `self.row_data_D` and casts them to integers.</span></div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00397">397</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  397</span>    <span class="keyword">def </span>_Set_sample(self):</div>
+<div class="line"><span class="lineno">  398</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  399</span><span class="stringliteral">        @brief Sets the sample metadata dictionary for the current data row.</span></div>
+<div class="line"><span class="lineno">  400</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  401</span><span class="stringliteral">        This function initializes the `self.sample` attribute as a dictionary containing:</span></div>
+<div class="line"><span class="lineno">  402</span><span class="stringliteral">        - The sample name (unique sample ID)</span></div>
+<div class="line"><span class="lineno">  403</span><span class="stringliteral">        - Minimum depth</span></div>
+<div class="line"><span class="lineno">  404</span><span class="stringliteral">        - Maximum depth</span></div>
+<div class="line"><span class="lineno">  405</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  406</span><span class="stringliteral">        The values for min_depth and max_depth are extracted from the current row data and converted to integers.</span></div>
 <div class="line"><span class="lineno">  407</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  408</span><span class="stringliteral">        @return None. The sample dictionary is assigned to `self.sample`.</span></div>
-<div class="line"><span class="lineno">  409</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  410</span> </div>
-<div class="line"><span class="lineno">  411</span>        self.sample = {<span class="stringliteral">&quot;name&quot;</span>: self.sample_id,</div>
-<div class="line"><span class="lineno">  412</span>                    <span class="stringliteral">&quot;min_depth&quot;</span>: int(self.row_data_D[<span class="stringliteral">&#39;min_depth&#39;</span>]),</div>
-<div class="line"><span class="lineno">  413</span>                    <span class="stringliteral">&quot;max_depth&quot;</span>: int(self.row_data_D[<span class="stringliteral">&#39;max_depth&#39;</span>])}</div>
-<div class="line"><span class="lineno">  414</span>        </div>
+<div class="line"><span class="lineno">  408</span><span class="stringliteral">        @details</span></div>
+<div class="line"><span class="lineno">  409</span><span class="stringliteral">        - Uses `self.sample_id` for the sample name.</span></div>
+<div class="line"><span class="lineno">  410</span><span class="stringliteral">        - Retrieves `min_depth` and `max_depth` from `self.row_data_D` and casts them to integers.</span></div>
+<div class="line"><span class="lineno">  411</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  412</span><span class="stringliteral">        @return None. The sample dictionary is assigned to `self.sample`.</span></div>
+<div class="line"><span class="lineno">  413</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  414</span> </div>
+<div class="line"><span class="lineno">  415</span>        self.sample = {<span class="stringliteral">&quot;name&quot;</span>: self.sample_id,</div>
+<div class="line"><span class="lineno">  416</span>                    <span class="stringliteral">&quot;min_depth&quot;</span>: int(self.row_data_D[<span class="stringliteral">&#39;min_depth&#39;</span>]),</div>
+<div class="line"><span class="lineno">  417</span>                    <span class="stringliteral">&quot;max_depth&quot;</span>: int(self.row_data_D[<span class="stringliteral">&#39;max_depth&#39;</span>])}</div>
+<div class="line"><span class="lineno">  418</span>        </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1213,30 +1224,30 @@ It then creates a sampling log dictionary containing:
 
 @return None. The sampling log dictionary is assigned to self.sampling_log.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00415">415</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  415</span>    <span class="keyword">def </span>_Set_sampling_log(self):</div>
-<div class="line"><span class="lineno">  416</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  417</span><span class="stringliteral">        @brief Sets the sampling log metadata for the current sample.</span></div>
-<div class="line"><span class="lineno">  418</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  419</span><span class="stringliteral">        This function generates a unique sampling log ID using the site ID, point ID, and sample date from the current row data.</span></div>
-<div class="line"><span class="lineno">  420</span><span class="stringliteral">        It then creates a sampling log dictionary containing:</span></div>
-<div class="line"><span class="lineno">  421</span><span class="stringliteral">        - The sampling log name (unique ID)</span></div>
-<div class="line"><span class="lineno">  422</span><span class="stringliteral">        - The date stamp of sampling</span></div>
-<div class="line"><span class="lineno">  423</span><span class="stringliteral">        - The email of the person responsible for sampling</span></div>
-<div class="line"><span class="lineno">  424</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  425</span><span class="stringliteral">        @details</span></div>
-<div class="line"><span class="lineno">  426</span><span class="stringliteral">        - Uses self.site_id, self.point_id, and self.row_data_D[&#39;sample_date&#39;] to construct the sampling log ID.</span></div>
-<div class="line"><span class="lineno">  427</span><span class="stringliteral">        - Populates self.sampling_log with relevant metadata for the sample event.</span></div>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00419">419</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  419</span>    <span class="keyword">def </span>_Set_sampling_log(self):</div>
+<div class="line"><span class="lineno">  420</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  421</span><span class="stringliteral">        @brief Sets the sampling log metadata for the current sample.</span></div>
+<div class="line"><span class="lineno">  422</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  423</span><span class="stringliteral">        This function generates a unique sampling log ID using the site ID, point ID, and sample date from the current row data.</span></div>
+<div class="line"><span class="lineno">  424</span><span class="stringliteral">        It then creates a sampling log dictionary containing:</span></div>
+<div class="line"><span class="lineno">  425</span><span class="stringliteral">        - The sampling log name (unique ID)</span></div>
+<div class="line"><span class="lineno">  426</span><span class="stringliteral">        - The date stamp of sampling</span></div>
+<div class="line"><span class="lineno">  427</span><span class="stringliteral">        - The email of the person responsible for sampling</span></div>
 <div class="line"><span class="lineno">  428</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  429</span><span class="stringliteral">        @return None. The sampling log dictionary is assigned to self.sampling_log.</span></div>
-<div class="line"><span class="lineno">  430</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  431</span> </div>
-<div class="line"><span class="lineno">  432</span>        self.sample_log_id = self.site_id+<span class="stringliteral">&#39;_&#39;</span>+self.point_id+<span class="stringliteral">&#39;_&#39;</span>+self.row_data_D[<span class="stringliteral">&#39;sample_date&#39;</span>]</div>
-<div class="line"><span class="lineno">  433</span> </div>
-<div class="line"><span class="lineno">  434</span>        self.sampling_log = {<span class="stringliteral">&quot;name&quot;</span>: self.sample_log_id,</div>
-<div class="line"><span class="lineno">  435</span>                            <span class="stringliteral">&quot;date_stamp&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;sample_date&#39;</span>],</div>
-<div class="line"><span class="lineno">  436</span>                            <span class="stringliteral">&quot;person__email&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;user_email_sampling&#39;</span>]}</div>
+<div class="line"><span class="lineno">  429</span><span class="stringliteral">        @details</span></div>
+<div class="line"><span class="lineno">  430</span><span class="stringliteral">        - Uses self.site_id, self.point_id, and self.row_data_D[&#39;sample_date&#39;] to construct the sampling log ID.</span></div>
+<div class="line"><span class="lineno">  431</span><span class="stringliteral">        - Populates self.sampling_log with relevant metadata for the sample event.</span></div>
+<div class="line"><span class="lineno">  432</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  433</span><span class="stringliteral">        @return None. The sampling log dictionary is assigned to self.sampling_log.</span></div>
+<div class="line"><span class="lineno">  434</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  435</span> </div>
+<div class="line"><span class="lineno">  436</span>        self.sample_log_id = self.site_id+<span class="stringliteral">&#39;_&#39;</span>+self.point_id+<span class="stringliteral">&#39;_&#39;</span>+self.row_data_D[<span class="stringliteral">&#39;sample_date&#39;</span>]</div>
 <div class="line"><span class="lineno">  437</span> </div>
+<div class="line"><span class="lineno">  438</span>        self.sampling_log = {<span class="stringliteral">&quot;name&quot;</span>: self.sample_log_id,</div>
+<div class="line"><span class="lineno">  439</span>                            <span class="stringliteral">&quot;date_stamp&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;sample_date&#39;</span>],</div>
+<div class="line"><span class="lineno">  440</span>                            <span class="stringliteral">&quot;person__email&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;user_email_sampling&#39;</span>]}</div>
+<div class="line"><span class="lineno">  441</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1253,7 +1264,7 @@ It then creates a sampling log dictionary containing:
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00101">101</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00105">105</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1272,7 +1283,7 @@ It then creates a sampling log dictionary containing:
 <div class="line">            <span class="stringliteral">&quot;name&quot;</span>: <span class="stringliteral">&#39;%s_%s&#39;</span> % (<span class="stringliteral">&#39;ai4sh&#39;</span>,self.row_data_D[<span class="stringliteral">&#39;pilot_country&#39;</span>].lower())</div>
 <div class="line">        }</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00347">347</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00351">351</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1283,12 +1294,12 @@ It then creates a sampling log dictionary containing:
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">lib.json_4_Ai4SH.json_db.dst_FP = self.process_parameters.dst_FP</td>
+          <td class="memname">lib.json_4_Ai4SH.json_db.dst_FP = Full_path_locate(self.project_FP, self.process_parameters.dst_FP, True)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00084">84</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00086">86</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1304,7 +1315,7 @@ It then creates a sampling log dictionary containing:
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00134">134</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00138">138</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1320,7 +1331,7 @@ It then creates a sampling log dictionary containing:
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00261">261</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00265">265</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1336,7 +1347,7 @@ It then creates a sampling log dictionary containing:
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00132">132</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00136">136</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1366,7 +1377,7 @@ It then creates a sampling log dictionary containing:
 <div class="line">                          <span class="stringliteral">&quot;person__email&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;user_email_logistic&#39;</span>]}</div>
 <div class="line">                        }</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00377">377</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00381">381</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1382,7 +1393,7 @@ It then creates a sampling log dictionary containing:
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00130">130</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00134">134</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1398,7 +1409,7 @@ It then creates a sampling log dictionary containing:
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00330">330</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00334">334</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1414,7 +1425,7 @@ It then creates a sampling log dictionary containing:
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00219">219</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00223">223</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1433,7 +1444,7 @@ It then creates a sampling log dictionary containing:
 <div class="line">            <span class="stringliteral">&quot;name&quot;</span>: self.point_id</div>
 <div class="line">        }</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00339">339</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00343">343</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1449,7 +1460,7 @@ It then creates a sampling log dictionary containing:
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00332">332</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00336">336</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1465,7 +1476,7 @@ It then creates a sampling log dictionary containing:
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00067">67</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00069">69</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1477,6 +1488,22 @@ It then creates a sampling log dictionary containing:
       <table class="memname">
         <tr>
           <td class="memname">lib.json_4_Ai4SH.json_db.process_parameters_D = dict(list(process.parameters.__dict__.items()))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00070">70</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+
+</div>
+</div>
+<a id="aff70f422590646ee2ffac7f89bdc6646" name="aff70f422590646ee2ffac7f89bdc6646"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff70f422590646ee2ffac7f89bdc6646">&#9670;&#160;</a></span>project_FP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">lib.json_4_Ai4SH.json_db.project_FP = project_FP</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1497,7 +1524,7 @@ It then creates a sampling log dictionary containing:
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00184">184</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00188">188</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1516,7 +1543,7 @@ It then creates a sampling log dictionary containing:
 <div class="line">                    <span class="stringliteral">&quot;min_depth&quot;</span>: int(self.row_data_D[<span class="stringliteral">&#39;min_depth&#39;</span>]),</div>
 <div class="line">                    <span class="stringliteral">&quot;max_depth&quot;</span>: int(self.row_data_D[<span class="stringliteral">&#39;max_depth&#39;</span>])}</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00411">411</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00415">415</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1536,7 +1563,7 @@ It then creates a sampling log dictionary containing:
 <div class="line">                    <span class="stringliteral">&#39;-&#39;</span>+self.row_data_D[<span class="stringliteral">&#39;max_depth&#39;</span>]+\</div>
 <div class="line">                        <span class="stringliteral">&#39;_&#39;</span>+self.row_data_D[<span class="stringliteral">&#39;sample_date&#39;</span>]</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00334">334</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00338">338</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1552,7 +1579,7 @@ It then creates a sampling log dictionary containing:
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00432">432</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00436">436</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1571,7 +1598,7 @@ It then creates a sampling log dictionary containing:
 <div class="line">                            <span class="stringliteral">&quot;date_stamp&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;sample_date&#39;</span>],</div>
 <div class="line">                            <span class="stringliteral">&quot;person__email&quot;</span>: self.row_data_D[<span class="stringliteral">&#39;user_email_sampling&#39;</span>]}</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00434">434</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00438">438</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1590,7 +1617,7 @@ It then creates a sampling log dictionary containing:
 <div class="line">            <span class="stringliteral">&quot;name&quot;</span>: self.site_id</div>
 <div class="line">        }</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00343">343</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00347">347</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1606,7 +1633,7 @@ It then creates a sampling log dictionary containing:
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00331">331</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00335">335</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1622,7 +1649,7 @@ It then creates a sampling log dictionary containing:
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00136">136</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00140">140</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
@@ -1638,7 +1665,7 @@ It then creates a sampling log dictionary containing:
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00138">138</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html#l00142">142</a> of file <a class="el" href="../../dd/dec/json__4___ai4_s_h_8py_source.html">json_4_Ai4SH.py</a>.</p>
 
 </div>
 </div>
