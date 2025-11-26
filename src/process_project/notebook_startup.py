@@ -12,43 +12,56 @@ from os import path
 # Package imports
 from src.utils import Pprint_parameter, Read_json, Get_project_path
 
-def Notebook_initiate(user_project_file, process_file):
+def Clean_pilot_list(user_json_process_L, project_FP, project_D):
     """
-    @brief Initialize notebook project and process files.
+    @brief Cleans a list of JSON process files by removing comments and whitespace.
 
-    This function sets up the notebook environment by reading user project and process files,
-    expanding paths, validating file existence, and collecting relevant JSON process files.
+    This function processes a list of JSON file paths, filtering out any entries that are comments
+    (lines starting with '#') or are too short to be valid file names. It returns a cleaned list
+    of valid JSON file paths.
 
-    @param user_project_file (str): Path to the user project JSON file. May include '~' for home directory.
-    @param process_file (str): Name of the process file to be used within the project directory.
-
-    @return tuple:
-        - user_default_params_D (dict): Dictionary of default parameters loaded from the user project file.
-        - user_json_process_L (list): List of paths to JSON process files for the project.
-
-    @details
-    - Expands '~' in user_project_file path.
-    - Reads and prints user project parameters if verbose is enabled.
-    - Validates existence of project and process files.
-    - If process file contains a job_folder, reads pilot file to collect all JSON process files.
-    - Handles missing or invalid files with informative print statements.
+    @param user_json_process_L (list): List of JSON file paths, potentially containing comments and whitespace.
+    @return list: A cleaned list of valid JSON file paths.
     """
 
-    process_file_FPN = None
+    json_path = path.join(project_FP, project_D["process"]["job_folder"],project_D["process"]["process_sub_folder"])
+    
+    if not path.exists(json_path):
+
+        print('    ❌ ERROR the path to the json process file(s) does not exist:', json_path)
+
+        return None
+    
+    # Clean the list of json objects from comments and white space etc
+    cleaned_list = [x.strip() for x in user_json_process_L if len(x.strip()) > 5 and x.strip()[0] != '#']
+
+    # Clean the list of json objects from comments and whithe space etc
+    cleaned_L = [path.join(json_path,x.strip())  for x in user_json_process_L if len(x) > 5 and x[0] != '#']
+
+    return cleaned_L
+
+def Notebook_initiate(user_project_file, project_file):
 
     # Check if user_project_file is a path with '~' and expand it
     # This is useful for user project files that are stored in the home directory.
+    # TGTODO move the check of the user_project_file to utils
     if user_project_file[0] == '~':
 
         user_project_file = path.expanduser(user_project_file)
 
     if not path.exists(user_project_file):
 
-        print('The user project file does not exist:', user_project_file)
+        print('  ❌ ERROR the user project file does not exist:', user_project_file)
 
-        process_file_FPN = None
+        return None
         
     user_default_params_D = Read_json(user_project_file)
+
+    if not user_default_params_D:
+
+        print('  ❌ ERROR the user project file is empty or not a valid JSON:', user_project_file)
+
+        return None
 
     verbose = user_default_params_D['process'][0]['verbose']
             
@@ -58,79 +71,111 @@ def Notebook_initiate(user_project_file, process_file):
 
     project_FP = Get_project_path('notebook_FP',user_default_params_D['project_path'])
 
-    if project_FP:
+    if not project_FP:
 
-        process_file_FPN = path.join(project_FP,process_file)
+        print('  ❌ ERROR the <project_path> (%s) defined in the user project file does not exist:\n.   %s' %(user_default_params_D['project_path'], user_project_file))
 
-        if path.exists(process_file_FPN):
+        return None
 
-            if verbose:
-                
-                print ('process file:\n    ',process_file_FPN, '\n')
-                
-            if verbose > 1:
+    project_file_FPN = path.join(project_FP,project_file)
 
-                process_D = Read_json(process_file_FPN)
-                        
-                Pprint_parameter( process_D ) 
+    if not path.exists(project_file_FPN):
+
+        print('  ❌ ERROR the project file does not exist:\n    %s' %(project_file_FPN))
+       
+        return None
+
+    # Read the projects file to get the job/process parameters.
+    project_D = Read_json(project_file_FPN)
+
+    if not project_D:
+
+        print('  ❌ ERROR the project file is empty or not a valid JSON:', project_file_FPN)
+
+        return None
+
+    if verbose > 1:
+
+        print ('====== Parameters from project file:')
+
+        Pprint_parameter( project_D )
+
+        print ('======')      
+
+    # look for 1) <pilot_list>, 2) <pilot_file> or 3) <process_file> in that order in the project file
+    if "pilot_list" in project_D["process"]:
+
+        if verbose:
+
+            print ('  Reading process files to run from array <pilot_list>')
+
+        if not isinstance(project_D["process"]["pilot_list"], list):
+
+            print('    ❌ ERROR the object <pilot_list> in the project file should be a list of json files')
+
+            print('    project file with error: %s' %(project_file_FPN))
+            
+            return None
+
+        process_L = project_D["process"]["pilot_list"]
+
+        user_json_process_L = Clean_pilot_list(process_L, project_FP, project_D) 
+
+    elif "pilot_file" in project_D["process"]:
+
+        if verbose:
+
+            print ('  Reading process files to run from <pilot_file>: %s' %(project_D["process"]["pilot_file"]))
+
+        pilot_FPN = path.join(project_FP, project_D["process"]["job_folder"], project_D["process"]["pilot_file"])
+
+        if not path.exists(pilot_FPN):
+
+            print('    ❌ ERROR the pilot file does not exist:', pilot_FPN)
+
+            print('    project file with error: %s' %(project_file_FPN))
+
+            return
+
+        # Open and read the pilottext file linking to all json files defining the project
+        with open(pilot_FPN) as f:
+
+            process_L = f.readlines()
+
+        user_json_process_L = Clean_pilot_list(process_L, project_FP, project_D) 
+
+    # If the object <sub_process_id>, this is not a project file, insted the user_project file points directly to a process file
+    # add that single process file as a list
+    elif isinstance(project_D["process"], list) and'sub_process_id' in project_D['process'][0]:
+
+        process_file = project_file_FPN
+
+        # TGTODO fix a utlis script
+        if process_file[0] == '~':
+
+            process_FPN = path.expanduser(process_file)
 
         else:
 
-            print('The process file does not exist:', process_file_FPN)
+            process_FPN = path.join(project_FP, process_file)
 
-            return None, None
+            if not path.exists(process_FPN):
 
+                print('    ❌ ERROR the process file does not exist:\n    ❌ %s' % process_FPN)
+
+                return None
+        
+            user_json_process_L  = [process_FPN]
+            
     else:
 
-        print('The project path does not exist:', user_default_params_D['project_path'])
+        print('    ❌ ERROR the user project file must contain one the objects <pilot_list>, <pilot_file> or <process_file>:\n    ❌ %s' % project_file_FPN)
 
-        return None, None
-
-    if process_file_FPN:
-
-        # Read the process file to get the process parameters.
-        process_D = Read_json(process_file_FPN)
-
-        if not process_D:
-
-            print('\n❌ The process file is empty or not a valid JSON:', process_file_FPN)
-
-            return None, None
-
-        if "job_folder" in process_D["process"]:
-
-            # If the process file contains a job_folder, expand and read the pilot_file
-            pilot_FPN = path.join(project_FP, process_D["process"]["job_folder"], process_D["process"]["pilot_file"])
-
-            json_path = path.join(project_FP, process_D["process"]["job_folder"],process_D["process"]["process_sub_folder"])
-
-            if path.exists(pilot_FPN):
-
-                if verbose:
-                    
-                    print ('pilot file:\n    ',pilot_FPN, '\n')
-
-            else:
-
-                print('The pilot file does not exist:', pilot_FPN)
-
-                pilot_FPN = None
-
-            # Open and read the pilot text file linking to all json files defining the project
-            with open(pilot_FPN) as f:
-
-                user_json_process_L = f.readlines()
-
-            # Clean the list of json objects from comments and white space
-            user_json_process_L = [path.join(json_path,x.strip())  for x in user_json_process_L if len(x) > 5 and x[0] != '#']
-               
-        else:
-
-            user_json_process_L = [path.join(project_FP, process_file_FPN)]
+        return None                
     
     if verbose > 1:
 
-        print ('Json process files:')
+        print ('  Json process files:')
                 
         for json_file in user_json_process_L:
                 

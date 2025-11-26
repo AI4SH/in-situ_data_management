@@ -10,7 +10,7 @@ Updated on 1 Sept 2025 (doxygen comments added)
 from os import path, makedirs
 
 # Package application imports
-from src.utils import  Read_csv, Delta_days, Dump_json, Full_path_locate
+from src.utils import  Delta_days, Dump_json, Full_path_locate, Remove_path
 
 # Default variables
 COMPULSARY_DATA_RECORDS = ['pilot_country','pilot','pilot_site','sample_id','min_depth','max_depth','sample_date',
@@ -29,6 +29,23 @@ REPLICATE_D = {0:0, '0':0, '1':1, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':
 SUBSAMPLE_D = {'None':None,'a':"a",'b':"b",'c':"c",'d':"d",'e':"e",'f':"f",'g':"g",'h':"h",'i':"i",'j':"j",'k':"k",
                'a1':"a",'a2':"b",'a3':"c",'a4':"d",'b1':"e",'b2':"f",'b3':"g",
                   'c1':"h",'c2':"i",'c3':"j",'d1':"k",'d2':"l",'d3':"m"}
+
+AI4SH_Key_L = ["pilot_site",
+               "point_id",
+               "depth",
+               "sample_id",
+               "sample_preparation__name",
+               "subsample",
+               "replicate",  
+               "instrument-model__name",
+                "instrument_id",
+                "instrument_setting",
+                "sample_analysis_date",
+                "license",
+                "doi",
+                "user_analysis__email"]
+
+AI4SH_ossl_wetlab_L = ["Total organic carbon","Clay (<0,002 mm)","pH (water)"]
 
 class json_db:
     """
@@ -136,6 +153,10 @@ class json_db:
             self.method_D = distill_D
         elif parameter_id == 'equipment':
             self.equipment_D = distill_D
+        elif parameter_id == 'equipment_model':
+            self.equipment_model_D = distill_D
+        elif parameter_id == 'equipment_id':
+            self.equipment_id_D = distill_D
         elif parameter_id == 'unit':
             self.unit_D = distill_D
         elif parameter_id == 'url':
@@ -163,12 +184,12 @@ class json_db:
 
         for key in self.equipment_D:
             if key not in self.unit_D:
-                print(f" ❌ ERROR - unit <{key}> is missing in the parameter dictionary")
+                print(f" ❌ ERROR - unit <{key}> is missing in the equipment dictionary")
                 return False
 
         for key in self.unit_D:
             if key not in self.method_D:
-                print(f" ❌ ERROR - method <{key}> is missing in the parameter dictionary")
+                print(f" ❌ ERROR - method <{key}> is missing in the unit dictionary")
                 return False
 
         return True
@@ -316,7 +337,7 @@ class json_db:
 
                 self.equipment_method_D[self.equipment_D[key]][self.method_D[key]].append(observation_D)
 
-    def _Set_pilot_site_point_sample_id(self):
+    def _Set_pilot_site_point(self):
         """
         @brief Sets unique identifiers for pilot, site, point, and sample, and initializes related metadata dictionaries.
 
@@ -476,6 +497,23 @@ class json_db:
         except:
 
             return None
+        
+    def _Assemble_ossl_csv(self):
+
+        self.record_D['license'] = 'only for use by AI4SH'
+        #self.record_D['license2'] = 'Not to be shared outside AI4SH'
+        self.record_D['doi'] = "not_yet_published"
+        self.record_D['instrument_setting'] = "not recorded"
+        self.record_D['depth'] = '%s-%s' %(self.record_D['min_depth'],self.record_D['max_depth'])
+        print ('AI4SH_Key_L',AI4SH_Key_L)
+        #foss_csv_value_L = [self.record_D[item] for item in AI4SH_Key_L]
+        neon_csv_value_L = [self.record_D[item] for item in AI4SH_Key_L]
+
+        #interpolated_ns_array = Interpolate_spectra(self.wavelength_L, self.record_D['value']['spectra'], 1350, 2550, 2, True)[0]
+
+        neon_csv_value_L.extend(BALLE)
+
+        self.neon_values_L.append(neon_csv_value_L)
 
     def _Dump_sample_json(self, sample_event):
         """
@@ -500,7 +538,7 @@ class json_db:
         print('Json post created:',dst_FPN)
 
 
-def Loop_data_records(project_FP,process, column_L, data_L_L, all_parameter_D, unit_D, method_D, equipment_D, std_row = None):
+def Loop_csv_data_records(project_FP,process, column_L, data_L_L, all_parameter_D, unit_D, method_D, equipment_D, equipment_model_D, equipment_id_D, std_row = None):
     """
     @brief Processes CSV data records and exports them to hierarchical JSON format for AI4SH in-situ data management.
 
@@ -535,6 +573,19 @@ def Loop_data_records(project_FP,process, column_L, data_L_L, all_parameter_D, u
 
     @return None if any error occurs during processing, otherwise creates JSON files for each sample event.
     """
+
+    if process.overwrite:
+
+        print('Overwrite is set to True, all existing JSON files will be deleted before processing new data')
+
+        for item in ['ai4sh','xspectre','ossl']:
+
+            dst_FP= '%s_%s' %(process.parameters.dst_FP,item)
+
+            dst_FP = Full_path_locate(project_FP, dst_FP, True)
+
+            Remove_path(dst_FP)
+
     # Initiate the json_db class
     json_db_C = json_db(project_FP,process)
 
@@ -547,7 +598,7 @@ def Loop_data_records(project_FP,process, column_L, data_L_L, all_parameter_D, u
     parameter_id_L =['parameter','method','equipment','unit']
 
     # Distill the parameter, method, equipment and unit dictionaries
-    for i, item in enumerate([all_parameter_D, method_D, equipment_D, unit_D]):
+    for i, item in enumerate([all_parameter_D, method_D, equipment_D, equipment_model_D, equipment_id_D, unit_D]):
  
         result = json_db_C._Distill_parameters( item, parameter_id_L[i])
 
@@ -585,7 +636,7 @@ def Loop_data_records(project_FP,process, column_L, data_L_L, all_parameter_D, u
         json_db_C._Get_observation_measurements(data_row)
 
         # Set the ids for pilot, site, point and sample
-        json_db_C._Set_pilot_site_point_sample_id()
+        json_db_C._Set_pilot_site_point()
 
         # Set the observation metadata
         result = json_db_C._Set_observation_metadata()
@@ -613,97 +664,5 @@ def Loop_data_records(project_FP,process, column_L, data_L_L, all_parameter_D, u
             print('❌ Error creating JSON post')
 
             return None
-
-def Parameters_fix(project_FP,method_src_FPN):
-    """
-    @brief Extracts parameter, unit, method, and equipment dictionaries from a method definition CSV file.
-
-    @details
-    This function reads a method definition CSV file, processes its contents, and returns four dictionaries mapping headers to their respective parameter, unit, method, and equipment values. It performs the following steps:
-    - Checks if the provided file path exists.
-    - Reads the CSV file and unpacks the header and data rows.
-    - Normalizes header and row values to lowercase and replaces missing values with None.
-    - Constructs column-wise lists for each header.
-    - Creates dictionaries for parameters, units, methods, and equipment using the header as keys.
-
-    @param method_src_FPN Absolute file path to the method definition CSV file.
-
-    @return Tuple containing:
-        - parameter_D (dict): Maps header to parameter name.
-        - unit_D (dict): Maps header to unit name.
-        - method_D (dict): Maps header to method name.
-        - equipment_D (dict): Maps header to equipment name.
-        Returns None if the file does not exist or if an error occurs during processing.
-
-    @exception Prints error messages if the file path does not exist or if dictionary creation fails.
-    """
-
-    data_pack = Data_read(project_FP,method_src_FPN)
-    
-    if not data_pack:
         
-        return None
-
-    # Unpack the CSV to a header column list and a list of lists of data rows
-    column_L, data_L_L = data_pack
-
-    # Convert header column names to lowercase
-    column_L = [col.strip().lower() for col in column_L]
-
-    # Create a dictionary to hold column data
-    column_D = {}
-
-    for item in column_L:
-
-        column_D[item] = []
-
-    # Loop over the data rows and populate the column data dictionary
-    for row in data_L_L:
-
-        for c, col in enumerate(column_L):
-
-            row_item = row[c].strip().lower()
-
-            if row_item.lower() in ['na', 'none', 'n/a', 'nan', '', 'null']:
-
-                row[c] = None
-
-            column_D[col].append(row_item)
-
-    # Create a parameter dictionary
-    try:
-
-        parameter_D = dict(zip(column_D['header'], column_D['parameter']))
-
-    except:
-
-        print("❌ Error creating parameter dictionary - check header: %s" %(column_D['header']))
-
-    # Create a unit dictionary from the column data
-    unit_D = dict(zip(column_D['header'], column_D['unit']))
-
-    # Create a method dictionary from the column data
-    method_D = dict(zip(column_D['header'], column_D['method']))
-
-    # Create an equipment dictionary from the column data
-    equipment_D = dict(zip(column_D['header'], column_D['equipment']))
-    
-    return parameter_D, unit_D, method_D, equipment_D
-
-def Data_read(project_FP,data_FPN):
-
-    data_FPN = Full_path_locate(project_FP, data_FPN)
-   
-    if not path.exists(data_FPN):
-
-        print ("❌ The data path does not exist: %s" % (data_FPN))
-
-        return None
-
-    data_pack = Read_csv(data_FPN)
-
-    if not data_pack:
-        
-        return None
-    
-    return data_pack
+        json_db_C._Assemble_ossl_csv()

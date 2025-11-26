@@ -34,18 +34,21 @@ def Read_json(FPN,verbose=0):
         return None
 
     # Opening JSON file 
-    f = open(FPN,) 
+    #f = open(FPN,) 
+    with open(FPN) as f:
 
-    # returns JSON object
-    try:
+        # returns JSON object
+        try: 
+            
+            json_D = json.load(f)
         
-        return json.load(f)
-    
-    except:
-            
-        msg = 'Error reading json file: %s' %(FPN)
-            
-        return None
+        except:
+                
+            msg = 'Error reading json file: %s' %(FPN)
+                
+            return None
+        
+    return json_D
     
 def Dump_json(FPN, data, indent=2, verbose=0):
     """
@@ -63,6 +66,16 @@ def Dump_json(FPN, data, indent=2, verbose=0):
 
     with open(FPN, 'w') as outfile:
         
-        json.dump(data, outfile, indent=indent)
+        try:
+
+            json.dump(data, outfile, indent=indent)
+
+        except:
+
+            msg = '❌ Error writing json file: %s' %(FPN)
+            
+            print (msg)
+            
+            return None
         
-    return
+    return True

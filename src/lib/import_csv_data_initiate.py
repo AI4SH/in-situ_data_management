@@ -33,13 +33,22 @@ def Initiate_process(user_project_file, process_file):
 
     user_project_file = Full_path_locate('None',user_project_file)
 
-    # Load user project and process file
-    user_default_params_D, process_file_FPN_L = Notebook_initiate(user_project_file, process_file)
+    # Load user project and process files
+    success = Notebook_initiate(user_project_file, process_file)
 
+    if not success:
+
+        return None
+
+    user_default_params_D, process_file_FPN_L = success
+
+    # The process_file_FPN_L is a list of full paths to the process files to run with this job
     if process_file_FPN_L:
 
+        # Check and structure the process files
         json_job_D = Structure_processes(user_default_params_D, process_file_FPN_L)
 
+        # Run the structured processes
         Manage_process(user_default_params_D['project_path'],json_job_D)
 
         print ('Done')

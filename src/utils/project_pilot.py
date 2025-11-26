@@ -404,10 +404,10 @@ def Full_path_locate(orignal_start_FP, path_string, dir_make = False):
 
     if not path.exists(FPN):
 
-        msg = 'Path does not exist:\n   %s' %(FPN)
+        msg = '❌ ERROR path does not exist:\n   %s' %(FPN)
 
         print(msg)
 
-        return
+        return None
 
     return FPN

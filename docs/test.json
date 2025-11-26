@@ -1,0 +1,72 @@
+{
+  "process": [
+    {
+      "overwrite": false,
+      "sub_process_id": "import_xspectre_json_v089",
+      "parameters": {
+        "pilot_country": "FI",
+        "pilot_site": "Jokionen",
+        "procedure": "xspectre-penetrometer",
+        "instrument-brand__name": "ComWinTop",
+        "instrument-model__name": "npkphcth-s",
+        "sample_preparation__name": "mx-lab",
+        "user_sampling__email": "thomasg@xspectre.com",
+        "user_logistic__email": "thomasg@xspectre.com",
+        "user_analysis__email": "thomasg@xspectre.com",
+        "data_src_FP": "/Users/thomasgumbricht/docs-local/xspectre-campaigns/scans/AI4FH_FI_jokioinen/jokioinen/soil/npkphcth-s",
+        "dst_FP": "xspectre_npkphcth-s/database"
+      }
+    },
+    {
+        "overwrite": false,
+        "sub_process_id": "import_xspectre_json_v089",
+        "parameters": {
+          "pilot_country": "HR",
+          "pilot_site": "Neretva",
+          "procedure": "xspectre-penetrometer",
+          "instrument-brand__name": "ComWinTop",
+          "instrument-model__name": "npkphcth-s",
+          "sample_preparation__name": "field",
+          "user_sampling__email": "thomasg@xspectre.com",
+          "user_logistic__email": "thomasg@xspectre.com",
+          "user_analysis__email": "thomasg@xspectre.com",
+          "data_src_FP": "/Users/thomasgumbricht/docs-local/xspectre-campaigns/scans/AI4FH_HR_neretva/neretva/soil/npkphcth-s/field",
+          "dst_FP": "xspectre_npkphcth-s/database"
+        }
+      },
+      {
+        "overwrite": false,
+        "sub_process_id": "import_xspectre_json_v089",
+        "parameters": {
+          "pilot_country": "HR",
+          "pilot_site": "Neretva",
+          "procedure": "xspectre-penetrometer",
+          "instrument-brand__name": "ComWinTop",
+          "instrument-model__name": "npkphcth-s",
+          "sample_preparation__name": "mx-lab",
+          "user_sampling__email": "thomasg@xspectre.com",
+          "user_logistic__email": "thomasg@xspectre.com",
+          "user_analysis__email": "thomasg@xspectre.com",
+          "data_src_FP": "/Users/thomasgumbricht/docs-local/xspectre-campaigns/scans/AI4FH_HR_neretva/neretva/soil/npkphcth-s/lab",
+          "dst_FP": "xspectre_npkphcth-s/database"
+        }
+      },
+      {
+        "overwrite": false,
+        "sub_process_id": "import_xspectre_json_v089",
+        "parameters": {
+          "pilot_country": "NL",
+          "pilot_site": "Boermarke-Zeijen",
+          "procedure": "xspectre-penetrometer",
+          "instrument-brand__name": "ComWinTop",
+          "instrument-model__name": "npkphcth-s",
+          "user_sampling__email": "thomasg@xspectre.com",
+          "user_logistic__email": "thomasg@xspectre.com",
+          "user_analysis__email": "thomasg@xspectre.com",
+          "data_src_FP": "/Users/thomasgumbricht/docs-local/xspectre-campaigns/scans/AI4FH_NL_norg/norg/soil/npkphcth-s",
+          "dst_FP": "xspectre_npkphcth-s/database"
+        }
+      }
+    }
+  ]
+}

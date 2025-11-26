@@ -9,7 +9,6 @@ Created on 4 Jan 2024
 import csv  
 
 from os import path
-    
 
 def Read_csv(FPN, mode = 'r'):
 
@@ -67,3 +66,22 @@ def Write_txt_L(FPN, data_L):
     with open(FPN, 'w') as txt_file:
         for line in data_L:
             txt_file.write(line)    
+
+def Write_csv_header_data(FPN, column_L, data_L_L, mode = 'w', lineterminator='\n'):
+    """
+    @brief Writes a CSV file with a header and data rows.
+
+    @param FPN Full path name to the output CSV file.
+    @param column_L List of column headers.
+    @param data_L_L List of rows, each row is a list of values.
+    @param mode File open mode (default is 'w').
+    @param lineterminator Line terminator character (default is newline).
+    """
+
+    with open(FPN, mode, newline='') as csv_file:
+
+        csvwriter = csv.writer(csv_file, lineterminator=lineterminator)
+
+        csvwriter.writerow(column_L)
+
+        csvwriter.writerows(data_L_L)
