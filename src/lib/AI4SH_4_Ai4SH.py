@@ -550,15 +550,6 @@ def Process_ai4sh_csv(project_FP,process, column_L, data_L_L, all_parameter_D, u
 
     #global position_date_F
 
-    coordinate_D = Coordinates_fix(project_FP,process.parameters.coordinates_FPN)
-
-    #position_date_FPN = "/Users/thomasgumbricht/projects/ai4sh_sueloanalys/coordinates/AI4SH_point_name_position_sampledate"
-    
-    #position_date_FPN = '%s_%s.csv' % (position_date_FPN, process.parameters.pilot_site.lower())
-
-    #position_date_F = open(position_date_FPN, 'w')
-    #position_date_F.write('pilot_country,pilot_site,sampling_log,point_id,sample_date,min_depth,max_depth,position_name,setting,latitude,longitude\n')
-
     if process.overwrite:
 
         print('Overwrite is set to True, all existing JSON files will be deleted before processing new data')
@@ -570,6 +561,16 @@ def Process_ai4sh_csv(project_FP,process, column_L, data_L_L, all_parameter_D, u
             dst_FP = Full_path_locate(project_FP, dst_FP, True)
 
             Remove_path(dst_FP)
+
+    coordinate_D = Coordinates_fix(project_FP,process.parameters.point_name_position_sampledate_FPN)
+
+    if not coordinate_D:
+
+        print ('❌  ERROR - reading the location, setting, sample date and coordinate csv file failed.')
+
+        print('❌  File: %s' % (process.parameters.point_name_position_sampledate_FPN))
+
+        return None
             
     # Initiate the json_db class
     #json_db_C = json_db(project_FP,process)

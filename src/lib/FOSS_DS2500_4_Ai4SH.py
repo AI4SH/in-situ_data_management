@@ -796,14 +796,6 @@ def Process_ds2500_csv(project_FP,process, column_L, data_L_L, all_parameter_D, 
     @return None if any error occurs during processing, otherwise creates JSON files for each sample event.
     """
 
-    if hasattr(process.parameters, 'coordinates_FPN'):
-
-        coordinate_D = Coordinates_fix(project_FP,process.parameters.coordinates_FPN)
-
-    else:
-
-        coordinate_D = None
-
     if process.overwrite:
 
         print('Overwrite is set to True, all existing JSON files will be deleted before processing new data')
@@ -815,6 +807,16 @@ def Process_ds2500_csv(project_FP,process, column_L, data_L_L, all_parameter_D, 
             dst_FP = Full_path_locate(project_FP, dst_FP, True)
 
             Remove_path(dst_FP)
+
+    coordinate_D = Coordinates_fix(project_FP,process.parameters.point_name_position_sampledate_FPN)
+
+    if not coordinate_D:
+
+        print ('❌  ERROR - reading the location, setting, sample date and coordinate csv file failed.')
+
+        print('❌  File: %s' % (process.parameters.point_name_position_sampledate_FPN))
+
+        return None
             
     # Initiate the json_db class
     #json_db_C = json_db(project_FP,process)

@@ -137,7 +137,7 @@ def Notebook_initiate(user_project_file, project_file):
 
             return
 
-        # Open and read the pilottext file linking to all json files defining the project
+        # Open and read the pilot text file linking to all json files defining the project
         with open(pilot_FPN) as f:
 
             process_L = f.readlines()

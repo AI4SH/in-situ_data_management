@@ -624,7 +624,8 @@ class common_json_db:
         if not locus in self.coordinate_D:
 
             print ('❌  ERROR - locus not found in coordinate_D: '+locus)
-            print (' To fix this problem make sure to add the locus to the file:\n %s' %(self.process_parameters.coordinates_FPN))
+            
+            print (' To fix this problem make sure to add the locus to the file:\n %s' %(self.process_parameters.point_name_position_sampledate_FPN))
 
             return None
         

@@ -104,11 +104,11 @@ def Import_csv_coordinates(project_FP,process):
     """
 
     # Check and read the methodWARNING sub_process_id csv file
-    data_pack = Coordinates_fix(project_FP,process.parameters.coordinates_FPN)
+    data_pack = Coordinates_fix(project_FP,process.parameters.point_name_position_sampledate_FPN)
  
     if not data_pack:
 
-        print('❌ Error in coordinates:',process.parameters.coordinates_FPN)
+        print('❌ Error in coordinates:',process.parameters.point_name_position_sampledate_FPN)
 
         return None
 

@@ -101,7 +101,7 @@ def Parameters_fix(project_FP,method_src_FPN):
 
     return parameter_D, unit_D, method_D, equipment_D, equipment_model_D, equipment_id_D
 
-def Coordinates_fix(project_FP,coordinates_FPN):
+def Coordinates_fix(project_FP,point_name_position_sampledate_FPN):
     """
     @brief Extracts parameter, unit, method, and equipment dictionaries from a method definition CSV file.
 
@@ -125,7 +125,7 @@ def Coordinates_fix(project_FP,coordinates_FPN):
     @exception Prints error messages if the file path does not exist or if dictionary creation fails.
     """
 
-    data_pack = Data_read(project_FP,coordinates_FPN)
+    data_pack = Data_read(project_FP,point_name_position_sampledate_FPN)
     
     if not data_pack:
         
@@ -147,7 +147,7 @@ def Coordinates_fix(project_FP,coordinates_FPN):
 
         #locus_date = '%s-%s_%s' %(row[0].lower(),row[1].lower(),row[2].lower()) 
 
-        locus = '%s-%s_%s' %(row[0].lower(),row[1].lower(),row[3])  
+        locus = row[3].lower() 
 
         #coordinate_D[locus_date] = {'latitude': float(row[3]),
         #                                    'longitude': float(row[4])}
@@ -155,6 +155,7 @@ def Coordinates_fix(project_FP,coordinates_FPN):
         coordinate_D[locus] = dict(zip(column_L, row))
 
         coordinate_D[locus]['latitude'] = float(coordinate_D[locus]['latitude'])
+        
         coordinate_D[locus]['longitude'] = float(coordinate_D[locus]['longitude'])
 
     return coordinate_D

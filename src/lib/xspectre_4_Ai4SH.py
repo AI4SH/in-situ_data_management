@@ -2234,15 +2234,27 @@ def Process_xspectre_json_v089(project_FP, process):
             Remove_path(dst_FP)
 
     # Get the global file for locus, sample date and coordinates
-    if not path.exists(process.parameters.coordinates_FPN):
+ 
 
-        print ('❌  ERROR - you must link to a csv file with locations, settings, sample dates and coordinates.')
+    #point_name_position_sampledate_FPN = Full_path_locate(project_FP,process.parameters.point_name_position_sampledate_FPN)
 
-        print('❌  File not found: %s' % (process.parameters.coordinates_FPN))
+    #if point_name_position_sampledate_FPN is None:
+
+    #    print ('❌  ERROR - you must link to a csv file with locations, settings, sample dates and coordinates.')
+
+    #    print('❌  File not found: %s' % (process.parameters.point_name_position_sampledate_FPN))
+
+    #    return None
+
+    coordinate_D = Coordinates_fix(project_FP,process.parameters.point_name_position_sampledate_FPN)
+
+    if not coordinate_D:
+
+        print ('❌  ERROR - reading the location, setting, sample date and coordinate csv file failed.')
+
+        print('❌  File: %s' % (process.parameters.point_name_position_sampledate_FPN))
 
         return None
-
-    coordinate_D = Coordinates_fix(project_FP,process.parameters.coordinates_FPN)
 
     for json_FPN in json_FPN_L:
 
