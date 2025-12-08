@@ -14,23 +14,11 @@ import numpy as np
 from scipy.special import exp10
 
 # Package application imports
-from src.utils import  Full_path_locate, Remove_path
-
 from src.lib import Coordinates_fix, Interpolate_spectra
 
 from .common import common_json_db
 
 # Default variables
-COMPULSARY_DATA_RECORDS = ['pilot_country','pilot_site','sample_id','min_depth','max_depth','sample_date',
-                                'sample_preparation__name','subsample','replicate','sample_analysis_date','sample_preservation__name',
-                                'sample_transport__name','transport_duration_h','sample_storage__name','user_analysis__email',
-                                'user_sampling__email','user_logistic__email', 'procedure',
-                                'instrument-brand__name','instrument-model__name','instrument_id',
-                                'analysis_method__name']
-
-PARAMETERS_WITH_ASSUMED_DEFAULT = ['sample_preparation__name','sample_preservation__name','sample_transport__name','sample_storage__name','transport_duration_h','replicate','subsample']
-
-ASSUMED_DEFAULT_VALUES = [None,None,None,None,0,0,'a']
 
 LOENNSTORP_POINT_ID_D = {'4':'4-a','04':'4-a','5':'5-a','16':'16-a','20':'20-a','24':'24-a',
                          '51':'51-c','55':'55-c','60':'60-c','61':'61-c','72':'72-c',
@@ -63,7 +51,7 @@ AI4SH_Key_L = ["pilot_site",
                "sample_preparation__name",
                "subsample",
                "replicate",  
-               "instrument-model__name",
+               "instrument_model__name",
                 "instrument_id",
                 "instrument_setting",
                 "sample_analysis_date",
@@ -71,38 +59,6 @@ AI4SH_Key_L = ["pilot_site",
                 "doi",
                 "user_analysis__email"]
     
-AI4SH_Key_OLD_L = [    "subsample",
-            "replicate",
-            "sample_id", 
-            "depth",
-            "pilot_site",
-            "analysis_date",
-            "instrument_model__name",
-            "instrument_id",
-            "instrument_setting",
-            "sample_preparation__name",
-            "scan.visnir.license.title_ascii_txt",
-            "scan.visnir.license.address_idn_url",
-            "scan.visnir.doi_idf_url",
-            "scan.visnir.contact.name_utf8_txt",
-            "scan.visnir.contact.email_ietf_txt"]
-
-OSSL_Foss_Value_OLD_L = ["subsample",
-                     "replicate",
-                     "sample_id",
-                    "depth",
-                    "pilot_site",
-                    "sample_analysis_date",
-                    "instrument-model__name",
-                    "instrument_id",
-                    "instrument_setting",
-                    "sample_preparation__name",
-                    "license1",
-                    "license2",
-                    "doi",
-                    "user_sampling__email",
-                    "user_analysis__email"]
-
 class json_db(common_json_db):
     """
     @class json_db
@@ -137,86 +93,6 @@ class json_db(common_json_db):
 
         common_json_db.__init__(self, project_FP,process, coordinate_D)
 
-    def _Set_column_L(self, column_L):
-        """
-        @brief Cleans and normalizes a list of column headers.
-
-        This function processes the input list of column headers by:
-        - Removing any leading Byte Order Mark (BOM) characters and whitespace.
-        - Converting all column names to lowercase.
-        - Replacing values that indicate missing data (e.g., 'na', 'none', 'n/a', 'nan', '', 'null') with None.
-
-        @param column_L List of column header strings to be cleaned and normalized.
-
-        @return None. The cleaned list is assigned to self.column_L.
-        """
-
-        self.column_L = [col.replace('\ufeff','').strip().lower() for col in column_L]
-
-        self.column_L = [col.replace('"','') for col in self.column_L]
-
-
-        self.column_L = [None if col in ['na', 'none', 'n/a', 'nan', '', 'null'] else col for col in self.column_L]
-
-    def _Distill_parameters(self, dict_D, parameter_id):
-        """
-        @brief Distills relevant parameters from a dictionary based on the column headers and assigns them to the appropriate attribute.
-
-        This function checks each item in self.column_L against the provided dictionary dict_D. If the item exists and its value is not 'none',
-        it is added to a distilled dictionary. If an item is missing, an error message is printed and None is returned. The distilled dictionary
-        is then assigned to the corresponding attribute (parameter_D, method_D, equipment_D, unit_D, or url_D) based on the parameter_id argument.
-
-        @param dict_D Dictionary containing parameter values to be distilled.
-        @param parameter_id String specifying which attribute to assign the distilled dictionary to. Accepted values: 'parameter', 'method', 'equipment', 'unit', 'url'.
-
-        @return True if successful, None if a required parameter is missing.
-        """
-
-        distill_D = {}
-
-        for i,item in enumerate(self.column_L):
-
-            if i >= 4:
-
-                break
-
-            item = item.replace('\ufeff','').lower()
-
-            if item in dict_D:
-
-                if dict_D[item] != 'none':
-
-                    distill_D[item] = dict_D[item]
-                    
-            else:
-
-                print(' ❌ ERROR - parameter <%s> is missing in the header dictionary' %(item))
-               
-                print('  Check the header definition file: %s' %(self.process_parameters.method_src_FPN))
-               
-                print('  and/or the data file: %s' %(self.process_parameters.data_src_FPN))
-               
-                return None
-        
-        if parameter_id == 'parameter':
-            self.parameter_D = distill_D
-        elif parameter_id == 'method':
-            self.method_D = distill_D
-        elif parameter_id == 'equipment':
-            self.equipment_D = distill_D
-        elif parameter_id == 'equipment_model':
-            self.equipment_model_D = distill_D
-        elif parameter_id == 'equipment_id':
-            self.equipment_id_D = distill_D
-        elif parameter_id == 'unit':
-            self.unit_D = distill_D
-        elif parameter_id == 'url':
-            self.url_D = distill_D
-
-        self.inverse_parameter_D = {v: k for k, v in self.parameter_D.items()}
-        
-        return True
-
     def _Get_wavelengths(self,column_L):
         """
         @brief Extracts and processes wavelength data from the record dictionary.
@@ -249,11 +125,6 @@ class json_db(common_json_db):
         self.record_D = dict(zip(self.column_L[0:1], row_data[0:1]))
    
         self.record_D['spectra'] = row_data[1:]
-
-        #self.record_D['spectra'] = (float(i) for i in self.record_D['spectra'])
-
-        #self.record_D['spectra_A'] = 1/np.exp(np.array(self.record_D['spectra']) )
-
 
     def _Rearrange_row_data_2_record(self):
 
@@ -631,8 +502,6 @@ class json_db(common_json_db):
 
         self.record_D['replicate'] =  '0'
 
-        #self.record_D['sample_preparation__name'] = sample_name_parts[-3].lower()
-
         self.record_D['sample_id'] = '%s-%s' %(sample_name_parts[0].lower(), sample_name_parts[1].lower())
         
         self.record_D['point_id'] =  self.record_D['sample_id']
@@ -641,102 +510,17 @@ class json_db(common_json_db):
 
         return True
        
-    def _Add_compulsary_default_parameters(self):
-        """
-        @brief Adds compulsory parameters with assumed default values to the process parameters dictionary if they are missing.
-
-        This function checks for each parameter listed in PARAMETERS_WITH_ASSUMED_DEFAULT whether it exists in self.process_parameters_D.
-        If a parameter is missing, it assigns the corresponding value from ASSUMED_DEFAULT_VALUES and prints a warning message.
-
-        @return None
-        """
-
-        default_D = dict(zip(PARAMETERS_WITH_ASSUMED_DEFAULT, ASSUMED_DEFAULT_VALUES))
-
-        for parameter in default_D:
-
-            if not parameter in self.process_parameters_D:
-
-                self.process_parameters_D[parameter] = default_D[parameter]
-
-                print (' ⚠️ WARNING - assuming default value <%s> for  parameter <%s>' %(default_D[parameter], parameter))
-
-    def _Check_set_compulsary_record_parameters(self):
-        """
-        @brief Ensures all compulsory record parameters are set in the row data dictionary.
-
-        This function checks and sets compulsory parameters required for a data record. If the 'pilot' column is missing,
-        it assumes its value is equal to 'pilot_site' and issues a warning. For each compulsory parameter, if it is missing
-        or empty in the row data, the function attempts to set it from the process parameters dictionary. If the parameter
-        cannot be found, an error message is printed with instructions for resolving the issue.
-
-        @details
-        - If 'pilot' is not present in the column list, its value is set to 'pilot_site'.
-        - Iterates through COMPULSARY_DATA_RECORDS to ensure each is present and non-empty in row_data_D.
-        - If a compulsory parameter is missing, attempts to set it from process_parameters_D.
-        - Prints error and instructions if a compulsory parameter cannot be found.
-
-        @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.
-        """
-        
-        for item in COMPULSARY_DATA_RECORDS:
-
-            if item not in self.record_D:
-
-                if item in self.process_parameters_D:
-
-                    self.record_D[item] = self.process_parameters_D[item]
-
-                #elif item in self.inverse_parameter_D:
-                    
-                #    self.record_D[item] = self.record_D[self.inverse_parameter_D[item]]
-
-                else:
-
-                    print ('❌  ERROR - compulsory data not found: '+item)
-
-                    print (' You can add <'+item+'> parameter to either:')
-
-                    print('  - the method header definition file: %s' %(self.process_parameters.method_src_FPN))
-                    
-                    print('  - or the data file: %s' %(self.process_parameters.data_src_FPN))
-
-                    return None
-
-        return True
-
-    def _Set_site_point_id(self):
-        """
-        @brief Sets unique identifiers for pilot, site, point, and sample, and initializes related metadata dictionaries.
-
-        This function processes the current row data to generate normalized and unique IDs for pilot, site, point, and sample.
-        It also creates metadata dictionaries for point, site, and data source, which are used in subsequent data structuring.
-
-        @details
-        - Normalizes and formats the 'pilot', 'pilot_site', and 'sample_id' fields from the row data.
-        - Constructs a unique sample ID using site, point, depth, and date information.
-        - Initializes dictionaries for point, site, and data source metadata.
-
-        @return None
-        """
-        
-        self.record_D['site_id'] = '%s-%s' % (self.record_D['pilot_country'], self.record_D['pilot_site'])
-
-        self.record_D['point_id'] = self.record_D['sample_id']
-
-    def _Assemble_fosa_csv(self):
+    def _Assemble_foss_csv(self):
 
         self.record_D['license'] = 'only for use by AI4SH'
-        #self.record_D['license2'] = 'Not to be shared outside AI4SH'
+
         self.record_D['doi'] = "not_yet_published"
+
         self.record_D['instrument_setting'] = "not recorded"
+
         self.record_D['depth'] = '%s-%s' %(self.record_D['min_depth'],self.record_D['max_depth'])
-        print ('AI4SH_Key_L',AI4SH_Key_L)
+
         ossl_csv_value_L = [self.record_D[item] for item in AI4SH_Key_L]
-
-        #for i in range(350, 399, 2):
-
-        #    ossl_csv_value_L.append('NA')
 
         interpolated_ns_array = Interpolate_spectra(self.wavelength_L, self.record_D['value']['spectra'], 400, 2500, 2, False)[0]
 
@@ -796,18 +580,6 @@ def Process_ds2500_csv(project_FP,process, column_L, data_L_L, all_parameter_D, 
     @return None if any error occurs during processing, otherwise creates JSON files for each sample event.
     """
 
-    if process.overwrite:
-
-        print('Overwrite is set to True, all existing JSON files will be deleted before processing new data')
-
-        for item in ['ai4sh','xspectre','ossl']:
-
-            dst_FP= '%s_%s' %(process.parameters.dst_FP,item)
-
-            dst_FP = Full_path_locate(project_FP, dst_FP, True)
-
-            Remove_path(dst_FP)
-
     coordinate_D = Coordinates_fix(project_FP,process.parameters.point_name_position_sampledate_FPN)
 
     if not coordinate_D:
@@ -829,18 +601,7 @@ def Process_ds2500_csv(project_FP,process, column_L, data_L_L, all_parameter_D, 
 
     # Clean and set the column headers
     json_db_C._Set_column_L(column_L)
-    '''
-    parameter_id_L =['parameter','method','equipment','equipment_model','equipment_id','unit']
 
-    # Distill the parameter, method, equipment and unit dictionaries
-    for i, item in enumerate([all_parameter_D, method_D, equipment_D, equipment_model_D, equipment_id_D, unit_D]):
- 
-        result = json_db_C._Distill_parameters( item, parameter_id_L[i])
-
-        if not result:
-
-            return None
-    ''' 
     json_db_C._Get_wavelengths(column_L)
 
     # Add compulsary parameters with default values if they are not set in the csv data file
@@ -905,46 +666,6 @@ def Process_ds2500_csv(project_FP,process, column_L, data_L_L, all_parameter_D, 
 
             return None
         
-        '''
-        # Check that all compulsory parameters are set in the row data dictionary 
-        # Missing parameters are set from the process parameters dictionary
-        result = json_db_C._Check_set_compulsary_record_parameters()
-
-        if not result:
-
-            return None
-        
-         # Set the point_id - must be before _Set_sampling_log
-        json_db_C._Set_site_point_id()
-
-        # Set the sampling log - must be before _Set_sample
-        json_db_C._Set_sampling_log()
-
-        # Set the sample parameters
-        json_db_C._Set_sample()
-
-        # Check the final record and set calculated parameters
-        success = json_db_C._Check_set_final_record(project_FP)
-
-        if not success:
-
-            return None
-
-        # Set the observation metadata
-        result = json_db_C._Set_observation_metadata()
-
-        if not result:
-
-            return None
-
-        # Set the ids for pilot, site, point and sample
-        result = json_db_C._Set_pilot_site_point()
-
-        #json_db_C._Set_analysis_method()
-        
-        # Attach the observation measurements to the equipment_method_D dictionary 
-        json_db_C._Get_observation_measurements()
-        '''
         # ===== Reorganise all inpit data into a single record dictionary =====
 
         # Check that all compulsory parameters are set in the row data dictionary 
@@ -972,8 +693,6 @@ def Process_ds2500_csv(project_FP,process, column_L, data_L_L, all_parameter_D, 
         # Set sample id
         json_db_C._Set_sample_id()
 
-               
-
         # ===== Set the DB output objects =====
 
         # Set the db object point
@@ -996,13 +715,12 @@ def Process_ds2500_csv(project_FP,process, column_L, data_L_L, all_parameter_D, 
 
         # Set the sample parameters
         json_db_C._Set_sample()
+
         # Assemble the complete sample event to a final dictionary containing all parameters
         sample_event_ai4sh = json_db_C._Assemble_sample_event_AI4SH_xspectre()
         
 
         if sample_event_ai4sh:
-
-            #Pprint_parameter(sample_event_ai4sh)
 
             # Dump the complete sample event to a JSON file
             json_db_C._Dump_sample_json(sample_event_ai4sh, 'ai4sh')
@@ -1016,8 +734,6 @@ def Process_ds2500_csv(project_FP,process, column_L, data_L_L, all_parameter_D, 
 
         if sample_event_xspectre:
 
-            #Pprint_parameter(sample_event_xspectre)
-
             # Dump the complete sample event to a JSON file
             json_db_C._Dump_sample_json(sample_event_xspectre, 'xspectre')
 
@@ -1025,6 +741,6 @@ def Process_ds2500_csv(project_FP,process, column_L, data_L_L, all_parameter_D, 
 
             print('❌ Error creating xspectre JSON post')
 
-        json_db_C._Assemble_fosa_csv()
+        json_db_C._Assemble_foss_csv()
 
-    sample_event_OSSL = json_db_C._Convert_spectra_to_OSSL()
+    #sample_event_OSSL = json_db_C._Convert_spectra_to_OSSL()

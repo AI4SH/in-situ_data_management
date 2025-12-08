@@ -10,7 +10,6 @@ Updated 24 Nove 2025 - divided subprocesses to single objectives, removed commen
 from copy import deepcopy
 
 # Package application imports
-from src.utils import  Full_path_locate, Remove_path
 
 from src.lib import Coordinates_fix, Interpolate_spectra
 
@@ -21,7 +20,7 @@ COMPULSARY_DATA_RECORDS = ['pilot_country','pilot_site','point_id','min_depth','
                                 'sample_preparation__name','subsample','replicate','sample_analysis_date','sample_preservation__name',
                                 'sample_transport__name','transport_duration_h','sample_storage__name','user_analysis__email',
                                 'user_sampling__email','user_logistic__email', 'procedure',
-                                'instrument-brand__name','instrument-model__name','instrument_id',
+                                'instrument_brand__name','instrument_model__name','instrument_id',
                                 'analysis_method__name']
 
 PARAMETERS_WITH_ASSUMED_DEFAULT = ['sample_preparation__name','sample_preservation__name','sample_transport__name','sample_storage__name','transport_duration_h','replicate','subsample']
@@ -41,7 +40,7 @@ AI4SH_Key_L = ["pilot_site",
                "sample_preparation__name",
                "subsample",
                "replicate",  
-               "instrument-model__name",
+               "instrument_model__name",
                 "instrument_id",
                 "instrument_setting",
                 "sample_analysis_date",
@@ -673,18 +672,6 @@ def Process_neospectra_csv(project_FP,process, column_L, data_L_L, all_parameter
     @return None if any error occurs during processing, otherwise creates JSON files for each sample event.
     """
 
-    if process.overwrite:
-
-        print('Overwrite is set to True, all existing JSON files will be deleted before processing new data')
-
-        for item in ['ai4sh','xspectre','ossl']:
-
-            dst_FP= '%s_%s' %(process.parameters.dst_FP,item)
-
-            dst_FP = Full_path_locate(project_FP, dst_FP, True)
-
-            Remove_path(dst_FP)
-
     coordinate_D = Coordinates_fix(project_FP,process.parameters.point_name_position_sampledate_FPN)
 
     if not coordinate_D:
@@ -853,6 +840,6 @@ def Process_neospectra_csv(project_FP,process, column_L, data_L_L, all_parameter
 
             print('❌ Error creating xspectre JSON post')
 
-        json_db_C._Assemble_ossl_csv()
+        #json_db_C._Assemble_ossl_csv()
 
-    sample_event_OSSL = json_db_C._Convert_spectra_to_OSSL()
+    #sample_event_OSSL = json_db_C._Convert_spectra_to_OSSL()

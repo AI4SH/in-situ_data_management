@@ -1,7 +1,10 @@
 '''
+notebook_startup.py
+
 Created on 21 May 2025
 Last undated 7 juni 2025
-Updated on 1 Sept 2025 (doxygen comments added)
+Updated on 1 September 2025 (doxygen comments added)
+Updated on 8 December 2025
 
 @author: thomasgumbricht
 '''
@@ -14,14 +17,26 @@ from src.utils import Pprint_parameter, Read_json, Get_project_path
 
 def Clean_pilot_list(user_json_process_L, project_FP, project_D):
     """
-    @brief Cleans a list of JSON process files by removing comments and whitespace.
+    @brief Cleans and validates a list of JSON process file paths by removing comments and whitespace.
 
-    This function processes a list of JSON file paths, filtering out any entries that are comments
-    (lines starting with '#') or are too short to be valid file names. It returns a cleaned list
-    of valid JSON file paths.
+    @details
+    This function processes a list of JSON file paths (either from a pilot file or pilot_list array),
+    filtering out invalid entries and constructing full file paths. It performs the following operations:
+    - Constructs the full path to the JSON process files directory
+    - Validates that the directory exists
+    - Filters out comments (lines starting with '#')
+    - Filters out entries that are too short to be valid file names (< 5 characters)
+    - Strips whitespace from valid entries
+    - Constructs full file paths by joining with the JSON directory path
 
-    @param user_json_process_L (list): List of JSON file paths, potentially containing comments and whitespace.
-    @return list: A cleaned list of valid JSON file paths.
+    @param user_json_process_L (list): List of JSON file names or paths.
+    @param project_FP (str): The project root file path.
+    @param project_D (dict): Project dictionary containing process configuration.
+
+    @return list: A cleaned list of full file paths to valid JSON process files.
+                 Returns None if the JSON process directory does not exist.
+
+    @exception Prints error message and returns None if the constructed JSON path does not exist.
     """
 
     json_path = path.join(project_FP, project_D["process"]["job_folder"],project_D["process"]["process_sub_folder"])
@@ -32,29 +47,91 @@ def Clean_pilot_list(user_json_process_L, project_FP, project_D):
 
         return None
     
-    # Clean the list of json objects from comments and white space etc
-    cleaned_list = [x.strip() for x in user_json_process_L if len(x.strip()) > 5 and x.strip()[0] != '#']
-
-    # Clean the list of json objects from comments and whithe space etc
+    # Clean the list of json objects from comments and white space and too short names
     cleaned_L = [path.join(json_path,x.strip())  for x in user_json_process_L if len(x) > 5 and x[0] != '#']
 
     return cleaned_L
 
 def Notebook_initiate(user_project_file, project_file):
+    """
+    @brief Initializes a notebook processing workflow by validating and loading project configuration files.
 
-    # Check if user_project_file is a path with '~' and expand it
-    # This is useful for user project files that are stored in the home directory.
-    # TGTODO move the check of the user_project_file to utils
+    @details
+    This function orchestrates the startup process for AI4SH notebook-based data processing. It performs
+    comprehensive validation and loading of configuration files in the following sequence:
+    
+    1. **User Project File Validation**:
+       - Expands home directory paths (starting with '~')
+       - Validates file existence
+       - Reads and validates JSON structure
+       - Extracts verbosity settings
+    
+    2. **Project Path Resolution**:
+       - Resolves the project root path from user configuration
+       - Validates project path existence
+    
+    3. **Project File Processing**:
+       - Constructs full path to project file
+       - Validates file existence
+       - Reads and validates JSON structure
+       - Optionally prints parameters based on verbosity level
+    
+    4. **Process File Discovery** (in order of precedence):
+       - **pilot_list**: Array of JSON file names in project file
+       - **pilot_file**: Text file containing list of JSON files
+       - **sub_process_id**: Direct process file specification
+    
+    5. **Process List Cleaning**:
+       - Removes comments and whitespace
+       - Constructs full file paths
+       - Validates directory structure
+
+    @param user_project_file (str): Path to the user project JSON file, which may start with '~' for
+                                   home directory. 
+    @param project_file (str): Relative path (from project root) to the project configuration JSON file,
+                              which should contain one of:
+                              - process.pilot_list: Array of JSON process file names
+                              - process.pilot_file: Name of text file listing JSON process files
+                              - process[0].sub_process_id: Direct process specification
+
+    @return tuple: Returns a tuple (user_default_params_D, user_json_process_L) where:
+                  - user_default_params_D (dict): Dictionary of user project parameters
+                  - user_json_process_L (list): List of full paths to JSON process files
+                  Returns None if any validation step fails.
+
+    @note The function supports three different ways to specify process files:
+          1. Direct list in project file (pilot_list)
+          2. External text file with list (pilot_file)
+          3. Single process file (sub_process_id in process array)
+          
+          Verbosity levels control output:
+          - verbose=0: Minimal output
+          - verbose=1: Standard output with progress messages
+          - verbose>1: Detailed output including all parameters
+
+    @exception Prints detailed error messages for various failure conditions:
+               - Missing or invalid user project file
+               - Invalid project path
+               - Missing or invalid project file
+               - Missing pilot_list, pilot_file, or sub_process_id
+               - Non-existent process files or directories
+               
+               Returns None for any error condition.
+    """
+
+    # Check if the user project file is in the user home directory, if so exapnd path
     if user_project_file[0] == '~':
 
         user_project_file = path.expanduser(user_project_file)
 
+    # Check if the user project file exists
     if not path.exists(user_project_file):
 
         print('  ❌ ERROR the user project file does not exist:', user_project_file)
 
         return None
-        
+    
+    # Read the user project file to get the project path and other default parameters.
     user_default_params_D = Read_json(user_project_file)
 
     if not user_default_params_D:
@@ -63,12 +140,18 @@ def Notebook_initiate(user_project_file, project_file):
 
         return None
 
+    # Set verbosity
     verbose = user_default_params_D['process'][0]['verbose']
             
-    if verbose:
+    if verbose > 1:
             
-        Pprint_parameter(user_default_params_D)
+        print ('====== Parameters from user project file:')
 
+        Pprint_parameter( user_default_params_D )
+
+        print ('======') 
+
+    # Get the project root path from the user project file
     project_FP = Get_project_path('notebook_FP',user_default_params_D['project_path'])
 
     if not project_FP:
@@ -77,6 +160,7 @@ def Notebook_initiate(user_project_file, project_file):
 
         return None
 
+    # Get the full path to the project file
     project_file_FPN = path.join(project_FP,project_file)
 
     if not path.exists(project_file_FPN):
@@ -150,7 +234,6 @@ def Notebook_initiate(user_project_file, project_file):
 
         process_file = project_file_FPN
 
-        # TGTODO fix a utlis script
         if process_file[0] == '~':
 
             process_FPN = path.expanduser(process_file)

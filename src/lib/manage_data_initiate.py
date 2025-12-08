@@ -9,7 +9,7 @@ Updated on 1 Sept 2025 (Structure_processes replaced older call, doxygen comment
 # Package application imports
 from src.process_project import Notebook_initiate, Structure_processes
 
-from .import_csv_data_process import Manage_process
+from .manage_data_process import Manage_process
 
 from src.utils import Full_path_locate
 

@@ -19,15 +19,11 @@ Whtite reference: use overall mean and standard deviation
 # Standard library imports
 from os import path
 
-from copy import deepcopy
-
 # Thrid party imports
 import numpy as np
 
 # Package application imports
 from .common import common_json_db
-
-from src.utils import Full_path_locate, Remove_path
 
 from src.lib import Coordinates_fix
 
@@ -35,12 +31,8 @@ from src.lib import Coordinates_fix
 COMPULSARY_DATA_RECORDS = ['pilot_country','pilot','pilot_site','point_id','min_depth','max_depth','sample_date',
                                 'sample_preparation__name','subsample','replicate','sample_analysis_date','sample_preservation__name',
                                 'sample_transport__name','transport_duration_h','sample_storage__name','user_analysis__email',
-                                'user_sampling__email','user_logistic__email','instrument-brand__name', 'instrument-model__name',
+                                'user_sampling__email','user_logistic__email','instrument_brand__name', 'instrument_model__name',
                                 'instrument_id','procedure']
-
-PARAMETERS_WITH_ASSUMED_DEFAULT = ['sample_preparation__name','sample_preservation__name','sample_transport__name','sample_storage__name','transport_duration_h','replicate','subsample']
-
-ASSUMED_DEFAULT_VALUES = [None,None,None,None,0,0,'a']
 
 XSPECTRE_DEFAULT_VALUE_D = {'sample_preparation__name': ['sampling','prepcode'],
                             'pilot_site': ['locus'],
@@ -56,7 +48,6 @@ XSPECTRE_DEFAULT_VALUE_D = {'sample_preparation__name': ['sampling','prepcode'],
 XSPECTRE_COMPULSARY_DATA_D = {'pilot_country': ['campaignshortid',1],
                                 'pilot': ['campaignshortid',2],
                                 'pilot_site': ['campaignshortid',2],
-                                # 'sample_date': ['sampling','sampledate'],
                                 'sample_preparation__name': ['sampling','prepcode'],
                                 'sample_analysis_date': ['scandate'],
                                 'sample_preservation__name': None,
@@ -79,7 +70,7 @@ METHOD_D = {'npkphcth-s':"penetrometer",'ph-ise':"ise-ph",'ise-ph':"ise-ph"}
 
 PREPCODE_D = {'field':'field','mx-lab':"mx-lab", 'in-situ':'field','h2o-iso':'mx-lab'}
 
-LAB_ANALYSIS_METHOD_NAME_D = {'in-situ-TF38415':'ise-ph-soil','h2o-iso':'ise-ph-5xh2o','tds-iso':'tds-bipin-5xh2o','c12880ma':'diffuse reflectance spectroscopy',
+LAB_ANALYSIS_METHOD_NAME_D = {'in-situ-TF38415':'ise-ph-soil','h2o-iso':'ise-ph-5xh2o','tds-iso':'tds-bipin-5xh2o','c12880ma':'diffuse-reflectance-spectroscopy',
                               'npkphcth-s':'penetrometer','TF38415':'ise-ph-5xh20','h2o-iso-TF38415':'ise-ph-5xh20'}
 
 LOENNSTORP_POINT_ID_D = {'4':'4-a','04':'4-a','5':'5-a','16':'16-a','20':'20-a','24':'24-a',
@@ -147,45 +138,6 @@ class json_db(common_json_db):
         """
 
         common_json_db.__init__(self, project_FP,process, coordinate_D)
-
-        self.position_date_str_L = []
-
-    def _Add_xspectre_compulsary_default_parameters_REDUNDANT(self, xspectre_json_D):
-        """
-        @brief Adds compulsory parameters with assumed default values to the process parameters dictionary if they are missing.
-
-        This function checks for each parameter listed in PARAMETERS_WITH_ASSUMED_DEFAULT whether it exists in self.process_parameters_D.
-        If a parameter is missing, it assigns the corresponding value from ASSUMED_DEFAULT_VALUES.
-
-        @return None
-        """
-        '''
-        if 'setting' in self.record_D:
-
-            self.record_D['canopy'] = self.record_D['setting']
-
-        elif 'canopy' in self.process_parameters_D:
-
-            self.record_D['canopy'] = self.process_parameters_D['canopy']
-
-        else:
-
-            self.record_D['canopy'] = 'uniform'
-        '''
-        self.default_data_D = dict(zip(PARAMETERS_WITH_ASSUMED_DEFAULT, ASSUMED_DEFAULT_VALUES))
-
-        for parameter in self.default_data_D:
-
-            if type(XSPECTRE_DEFAULT_VALUE_D[parameter]) is list:
-
-                try:
-                    self.default_data_D[parameter] = xspectre_json_D[XSPECTRE_DEFAULT_VALUE_D[parameter][0]][XSPECTRE_DEFAULT_VALUE_D[parameter][1]]
-                except:
-                    self.default_data_D[parameter] = None
-
-            else:
-
-                self.default_data_D[parameter] = XSPECTRE_DEFAULT_VALUE_D[parameter]
 
     def _Check_set_xspectre_compulsary_parameters(self, xspectre_json_D):
 
@@ -303,7 +255,6 @@ class json_db(common_json_db):
         @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.
         """
 
-        # Set record parameters from the file name
         FN = path.split(FPN)[1]
 
         if not FN[0].isdigit():
@@ -316,11 +267,6 @@ class json_db(common_json_db):
 
         self.record_D['min_depth'], self.record_D['max_depth'] = FN_parts[1].split('-')
 
-        #self.record_D['point_id'] =  FN_parts[0].replace(' ', '-').replace('_', '-').lower()
-
-
-        #self.record_D['point_id'] =  '%s-%s' %(FN_parts[0][0].lower(), 
-        #                                      FN_parts[0][1:].lower())
         self.record_D['point_id'] = '%s-%s' % (FN_parts[0][0:-1], FN_parts[0][-1].lower())
         
         self.record_D['instrument_id'] = '0'
@@ -362,15 +308,10 @@ class json_db(common_json_db):
 
         self.record_D['min_depth'], self.record_D['max_depth'] = FN_parts[1].split('-')
 
-        #self.record_D['point_id'] =  FN_parts[0].replace(' ', '-').replace('_', '-').lower()
-
-        #self.record_D['point_id'] =  '%s-%s' %(FN_parts[0][0].lower(), 
-        #                                     FN_parts[0][1:].lower())
-
         self.record_D['point_id'] = '%s-%s' % (FN_parts[0][0:-1], FN_parts[0][-1].lower())
 
         self.record_D['instrument_id'] = '0'
-        # 1R_0-20_tds-iso_tc_9520260_tds-gx16_tds_neretva_20241016_soil-raw
+
         method = FN_parts[2]
 
         self.record_D['subsample'] = 'a'
@@ -395,7 +336,6 @@ class json_db(common_json_db):
         @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.
         """
 
-        # Set record parameters from the file name
         FN = path.split(FPN)[1]
 
         FN =  path.splitext(FN)[0]
@@ -404,9 +344,6 @@ class json_db(common_json_db):
 
         self.record_D['min_depth'], self.record_D['max_depth'] = FN_parts[1].split('-')
 
-        #self.record_D['point_id'] =  FN_parts[0].replace(' ', '-').replace('_', '-').lower()
-        #self.record_D['point_id'] =  '%s-%s' %(FN_parts[0][0].lower(), 
-        #                                      FN_parts[0][1:].lower())
         self.record_D['point_id'] = '%s-%s' % (FN_parts[0][0:-1], FN_parts[0][-1].lower())
         
         self.record_D['instrument_id'] = FN_parts[2].split('-')[0].lower()
@@ -459,7 +396,6 @@ class json_db(common_json_db):
         @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.
         """
 
-        # Set record parameters from the file name
         FN = path.split(FPN)[1]
 
         FN =  path.splitext(FN)[0]
@@ -481,8 +417,6 @@ class json_db(common_json_db):
         elif 'xtra' in self.record_D['point_id']:
 
             self.record_D['point_id'] = self.record_D['point_id'].replace('xtra','-extra')
-
-        #self.record_D['instrument_id'] = FN_parts[2].split('-')[0].lower()
 
         self.record_D['instrument_id'] = "0"
 
@@ -513,8 +447,6 @@ class json_db(common_json_db):
 
         @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.
         """
-        # 1_sub_a_npkphcth-s_sm-temp-ec-pH-npk_0002_zazari_20251020_soil-raw
-        # Set record parameters from the file name
       
         FN = path.split(FPN)[1]
 
@@ -536,7 +468,6 @@ class json_db(common_json_db):
 
             self.record_D['sample_preparation__name'] = 'post-infiltration'
 
-
         else:
 
             print ('❌  ERROR - depth interval not recognised in filename: %s' % (FN))
@@ -554,8 +485,6 @@ class json_db(common_json_db):
         if '-' in self.record_D['point_id']:
 
             self.record_D['point_id'], self.record_D['setting'] = self.record_D['point_id'].split('-')
-
-            
 
         self.record_D['point_id'] = self.record_D['point_id'].replace(' ', '')
         
@@ -587,7 +516,6 @@ class json_db(common_json_db):
         @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.
         """
 
-        # Set record parameters from the file name
         FN = path.split(FPN)[1]
 
         FN =  path.splitext(FN)[0]
@@ -596,7 +524,6 @@ class json_db(common_json_db):
 
         self.record_D['min_depth'], self.record_D['max_depth'] = FN_parts[1].split('-')
 
-        #self.record_D['point_id'] =  FN_parts[0].replace(' ', '-').replace('_', '-').lower()
         self.record_D['point_id'] = '%s-%s' % (FN_parts[0][0:-1], FN_parts[0][-1].lower())
 
         self.record_D['instrument_id'] = FN_parts[2].split('-')[0].lower()
@@ -629,7 +556,6 @@ class json_db(common_json_db):
         @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.
         """
 
-        # Set record parameters from the file name
         FN = path.split(FPN)[1]
 
         if FN.startswith('ref'):
@@ -641,16 +567,8 @@ class json_db(common_json_db):
         FN_parts = FN.split('_')
 
         self.record_D['min_depth'], self.record_D['max_depth'] = FN_parts[1].split('-')
-
-        #self.record_D['point_id'] =  FN_parts[0].replace(' ', '-').replace('_', '-').lower()
-
-        #self.record_D['point_id'] =  '%s-%s' %(FN_parts[0][0].lower(), 
-        #                                      FN_parts[0][1:].lower())
         
         self.record_D['point_id'] = '%s-%s' % (FN_parts[0][0:-1], FN_parts[0][-1].lower())
-
-        
-        #self.record_D['instrument_id'] = FN_parts[2].split('-')[0].lower()
 
         self.record_D['instrument_id'] = '0'
 
@@ -673,7 +591,7 @@ class json_db(common_json_db):
         self.record_D['analysis_method__name'] = LAB_ANALYSIS_METHOD_NAME_D[method]
 
         if self.record_D['sample_preparation__name'] == 'field':
-            self.record_D['instrument-brand__name'] = 'soil-ise-ph'
+            self.record_D['instrument_brand__name'] = 'soil-ise-ph'
 
         return True 
     
@@ -690,8 +608,7 @@ class json_db(common_json_db):
 
         @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.
         """
-        # 1R_0-20_tds-iso_tc_9520260_tds-gx16_tds_jokioinen_20241011_soil
-        # Set record parameters from the file name
+
         FN = path.split(FPN)[1]
 
         if not FN[0].isdigit():
@@ -704,10 +621,6 @@ class json_db(common_json_db):
 
         self.record_D['min_depth'], self.record_D['max_depth'] = FN_parts[1].split('-')
 
-        #self.record_D['point_id'] =  FN_parts[0].replace(' ', '-').replace('_', '-').lower()
-
-        #self.record_D['point_id'] =  '%s-%s' %(FN_parts[0][0].lower(), 
-        #                                      FN_parts[0][1:].lower())
         self.record_D['point_id'] = '%s-%s' % (FN_parts[0][0:-1], FN_parts[0][-1].lower())
 
         self.record_D['instrument_id'] = '0'
@@ -715,8 +628,6 @@ class json_db(common_json_db):
         self.record_D['subsample'] = 'a'
 
         self.record_D['replicate'] = 0
-
-        #self.record_D['sample_preparation__name'] = 'mx-lab'
 
         self.record_D['analysis_method__name'] = LAB_ANALYSIS_METHOD_NAME_D[FN_parts[2]]
 
@@ -735,8 +646,7 @@ class json_db(common_json_db):
 
         @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.
         """
-        # 1R_0-20_tds-iso_tc_9520260_tds-gx16_tds_jokioinen_20241011_soil
-        # Set record parameters from the file name
+
         FN = path.split(FPN)[1]
 
         if not FN[0].isdigit():
@@ -752,31 +662,13 @@ class json_db(common_json_db):
         self.record_D['point_id'] =  '%s-%s' %(FN_parts[0].lower(), 
                                               FN_parts[1].lower())
 
-        #self.record_D['instrument_id'] = FN_parts[2].split('-')[0].lower()
-
         self.record_D['instrument_id'] = xspectre_json_D['sensor-serialnr']
-
-        ''' 
-        if len(FN_parts) > 2 and '-' in FN_parts[3]:
-
-            self.record_D['subsample'] = FN_parts[3].split('-')[1].lower()
-
-        else:
-        '''
             
         self.record_D['subsample'] = FN_parts[3].lower()
 
         self.record_D['replicate'] = 0
 
-        #self.record_D['sample_preparation__name'] = 'mx-lab'
-
-        #self.record_D['analysis_method__name'] = LAB_ANALYSIS_METHOD_NAME_D[FN_parts[2]]
-
-        self.record_D['analysis_method__name'] = 'diffuse reflectance spectroscopy'
-
-        #self.record_D['instrument_id'] = FN_parts[2].split('-')[0].lower()
-
-        # self.record_D['instrument_id'] = xspectre_json_D['sensorid']
+        self.record_D['analysis_method__name'] = 'diffuse-reflectance-spectroscopy'
 
         self.record_D['muzzle'] = xspectre_json_D['muzzleid']
 
@@ -799,8 +691,7 @@ class json_db(common_json_db):
 
         @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.
         """
-        # R9_20-50_B_c12880ma_raw-spectra_neretva_20241106_soil
-        # Set record parameters from the file name
+
         FN = path.split(FPN)[1]
 
         if FN[0] != 'R':
@@ -822,9 +713,7 @@ class json_db(common_json_db):
 
         self.record_D['replicate'] = 0
 
-        #self.record_D['sample_preparation__name'] = 'mx-lab'
-
-        self.record_D['analysis_method__name'] = 'diffuse reflectance spectroscopy'
+        self.record_D['analysis_method__name'] = 'diffuse-reflectance-spectroscopy'
 
         self.record_D['muzzle'] = xspectre_json_D['muzzleid']
 
@@ -850,9 +739,6 @@ class json_db(common_json_db):
         @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.
         """
 
-        #256_C5_0-20_C_c12880ma_raw-spectra_foulum_20241106_soil.json
-
-        # Set record parameters from the file name
         FN = path.split(FPN)[1]
 
         if not FN[0].isdigit():
@@ -864,7 +750,6 @@ class json_db(common_json_db):
         FN_parts = FN.split('_')
 
         if len(FN_parts[1]) == 1 and FN_parts[1][0].isdigit():  
-            #366_2_C5_COMPSUB_12_A
 
             self.record_D['point_id'] =  '%s-%s-%s' %(FN_parts[0].lower(), 
                                                 FN_parts[1].lower(),FN_parts[2].lower())  
@@ -888,7 +773,7 @@ class json_db(common_json_db):
             self.record_D['subsample'] = FN_parts[5].lower()
 
         else:
-            #256_C5_0-20_C_
+
             self.record_D['point_id'] =  '%s-%s' %(FN_parts[0].lower(), 
                                                 FN_parts[1].lower())
   
@@ -926,7 +811,7 @@ class json_db(common_json_db):
 
             return None
 
-        self.record_D['analysis_method__name'] = 'diffuse reflectance spectroscopy'
+        self.record_D['analysis_method__name'] = 'diffuse-reflectance-spectroscopy'
 
         self.record_D['muzzle'] = xspectre_json_D['muzzleid']
 
@@ -952,9 +837,6 @@ class json_db(common_json_db):
         @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.
         """
 
-        #256_C5_0-20_C_c12880ma_raw-spectra_foulum_20241106_soil.json
-
-        # Set record parameters from the file name
         FN = path.split(FPN)[1]
 
         if not FN[0].isdigit():
@@ -966,7 +848,6 @@ class json_db(common_json_db):
         FN_parts = FN.split('_')
 
         if FN_parts[1].lower() in ['sand','organic']:  
-            # 001_SAND_0-20_B
 
             self.record_D['point_id'] =  '%s-%s' %(FN_parts[0][len(FN_parts[0])-1].lower(), 
                                                 FN_parts[1].lower())  
@@ -976,7 +857,7 @@ class json_db(common_json_db):
             self.record_D['subsample'] = FN_parts[3].lower()
 
         else:
-            # 04_20-50_B_
+
             self.record_D['point_id'] =  LOENNSTORP_POINT_ID_D[FN_parts[0]]
    
             self.record_D['min_depth'], self.record_D['max_depth'] = FN_parts[1].split('-')
@@ -986,10 +867,8 @@ class json_db(common_json_db):
         self.record_D['instrument_id'] = xspectre_json_D['sensor-serialnr']
 
         self.record_D['replicate'] = 0
-        
-        #self.record_D['sample_preparation__name'] = 'ds'
 
-        self.record_D['analysis_method__name'] = 'diffuse reflectance spectroscopy'
+        self.record_D['analysis_method__name'] = 'diffuse-reflectance-spectroscopy'
 
         self.record_D['muzzle'] = xspectre_json_D['muzzleid']
 
@@ -1015,9 +894,6 @@ class json_db(common_json_db):
         @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.
         """
 
-        #256_C5_0-20_C_c12880ma_raw-spectra_foulum_20241106_soil.json
-
-        # Set record parameters from the file name
         FN = path.split(FPN)[1]
 
         FN =  path.splitext(FN)[0]
@@ -1064,11 +940,7 @@ class json_db(common_json_db):
 
             self.record_D['instrument_id'] = self.process.parameters.instrument_id
 
-        #self.record_D['replicate'] = 0
-        
-        #self.record_D['sample_preparation__name'] = 'ds'
-
-        self.record_D['analysis_method__name'] = 'diffuse reflectance spectroscopy'
+        self.record_D['analysis_method__name'] = 'diffuse-reflectance-spectroscopy'
 
         self.record_D['muzzle'] = xspectre_json_D['muzzleid']
 
@@ -1094,16 +966,11 @@ class json_db(common_json_db):
         @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.
         """
 
-        #256_C5_0-20_C_c12880ma_raw-spectra_foulum_20241106_soil.json
-
-        # Set record parameters from the file name
         FN = path.split(FPN)[1]
 
         FN =  path.splitext(FN)[0]
 
         FN_parts = FN.split('_')
-        # D_REF_4_0-20_A
-        # D_REF_3_0-20_133_A
 
         try:
             
@@ -1133,7 +1000,7 @@ class json_db(common_json_db):
             
             self.record_D['replicate'] = FN_parts[4].lower()
         
-        self.record_D['analysis_method__name'] = 'diffuse reflectance spectroscopy'
+        self.record_D['analysis_method__name'] = 'diffuse-reflectance-spectroscopy'
 
         self.record_D['muzzle'] = xspectre_json_D['muzzleid']
 
@@ -1195,9 +1062,7 @@ class json_db(common_json_db):
 
         self.record_D['instrument_id'] = xspectre_json_D['sensor-serialnr']
 
-        #self.record_D['sample_preparation__name'] = 'ds'
-
-        self.record_D['analysis_method__name'] = 'diffuse reflectance spectroscopy'
+        self.record_D['analysis_method__name'] = 'diffuse-reflectance-spectroscopy'
 
         self.record_D['muzzle'] = xspectre_json_D['muzzleid']
 
@@ -1254,10 +1119,8 @@ class json_db(common_json_db):
         self.record_D['subsample'] = 'a'
 
         self.record_D['instrument_id'] = xspectre_json_D['sensor-serialnr']
-        
-        #self.record_D['sample_preparation__name'] = 'ds'
 
-        self.record_D['analysis_method__name'] = 'diffuse reflectance spectroscopy'
+        self.record_D['analysis_method__name'] = 'diffuse-reflectance-spectroscopy'
 
         self.record_D['muzzle'] = xspectre_json_D['muzzleid']
 
@@ -1285,7 +1148,6 @@ class json_db(common_json_db):
         @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.
         """
 
-        # Set record parameters from the file name
         FN = path.split(FPN)[1]
 
         FN =  path.splitext(FN)[0]
@@ -1310,7 +1172,7 @@ class json_db(common_json_db):
 
         self.record_D['replicate'] = 0
 
-        self.record_D['analysis_method__name'] = 'diffuse reflectance spectroscopy'
+        self.record_D['analysis_method__name'] = 'diffuse-reflectance-spectroscopy'
 
         return True
     
@@ -1327,8 +1189,7 @@ class json_db(common_json_db):
 
         @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.
         """
-        # 02_sub_a_mx_c14384ma-01_raw-spectra_zazari_20251022_soil
-        # Set record parameters from the file name
+
         FN = path.split(FPN)[1]
 
         FN =  path.splitext(FN)[0]
@@ -1356,7 +1217,7 @@ class json_db(common_json_db):
 
         self.record_D['replicate'] = 0
 
-        self.record_D['analysis_method__name'] = 'diffuse reflectance spectroscopy'
+        self.record_D['analysis_method__name'] = 'diffuse-reflectance-spectroscopy'
 
         return True
     
@@ -1483,6 +1344,8 @@ class json_db(common_json_db):
             xspectre_json_D[self.equipment]['samplerepeats'] = 6
             xspectre_json_D[self.equipment]['darkrepeats'] = 2
 
+        indicator__name = 'xspectre-%s_reflectance' %( self.process.parameters.instrument_model__name)
+
         if 'darkStd' in xspectre_json_D:
             
             xspectre_json_D['darkstd'] = xspectre_json_D['darkStd']
@@ -1494,11 +1357,11 @@ class json_db(common_json_db):
         self.record_D['n_repeats'] = xspectre_json_D[self.equipment]['samplerepeats']
         self.record_D['n_dark_repeats'] = xspectre_json_D[self.equipment]['darkrepeats']
         self.record_D['unit__name'] = 'reflectance'
-        self.record_D['indicator__name'] =  'reflectance'
-        self.record_D['analysis_method__name'] = 'diffuse reflectance spectroscopy'       
+        self.record_D['indicator__name'] = indicator__name
+        self.record_D['analysis_method__name'] = 'diffuse-reflectance-spectroscopy'       
         self.record_D['instrument_id'] = xspectre_json_D['sensor-serialnr']
-        self.record_D['instrument-brand__name'] = self.record_D['instrument-brand__name']
-        self.record_D['instrument-model__name'] = self.record_D['instrument-model__name']
+        self.record_D['instrument_brand__name'] = self.record_D['instrument_brand__name']
+        self.record_D['instrument_model__name'] = self.record_D['instrument_model__name']
         self.record_D['storage_duration_h'] = 0
 
     def _Get_xspectre_spectra_measurements(self, xspectre_json_D):
@@ -1522,7 +1385,7 @@ class json_db(common_json_db):
 
         @return None
         """
-
+        
         # Get number of missing values, below zero, over unity, and saturated values
         n_values_below_zero = (self.record_D['reflectance_value_A'] < 0.0).sum()
 
@@ -1572,8 +1435,6 @@ class json_db(common_json_db):
             
             self.record_D['reflectance_standard_deviation_A'][white_reference_max_A > self.record_D['max_dn']] = -9999
 
-        
-
         # Savve error statistics
         error_D = {'n_value_below_zero': int(n_values_below_zero),
                    'n_value_above_unity': int(n_values_above_unity),
@@ -1612,8 +1473,8 @@ class json_db(common_json_db):
                         'indicator__name':  self.record_D['indicator__name'],
                         'procedure': self.record_D['procedure'],
                         'analysis_method__name': self.record_D['analysis_method__name'], 
-                        'instrument-brand__name': self.record_D['instrument-brand__name'],
-                        'instrument-model__name': self.record_D['instrument-model__name'],
+                        'instrument_brand__name': self.record_D['instrument_brand__name'],
+                        'instrument_model__name': self.record_D['instrument_model__name'],
                         'instrument_id': self.record_D['instrument_id']}
         else:
 
@@ -1623,8 +1484,8 @@ class json_db(common_json_db):
                         'indicator__name':  'reflectance',
                         'procedure': self.record_D['procedure'],
                         'analysis_method__name': self.record_D['analysis_method__name'],
-                        'instrument-brand__name': self.record_D['instrument-brand__name'],
-                        'instrument-model__name': self.record_D['instrument-_model__name'],
+                        'instrument_brand__name': self.record_D['instrument_brand__name'],
+                        'instrument_model__name': self.record_D['instrument-_model__name'],
                         'instrument_id': self.record_D['instrument_id']}
 
         spectra_scan_tuning_D =  {
@@ -1761,7 +1622,7 @@ def Extract_xspectre_json_v089(project_FP, process, json_FPN, white_reference_D,
     # ===== Direct the extraction of parameters from file name to the correct functionsite/function =====
 
     if process.parameters.pilot_site.lower() == 'neretva' and\
-         process.parameters.procedure == 'xspectre-ise-ph':
+         'xspectre-ise-ph' in process.parameters.procedure:
        
         result = json_db_C._FN_parameters_neretva_ise_ph(json_FPN)
 
@@ -1781,7 +1642,7 @@ def Extract_xspectre_json_v089(project_FP, process, json_FPN, white_reference_D,
         result = json_db_C._FN_parameters_boermarke_zeijen_penetrometer(json_FPN)
 
     elif process.parameters.pilot_site.lower() == 'jokioinen' and\
-         process.parameters.procedure == 'xspectre-ise-ph':
+         'xspectre-ise-ph' in process.parameters.procedure:
 
         result = json_db_C._FN_parameters_jokioinen_ise_ph(json_FPN)
 
@@ -2220,31 +2081,6 @@ def Process_xspectre_json_v089(project_FP, process):
     if process.parameters.procedure == 'xspectre-spectra':
 
         white_reference_D = Get_all_white_reference_data(project_FP, process, json_FPN_L)
-
-    if process.overwrite:
-
-        print('Overwrite is set to True, all existing JSON files will be deleted before processing new data')
-
-        for item in ['ai4sh','xspectre','ossl']:
-
-            dst_FP= '%s_%s' %(process.parameters.dst_FP,item)
-
-            dst_FP = Full_path_locate(project_FP, dst_FP, True)
-
-            Remove_path(dst_FP)
-
-    # Get the global file for locus, sample date and coordinates
- 
-
-    #point_name_position_sampledate_FPN = Full_path_locate(project_FP,process.parameters.point_name_position_sampledate_FPN)
-
-    #if point_name_position_sampledate_FPN is None:
-
-    #    print ('❌  ERROR - you must link to a csv file with locations, settings, sample dates and coordinates.')
-
-    #    print('❌  File not found: %s' % (process.parameters.point_name_position_sampledate_FPN))
-
-    #    return None
 
     coordinate_D = Coordinates_fix(project_FP,process.parameters.point_name_position_sampledate_FPN)
 

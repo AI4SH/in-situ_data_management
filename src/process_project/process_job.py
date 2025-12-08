@@ -1,26 +1,25 @@
 '''
 process_job.py
+
 Module for looping jobs and processes
 Created on 5 jan 2025
 Updated 11 Mar 2025
 Updated on 21 Aug 2025 (added option for running without DB connection)
 Updated on 1 Sept 2025 (Large loop function replaced with several smaller functions,
 doxygen comments added)
+Updated on 8 December 2025
 
 @author: thomasgumbricht
 
 '''
 
 # Standard library imports
-
 from os import path
 
 # Third party imports
-
 import re
 
 # Package application imports
-
 from src.utils import Read_json, Pprint_parameter, SetDiskPath, Update_dict, Struct, Log
 
 # from src.process_project import Project_login
@@ -29,25 +28,64 @@ from src.utils import Read_json, Pprint_parameter, SetDiskPath, Update_dict, Str
 
 def Check_param_instance(p, typeD, process_D, json_file_FN, p_str):
     """
-    @brief Checks the type and validity of a process parameter instance.
+    @brief Validates the type and value of a process parameter instance against its expected type definition.
 
-    This function validates the value of a parameter in a process dictionary against its expected type,
-    as defined in the type dictionary. It prints warnings for invalid types and attempts to coerce certain
-    string representations to their correct types (e.g., booleans).
+    @details
+    This function performs comprehensive validation of a parameter value in a process dictionary against 
+    its expected type as defined in the type dictionary. It handles multiple data types including:
+    - Arrays and CSV lists
+    - Text strings (with special validation for directory parameters)
+    - Integers
+    - Floats and real numbers
+    - Booleans (with automatic string-to-boolean conversion)
+    
+    The function provides detailed error messages for invalid types and attempts to coerce certain 
+    string representations to their correct types. For boolean parameters, it automatically converts 
+    string values 'true', '1', 'false', and '0' to their boolean equivalents.
+    
+    Special validations:
+    - Directory parameters (containing '_dir') cannot start or end with a forward slash
+    - Array/CSV parameters must be either strings or lists
+    - Numeric parameters are strictly validated against their declared types
+    - Boolean string representations are automatically converted to proper boolean values
 
-    @param p Parameter name (str)
-    @param typeD Dictionary mapping parameter names to expected types (dict)
-    @param process_D Dictionary containing parameter values for the process (dict)
-    @param json_file_FN Filename of the JSON file containing the process definition (str)
-    @param p_str String identifier for the process (str)
-    @return 1 if the parameter instance is valid, None otherwise
+    @param p (str): Parameter name to validate.
+    @param typeD (dict): Dictionary mapping parameter names to their expected type strings.
+                        Type strings should start with one of: 'array', 'csv', 'tex', 'int', 'flo', 'rea', 'boo'.
+    @param process_D (dict): Dictionary containing parameter values for the process being validated.
+                            The parameter value at process_D[p] will be validated and potentially modified.
+    @param json_file_FN (str): Filename of the JSON file containing the process definition, used for error reporting.
+    @param p_str (str): String identifier for the process number or position, used for error reporting.
+
+    @return bool: Returns True if the parameter instance is valid and passes all type checks.
+                 Returns None if validation fails for any reason.
+
+    @exception Prints detailed error messages to stdout when validation fails, including:
+               - Parameter name and invalid value
+               - JSON file name and process identifier
+               - Specific validation rule that was violated
+               
+               Does not raise Python exceptions; returns None to indicate failure.
+
+    @warning Directory parameters must not start or end with '/' to ensure consistent path handling.
+             Boolean string conversion is case-insensitive and supports limited values ('true', '1', 'false', '0').
     """
 
     def _Print_error_msg(error_msg):
         """
-        @brief Prints an error message for an invalid process parameter instance.
+        @brief Formats and prints an error message for an invalid process parameter instance.
 
-        @param error_msg The error message to print (str)
+        @details
+        This nested helper function appends file and process location information to error messages
+        to provide context about where the validation failure occurred. The formatted message includes
+        the JSON file name and process identifier for easier debugging.
+
+        @param error_msg (str): The base error message to be formatted and printed, typically describing
+                               the validation failure (e.g., type mismatch, invalid value).
+
+        @return None: Prints the formatted error message to stdout.
+
+        @note This is a nested function only accessible within Check_param_instance.
         """
 
         error_msg += '              (file: %s;  process nr %s)' %(json_file_FN, p_str)
@@ -56,8 +94,6 @@ def Check_param_instance(p, typeD, process_D, json_file_FN, p_str):
 
     if 'array' in typeD[p].lower() or typeD[p].lower()[0:3] == 'csv':
 
-        # TGTODO The array (csvList) is a tricky alternative to solve here
-        #if not isinstance(process_D[p], list):
         if not isinstance(process_D[p], str) and not isinstance(process_D[p], list):
 
             error_msg = '          ❌ ERROR parameter %s is not a list (%s)\n' %(p,process_D[p])
@@ -128,42 +164,74 @@ def Check_param_instance(p, typeD, process_D, json_file_FN, p_str):
 
                 return None
 
-    return 1
+    return True
 
 class Params():
     ''' @brief Class for extracting process parameters from user defined defaults.
     '''
     def __init__(self, default_parameter_D):
         """
-        @brief Constructor for the Params class.
+        @brief Constructor for the Params class that initializes default parameters for process execution.
 
-        This method initializes the Params object by processing the default parameters dictionary.
-        It removes the "process" list and converts the first list item to a dictionary for easier access.
-        If the verbosity level in the process parameters is greater than 2, it prints the default parameters.
+        @details
+        This method initializes a Params object by processing the default parameters dictionary to prepare
+        it for subsequent parameter assembly and validation operations. The initialization performs the
+        following steps:
+        
+        1. **Parameter Structure Conversion**:
+        - Extracts the first process configuration from the 'process' list using _Split_out_process
+        - Converts the multi-process structure to a single-process format for easier access
+        - This transformation allows direct dictionary access without list indexing
+        
+        2. **Parameter Storage**:
+        - Stores the converted default parameters as an instance attribute
+        - Makes default parameters available for merging with user parameters
+        
+        3. **Optional Verbose Output**:
+        - If verbosity level is greater than 1, prints the default parameter dictionary
+        - Provides debugging information during initialization
+        
+        The resulting default_parameter_D structure contains:
+        - 'process': Single process dictionary (not a list) with default values
+        - Other configuration keys: Database settings, paths, and other defaults
 
-        @param default_parameter_D Dictionary containing the default parameters for the process, including a "process" key with a list of process configurations.
+        @param default_parameter_D (dict): Dictionary containing the default parameters for the process.
+
+        @return None: Constructor does not return a value but initializes instance attributes:
+                    - self.default_parameter_D: Converted default parameters with single process dictionary
         """
 
-        #  REMOVE THE "process" list and convert first list item to a dict
         self.default_parameter_D = self._Split_out_process(default_parameter_D, 0)
 
-        if self.default_parameter_D['process']['verbose'] > 2:
+        if self.default_parameter_D['process']['verbose'] > 1:
 
-            print ('    default_parameter_D:')
+            print ('====== Default parameter dictionary:')
 
-            Pprint_parameter(self.default_parameter_D)
+            Pprint_parameter( self.default_parameter_D )
+
+            print ('======')
 
     def _Split_out_process(self, raw_D, process_nr):
         """
         @brief Extracts a single process configuration from a dictionary containing multiple processes.
 
-        This method takes a dictionary `raw_D` that contains a 'process' key with a list of process configurations.
-        It returns a new dictionary where the 'process' key is replaced by the process configuration at the specified index `process_nr`.
-        All other keys and values are copied as-is.
+        @details
+        This method takes a dictionary that contains a 'process' key with a list of process configurations
+        and extracts a single process at the specified index. The method creates a new dictionary where:
+        - The 'process' key is replaced with the single process configuration at index process_nr
+        - All other keys and their values are preserved from the original dictionary
+        
+        This is particularly useful for converting a multi-process configuration structure into a single-process
+        structure that can be processed individually. The original dictionary remains unmodified.
 
-        @param raw_D Dictionary containing process configurations, including a 'process' key with a list of processes.
-        @param process_nr Index of the process configuration to extract from the 'process' list.
-        @return Dictionary with the selected process configuration and all other keys from the input dictionary.
+        @param raw_D (dict): Dictionary containing process configurations.
+                            
+        @param process_nr (int): Zero-based index of the process configuration to extract from the 'process' list.
+
+        @return dict: A new dictionary with the same structure as raw_D, except:
+                    - The 'process' key now contains a single process dictionary (not a list)
+                    - All other keys contain their original values from raw_D
+                    Returns an empty dictionary if raw_D is empty.
         """
         process_D = {}
 
@@ -181,14 +249,45 @@ class Params():
 
     def _Set_user_params(self,user_parameter_D,json_file_FN):
         """
-        @brief Set user parameters for the process.
+    @brief Sets and merges user-defined parameters with default parameter values for process configuration.
 
-        This method updates the user parameter dictionary by filling in missing variables from the default parameter values.
-        It also sets the filename of the JSON file containing the user parameters.
+    @details
+    This method performs the following operations to prepare user parameters for process execution:
+    
+    1. **JSON File Registration**:
+       - Stores the JSON filename for error reporting and logging purposes
+    
+    2. **Parameter Merging**:
+       - Updates the user parameter dictionary by filling in missing variables from default parameter values
+       - Uses Update_dict to recursively merge dictionaries, with user values taking precedence
+       - Ensures all required parameters have either user-defined or default values
+    
+    3. **Instance Storage**:
+       - Stores the merged parameter dictionary as an instance attribute for access by other methods
+    
+    The merging process ensures that:
+    - User-provided parameters override default values
+    - Missing user parameters are filled with default values
+    - The resulting dictionary contains a complete set of parameters for process execution
 
-        @param user_parameter_D Dictionary containing user-defined parameters for the process.
-        @param json_file_FN Filename of the JSON file containing the user parameters.
-        """
+    @param user_parameter_D (dict): Dictionary containing user-defined parameters for the process.
+                                   Structure should match default_parameter_D format with keys like:
+                                   - 'process': Process-specific configuration
+                                   - Other custom parameter groups
+                                   May be incomplete; missing parameters will be filled from defaults.
+    @param json_file_FN (str): Filename of the JSON file containing the user parameters.
+                              Used for error reporting and logging to identify the source of configuration.
+
+    @return None: This method modifies instance attributes (self.json_file_FN and self.user_parameter_D)
+                 but does not return a value.
+
+    @note This method must be called after the Params object is initialized with default_parameter_D.
+          The merged parameters are stored in self.user_parameter_D and can be accessed by subsequent
+          methods like _Assemble_single_process.
+          
+          The Update_dict function performs a recursive merge where user values take precedence over
+          default values.
+    """
 
         self.json_file_FN = json_file_FN
 
@@ -219,7 +318,6 @@ class Params():
 
         Update_dict(process_D, self.default_parameter_D['process'])
 
-        # Set the main parameters
         compiled_process_D = self.user_parameter_D
 
         compiled_process_D['process']  = process_D
@@ -228,35 +326,86 @@ class Params():
 
         compiled_process_D['process']['json_file_FN'] = json_file_FN
 
-        if compiled_process_D['process']['verbose'] > 2:
+        if compiled_process_D['process']['verbose'] > 1:
 
-            print ('\n   compiled_process_D (process_center.py, 108):')
+            print ('====== Complied process dictionary:')
 
-            Pprint_parameter(compiled_process_D)
+            Pprint_parameter( compiled_process_D )
+
+            print ('======')
 
         self.process_S = Struct(compiled_process_D)
 
     def _Assemble_parameters(self, session, process_schema='process'):
         """
-        @brief Assemble and validate process parameters from the database and user input.
+        @brief Assembles and validates process parameters by merging database definitions with user-provided values.
 
-        This method retrieves parameter definitions for a process from the database, checks for required fields,
-        fills in missing parameters with system defaults, validates parameter types, and updates the process
-        parameters structure. It logs warnings for missing or invalid parameters and returns a status code
-        indicating success or failure.
+        @details
+        This method performs comprehensive parameter assembly and validation for a process by:
+        
+        1. **Validation Phase**:
+        - Verifies the presence of required 'sub_process_id' attribute
+        - Checks for existence of 'parameters' attribute in the process object
+        - Returns early with error status if critical attributes are missing
+        
+        2. **Database Query Phase**:
+        - Queries the database for parameter definitions using sub_process_id
+        - Retrieves parameter metadata: parameter_id, default_value, required flag, parameter_type
+        - Constructs system default parameter dictionary with type-appropriate conversions.
+        
+        3. **Validation Phase**:
+        - Creates a dictionary of compulsory parameters that must be present
+        - Validates that all required parameters exist in the user-provided parameters
+        - Logs errors for any missing compulsory parameters
+        
+        4. **Parameter Merging Phase**:
+        - Converts the process parameters structure to a dictionary
+        - Merges user parameters with system defaults (user values take precedence)
+        - Validates parameter types using Check_param_instance for each parameter
+        
+        5. **Cleanup and Finalization**:
+        - Removes any extraneous text in parentheses from parameter keys
+        - Recreates the process parameters as a Struct object for attribute access
+        - Optionally prints the final parameter dictionary if verbosity > 1
 
-        @param session Database session object used to query parameter definitions.
-        @param process_schema Name of the process schema in the database (default: 'process').
-        @return int Status code: 1 if parameters are successfully assembled and validated, 0 otherwise.
+        @param session (object): Database session object used to query parameter definitions. Must implement
+                                the _Multi_search method for retrieving process parameter metadata from
+                                the database schema.
+        @param process_schema (str): Name of the process schema in the database where parameter definitions
+                                    are stored. Defaults to 'process'. This schema should contain the
+                                    'process_parameter' table with columns: parameter_id, default_value,
+                                    required, parameter_type.
 
-        The function performs the following steps:
-        - Checks for the existence of 'sub_process_id' and 'parameters' in the process object.
-        - Queries the database for parameter definitions.
-        - Fills in missing parameters with system defaults.
-        - Validates the presence and type of compulsory parameters.
-        - Removes parameters not defined in the database.
-        - Updates the process parameters structure.
-        - Logs warnings for any issues encountered.
+        @return int: Status code indicating success or failure:
+                    - 1: Parameters successfully assembled and validated
+                    - 0: Assembly failed due to missing required attributes, compulsory parameters,
+                        or type validation errors
+
+        @note This method requires several instance attributes to be set beforehand:
+            - self.process_S.process: Process structure containing sub_process_id and parameters
+            - self.default_parameter_D: Dictionary containing default parameters and verbosity settings
+            - self.json_file_FN: JSON filename for error reporting
+            - self.p_str: Process string identifier for error reporting
+            
+            The method modifies self.process_S.process.parameters in place with validated and merged parameters.
+
+        @exception Logs error messages (does not raise exceptions) for:
+                - Missing sub_process_id attribute
+                - Missing or None parameters attribute
+                - Missing compulsory parameters
+                - Parameters not defined in database schema
+                - Type validation failures for parameter values
+                
+                All errors are logged using the Log() function and include file name and process number context.
+
+        @see Check_param_instance() for parameter type validation logic.
+        @see Update_dict() for dictionary merging functionality.
+        @see Struct() for converting dictionaries to attribute-accessible structures.
+        @see Pprint_parameter() for pretty-printing parameter dictionaries.
+
+        @warning This method assumes the database session is active and the process_schema contains
+                the required 'process_parameter' table. Type validation depends on parameter_type
+                values starting with specific prefixes: 'int', 'flo', 'rea', 'boo', 'tex', 'array', 'csv'.
         """
 
         status_OK = 1
@@ -364,7 +513,7 @@ class Params():
         # Recreate the process struct process with the updated parameters
         self.process_S.process.parameters = Struct(process_D)
 
-        if self.default_parameter_D['process']['verbose'] > 2:
+        if self.default_parameter_D['process']['verbose'] > 1:
 
             print ('\n   process_D (job_center.py, '
             '):')

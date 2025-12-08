@@ -19,8 +19,9 @@ from src.utils import  Delta_days, Dump_json, Full_path_locate, Remove_path, Wri
 COMPULSARY_DATA_RECORDS = ['pilot_country','pilot_site','point_id','min_depth','max_depth','sample_date',
                                 'sample_preparation__name','subsample','replicate','sample_analysis_date','sample_preservation__name',
                                 'sample_transport__name','transport_duration_h','sample_storage__name','user_analysis__email',
-                                'user_sampling__email','user_logistic__email','instrument-brand__name', 'instrument-model__name',
-                                'instrument_id','sample_preparation__name','procedure']
+                                'user_sampling__email','user_logistic__email', 'procedure',
+                                'instrument_brand__name','instrument_model__name','instrument_id',
+                                'analysis_method__name']
 
 PARAMETERS_WITH_ASSUMED_DEFAULT = ['sample_preparation__name','sample_preservation__name','sample_transport__name','sample_storage__name','transport_duration_h','replicate','subsample']
 
@@ -118,7 +119,8 @@ PREPCODE_D = {'None':'soil-undisturbed-in-situ','none':'soil-undisturbed-in-situ
               'ds':'dried-sieved-soil-in-lab','cu':'robert-minarik-cu',
               'd10':'xspectre-d10','d20':'xspectre-d20',
               'post-infiltration':'soaked',
-              'dry-pick-soak':'dried-aggregate-select+soaked'}
+              'dry-pick-soak':'dried-aggregate-select+soaked',
+              'eo-data':'eo-data'}
 
 INVERSE_PREPCODE_D = {'soil-undisturbed-in-situ':'no-prep',
               'mixed-untreated-soil-in-lab':'mix-wet',
@@ -127,7 +129,88 @@ INVERSE_PREPCODE_D = {'soil-undisturbed-in-situ':'no-prep',
               'xspectre-d10':'d10',
               'xspectre-d20':'d20',
               'soaked':'post-infiltration',
-              'dried-aggregate-select+soaked':'dry-pick-soak'}
+              'dried-aggregate-select+soaked':'dry-pick-soak',
+              'eo-data':'eo-data'}
+
+INDICATOR_D = {'tds':'total-dissolved-solids','ec':'electrical-conductivity','electrical conductivity':'electrical-conductivity',
+               'salinity':'salinity',
+               'ph':'ph(water)','ph(water)':'ph(water)', 'toc':'total-organic-carbon','soc':'soil-organic-carbon',
+               'tot-n':'total-nitrogen','total-nitrogen':'total-nitrogen',
+               'cation exchange capacity':'cation-exchange-capacity','cec':'cation-exchange-capacity',
+               'ca2+':'calcium','mg2+':'magnesium','na+':'sodium','k+':'potassium',
+               'olsen phosphorus':'olsen-phosphorus','available phosphorus':'olsen-phosphorus','p-olsen':'olsen-phosphorus',
+               'clay (<0,002 mm)':'clay(<0.002mm)',
+               'clay (<0.002 mm)':'clay(<0.002mm)','fine silt (0.002-0.02 mm)':'fine-silt(0.002-0.02mm)',
+               'coarse silt (0.02-0.06 mm)':'coarse-silt(0.02-0.06mm)',
+               'fine sand (0.06-0.2 mm)':'fine-sand(0.06-0.2mm)','coarse sand (0.2-2.0 mm)':'coarse-sand(0.2-2.0mm)',
+               'clay(<0,002mm)':'clay(<0.002mm)',
+                'clay(<0.002mm)':'clay(<0.002mm)','fine-silt(0.002-0.02mm)':'fine-silt(0.002-0.02mm)',
+                'coarse-silt(0.02-0.06mm)':'coarse-silt(0.02-0.06mm)',
+                'fine-sand(0.06-0.2mm)':'fine-sand(0.06-0.2mm)','coarse-sand(0.2-2.0mm)':'coarse-sand(0.2-2.0mm)',
+                'temp':'temperature','temperature':'temperature','sm':'soil-moisture-volumetric-content',
+               'water content':'soil-moisture-volumetric-content', 'bulk density':'bulk-density','bd':'bulk-density',
+               'potassium':'potassium','phosphorus':'phosphorus','nitrogen':'nitrogen',
+               'leu':'LEU','gla':'GLA','glu':'GLS','pho':'PHO','xyl':'XYL',
+               'prokaryotes_alpha_observed_richness':'Prokaryotes_alpha_observed_richness',
+               'prokaryotes_alpha_chao1_estimated richness':'Prokaryotes_alpha_chao1_estimated richness',
+               'prokaryotes_functional_prediction_nitrogen_fixation':'Prokaryotes-functional-prediction-nitrogen-fixation',
+               'prokaryotes_alpha_pielou_e':'Prokaryotes-alpha-pielou-e',
+               'prokaryotes_alpha_shannon':'Prokaryotes-alpha-shannon',
+               'prokaryotes_alpha_simpson':'Prokaryotes-alpha-simpson',
+               'prokaryotes_functional_prediction_chemoheterotrophy':'Prokaryotes-functional-prediction-chemoheterotrophy',
+               'prokaryotes_functional_prediction_human_pathogens_all':'Prokaryotes-functional-prediction-human-pathogens-all',
+                'fungi_alpha_observed_richness':'Fungi-alpha-observed-richness',
+                'fungi_alpha_chao1_estimated richness':'Fungi-alpha-chao1-estimated-richness',
+                'prokaryotes_alpha_dominance':'Prokaryotes-alpha-dominance',
+                'fungi_alpha_dominance':'Fungi-alpha-dominance',
+                'fungi_alpha_pielou_e':'Fungi-alpha-pielou-e',
+                'fungi_alpha_shannon':'Fungi-alpha-shannon',
+                'fungi_alpha_simpson':'Fungi-alpha-simpson',
+                'fungi_funtional_prediction_ectomycorrhizal fungi':'Fungi-funtional-prediction-Ectomycorrhizal-fungi',
+                'fungi_funtional_prediction_arbuscular mycorrhizal fungi':'Fungi-funtional-prediction-Arbuscular-mycorrhizal-fungi',
+                'fungi_funtional_prediction_fungal saprotrophs':'Fungi-funtional-prediction-fungal-saprotrophs',
+                'fungi_funtional_prediction_fungal plant pathogens':'Fungi-funtional-prediction-fungal-plant-pathogens',
+                'prokaryotes-alpha-observed-richness':'Prokaryotes-alpha-observed-richness','prokaryotes-alpha-chao1-estimated-richness':'Prokaryotes-alpha-chao1-estimated-richness',
+                'prokaryotes-functional-prediction-nitrogen-fixation':'Prokaryotes-functional-prediction-nitrogen-fixation',
+                'prokaryotes-alpha-pielou-e':'Prokaryotes-alpha-pielou-e',
+                'prokaryotes-alpha-shannon':'Prokaryotes-alpha-shannon',
+                'prokaryotes-alpha-simpson':'Prokaryotes-alpha-simpson',
+                'prokaryotes-functional-prediction-chemoheterotrophy':'Prokaryotes-functional-prediction-chemoheterotrophy',
+                'prokaryotes-functional-prediction-human-pathogens-all':'Prokaryotes-functional-prediction-human-pathogens-all',
+                'fungi-alpha-observed-richness':'Fungi-alpha-observed-richness',
+                'fungi-alpha-chao1-estimated-richness':'Fungi-alpha-chao1-estimated-richness',
+                'prokaryotes-alpha-dominance':'Prokaryotes-alpha-dominance',
+                'fungi-alpha-dominance':'Fungi-alpha-dominance',
+                'fungi-alpha-pielou-e':'Fungi-alpha-pielou-e',
+                'fungi-alpha-shannon':'Fungi-alpha-shannon',
+                'fungi-alpha-simpson':'Fungi-alpha-simpson',
+                'fungi-funtional-prediction-ectomycorrhizal-fungi':'Fungi-funtional-prediction-Ectomycorrhizal-fungi',
+                'fungi-funtional-prediction-arbuscular-mycorrhizal-fungi':'Fungi-funtional-prediction-Arbuscular-mycorrhizal-fungi',
+                'fungi-funtional-prediction-fungal-saprotrophs':'Fungi-funtional-prediction-fungal-saprotrophs',
+                'fungi-funtional-prediction-fungal-plant-pathogens':'Fungi-funtional-prediction-fungal-plant-pathogens',
+                'microbial-c':'Microbial-C','fungi':'fungi-fraction','bacteria':'bacteria-fraction',
+                'porosity':'porosity','final infiltration rate':'final-infiltration-rate','sorptivity':'sorptivity',
+                'saturated hydraulic conductivity':'saturated-hydraulic-conductivity','field capacity':'field-capacity',
+                'plant available water':'plant-available-water','saturated water content':'saturated-water-content',
+                'hg water pressure head scale parameter':'hg-water-pressure-head-scale-parameter',
+                'n shape parameter of retention curve':'n-shape-parameter-of-retention-curve',
+                'm shape parameter of retention curve':'m-shape-parameter-of-retention-curve',
+                'aggregate stability index':'aggregate-stability-index',
+                'spectra':'reflectance','reflectance':'reflectance',
+                'dfme_edtm':'dfme-edtm',
+                'geomorphon_edtm':'geomorphon-edtm',
+                'hillshade_edtm':'hillshade-edtm',
+                'ls.factor_edtm':'ls.factor-edtm',
+                'maxic_edtm':'maxic-edtm',
+                'minic_edtm':'minic-edtm',
+                'neg.openness_edtm':'neg.openness-edtm',
+                'pos.openness_edtm':'pos.openness-edtm',
+                'pro.curv_edtm':'pro.curv-edtm',
+                'shpindx_edtm':'shpindx-edtm',
+                'slope.in.degree_edtm':'slope.in.degree-edtm',
+                'twi_edtm':'twi-edtm',
+                'crop.type_eucropmap.v1':'crop.type-eucropmap.v1'
+}             
 
 # TG TO DO - COMPLETE UNITS
 UNIT_D = {} 
@@ -186,9 +269,13 @@ class common_json_db:
         """
         self.dst_FP_D = {}
 
-        for item in ['ai4sh','xspectre','ossl']:
+        for item in ['ai4sh','xspectre']:
 
-            dst_FP= '%s_%s' %(self.process_parameters.dst_FP,item)
+            dst_FP, method_FP = path.split(self.process_parameters.dst_FP)
+
+            #dst_FP= '%s_%s' %(self.process_parameters.dst_FP,item)
+
+            dst_FP = path.join(dst_FP, item, method_FP)
 
             dst_FP = Full_path_locate(self.project_FP, dst_FP, True)
 
@@ -259,6 +346,7 @@ class common_json_db:
                 #success = self.equipment_method_copy_D[self.equipment][item][0].pop('procedure')
 
             #analysis_method = [self.equipment_method_copy_D]
+            analysis_method = {self.equipment: [self.equipment_method_copy_D[self.equipment]]}
             analysis_method = {self.equipment: [self.equipment_method_copy_D[self.equipment]]}
             #analysis_method = [self.record_D['procedure']]
 
@@ -378,7 +466,7 @@ class common_json_db:
 
             analysis[indicator] = item  
 
-        if hasattr(self, 'xspectre_spectra_meta_D'):
+        if hasattr(self, 'xspectre_spectra_meta_D') and self.process.parameters.extended_metadata:
 
             self.observation_metadata['metadata'] = self.xspectre_spectra_meta_D
 
@@ -430,17 +518,8 @@ class common_json_db:
 
             for item in self.equipment_method_D[self.equipment][procedure]:
             
-                #indicator = item.pop('indicator__name')
-                #indicator = self.equipment_method_D[self.equipment][procedure][item]['indicator__name']
                 indicator = item['indicator__name']
-                #indicator = item['indicator__name']
-
-                #analysis_method__name = item.pop('analysis_method__name')
-
-                #item['analysis_method__name'] = analysis_method__name.lower()
-
-                #analysis[indicator] = item  
-                #analysis[indicator] = self.equipment_method_D[self.equipment][procedure][item]
+  
                 analysis[indicator] = item
         locus = self._Locus()
         '''
@@ -506,38 +585,40 @@ class common_json_db:
 
         for indicator_key in self.indicator_L:
             '''
-            if self.record_D['analysis_method__name'][indicator_key]:
-
-                method = self.record_D['analysis_method__name'][indicator_key]
-
-            else:
-
-                method = METHOD_D[self.equipment]
             '''
+
+            indicator__name = '%s_%s' %( self.process.parameters.procedure, INDICATOR_D[indicator_key])
+   
+            if self.process.parameters.instrument_model__name == 'ise-ph-soil':
+
+                indicator__name = indicator__name.replace('ph(water)','ph(soil)')
+
+            if indicator__name == 'xspectre-penetrometer_ph(water)':
+
+                indicator__name = 'xspectre-penetrometer_ph(soil)'
+
             #if 'standard_deviation' in self.record_D and self.record_D['standard_deviation'][indicator_key]:
             if 'standard_deviation' in self.record_D:
  
                 observation_D =  {'value': self.record_D['value'][indicator_key], 
                             'standard_deviation': self.record_D['standard_deviation'][indicator_key],
-                            #'n_repeats': self.record_D['n_repetitions'],
                             'unit__name': self.record_D['unit__name'][indicator_key],
-                            'indicator__name':  indicator_key,
+                            'indicator__name':  indicator__name,
                             'procedure': self.record_D['procedure'],
                             'analysis_method__name': self.record_D['analysis_method__name'], #METHOD_D[self.equipment],
-                            'instrument-brand__name': self.record_D['instrument-brand__name'],
-                            'instrument-model__name': self.record_D['instrument-model__name'],
+                            'instrument_brand__name': self.record_D['instrument_brand__name'],
+                            'instrument_model__name': self.record_D['instrument_model__name'],
                             'instrument_id': self.record_D['instrument_id']}
 
             else:
 
                 observation_D =  {'value': self.record_D['value'][indicator_key],
-                            #'n_repeats': self.record_D['n_repetitions'],
                             'unit__name': self.record_D['unit__name'][indicator_key],
-                            'indicator__name':  indicator_key,
+                            'indicator__name':  indicator__name,
                             'procedure': self.record_D['procedure'],
                             'analysis_method__name': self.record_D['analysis_method__name'], #METHOD_D[self.equipment],
-                            'instrument-brand__name': self.record_D['instrument-brand__name'],
-                            'instrument-model__name': self.record_D['instrument-model__name'],
+                            'instrument_brand__name': self.record_D['instrument_brand__name'],
+                            'instrument_model__name': self.record_D['instrument_model__name'],
                             'instrument_id': self.record_D['instrument_id']}
 
             self.equipment_method_D[self.equipment].append(observation_D)
@@ -570,38 +651,36 @@ class common_json_db:
 
         for indicator_key in self.indicator_L:
             '''
-            if self.record_D['analysis_method__name'][indicator_key]:
-
-                method = self.record_D['analysis_method__name'][indicator_key]
-
-            else:
-
-                method = METHOD_D[self.equipment]
             '''
+
+            indicator__name = '%s_%s' %( self.process.parameters.procedure, INDICATOR_D[indicator_key])
+            
+
             if 'standard_deviation' in self.record_D and self.record_D['standard_deviation'][indicator_key]:
  
                 observation_D =  {'value': self.record_D['value'][indicator_key], 
                             'standard_deviation': self.record_D['standard_deviation'][indicator_key],
                             'unit__name': self.record_D['unit__name'][indicator_key],
-                            'indicator__name':  indicator_key,
+                            'indicator__name':  indicator__name,
                             'procedure': self.record_D['procedure'][indicator_key],
                             'analysis_method__name': self.record_D['analysis_method__name'][indicator_key], #METHOD_D[self.equipment],
-                            'instrument-brand__name': self.record_D['instrument-brand__name'][indicator_key],
-                            'instrument-model__name': self.record_D['instrument-model__name'][indicator_key],
+                            'instrument_brand__name': self.record_D['instrument_brand__name'][indicator_key],
+                            'instrument_model__name': self.record_D['instrument_model__name'][indicator_key],
                             'instrument_id': self.record_D['instrument_id'][indicator_key]}
 
             else:
 
                 observation_D =  {'value': self.record_D['value'][indicator_key],
                             'unit__name': self.record_D['unit__name'][indicator_key],
-                            'indicator__name':  indicator_key,
+                            'indicator__name':  indicator__name,
                             'procedure': self.record_D['procedure'][indicator_key],
                             'analysis_method__name': self.record_D['analysis_method__name'][indicator_key], #METHOD_D[self.equipment],
-                            'instrument-brand__name': self.record_D['instrument-brand__name'][indicator_key],
-                            'instrument-model__name': self.record_D['instrument-model__name'][indicator_key],
+                            'instrument_brand__name': self.record_D['instrument_brand__name'][indicator_key],
+                            'instrument_model__name': self.record_D['instrument_model__name'][indicator_key],
                             'instrument_id': self.record_D['instrument_id'][indicator_key]}
 
             self.equipment_method_D[self.equipment][self.method_D[self.indicator_method_D[indicator_key]]].append(observation_D)
+            
     
     def _Set_locus_sample_date_coordinate(self):
         """
@@ -636,6 +715,86 @@ class common_json_db:
         self.record_D['locus'] = locus
 
         self.record_D['site_id'] =  '%s-%s' %(self.record_D['pilot_country'], self.record_D['pilot_site'])
+
+        return True
+    
+    def _Set_column_L(self, column_L):
+        """
+        @brief Cleans and normalizes a list of column headers.
+
+        This function processes the input list of column headers by:
+        - Removing any leading Byte Order Mark (BOM) characters and whitespace.
+        - Converting all column names to lowercase.
+        - Replacing values that indicate missing data (e.g., 'na', 'none', 'n/a', 'nan', '', 'null') with None.
+
+        @param column_L List of column header strings to be cleaned and normalized.
+
+        @return None. The cleaned list is assigned to self.column_L.
+        """
+
+        self.column_L = [col.replace('\ufeff','').strip().lower() for col in column_L]
+
+        self.column_L = [col.replace('"','') for col in self.column_L]
+
+        self.column_L = [None if col in ['na', 'none', 'n/a', 'nan', '', 'null'] else col for col in self.column_L]
+
+    def _Add_compulsary_default_parameters(self):
+        """
+        @brief Adds compulsory parameters with assumed default values to the process parameters dictionary if they are missing.
+
+        This function checks for each parameter listed in PARAMETERS_WITH_ASSUMED_DEFAULT whether it exists in self.process_parameters_D.
+        If a parameter is missing, it assigns the corresponding value from ASSUMED_DEFAULT_VALUES and prints a warning message.
+
+        @return None
+        """
+
+        default_D = dict(zip(PARAMETERS_WITH_ASSUMED_DEFAULT, ASSUMED_DEFAULT_VALUES))
+
+        for parameter in default_D:
+
+            if not parameter in self.process_parameters_D:
+
+                self.process_parameters_D[parameter] = default_D[parameter]
+
+                print (' ⚠️ WARNING - assuming default value <%s> for  parameter <%s>' %(default_D[parameter], parameter))
+
+    def _Check_set_compulsary_record_parameters(self):
+        """
+        @brief Ensures all compulsory record parameters are set in the row data dictionary.
+
+        This function checks and sets compulsory parameters required for a data record. If the 'pilot' column is missing,
+        it assumes its value is equal to 'pilot_site' and issues a warning. For each compulsory parameter, if it is missing
+        or empty in the row data, the function attempts to set it from the process parameters dictionary. If the parameter
+        cannot be found, an error message is printed with instructions for resolving the issue.
+
+        @details
+        - If 'pilot' is not present in the column list, its value is set to 'pilot_site'.
+        - Iterates through COMPULSARY_DATA_RECORDS to ensure each is present and non-empty in row_data_D.
+        - If a compulsory parameter is missing, attempts to set it from process_parameters_D.
+        - Prints error and instructions if a compulsory parameter cannot be found.
+
+        @return True if all compulsory parameters are set successfully, None if any are missing and cannot be resolved.
+        """
+
+        for item in COMPULSARY_DATA_RECORDS:
+
+            if item not in self.record_D or len(self.record_D[item]) == 0:
+
+                if item in self.process_parameters_D:
+
+                    self.record_D[item] = self.process_parameters_D[item]
+
+                else:
+
+                    print ('❌  ERROR - compulsory data not found: '+item)
+
+                    print (' You can add <'+item+'> parameter to either:')
+
+                    print('  - the method header definition file: %s' %(self.process_parameters.method_src_FPN))
+                    
+                    print('  - or the data file: %s' %(self.process_parameters.data_src_FPN))
+
+                    return None
 
         return True
 
@@ -684,12 +843,20 @@ class common_json_db:
         
         self.record_D['sample_preparation__name'] = PREPCODE_D[self.record_D['sample_preparation__name']]
 
-        # Calculate storage duration
-        self.record_D['storage_duration_h'] = max(0, 24*(Delta_days(self.record_D['sample_date'], self.record_D['sample_analysis_date'])))
+        # Calculate storage duration in hours
 
-        # If duration is negative, set analysis date to sampling data
-        if self.record_D['storage_duration_h'] == 0:
-            self.record_D['sample_analysis_date'] = self.record_D['sample_date']
+        if isinstance(self.record_D['procedure'], dict) and self.record_D['procedure'][self.indicator_L[0]] == 'eo-data':
+
+            self.record_D['storage_duration_h'] = 0
+
+            self.record_D['sample_date'] = 0
+
+        else:
+            self.record_D['storage_duration_h'] = max(0, 24*(Delta_days(self.record_D['sample_date'], self.record_D['sample_analysis_date'])))
+
+            # If duration is negative, set analysis date to sampling data
+            if self.record_D['storage_duration_h'] == 0:
+                self.record_D['sample_analysis_date'] = self.record_D['sample_date']
 
         # convert all text records to lower case
         for item in self.record_D:
@@ -700,7 +867,7 @@ class common_json_db:
 
         return True
     
-    def _Get_spectra_measurements(self, xspectre_json_D):
+    def _Get_spectra_measurements_OLD(self, xspectre_json_D):
         """
         @brief Extracts spectra measurements from a data row and appends them to the equipment-method mapping.
 
@@ -723,27 +890,27 @@ class common_json_db:
         """
 
         #for indicator_key in xspectre_json_D['sensing']:
+
+        indicator__name = 'xspeectre_%s_%s' %( self.process.parameters.instrument_model__name, INDICATOR_D[self.record_D['indicator__name']])
                 
         if 'samplestd' in xspectre_json_D:
 
             observation_D =  {'value': self.record_D['reflectance_value_A'].tolist(), 
                         'standard_deviation': self.record_D['reflectance_standard_deviation_A'].tolist(), 
-                        #'n_repeats': self.record_D['n_repeats'],
                         'unit__name': self.record_D['unit__name'],
-                        'indicator__name':  self.record_D['indicator__name'],
+                        'indicator__name':  indicator__name,
                         'analysis_method__name': self.record_D['analysis_method__name'], #METHOD_D[self.equipment],
-                        'instrument-brand__name': self.record_D['instrument-brand__name'],
-                        'instrument-model__name': self.record_D['instrument-_model__name'],
+                        'instrument_brand__name': self.record_D['instrument_brand__name'],
+                        'instrument_model__name': self.record_D['instrument-_model__name'],
                         'instrument_id': self.record_D['instrument_id']}
         else:
 
             observation_D =  {'value': xspectre_json_D['samplemean'], 
-                        #'n_repeats': xspectre_json_D['n_repetitions'],
-                        'unit__name': 'fraction',
-                        'indicator__name':  'reflectance',
+                        'unit__name': self.record_D['unit__name'],
+                        'indicator__name':  indicator__name,
                         'analysis_method__name': self.record_D['analysis_method__name'], #METHOD_D[self.equipment],
-                        'instrument-brand__name': self.record_D['instrument-brand__name'],
-                        'instrument-model__name': self.record_D['instrument-_model__name'],
+                        'instrument_brand__name': self.record_D['instrument_brand__name'],
+                        'instrument_model__name': self.record_D['instrument-_model__name'],
                         'instrument_id': self.record_D['instrument_id']}
 
         spectra_scan_D =  {
@@ -879,28 +1046,42 @@ class common_json_db:
         @return None
         """
 
-        instrument_model__name = self.record_D['instrument-model__name']
+        instrument_model__name = self.record_D['instrument_model__name']
         instrument_model__id = self.record_D['instrument_id']
 
-        if isinstance(self.record_D['instrument-model__name'], dict):
+        if isinstance(self.record_D['instrument_model__name'], dict):
             
-            if len(self.record_D['instrument-model__name']) == 1:
+            if len(self.record_D['instrument_model__name']) == 1:
 
-                instrument_model__name = list(self.record_D['instrument-model__name'].values())[0]
+                instrument_model__name = list(self.record_D['instrument_model__name'].values())[0]
 
                 instrument_model__id = list(self.record_D['instrument_id'].values())[0]
                 
             else:
 
-                instrument_model__name = instrument_model__id = 'multiple'
+                instrument_model_set = set(self.record_D['instrument_model__name'].values())
+
+                instrument_model_id_set = set(self.record_D['instrument_id'].values())
+
+                if len(instrument_model_set) == 1:
+
+                    instrument_model__name = instrument_model_set.pop()
+                    instrument_model__id = instrument_model_id_set.pop()
+
+                    if instrument_model__name == '0':
+
+                        instrument_model__name = self.process.parameters.procedure
+                else:
+
+                    instrument_model__name = instrument_model__id = 'multiple'
                     
         dst_FN = '%s_%s_%s_%s_%s_%s_%s_%s.json' %(self.record_D['sample_id'], 
                                          self.record_D['subsample'], 
                                          self.record_D['replicate'], 
                                          self.record_D['setting'],
                                          INVERSE_PREPCODE_D[self.record_D['sample_preparation__name']], 
-                                         instrument_model__name,
-                                         instrument_model__id,
+                                         instrument_model__name.replace('_','-'),
+                                         instrument_model__id.replace('_','-'),
                                          self.record_D['sample_analysis_date'])
         
         if item == 'xspectre' and 'muzzle_code' in self.record_D:
@@ -910,8 +1091,8 @@ class common_json_db:
                                                  self.record_D['replicate'],
                                                  self.record_D['setting'],
                                                  INVERSE_PREPCODE_D[self.record_D['sample_preparation__name']],
-                                                 instrument_model__name,
-                                                 instrument_model__id,
+                                                 instrument_model__name.replace('_','-'),
+                                                 instrument_model__id.replace('_','-'),
                                                  self.record_D['muzzle_code'],
                                                  self.record_D['muzzle_formfactor'],
                                                  self.record_D['sample_analysis_date'])
@@ -942,7 +1123,7 @@ class common_json_db:
         @return None
         """
 
-        instrument_model__name = self.record_D['instrument-model__name']
+        instrument_model__name = self.record_D['instrument_model__name']
 
         if self.process.parameters.procedure == 'wetlab':
             
